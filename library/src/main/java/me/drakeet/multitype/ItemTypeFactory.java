@@ -18,7 +18,7 @@ public class ItemTypeFactory {
     }
 
 
-    public ItemType newMessage(@NonNull ItemContent content) {
+    public ItemType newType(@NonNull ItemContent content) {
         return new ItemType(content, extra);
     }
 
