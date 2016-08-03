@@ -6,12 +6,12 @@ We should override the `getItemViewType` of `RecyclerView.Adapter` and add some 
 then we create some `ViewHolder` to relate the type, all of the process it is a very bad experience.
 **And once we need to add a new type, we have to go to the original Adapter and modify some old codes**, so sad. 
 
-Today, I create a new way to easily develop the complex RecyclerView/ListView, with my MultiType library, 
+Today, I create a new graceful way to easily develop the complex RecyclerView/ListView, with my MultiType library, 
 no matter how complex and how frequently changing list, we could insert a new type without changing the old codes.
 
-#### Usage
+## Usage
 
-1. Create a class extends `ItemContent`, for example:
+#### Step 1. Create a class extends `ItemContent`, for example:
 
 ```java
 public class TextItemContent extends ItemContent {
@@ -36,7 +36,7 @@ public class TextItemContent extends ItemContent {
 }
 ```
 
-2. Create a class extends `ItemViewProvider<T extends ItemContent>`, for example: 
+#### Step 2. Create a class extends `ItemViewProvider<T extends ItemContent>`, for example: 
 
 ```java
 public class TextItemViewProvider extends ItemViewProvider<TextItemContent> {
@@ -53,8 +53,7 @@ public class TextItemViewProvider extends ItemViewProvider<TextItemContent> {
 
 
     @NonNull @Override protected View onCreateView(@NonNull ViewGroup parent) {
-        View root = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.item_text, parent, false);
+        View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text, parent, false);
         ViewHolder holder = new ViewHolder(root);
         root.setTag(holder);
         return root;
@@ -70,7 +69,7 @@ public class TextItemViewProvider extends ItemViewProvider<TextItemContent> {
 }
 ```
 
-3. You do not need to create a new class. I should add a `RecyclerView` and `List<ItemType>` to you `Activity`, for example: 
+#### Step 3. You do not need to create a new class. I should add a `RecyclerView` and `List<ItemType>` to you `Activity`, for example: 
 
 ```java
 @Override
@@ -99,7 +98,9 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-**You're good to go!** You could check the `sample` module for more details and after running it will look like: 
+**You're good to go!** 
+
+You could check the `sample` module for more details and after running it will look like: 
 
 <img src="art/screenshsot.png" width=270 height=486/>
 
