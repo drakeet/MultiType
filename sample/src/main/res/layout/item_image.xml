@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/message_margin_top"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        style="@style/Message.Frame"
+        android:id="@+id/image"
+        android:layout_width="72dp"
+        android:layout_height="72dp"/>
+</LinearLayout>
