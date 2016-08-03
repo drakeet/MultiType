@@ -28,7 +28,7 @@ public final class ItemTypePool {
     private static ArrayList<ItemViewProvider> providers = new ArrayList<>();
 
 
-    public static void register(
+    public synchronized static void register(
         @NonNull Class<? extends ItemContent> itemContent, @NonNull ItemViewProvider provider) {
         contents.add(itemContent);
         providers.add(provider);
