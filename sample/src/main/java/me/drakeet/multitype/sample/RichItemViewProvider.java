@@ -43,9 +43,9 @@ public class RichItemViewProvider extends ItemViewProvider<RichItemContent> {
     }
 
 
-    @NonNull @Override protected View onCreateView(@NonNull ViewGroup parent) {
-        View root = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.item_rich, parent, false);
+    @NonNull @Override
+    protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+        View root = inflater.inflate(R.layout.item_rich, parent, false);
         ViewHolder holder = new ViewHolder(root);
         root.setTag(holder);
         return root;

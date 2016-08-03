@@ -40,9 +40,9 @@ public class TextItemViewProvider extends ItemViewProvider<TextItemContent> {
     }
 
 
-    @NonNull @Override protected View onCreateView(@NonNull ViewGroup parent) {
-        View root = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.item_text, parent, false);
+    @NonNull @Override
+    protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+        View root = inflater.inflate(R.layout.item_text, parent, false);
         ViewHolder holder = new ViewHolder(root);
         root.setTag(holder);
         return root;

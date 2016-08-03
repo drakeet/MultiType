@@ -24,7 +24,7 @@ import java.util.List;
 import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.TypeItemFactory;
 import me.drakeet.multitype.ItemTypePool;
-import me.drakeet.multitype.ItemTypesAdapter;
+import me.drakeet.multitype.TypeItemsAdapter;
 import me.drakeet.multitype.sample.ImageItemContent;
 import me.drakeet.multitype.sample.ImageItemViewProvider;
 import me.drakeet.multitype.sample.R;
@@ -61,6 +61,6 @@ protected void onCreate(Bundle savedInstanceState) {
     ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
     ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
 
-    recyclerView.setAdapter(new ItemTypesAdapter(typeItems));
+    recyclerView.setAdapter(new TypeItemsAdapter(typeItems));
 }
 }

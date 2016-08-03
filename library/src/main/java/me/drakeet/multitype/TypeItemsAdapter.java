@@ -18,6 +18,7 @@ package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
@@ -25,12 +26,12 @@ import java.util.List;
 /**
  * @author drakeet
  */
-public class ItemTypesAdapter extends RecyclerView.Adapter<ItemTypesAdapter.ViewHolder> {
+public class TypeItemsAdapter extends RecyclerView.Adapter<TypeItemsAdapter.ViewHolder> {
 
     private final List<TypeItem> typeItems;
 
 
-    public ItemTypesAdapter(@NonNull List<TypeItem> typeItems) {this.typeItems = typeItems;}
+    public TypeItemsAdapter(@NonNull List<TypeItem> typeItems) {this.typeItems = typeItems;}
 
 
     @Override public int getItemViewType(int position) {
@@ -42,7 +43,8 @@ public class ItemTypesAdapter extends RecyclerView.Adapter<ItemTypesAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
-        View root = ItemTypePool.getProviderByIndex(indexViewType).onCreateView(parent);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View root = ItemTypePool.getProviderByIndex(indexViewType).onCreateView(inflater, parent);
         ViewHolder holder = new ViewHolder(root);
         return holder;
     }

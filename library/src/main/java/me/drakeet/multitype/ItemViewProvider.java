@@ -17,15 +17,19 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
+/***
  * @author drakeet
  */
 public abstract class ItemViewProvider<T extends ItemContent> {
 
-    @NonNull protected abstract View onCreateView(@NonNull ViewGroup parent);
+    // @formatter:off
+
+    @NonNull
+    protected abstract View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
     protected abstract void onBindView(@NonNull View view, @NonNull T t, @NonNull TypeItem typeItem);
 
