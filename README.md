@@ -92,15 +92,15 @@ protected void onCreate(Bundle savedInstanceState) {
     recyclerView = (RecyclerView) findViewById(R.id.list);
     
     itemTypeFactory = new ItemTypeFactory.Builder().build();
-    ItemType textItemType = itemTypeFactory.newType(new TextItemContent("world"));
-    ItemType imageItemType = itemTypeFactory.newType(new ImageItemContent(R.mipmap.ic_launcher));
-    ItemType richItemType = itemTypeFactory.newType(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
+    ItemType textItem = itemTypeFactory.newItem(new TextItemContent("world"));
+    ItemType imageItem = itemTypeFactory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
+    ItemType richItem = itemTypeFactory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
     
     List<ItemType> itemTypes = new ArrayList<>(80);
     for (int i = 0; i < 20; i++) {
-        itemTypes.add(textItemType);
-        itemTypes.add(imageItemType);
-        itemTypes.add(richItemType);
+        itemTypes.add(textItem);
+        itemTypes.add(imageItem);
+        itemTypes.add(richItem);
     }
 
     ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());

@@ -34,7 +34,7 @@ public class ItemTypeFactory {
     }
 
 
-    public ItemType newType(@NonNull ItemContent content) {
+    public ItemType newItem(@NonNull ItemContent content) {
         return new ItemType(content, extra);
     }
 
