@@ -45,7 +45,6 @@ public class TextItemContent implements ItemContent, Savable {
     }
 
 
-    // If the content is savable, you should override the method
     @NonNull @Override public byte[] toBytes() {
         return new Gson().toJson(this).getBytes();
     }
