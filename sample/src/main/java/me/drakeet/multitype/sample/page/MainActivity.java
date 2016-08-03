@@ -39,28 +39,28 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
 
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    recyclerView = (RecyclerView) findViewById(R.id.list);
-    // @formatter:off
-    itemFactory = new TypeItemFactory.Builder().build();
-    TypeItem textItem = itemFactory.newItem(new TextItemContent("world"));
-    TypeItem imageItem = itemFactory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
-    TypeItem richItem = itemFactory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
-    // @formatter:on
-    List<TypeItem> typeItems = new ArrayList<>(80);
-    for (int i = 0; i < 20; i++) {
-        typeItems.add(textItem);
-        typeItems.add(imageItem);
-        typeItems.add(richItem);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        recyclerView = (RecyclerView) findViewById(R.id.list);
+        // @formatter:off
+        itemFactory = new TypeItemFactory.Builder().build();
+        TypeItem textItem = itemFactory.newItem(new TextItemContent("world"));
+        TypeItem imageItem = itemFactory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
+        TypeItem richItem = itemFactory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
+        // @formatter:on
+        List<TypeItem> typeItems = new ArrayList<>(80);
+        for (int i = 0; i < 20; i++) {
+            typeItems.add(textItem);
+            typeItems.add(imageItem);
+            typeItems.add(richItem);
+        }
+
+        ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
+        ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
+        ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
+
+        recyclerView.setAdapter(new TypeItemsAdapter(typeItems));
     }
-
-    ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
-    ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-    ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
-
-    recyclerView.setAdapter(new TypeItemsAdapter(typeItems));
-}
 }

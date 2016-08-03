@@ -110,7 +110,7 @@ protected void onCreate(Bundle savedInstanceState) {
     ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
     ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
 
-    recyclerView.setAdapter(new ItemTypesAdapter(typeItems));
+    recyclerView.setAdapter(new TypeItemsAdapter(typeItems));
 }
 ```
 
