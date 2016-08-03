@@ -24,18 +24,18 @@ import static java.util.Objects.requireNonNull;
 /**
  * @author drakeet
  */
-public class ItemTypeFactory {
+public class TypeItemFactory {
 
     @Nullable private final String extra;
 
 
-    private ItemTypeFactory(@Nullable String extra) {
+    private TypeItemFactory(@Nullable String extra) {
         this.extra = extra;
     }
 
 
-    public ItemType newItem(@NonNull ItemContent content) {
-        return new ItemType(content, extra);
+    public TypeItem newItem(@NonNull ItemContent content) {
+        return new TypeItem(content, extra);
     }
 
 
@@ -51,8 +51,8 @@ public class ItemTypeFactory {
         }
 
 
-        public ItemTypeFactory build() {
-            return new ItemTypeFactory(extra);
+        public TypeItemFactory build() {
+            return new TypeItemFactory(extra);
         }
     }
 }

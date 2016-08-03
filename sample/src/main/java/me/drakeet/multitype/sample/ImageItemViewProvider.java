@@ -21,7 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import me.drakeet.multitype.ItemType;
+import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.ItemViewProvider;
 
 /**
@@ -52,7 +52,7 @@ public class ImageItemViewProvider extends ItemViewProvider<ImageItemContent> {
     @Override
     protected void onBindView(
         @NonNull View view,
-        @NonNull ImageItemContent imageContent, @NonNull ItemType itemType) {
+        @NonNull ImageItemContent imageContent, @NonNull TypeItem typeItem) {
         ViewHolder holder = (ViewHolder) view.getTag();
         holder.image.setImageResource(imageContent.resId);
     }

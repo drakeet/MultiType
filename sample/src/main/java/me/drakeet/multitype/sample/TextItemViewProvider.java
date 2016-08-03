@@ -21,7 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import me.drakeet.multitype.ItemType;
+import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.ItemViewProvider;
 
 /**
@@ -51,9 +51,8 @@ public class TextItemViewProvider extends ItemViewProvider<TextItemContent> {
 
     @Override
     protected void onBindView(
-        @NonNull View view, @NonNull TextItemContent content, @NonNull ItemType itemType) {
+        @NonNull View view, @NonNull TextItemContent content, @NonNull TypeItem typeItem) {
         ViewHolder holder = (ViewHolder) view.getTag();
         holder.text.setText("hello: " + content.text);
     }
-
 }

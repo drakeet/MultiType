@@ -22,7 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import me.drakeet.multitype.ItemType;
+import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.ItemViewProvider;
 
 /**
@@ -54,7 +54,7 @@ public class RichItemViewProvider extends ItemViewProvider<RichItemContent> {
 
     @Override
     protected void onBindView(
-        @NonNull View view, @NonNull RichItemContent richContent, @NonNull ItemType itemType) {
+        @NonNull View view, @NonNull RichItemContent richContent, @NonNull TypeItem typeItem) {
         ViewHolder holder = (ViewHolder) view.getTag();
         holder.text.setText(richContent.text);
         holder.image.setImageResource(richContent.imageResId);

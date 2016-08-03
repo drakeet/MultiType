@@ -27,10 +27,10 @@ public abstract class ItemViewProvider<T extends ItemContent> {
 
     @NonNull protected abstract View onCreateView(@NonNull ViewGroup parent);
 
-    protected abstract void onBindView(@NonNull View view, @NonNull T t, @NonNull ItemType itemType);
+    protected abstract void onBindView(@NonNull View view, @NonNull T t, @NonNull TypeItem typeItem);
 
 
-    public final void onBindView(@NonNull View view, @NonNull ItemType data) {
+    public final void onBindView(@NonNull View view, @NonNull TypeItem data) {
         this.onBindView(view, (T) data.content, data);
     }
 

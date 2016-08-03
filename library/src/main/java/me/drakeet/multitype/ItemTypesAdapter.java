@@ -27,14 +27,14 @@ import java.util.List;
  */
 public class ItemTypesAdapter extends RecyclerView.Adapter<ItemTypesAdapter.ViewHolder> {
 
-    private final List<ItemType> itemTypes;
+    private final List<TypeItem> typeItems;
 
 
-    public ItemTypesAdapter(@NonNull List<ItemType> itemTypes) {this.itemTypes = itemTypes;}
+    public ItemTypesAdapter(@NonNull List<TypeItem> typeItems) {this.typeItems = typeItems;}
 
 
     @Override public int getItemViewType(int position) {
-        ItemContent content = itemTypes.get(position).content;
+        ItemContent content = typeItems.get(position).content;
         int index = ItemTypePool.getContents().indexOf(content.getClass());
         return index;
     }
@@ -51,13 +51,13 @@ public class ItemTypesAdapter extends RecyclerView.Adapter<ItemTypesAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         int type = getItemViewType(position);
-        ItemType itemType = itemTypes.get(position);
-        ItemTypePool.getProviderByIndex(type).onBindView(holder.itemView, itemType);
+        TypeItem typeItem = typeItems.get(position);
+        ItemTypePool.getProviderByIndex(type).onBindView(holder.itemView, typeItem);
     }
 
 
     @Override public int getItemCount() {
-        return itemTypes.size();
+        return typeItems.size();
     }
 
 

@@ -21,8 +21,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import me.drakeet.multitype.ItemType;
-import me.drakeet.multitype.ItemTypeFactory;
+import me.drakeet.multitype.TypeItem;
+import me.drakeet.multitype.TypeItemFactory;
 import me.drakeet.multitype.ItemTypePool;
 import me.drakeet.multitype.ItemTypesAdapter;
 import me.drakeet.multitype.sample.ImageItemContent;
@@ -35,32 +35,32 @@ import me.drakeet.multitype.sample.TextItemViewProvider;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ItemTypeFactory itemTypeFactory;
+    private TypeItemFactory itemFactory;
     private RecyclerView recyclerView;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.list);
-        // @formatter:off
-        itemTypeFactory = new ItemTypeFactory.Builder().build();
-        ItemType textItem = itemTypeFactory.newItem(new TextItemContent("world"));
-        ItemType imageItem = itemTypeFactory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
-        ItemType richItem = itemTypeFactory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
-        // @formatter:on
-        List<ItemType> itemTypes = new ArrayList<>(80);
-        for (int i = 0; i < 20; i++) {
-            itemTypes.add(textItem);
-            itemTypes.add(imageItem);
-            itemTypes.add(richItem);
-        }
-
-        ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
-        ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-        ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
-
-        recyclerView.setAdapter(new ItemTypesAdapter(itemTypes));
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    recyclerView = (RecyclerView) findViewById(R.id.list);
+    // @formatter:off
+    itemFactory = new TypeItemFactory.Builder().build();
+    TypeItem textItem = itemFactory.newItem(new TextItemContent("world"));
+    TypeItem imageItem = itemFactory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
+    TypeItem richItem = itemFactory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
+    // @formatter:on
+    List<TypeItem> typeItems = new ArrayList<>(80);
+    for (int i = 0; i < 20; i++) {
+        typeItems.add(textItem);
+        typeItems.add(imageItem);
+        typeItems.add(richItem);
     }
+
+    ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
+    ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
+    ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
+
+    recyclerView.setAdapter(new ItemTypesAdapter(typeItems));
+}
 }

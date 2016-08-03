@@ -22,17 +22,17 @@ import android.support.annotation.Nullable;
 /**
  * @author drakeet
  */
-public class ItemType {
+public class TypeItem {
 
     @NonNull public ItemContent content;
     @Nullable public String extra;
 
 
-    public ItemType() {
+    public TypeItem() {
     }
 
 
-    public ItemType(@NonNull ItemContent content, String extra) {
+    public TypeItem(@NonNull ItemContent content, String extra) {
         this.extra = extra;
         this.content = content;
     }

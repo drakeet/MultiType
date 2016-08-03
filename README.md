@@ -75,7 +75,7 @@ public class TextItemViewProvider extends ItemViewProvider<TextItemContent> {
 
     @Override
     protected void onBindView(
-        @NonNull View view, @NonNull TextItemContent content, @NonNull ItemType itemType) {
+        @NonNull View view, @NonNull TextItemContent content, @NonNull TypeItem typeItem) {
         ViewHolder holder = (ViewHolder) view.getTag();
         holder.text.setText("hello: " + content.text);
     }
@@ -91,23 +91,23 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_main);
     recyclerView = (RecyclerView) findViewById(R.id.list);
     
-    itemTypeFactory = new ItemTypeFactory.Builder().build();
-    ItemType textItem = itemTypeFactory.newItem(new TextItemContent("world"));
-    ItemType imageItem = itemTypeFactory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
-    ItemType richItem = itemTypeFactory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
+    itemFactory = new TypeItemFactory.Builder().build();
+    TypeItem textItem = itemFactory.newItem(new TextItemContent("world"));
+    TypeItem imageItem = itemFactory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
+    TypeItem richItem = itemFactory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
     
-    List<ItemType> itemTypes = new ArrayList<>(80);
+    List<TypeItem> typeItems = new ArrayList<>(80);
     for (int i = 0; i < 20; i++) {
-        itemTypes.add(textItem);
-        itemTypes.add(imageItem);
-        itemTypes.add(richItem);
+        typeItems.add(textItem);
+        typeItems.add(imageItem);
+        typeItems.add(richItem);
     }
 
     ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
     ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
     ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
 
-    recyclerView.setAdapter(new ItemTypesAdapter(itemTypes));
+    recyclerView.setAdapter(new ItemTypesAdapter(typeItems));
 }
 ```
 
