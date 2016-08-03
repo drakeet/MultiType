@@ -102,7 +102,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 You could check the `sample` module for more details and after running it will look like: 
 
-<img src="art/screenshsot.png" width=270 height=486/>
+<img src="art/screenshot.png" width=270 height=486/>
 
 
 
