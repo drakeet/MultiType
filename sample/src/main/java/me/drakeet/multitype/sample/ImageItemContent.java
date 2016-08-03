@@ -21,7 +21,7 @@ import me.drakeet.multitype.ItemContent;
 /**
  * @author drakeet
  */
-public class ImageItemContent extends ItemContent {
+public class ImageItemContent implements ItemContent {
 
     public final int resId;
 

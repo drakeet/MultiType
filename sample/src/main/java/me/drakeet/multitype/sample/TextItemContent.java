@@ -19,11 +19,12 @@ package me.drakeet.multitype.sample;
 import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import me.drakeet.multitype.ItemContent;
+import me.drakeet.multitype.Savable;
 
 /**
  * @author drakeet
  */
-public class TextItemContent extends ItemContent {
+public class TextItemContent implements ItemContent, Savable {
 
     @NonNull public String text;
 
@@ -34,9 +35,15 @@ public class TextItemContent extends ItemContent {
 
 
     public TextItemContent(@NonNull byte[] data) {
+        init(data);
+    }
+
+
+    @NonNull @Override public void init(@NonNull byte[] data) {
         String json = new String(data);
         this.text = new Gson().fromJson(json, TextItemContent.class).text;
     }
+
 
     // If the content is savable, you should override the method
     @NonNull @Override public byte[] toBytes() {

@@ -24,20 +24,22 @@ dependencies {
 
 ## Usage
 
-#### Step 1. Create a class extends `ItemContent`, for example:
+#### Step 1. Create a class __implements__ `ItemContent`, for example:
 
 ```java
-public class TextItemContent extends ItemContent {
+public class TextItemContent implements ItemContent, Savable {
 
     @NonNull public String text;
-
 
     public TextItemContent(@NonNull String text) {
         this.text = text;
     }
 
-
     public TextItemContent(@NonNull byte[] data) {
+        init(data);
+    }
+
+    @NonNull @Override public void init(@NonNull byte[] data) {
         String json = new String(data);
         this.text = new Gson().fromJson(json, TextItemContent.class).text;
     }
