@@ -1,6 +1,5 @@
 package me.drakeet.multitype.sample;
 
-import android.support.annotation.NonNull;
 import me.drakeet.multitype.ItemContent;
 
 /**
@@ -12,15 +11,4 @@ public class ImageItemContent extends ItemContent {
 
 
     public ImageItemContent(int resId) {this.resId = resId;}
-
-
-    public ImageItemContent(@NonNull byte[] data) {
-        resId = -1;
-        // pass
-    }
-
-
-    @NonNull @Override public byte[] toBytes() {
-        return new byte[0];
-    }
 }

@@ -19,7 +19,7 @@ public class RichItemContent extends ItemContent {
 
 
     @NonNull @Override public byte[] toBytes() {
-        // pass
+        // I do not want to save the content so that I just pass the method
         return new byte[0];
     }
 }
