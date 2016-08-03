@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  */
 public interface Savable {
 
-    @NonNull void init(@NonNull byte[] data);
+    void init(@NonNull byte[] data);
 
     @NonNull byte[] toBytes();
 }

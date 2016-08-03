@@ -39,7 +39,7 @@ public class TextItemContent implements ItemContent, Savable {
     }
 
 
-    @NonNull @Override public void init(@NonNull byte[] data) {
+    @Override public void init(@NonNull byte[] data) {
         String json = new String(data);
         this.text = new Gson().fromJson(json, TextItemContent.class).text;
     }
