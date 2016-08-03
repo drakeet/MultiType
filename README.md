@@ -24,7 +24,7 @@ dependencies {
 
 ## Usage
 
-#### Step 1. Create a class __implements__ `ItemContent`, for example:
+#### Step 1. Create a class __implements__ `ItemContent`, It would be your `data model`/`Java bean`, for example:
 
 ```java
 public class TextItemContent implements ItemContent, Savable {
