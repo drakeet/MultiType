@@ -105,7 +105,7 @@ protected void onCreate(Bundle savedInstanceState) {
         typeItems.add(richItem);
     }
 
-    /* register the types before setAdapter, that's all right*/ 
+    /* register the types before setAdapter, that's all right */ 
     ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
     ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
     ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
