@@ -86,7 +86,7 @@ public class TextItemViewProvider
 }
 ```
 
-#### Step 3. You do not need to create another new class. Just add a `RecyclerView` and `List<TypeItem>` to you `Activity`, for example: 
+#### Step 3. You do not need to create another new class. Just add a `RecyclerView` and `List<TypeItem>` to your `Activity`, for example: 
 
 ```java
 @Override
