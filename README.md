@@ -61,7 +61,6 @@ public class TextItemViewProvider
     static class TextHolder extends RecyclerView.ViewHolder {
         @NonNull final TextView text;
 
-
         TextHolder(@NonNull View itemView) {
             super(itemView);
             this.text = (TextView) itemView.findViewById(R.id.text);
