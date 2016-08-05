@@ -17,6 +17,7 @@
 package me.drakeet.multitype.sample;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,13 +28,14 @@ import me.drakeet.multitype.ItemViewProvider;
 /**
  * @author drakeet
  */
-public class ImageItemViewProvider extends ItemViewProvider<ImageItemContent> {
+public class ImageItemViewProvider
+    extends ItemViewProvider<ImageItemContent, ImageItemViewProvider.ImageHolder> {
 
-    private class ViewHolder extends ItemViewProvider.ViewHolder {
+    class ImageHolder extends RecyclerView.ViewHolder {
         @NonNull private final ImageView image;
 
 
-        ViewHolder(View itemView) {
+        ImageHolder(View itemView) {
             super(itemView);
             image = (ImageView) itemView.findViewById(R.id.image);
         }
@@ -41,19 +43,18 @@ public class ImageItemViewProvider extends ItemViewProvider<ImageItemContent> {
 
 
     @NonNull @Override
-    protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ImageHolder onCreateViewHolder(
+        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_image, parent, false);
-        ViewHolder holder = new ViewHolder(root);
-        root.setTag(holder);
-        return root;
+        ImageHolder holder = new ImageHolder(root);
+        return holder;
     }
 
 
     @Override
-    protected void onBindView(
-        @NonNull View view,
+    protected void onBindViewHolder(
+        @NonNull ImageHolder holder,
         @NonNull ImageItemContent imageContent, @NonNull TypeItem typeItem) {
-        ViewHolder holder = (ViewHolder) view.getTag();
         holder.image.setImageResource(imageContent.resId);
     }
 }

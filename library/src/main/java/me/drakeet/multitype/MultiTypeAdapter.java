@@ -18,20 +18,21 @@ package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 
 /**
  * @author drakeet
  */
-public class TypeItemsAdapter extends RecyclerView.Adapter<TypeItemsAdapter.ViewHolder> {
+public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private final List<TypeItem> typeItems;
+    private LayoutInflater inflater;
 
 
-    public TypeItemsAdapter(@NonNull List<TypeItem> typeItems) {this.typeItems = typeItems;}
+    public MultiTypeAdapter(@NonNull List<TypeItem> typeItems) {this.typeItems = typeItems;}
 
 
     @Override public int getItemViewType(int position) {
@@ -43,10 +44,10 @@ public class TypeItemsAdapter extends RecyclerView.Adapter<TypeItemsAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View root = ItemTypePool.getProviderByIndex(indexViewType).onCreateView(inflater, parent);
-        ViewHolder holder = new ViewHolder(root);
-        return holder;
+        if (inflater == null) {
+            inflater = LayoutInflater.from(parent.getContext());
+        }
+        return ItemTypePool.getProviderByIndex(indexViewType).onCreateViewHolder(inflater, parent);
     }
 
 
@@ -54,19 +55,11 @@ public class TypeItemsAdapter extends RecyclerView.Adapter<TypeItemsAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         int type = getItemViewType(position);
         TypeItem typeItem = typeItems.get(position);
-        ItemTypePool.getProviderByIndex(type).onBindView(holder.itemView, typeItem);
+        ItemTypePool.getProviderByIndex(type).onBindViewHolder(holder, typeItem);
     }
 
 
     @Override public int getItemCount() {
         return typeItems.size();
-    }
-
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        ViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
     }
 }
