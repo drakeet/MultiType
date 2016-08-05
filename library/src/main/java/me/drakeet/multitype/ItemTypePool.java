@@ -30,8 +30,13 @@ public final class ItemTypePool {
 
     public synchronized static void register(
         @NonNull Class<? extends ItemContent> itemContent, @NonNull ItemViewProvider provider) {
-        contents.add(itemContent);
-        providers.add(provider);
+        if (!contents.contains(itemContent)) {
+            contents.add(itemContent);
+            providers.add(provider);
+        } else {
+            throw new IllegalArgumentException(
+                "You have register the " + itemContent.getSimpleName() + " type.");
+        }
     }
 
 
