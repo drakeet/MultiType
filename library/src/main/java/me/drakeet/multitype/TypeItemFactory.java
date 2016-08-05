@@ -19,8 +19,6 @@ package me.drakeet.multitype;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * @author drakeet
  */
@@ -46,7 +44,10 @@ public class TypeItemFactory {
 
         /* optional */
         public Builder setExtra(@Nullable String extra) {
-            this.extra = requireNonNull(extra);
+            if (extra == null) {
+                throw new NullPointerException("extra may not be null");
+            }
+            this.extra = extra;
             return this;
         }
 
