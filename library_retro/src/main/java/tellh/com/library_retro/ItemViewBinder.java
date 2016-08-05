@@ -14,4 +14,26 @@
  * limitations under the License.
  */
 
-include ':sample', ':library', ':library_retro'
+package tellh.com.library_retro;
+
+/***
+ * @author drakeet
+ */
+public abstract class ItemViewBinder<T>{
+
+    protected T data;
+
+    public ItemViewBinder(T data) {
+        this.data = data;
+    }
+    // @formatter:off
+
+    protected abstract void onBindView(RecyclerViewHolder holder, int pos);
+
+    public T getData() {
+        return data;
+    }
+
+    protected abstract int getItemLayoutId();
+
+}
