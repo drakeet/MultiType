@@ -39,7 +39,7 @@ public class TypeItem {
 
 
     @Override public String toString() {
-        return "ItemType {" +
+        return "TypeItem {" +
             "content=" + content +
             ", extra='" + extra + '\'' +
             '}';
