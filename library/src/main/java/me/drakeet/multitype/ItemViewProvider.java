@@ -17,37 +17,24 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 /***
  * @author drakeet
  */
-public abstract class ItemViewProvider<T extends ItemContent> {
+public abstract class ItemViewProvider<C extends ItemContent, V extends ViewHolder> {
 
     // @formatter:off
 
     @NonNull
-    protected abstract View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+    protected abstract V onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
-    protected abstract void onBindView(@NonNull View view, @NonNull T t, @NonNull TypeItem typeItem);
-
-
-    public final void onBindView(@NonNull View view, @NonNull TypeItem data) {
-        this.onBindView(view, (T) data.content, data);
-    }
+    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c, @NonNull TypeItem typeItem);
 
 
-    public static class ViewHolder {
-        @NonNull final View itemView;
-
-
-        public ViewHolder(@NonNull View itemView) {
-            if (itemView == null) {
-                throw new IllegalArgumentException("itemView may not be null");
-            }
-            this.itemView = itemView;
-        }
+    public final void onBindViewHolder(@NonNull V holder, @NonNull TypeItem data) {
+        this.onBindViewHolder(holder, (C) data.content, data);
     }
 }

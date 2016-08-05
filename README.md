@@ -52,16 +52,17 @@ public class TextItemContent implements ItemContent, Savable {
 }
 ```
 
-#### Step 2. Create a class extends `ItemViewProvider<T extends ItemContent>`, for example: 
+#### Step 2. Create a class extends `ItemViewProvider<C extends ItemContent, V extends ViewHolder>`, for example: 
 
 ```java
-public class TextItemViewProvider extends ItemViewProvider<TextItemContent> {
+public class TextItemViewProvider
+    extends ItemViewProvider<TextItemContent, TextItemViewProvider.TextHolder> {
 
-    private static class ViewHolder extends ItemViewProvider.ViewHolder {
+    static class TextHolder extends RecyclerView.ViewHolder {
         @NonNull final TextView text;
 
 
-        ViewHolder(@NonNull View itemView) {
+        TextHolder(@NonNull View itemView) {
             super(itemView);
             this.text = (TextView) itemView.findViewById(R.id.text);
         }
@@ -69,18 +70,17 @@ public class TextItemViewProvider extends ItemViewProvider<TextItemContent> {
 
 
     @NonNull @Override
-    protected View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected TextHolder onCreateViewHolder(
+        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_text, parent, false);
-        ViewHolder holder = new ViewHolder(root);
-        root.setTag(holder);
-        return root;
+        TextHolder holder = new TextHolder(root);
+        return holder;
     }
 
 
     @Override
-    protected void onBindView(
-        @NonNull View view, @NonNull TextItemContent content, @NonNull TypeItem typeItem) {
-        ViewHolder holder = (ViewHolder) view.getTag();
+    protected void onBindViewHolder(
+        @NonNull TextHolder holder, @NonNull TextItemContent content, @NonNull TypeItem typeItem) {
         holder.text.setText("hello: " + content.text);
     }
 }
@@ -112,7 +112,7 @@ protected void onCreate(Bundle savedInstanceState) {
     ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
     ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
 
-    recyclerView.setAdapter(new TypeItemsAdapter(typeItems));
+    recyclerView.setAdapter(new MultiTypeAdapter(typeItems));
 }
 ```
 
