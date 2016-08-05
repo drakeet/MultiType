@@ -4,6 +4,8 @@ An Android library to retrofit multiple item view types
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
 ![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
 
+English Version | [中文版](https://drakeet.me/multitype)
+
 Previously, when we need to develop a complex RecyclerView/ListView, it is a boring and troublesome work. 
 We should override the `getItemViewType` of `RecyclerView.Adapter` and add some types, 
 then we create some `ViewHolder` to relate the type, all of the process it is a very bad experience.
