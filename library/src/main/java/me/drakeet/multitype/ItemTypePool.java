@@ -35,7 +35,8 @@ public final class ItemTypePool {
             providers.add(provider);
         } else {
             throw new IllegalArgumentException(
-                "You have register the " + itemContent.getSimpleName() + " type.");
+                "You have registered the " + itemContent.getSimpleName() +
+                    " type. It should not be added again.");
         }
     }
 
