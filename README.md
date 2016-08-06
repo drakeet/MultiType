@@ -121,6 +121,17 @@ You could check the `sample` module for more details and after running it will l
 
 <img src="art/screenshot.png" width=270 height=486/>
 
+## Q&A (English Version later)
+
+**Q: 为什么使用静态或者全局类型池？(Why we need static and single TypePool?)**
+
+A: 我不反对局部或临时类型池的设计，它们对于内存更加友好（但也只是微小优势而已），但在我看来，全局类型池在多方面更好：
+- 它能够**显式**连接 Type 和它的 Item View，能够在同一地方统一 register，这将避免分散，带来很好的直观性和可管理性；
+- 一个应用不会有超级大量的类型定义，类型 class 和 provider 对象都是非常轻薄的对象，直角静态存于内存，并不会导致内存泄漏和大的内存占用问题，几乎可以忽略；
+- 至于要不要支持 optional 的局部类型池参数，我也是不喜欢支持的，前面说了，这是没必要的，而且若是可选（optional）也会使用户疑惑：“到底要还是不要？”
+
+因此我喜欢和坚持使用全局静态类型池，它不会带来什么问题，而且好处诸多，有人给我提交了使用反射的方法来自动获取类型连接，为了避免性能话题，我不喜欢反射，而且将类型连接变得复杂和不可见性未必是好事。我一直坚持的原则是：写简单的代码，写可读的代码，实现复杂的需求（你们看我的代码是不是感觉很自然而然而且可读性十分好？）
+
 License
 -------
 
