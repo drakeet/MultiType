@@ -28,11 +28,11 @@ import java.util.List;
  */
 public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    private final List<TypeItem> typeItems;
+    private final List<? extends TypeItem> typeItems;
     private LayoutInflater inflater;
 
 
-    public MultiTypeAdapter(@NonNull List<TypeItem> typeItems) {this.typeItems = typeItems;}
+    public MultiTypeAdapter(@NonNull List<? extends TypeItem> typeItems) {this.typeItems = typeItems;}
 
 
     @Override public int getItemViewType(int position) {
