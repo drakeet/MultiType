@@ -121,6 +121,11 @@ You could check the `sample` module for more details and after running it will l
 
 <img src="art/screenshot.png" width=270 height=486/>
 
+And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMachine), you could check the `Message extends TypeItem` to learn **how to custom TypeItem** and it is recommended to read the `MessageViewProvider`, they are all great guide: 
+
+[<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
+
+
 ## Q&A (English Version later)
 
 **Q: 为什么使用静态或者全局类型池？(Why we need static and single TypePool?)**
