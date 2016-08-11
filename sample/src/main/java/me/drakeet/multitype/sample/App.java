@@ -17,7 +17,7 @@
 package me.drakeet.multitype.sample;
 
 import android.app.Application;
-import me.drakeet.multitype.ItemTypePool;
+import me.drakeet.multitype.MultiTypePool;
 
 /**
  * @author drakeet
@@ -26,8 +26,8 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
-        ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-        ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
+        MultiTypePool.register(TextItemContent.class, new TextItemViewProvider());
+        MultiTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
+        MultiTypePool.register(RichItemContent.class, new RichItemViewProvider());
     }
 }

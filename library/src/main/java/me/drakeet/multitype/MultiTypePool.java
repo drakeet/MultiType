@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * @author drakeet
  */
-public final class ItemTypePool {
+public final class MultiTypePool {
 
     private static ArrayList<Class<? extends ItemContent>> contents = new ArrayList<>();
     private static ArrayList<ItemViewProvider> providers = new ArrayList<>();
@@ -54,5 +54,4 @@ public final class ItemTypePool {
     @NonNull public static ItemViewProvider getProviderByIndex(int index) {
         return providers.get(index);
     }
-
 }

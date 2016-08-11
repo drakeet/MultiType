@@ -39,7 +39,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override public int getItemViewType(int position) {
         ItemContent content = typeItems.get(position).content;
-        return ItemTypePool.getContents().indexOf(content.getClass());
+        return MultiTypePool.getContents().indexOf(content.getClass());
     }
 
 
@@ -48,7 +48,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
-        return ItemTypePool.getProviderByIndex(indexViewType).onCreateViewHolder(inflater, parent);
+        return MultiTypePool.getProviderByIndex(indexViewType).onCreateViewHolder(inflater, parent);
     }
 
 
@@ -56,7 +56,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         int type = getItemViewType(position);
         TypeItem typeItem = typeItems.get(position);
-        ItemTypePool.getProviderByIndex(type).onBindViewHolder(holder, typeItem);
+        MultiTypePool.getProviderByIndex(type).onBindViewHolder(holder, typeItem);
     }
 
 
