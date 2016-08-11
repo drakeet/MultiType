@@ -137,6 +137,10 @@ And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMach
 
 [<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
 
+## Change logs & Releases
+
+https://github.com/drakeet/MultiType/releases
+
 
 ## Q&A (English Version later)
 
