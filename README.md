@@ -85,33 +85,46 @@ public class TextItemViewProvider
 }
 ```
 
-#### Step 3. You do not need to create another new class. Just add a `RecyclerView` and `List<TypeItem>` to your `Activity`, for example: 
+#### Step 3. You do not need to create another new class. Just `register` in your `Application`
+ and add a `RecyclerView` and `List<TypeItem>` to your `Activity`, for example:
+
+ ```java
+ public class App extends Application {
+
+     @Override public void onCreate() {
+         super.onCreate();
+         ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
+         ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
+         ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
+     }
+ }
+```
 
 ```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    recyclerView = (RecyclerView) findViewById(R.id.list);
-    
-    itemFactory = new TypeItemFactory.Builder().build();
-    TypeItem textItem = itemFactory.newItem(new TextItemContent("world"));
-    TypeItem imageItem = itemFactory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
-    TypeItem richItem = itemFactory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
-    
-    List<TypeItem> typeItems = new ArrayList<>(80);
-    for (int i = 0; i < 20; i++) {
-        typeItems.add(textItem);
-        typeItems.add(imageItem);
-        typeItems.add(richItem);
+public class MainActivity extends AppCompatActivity {
+
+    private TypeItemFactory factory;
+    private RecyclerView recyclerView;
+
+    @Override protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        recyclerView = (RecyclerView) findViewById(R.id.list);
+
+        factory = new TypeItemFactory.Builder().build();
+        TypeItem textItem = factory.newItem(new TextItemContent("world"));
+        TypeItem imageItem = factory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
+        TypeItem richItem = factory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
+
+        List<TypeItem> typeItems = new ArrayList<>(80);
+        for (int i = 0; i < 20; i++) {
+            typeItems.add(textItem);
+            typeItems.add(imageItem);
+            typeItems.add(richItem);
+        }
+
+        recyclerView.setAdapter(new MultiTypeAdapter(typeItems));
     }
-
-    /* register the types before setAdapter, that's all right */ 
-    ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
-    ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-    ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
-
-    recyclerView.setAdapter(new MultiTypeAdapter(typeItems));
 }
 ```
 
