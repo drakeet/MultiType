@@ -85,19 +85,18 @@ public class TextItemViewProvider
 }
 ```
 
-#### Step 3. You do not need to create another new class. Just `register` in your `Application`
- and add a `RecyclerView` and `List<TypeItem>` to your `Activity`, for example:
+#### Step 3. You do not need to create another new class. Just `register` in your `Application` and add a `RecyclerView` and `List<TypeItem>` to your `Activity`, for example:
 
- ```java
- public class App extends Application {
+```java
+public class App extends Application {
 
-     @Override public void onCreate() {
-         super.onCreate();
-         ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
-         ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-         ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
-     }
- }
+    @Override public void onCreate() {
+        super.onCreate();
+        ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
+        ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
+        ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
+    }
+}
 ```
 
 ```java
