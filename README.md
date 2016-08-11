@@ -20,7 +20,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:1.2-beta1'
+    compile 'me.drakeet.multitype:multitype:1.2'
 }
 ```
 
@@ -92,9 +92,9 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        ItemTypePool.register(TextItemContent.class, new TextItemViewProvider());
-        ItemTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-        ItemTypePool.register(RichItemContent.class, new RichItemViewProvider());
+        MultiTypePool.register(TextItemContent.class, new TextItemViewProvider());
+        MultiTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
+        MultiTypePool.register(RichItemContent.class, new RichItemViewProvider());
     }
 }
 ```
