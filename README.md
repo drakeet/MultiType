@@ -137,15 +137,15 @@ And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMach
 
 [<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
 
-## Performance testing for global static MultiTypePool #15
+## Performance testing
 
-I Found a Xiaomi 2s (Android 5.1.1) mobile phone for testing the performance of global static MultiTypePool today. I register 9999 `ItemContent` classes & `ItemViewProvider` instances in the Application beginning. The `ItemContent` contains 12 `String`s and the `ItemViewProvider.TestViewHolder` contains 12 `TextView`, and I put my target type after 10000 index for test Adapter onCreateViewHolder's performance. 
+I found a Xiaomi 2s (Android 5.1.1) mobile phone for **testing the performance of global static MultiTypePool** today. I registered 9999 `ItemContent` classes & `ItemViewProvider` instances in the Application beginning. The `ItemContent` contains 12 random `String`s and the `ItemViewProvider.TestViewHolder` contains 12 `TextView`, and I put my target type after 10000 index for test Adapter onCreateViewHolder's performance.
 
-The results of this experiment show that:
+The results of this testing show that:
 
-Initial register 10000 types just spend 10ms! And the memory usage is also very low because ItemViewProvider instance do not hold any other class instance actually. And the RecyclerView contains MultiType also perform perfect and smooth. 
+The initialization of registering 10000 types just spend 10ms! And the memory usage is also very low because ItemViewProvider instances do not hold any other class instance actually. And the `RecyclerView` which contains MultiType also perform perfectly and smoothly.
 
-So, do we really need a local type pool? Is there a application reach 10000 types? The answer is obvious.
+So, is there a application reach 10000 types? Do we really need a local type pool? The answer is obvious.
 
 
 ## Change logs & Releases
