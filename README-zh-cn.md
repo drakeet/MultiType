@@ -135,6 +135,16 @@ public class MainActivity extends AppCompatActivity {
 
 ![](http://ww2.sinaimg.cn/large/86e2ff85gw1f6hj52rqg1j207i0dcq3c.jpg)
 
+## 性能测试
+
+找了一个小米 2s 来对 `MultiType` 进行测试，注入 9999 个 `ItemContent` class 和 `ItemViewProvider` 对象，`ItemContent` 包含 12 个随机 String，`ItemViewProvider.TestViewHolder` 包含 12 个 `TextView` 对象，并将我们使用的 Type 排到第 10000 位以后（检索严格模式）。
+
+测试结果表明，性能极好。初始化注册 10000 个类型，只要 10 毫秒左右！而且内存占用也极低，因为类型 class 和 provider 对象都是非常非常轻薄的对象，后者虽然是以传统实例注册（其实 class 也是实例），但 provider 层面不持有任何对象，它只提供生产方法；另外，尽管 target index 在 10000 位以后，但丝毫不会影响列表滑动流畅性，因为计算个 10000 次，对于我们的手机 CPU，简直比我们人类 1 + 1 还简单的事情。这更近坚定了我使用全局类型池的设计。
+
+![](http://ww2.sinaimg.cn/large/86e2ff85gw1f6sembftdjj20rq03utbp.jpg)
+
+那么问题来了，即使是淘宝，有超过 10000 个 item types 吗？我们真的需要局部类型池吗？答案我想是显然的。
+
 ## Q&A (English Version later)
 
 **Q: 为什么使用静态或者全局类型池？(Why we need static and single TypePool?)**
