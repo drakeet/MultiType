@@ -143,6 +143,8 @@ I found a Xiaomi 2s (Android 5.1.1) mobile phone for **testing the performance o
 
 The results of this testing show that:
 
+![image](https://cloud.githubusercontent.com/assets/5214214/17643171/086e29b4-6194-11e6-9a08-d0ae19541346.png)
+
 The initialization of registering 10000 types just spend 10ms! And the memory usage is also very low because ItemViewProvider instances do not hold any other class instance actually. And the `RecyclerView` which contains MultiType also perform perfectly and smoothly.
 
 So, is there a application reach 10000 types? Do we really need a local type pool? The answer is obvious.
