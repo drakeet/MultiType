@@ -141,7 +141,7 @@ And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMach
 
 I found a Xiaomi 2s (Android 5.1.1, made in 2012) mobile phone for **testing the performance of global static MultiTypePool(#15)** today. I registered 9999 `ItemContent` classes & `ItemViewProvider` instances in the Application beginning. The `ItemContent` contains 12 random `String`s and the `ItemViewProvider.TestViewHolder` contains 12 `TextView`s, and I put my target type after 10000 index for test Adapter onCreateViewHolder's performance.
 
-The results of this testing show that:
+The results of this testing showed that:
 
 ![image](https://cloud.githubusercontent.com/assets/5214214/17643171/086e29b4-6194-11e6-9a08-d0ae19541346.png)
 
