@@ -34,6 +34,7 @@ public abstract class ItemViewProvider<C extends ItemContent, V extends ViewHold
     protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c, @NonNull TypeItem typeItem);
 
 
+    @SuppressWarnings("unchecked")
     public final void onBindViewHolder(@NonNull V holder, @NonNull TypeItem data) {
         this.onBindViewHolder(holder, (C) data.content, data);
     }
