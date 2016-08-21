@@ -48,4 +48,7 @@ public class TextItemContent implements ItemContent, Savable {
     @NonNull @Override public byte[] toBytes() {
         return new Gson().toJson(this).getBytes();
     }
+
+
+    @NonNull @Override public String describe() { return "Text";}
 }
