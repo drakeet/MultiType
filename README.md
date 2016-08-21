@@ -20,7 +20,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:1.2'
+    compile 'me.drakeet.multitype:multitype:1.2.1'
 }
 ```
 
@@ -49,6 +49,8 @@ public class TextItemContent implements ItemContent, Savable {
     @NonNull @Override public byte[] toBytes() {
         return new Gson().toJson(this).getBytes();
     }
+
+    @NonNull @Override public String describe() { return "Text";}
 }
 ```
 
