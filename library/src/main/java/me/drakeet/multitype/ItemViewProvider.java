@@ -17,25 +17,28 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 /***
  * @author drakeet
  */
-public abstract class ItemViewProvider<C extends ItemContent, V extends ViewHolder> {
+public abstract class ItemViewProvider<C extends ItemContent> {
 
     // @formatter:off
 
-    @NonNull
-    protected abstract V onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+    protected abstract int getLayoutResId();
+    
+    protected View onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent){
+        View root = inflater.inflate(getLayoutResId(), parent, false);
+        return root;
+    }
 
-    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c, @NonNull TypeItem typeItem);
+    protected abstract void onBindView(MultiTypeAdapter.ViewHolder holder, @NonNull View view, @NonNull C t, @NonNull TypeItem typeItem);
 
 
-    @SuppressWarnings("unchecked")
-    public final void onBindViewHolder(@NonNull V holder, @NonNull TypeItem data) {
-        this.onBindViewHolder(holder, (C) data.content, data);
+    public final void onBindView(MultiTypeAdapter.ViewHolder holder, @NonNull View view, @NonNull TypeItem data) {
+        this.onBindView(holder, view, (C) data.content, data);
     }
 }
