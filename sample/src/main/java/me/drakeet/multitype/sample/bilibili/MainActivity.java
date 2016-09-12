@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         JsonData data = new JsonData();
         List<TypeItem> items = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
+            /* You also could use Category as your CategoryItemContent directly */
             items.add(new TypeItem(new CategoryItemContent(data.category0), null));
             items.add(new TypeItem(new PostRowItemContent(data.posts[0], data.posts[1]), null));
             items.add(new TypeItem(new PostRowItemContent(data.posts[2], data.posts[3]), null));

@@ -20,6 +20,7 @@ import android.support.annotation.NonNull;
 import me.drakeet.multitype.ItemContent;
 
 /**
+ * You also could use {@link Category} as your CategoryItemContent directly
  * @author drakeet
  */
 public class CategoryItemContent implements ItemContent {
