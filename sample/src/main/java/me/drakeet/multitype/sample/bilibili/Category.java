@@ -14,26 +14,19 @@
  * limitations under the License.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package me.drakeet.multitype.sample.bilibili;
 
-buildscript {
-    repositories {
-        jcenter()
+import android.support.annotation.NonNull;
+
+/**
+ * @author drakeet
+ */
+public class Category {
+
+    public String title;
+
+
+    public Category(@NonNull final String title) {
+        this.title = title;
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

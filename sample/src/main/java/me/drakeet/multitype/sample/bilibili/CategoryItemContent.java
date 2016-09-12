@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample;
+package me.drakeet.multitype.sample.bilibili;
 
+import android.support.annotation.NonNull;
 import me.drakeet.multitype.ItemContent;
 
 /**
  * @author drakeet
  */
-public class ImageItemContent implements ItemContent {
+public class CategoryItemContent implements ItemContent {
 
-    public final int resId;
+    public final Category category;
 
 
-    public ImageItemContent(int resId) {this.resId = resId;}
+    public CategoryItemContent(@NonNull final Category category) {this.category = category;}
 }

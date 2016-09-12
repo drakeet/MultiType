@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample;
+package me.drakeet.multitype.sample.bilibili;
 
 import android.support.annotation.NonNull;
-import me.drakeet.multitype.ItemContent;
 
 /**
  * @author drakeet
  */
-public class RichItemContent implements ItemContent {
+public class Post {
 
-    @NonNull public String text;
-    public int imageResId;
+    public int coverResId;
+    public String title;
 
 
-    public RichItemContent(@NonNull String text, int imageResId) {
-        this.text = text;
-        this.imageResId = imageResId;
+    public Post(int coverResId, @NonNull final String title) {
+        this.coverResId = coverResId;
+        this.title = title;
     }
 }

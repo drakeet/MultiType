@@ -14,26 +14,21 @@
  * limitations under the License.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package me.drakeet.multitype.sample.bilibili;
 
-buildscript {
-    repositories {
-        jcenter()
+import android.support.annotation.NonNull;
+import me.drakeet.multitype.ItemContent;
+
+/**
+ * @author drakeet
+ */
+public class PostRowItemContent implements ItemContent {
+
+    public final Post[] posts = new Post[2];
+
+
+    public PostRowItemContent(@NonNull Post left, @NonNull Post right) {
+        posts[0] = left;
+        posts[1] = right;
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

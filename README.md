@@ -137,7 +137,8 @@ You could check the `sample` module for more details and after running it will l
 
 And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMachine), you could check the `Message extends TypeItem` to learn **how to custom TypeItem** and it is recommended to read the `MessageViewProvider`, they are all great guide: 
 
-[<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
+[<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine) [<img src="art/screenshot-bilibili.png" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
+
 
 ## Performance testing
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample;
+package me.drakeet.multitype.sample.normal;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -22,39 +22,44 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
-public class ImageItemViewProvider
-    extends ItemViewProvider<ImageItemContent, ImageItemViewProvider.ImageHolder> {
+public class RichItemViewProvider
+    extends ItemViewProvider<RichItemContent, RichItemViewProvider.RichHolder> {
 
-    class ImageHolder extends RecyclerView.ViewHolder {
-        @NonNull private final ImageView image;
+    static class RichHolder extends RecyclerView.ViewHolder {
+        @NonNull final TextView text;
+        @NonNull final ImageView image;
 
 
-        ImageHolder(View itemView) {
+        RichHolder(@NonNull View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            this.text = (TextView) itemView.findViewById(R.id.text);
+            this.image = (ImageView) itemView.findViewById(R.id.image);
         }
     }
 
 
     @NonNull @Override
-    protected ImageHolder onCreateViewHolder(
+    protected RichHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_image, parent, false);
-        ImageHolder holder = new ImageHolder(root);
+        View root = inflater.inflate(R.layout.item_rich, parent, false);
+        RichHolder holder = new RichHolder(root);
         return holder;
     }
 
 
     @Override
     protected void onBindViewHolder(
-        @NonNull ImageHolder holder,
-        @NonNull ImageItemContent imageContent, @NonNull TypeItem typeItem) {
-        holder.image.setImageResource(imageContent.resId);
+        @NonNull RichHolder holder,
+        @NonNull RichItemContent richContent, @NonNull TypeItem typeItem) {
+        holder.text.setText(richContent.text);
+        holder.image.setImageResource(richContent.imageResId);
     }
 }

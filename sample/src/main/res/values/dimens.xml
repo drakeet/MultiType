@@ -20,4 +20,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="message_border_width">2dp</dimen>
     <dimen name="message_margin_top">6dp</dimen>
+
+    <dimen name="category_icon_size">24dp</dimen>
+    <dimen name="normal_space">12dp</dimen>
+    <dimen name="small_space">6dp</dimen>
+    <dimen name="post_image_height">96dp</dimen>
 </resources>

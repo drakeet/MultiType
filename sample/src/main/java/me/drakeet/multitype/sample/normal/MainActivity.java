@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.page;
+package me.drakeet.multitype.sample.normal;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,10 +24,10 @@ import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.TypeItemFactory;
-import me.drakeet.multitype.sample.ImageItemContent;
+import me.drakeet.multitype.sample.normal.ImageItemContent;
 import me.drakeet.multitype.sample.R;
-import me.drakeet.multitype.sample.RichItemContent;
-import me.drakeet.multitype.sample.TextItemContent;
+import me.drakeet.multitype.sample.normal.RichItemContent;
+import me.drakeet.multitype.sample.normal.TextItemContent;
 
 public class MainActivity extends AppCompatActivity {
 
