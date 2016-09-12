@@ -15,5 +15,6 @@
   -->
 
 <resources>
-    <string name="app_name">MultiType</string>
+    <string name="normal_app_name">MultiType</string>
+    <string name="bilibili_app_name">MT: Bilibili</string>
 </resources>
