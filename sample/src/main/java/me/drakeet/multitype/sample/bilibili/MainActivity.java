@@ -42,7 +42,19 @@ public class MainActivity extends AppCompatActivity {
         private Post post11 = new Post(R.drawable.img_11, PREFIX + "post11");
 
         Category category0 = new Category("title0");
-        Post[] posts = { post00, post01, post10, post11 };
+        Post[] postArray = { post00, post01, post10, post11 };
+
+        List<Post> postList = new ArrayList<>();
+
+
+        {
+            postList.add(post00);
+            postList.add(post00);
+            postList.add(post00);
+            postList.add(post00);
+            postList.add(post00);
+            postList.add(post00);
+        }
     }
 
 
@@ -51,16 +63,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // @formatter:off
         JsonData data = new JsonData();
         List<TypeItem> items = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             /* You also could use Category as your CategoryItemContent directly */
             items.add(new TypeItem(new CategoryItemContent(data.category0), null));
-            items.add(new TypeItem(new PostRowItemContent(data.posts[0], data.posts[1]), null));
-            items.add(new TypeItem(new PostRowItemContent(data.posts[2], data.posts[3]), null));
+            items.add(new TypeItem(new PostRowItemContent(data.postArray[0], data.postArray[1]), null));
+            items.add(new TypeItem(new PostRowItemContent(data.postArray[2], data.postArray[3]), null));
+            items.add(new TypeItem(new PostList(data.postList), null));
         }
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(new MultiTypeAdapter(items));
+        // @formatter:on
     }
 
 
