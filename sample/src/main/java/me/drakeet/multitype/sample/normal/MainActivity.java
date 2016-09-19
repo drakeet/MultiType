@@ -21,17 +21,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.TypeItem;
-import me.drakeet.multitype.TypeItemFactory;
-import me.drakeet.multitype.sample.normal.ImageItemContent;
 import me.drakeet.multitype.sample.R;
-import me.drakeet.multitype.sample.normal.RichItemContent;
-import me.drakeet.multitype.sample.normal.TextItemContent;
 
+/**
+ * @author drakeet
+ */
 public class MainActivity extends AppCompatActivity {
 
-    private TypeItemFactory factory;
     private RecyclerView recyclerView;
 
 
@@ -40,18 +39,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        factory = new TypeItemFactory.Builder().build();
+        /* One way:
+
+        TypeItemFactory factory = new TypeItemFactory.Builder().build();
         TypeItem textItem = factory.newItem(new TextItemContent("world"));
         TypeItem imageItem = factory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
         TypeItem richItem = factory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
+        */
+
+        /* Another way: */
+        Items items = new Items();
+        TextItemContent textItem = new TextItemContent("world");
+        ImageItemContent imageItem = new ImageItemContent(R.mipmap.ic_launcher);
+        RichItemContent richItem = new RichItemContent("小艾大人赛高", R.mipmap.avatar);
 
         List<TypeItem> typeItems = new ArrayList<>(80);
         for (int i = 0; i < 20; i++) {
-            typeItems.add(textItem);
-            typeItems.add(imageItem);
-            typeItems.add(richItem);
+            items.add(textItem);
+            items.add(imageItem);
+            items.add(richItem);
         }
 
-        recyclerView.setAdapter(new MultiTypeAdapter(typeItems));
+        recyclerView.setAdapter(new MultiTypeAdapter(items.toList()));
     }
 }
