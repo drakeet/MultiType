@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         ImageItemContent imageItem = new ImageItemContent(R.mipmap.ic_launcher);
         RichItemContent richItem = new RichItemContent("小艾大人赛高", R.mipmap.avatar);
 
-        List<TypeItem> typeItems = new ArrayList<>(80);
         for (int i = 0; i < 20; i++) {
             items.add(textItem);
             items.add(imageItem);

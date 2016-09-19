@@ -19,11 +19,8 @@ package me.drakeet.multitype.sample.normal;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.List;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
-import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.sample.R;
 
 /**
@@ -53,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         ImageItemContent imageItem = new ImageItemContent(R.mipmap.ic_launcher);
         RichItemContent richItem = new RichItemContent("小艾大人赛高", R.mipmap.avatar);
 
-        List<TypeItem> typeItems = new ArrayList<>(80);
         for (int i = 0; i < 20; i++) {
             items.add(textItem);
             items.add(imageItem);
