@@ -19,7 +19,7 @@ GitHub: [https://github.com/drakeet/MultiType](https://github.com/drakeet/MultiT
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:1.2'
+    compile 'me.drakeet.multitype:multitype:1.2.4'
 }
 ```
 
@@ -104,7 +104,6 @@ public class App extends Application {
 ```java
 public class MainActivity extends AppCompatActivity {
 
-    private TypeItemFactory factory;
     private RecyclerView recyclerView;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -112,19 +111,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        factory = new TypeItemFactory.Builder().build();
+        /* One way:
+
+        TypeItemFactory factory = new TypeItemFactory.Builder().build();
         TypeItem textItem = factory.newItem(new TextItemContent("world"));
         TypeItem imageItem = factory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
         TypeItem richItem = factory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
+        */
 
-        List<TypeItem> typeItems = new ArrayList<>(80);
+        /* Another way: */
+        Items items = new Items();
+        TextItemContent textItem = new TextItemContent("world");
+        ImageItemContent imageItem = new ImageItemContent(R.mipmap.ic_launcher);
+        RichItemContent richItem = new RichItemContent("小艾大人赛高", R.mipmap.avatar);
+
         for (int i = 0; i < 20; i++) {
-            typeItems.add(textItem);
-            typeItems.add(imageItem);
-            typeItems.add(richItem);
+            items.add(textItem);
+            items.add(imageItem);
+            items.add(richItem);
         }
 
-        recyclerView.setAdapter(new MultiTypeAdapter(typeItems));
+        recyclerView.setAdapter(new MultiTypeAdapter(items.toList()));
     }
 }
 ```
