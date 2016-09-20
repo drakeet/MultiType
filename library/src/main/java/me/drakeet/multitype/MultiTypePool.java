@@ -17,6 +17,7 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import java.util.ArrayList;
 
 /**
@@ -24,19 +25,22 @@ import java.util.ArrayList;
  */
 public final class MultiTypePool {
 
+    private static final String TAG = MultiTypePool.class.getSimpleName();
     private static ArrayList<Class<? extends ItemContent>> contents = new ArrayList<>();
     private static ArrayList<ItemViewProvider> providers = new ArrayList<>();
 
 
     public synchronized static void register(
-        @NonNull Class<? extends ItemContent> itemContent, @NonNull ItemViewProvider provider) {
-        if (!contents.contains(itemContent)) {
-            contents.add(itemContent);
+        @NonNull Class<? extends ItemContent> itemContentClass,
+        @NonNull ItemViewProvider provider) {
+        if (!contents.contains(itemContentClass)) {
+            contents.add(itemContentClass);
             providers.add(provider);
         } else {
-            throw new IllegalArgumentException(
-                "You have registered the " + itemContent.getSimpleName() +
-                    " type. It should not be added again.");
+            Log.w(TAG, "You have registered the " + itemContentClass.getSimpleName() + " type. " +
+                "It should not be added again otherwise it will override the original provider.");
+            int index = contents.indexOf(itemContentClass);
+            providers.set(index, provider);
         }
     }
 
