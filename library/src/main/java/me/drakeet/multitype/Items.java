@@ -40,12 +40,57 @@ public class Items {
     }
 
 
-    public void add(@NonNull final ItemContent content) {
-        items.add(factory.newItem(content));
+    @NonNull public List<? extends TypeItem> toList() {
+        return items;
     }
 
 
-    @NonNull public List<? extends TypeItem> toList() {
-        return items;
+    public boolean add(@NonNull final ItemContent content) {
+        return items.add(factory.newItem(content));
+    }
+
+
+    public void add(int index, @NonNull ItemContent content) {
+        items.add(index, factory.newItem(content));
+    }
+
+
+    @NonNull public TypeItem get(int index) {
+        return items.get(index);
+    }
+
+
+    public TypeItem set(int index, @NonNull ItemContent content) {
+        return items.set(index, factory.newItem(content));
+    }
+
+
+    public boolean contains(@NonNull final ItemContent content) {
+        return items.contains(factory.newItem(content));
+    }
+
+
+    @NonNull public TypeItem remove(int index) {
+        return items.remove(index);
+    }
+
+
+    public boolean remove(@NonNull final ItemContent content) {
+        return items.remove(factory.newItem(content));
+    }
+
+
+    public int size() {
+        return items.size();
+    }
+
+
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+
+    public void clear() {
+        items.clear();
     }
 }

@@ -24,7 +24,7 @@ import android.support.annotation.Nullable;
  */
 public class TypeItem {
 
-    @NonNull public ItemContent content;
+    public ItemContent content;
     @Nullable public String extra;
 
 
@@ -32,7 +32,7 @@ public class TypeItem {
     }
 
 
-    public TypeItem(@NonNull ItemContent content, String extra) {
+    public TypeItem(@NonNull ItemContent content, @Nullable String extra) {
         this.extra = extra;
         this.content = content;
     }
@@ -43,5 +43,22 @@ public class TypeItem {
             "content=" + content +
             ", extra='" + extra + '\'' +
             '}';
+    }
+
+
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TypeItem typeItem = (TypeItem) o;
+        if (!content.equals(typeItem.content)) return false;
+        return extra != null ? extra.equals(typeItem.extra) : typeItem.extra == null;
+
+    }
+
+
+    @Override public int hashCode() {
+        int result = content.hashCode();
+        result = 31 * result + (extra != null ? extra.hashCode() : 0);
+        return result;
     }
 }
