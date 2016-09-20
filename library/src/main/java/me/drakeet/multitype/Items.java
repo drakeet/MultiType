@@ -40,7 +40,7 @@ public class Items {
     }
 
 
-    @NonNull public List<? extends TypeItem> toList() {
+    @NonNull public List<TypeItem> toList() {
         return items;
     }
 

@@ -19,80 +19,28 @@ package me.drakeet.multitype;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * @author drakeet
  */
 public class ItemsTest {
 
+    private Items items;
+    private ItemContent original;
+
+
     @Before
     public void setUp() throws Exception {
-
-    }
-
-
-    @Test
-    public void toList() throws Exception {
-
-    }
-
-
-    @Test
-    public void add() throws Exception {
-
-    }
-
-
-    @Test
-    public void add1() throws Exception {
-
-    }
-
-
-    @Test
-    public void get() throws Exception {
-
-    }
-
-
-    @Test
-    public void set() throws Exception {
-
+        items = new Items();
+        original = new TestItemContent("test0");
+        items.add(original);
     }
 
 
     @Test
     public void contains() throws Exception {
-
+        Items _items = new Items(items.toList());
+        assertTrue(_items.contains(original));
     }
-
-
-    @Test
-    public void remove() throws Exception {
-
-    }
-
-
-    @Test
-    public void remove1() throws Exception {
-
-    }
-
-
-    @Test
-    public void size() throws Exception {
-
-    }
-
-
-    @Test
-    public void isEmpty() throws Exception {
-
-    }
-
-
-    @Test
-    public void clear() throws Exception {
-
-    }
-
 }

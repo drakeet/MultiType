@@ -16,18 +16,15 @@
 
 package me.drakeet.multitype;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import android.support.annotation.NonNull;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * @author drakeet
  */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
-    }
+class TestItemContent implements ItemContent {
+
+    @NonNull final String text;
+
+
+    public TestItemContent(@NonNull String text) {this.text = text;}
 }
