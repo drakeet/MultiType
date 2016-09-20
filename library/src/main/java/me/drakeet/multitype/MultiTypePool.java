@@ -31,15 +31,15 @@ public final class MultiTypePool {
 
 
     public synchronized static void register(
-        @NonNull Class<? extends ItemContent> itemContentClass,
+        @NonNull Class<? extends ItemContent> clazz,
         @NonNull ItemViewProvider provider) {
-        if (!contents.contains(itemContentClass)) {
-            contents.add(itemContentClass);
+        if (!contents.contains(clazz)) {
+            contents.add(clazz);
             providers.add(provider);
         } else {
-            Log.w(TAG, "You have registered the " + itemContentClass.getSimpleName() + " type. " +
+            Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
                 "It should not be added again otherwise it will override the original provider.");
-            int index = contents.indexOf(itemContentClass);
+            int index = contents.indexOf(clazz);
             providers.set(index, provider);
         }
     }
