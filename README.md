@@ -20,7 +20,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:1.2.1'
+    compile 'me.drakeet.multitype:multitype:1.2.3'
 }
 ```
 
