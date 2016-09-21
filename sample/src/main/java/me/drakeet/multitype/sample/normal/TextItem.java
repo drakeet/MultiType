@@ -18,30 +18,30 @@ package me.drakeet.multitype.sample.normal;
 
 import android.support.annotation.NonNull;
 import com.google.gson.Gson;
-import me.drakeet.multitype.ItemContent;
+import me.drakeet.multitype.Item;
 import me.drakeet.multitype.Savable;
 
 /**
  * @author drakeet
  */
-public class TextItemContent implements ItemContent, Savable {
+public class TextItem implements Item, Savable {
 
     @NonNull public String text;
 
 
-    public TextItemContent(@NonNull String text) {
+    public TextItem(@NonNull String text) {
         this.text = text;
     }
 
 
-    public TextItemContent(@NonNull byte[] data) {
+    public TextItem(@NonNull byte[] data) {
         init(data);
     }
 
 
     @Override public void init(@NonNull byte[] data) {
         String json = new String(data);
-        this.text = new Gson().fromJson(json, TextItemContent.class).text;
+        this.text = new Gson().fromJson(json, TextItem.class).text;
     }
 
 

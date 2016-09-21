@@ -14,21 +14,11 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
-
-import android.support.annotation.NonNull;
-import me.drakeet.multitype.ItemContent;
+package me.drakeet.multitype;
 
 /**
  * @author drakeet
  */
-public class PostRowItemContent implements ItemContent {
+public interface Item {
 
-    public final Post[] posts = new Post[2];
-
-
-    public PostRowItemContent(@NonNull Post left, @NonNull Post right) {
-        posts[0] = left;
-        posts[1] = right;
-    }
 }

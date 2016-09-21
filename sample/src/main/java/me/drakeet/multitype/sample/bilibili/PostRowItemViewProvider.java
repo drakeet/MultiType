@@ -24,14 +24,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import me.drakeet.multitype.ItemViewProvider;
-import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
 public class PostRowItemViewProvider
-    extends ItemViewProvider<PostRowItemContent, PostRowItemViewProvider.ViewHolder> {
+    extends ItemViewProvider<PostRowItem, PostRowItemViewProvider.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(
@@ -42,9 +41,7 @@ public class PostRowItemViewProvider
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull ViewHolder holder,
-        @NonNull PostRowItemContent content, @NonNull TypeItem typeItem) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PostRowItem content) {
         holder.setData(content);
     }
 
@@ -68,7 +65,7 @@ public class PostRowItemViewProvider
         }
 
 
-        void setData(@NonNull final PostRowItemContent content) {
+        void setData(@NonNull final PostRowItem content) {
             leftCover.setImageResource(content.posts[0].coverResId);
             rightCover.setImageResource(content.posts[1].coverResId);
             leftTitle.setText(content.posts[0].title);

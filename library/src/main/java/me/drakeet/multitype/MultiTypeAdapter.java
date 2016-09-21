@@ -28,18 +28,18 @@ import java.util.List;
  */
 public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    private final List<? extends TypeItem> typeItems;
+    private final List<? extends Item> items;
     private LayoutInflater inflater;
 
 
-    public MultiTypeAdapter(@NonNull List<? extends TypeItem> typeItems) {
-        this.typeItems = typeItems;
+    public MultiTypeAdapter(@NonNull List<? extends Item> items) {
+        this.items = items;
     }
 
 
     @Override public int getItemViewType(int position) {
-        ItemContent content = typeItems.get(position).content;
-        return MultiTypePool.getContents().indexOf(content.getClass());
+        Item item = items.get(position);
+        return MultiTypePool.getContents().indexOf(item.getClass());
     }
 
 
@@ -55,12 +55,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @SuppressWarnings("unchecked") @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         int type = getItemViewType(position);
-        TypeItem typeItem = typeItems.get(position);
-        MultiTypePool.getProviderByIndex(type).onBindViewHolder(holder, typeItem);
+        Item item = items.get(position);
+        MultiTypePool.getProviderByIndex(type).onBindViewHolder(holder, item);
     }
 
 
     @Override public int getItemCount() {
-        return typeItems.size();
+        return items.size();
     }
 }

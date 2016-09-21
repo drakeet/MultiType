@@ -23,14 +23,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import me.drakeet.multitype.ItemViewProvider;
-import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
 public class CategoryItemViewProvider
-    extends ItemViewProvider<CategoryItemContent, CategoryItemViewProvider.ViewHolder> {
+    extends ItemViewProvider<CategoryItem, CategoryItemViewProvider.ViewHolder> {
 
     @NonNull @Override protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -39,16 +38,15 @@ public class CategoryItemViewProvider
     }
 
 
-    @Override protected void onBindViewHolder(
-        @NonNull ViewHolder holder,
-        @NonNull CategoryItemContent content, @NonNull TypeItem typeItem) {
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull CategoryItem content) {
         holder.title.setText(content.category.title);
     }
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title;
+        @NonNull private final TextView title;
 
 
         ViewHolder(@NonNull View itemView) {

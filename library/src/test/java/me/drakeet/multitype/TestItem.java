@@ -21,10 +21,10 @@ import android.support.annotation.NonNull;
 /**
  * @author drakeet
  */
-class TestItemContent implements ItemContent {
+class TestItem implements Item {
 
     @NonNull final String text;
 
 
-    public TestItemContent(@NonNull String text) {this.text = text;}
+    public TestItem(@NonNull String text) {this.text = text;}
 }

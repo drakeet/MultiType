@@ -22,7 +22,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
 
@@ -30,7 +29,7 @@ import me.drakeet.multitype.sample.R;
  * @author drakeet
  */
 public class ImageItemViewProvider
-    extends ItemViewProvider<ImageItemContent, ImageItemViewProvider.ImageHolder> {
+    extends ItemViewProvider<ImageItem, ImageItemViewProvider.ImageHolder> {
 
     class ImageHolder extends RecyclerView.ViewHolder {
         @NonNull private final ImageView image;
@@ -47,15 +46,12 @@ public class ImageItemViewProvider
     protected ImageHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_image, parent, false);
-        ImageHolder holder = new ImageHolder(root);
-        return holder;
+        return new ImageHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull ImageHolder holder,
-        @NonNull ImageItemContent imageContent, @NonNull TypeItem typeItem) {
+    protected void onBindViewHolder(@NonNull ImageHolder holder, @NonNull ImageItem imageContent) {
         holder.image.setImageResource(imageContent.resId);
     }
 }

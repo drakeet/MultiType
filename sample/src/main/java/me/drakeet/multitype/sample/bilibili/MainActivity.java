@@ -23,8 +23,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import java.util.ArrayList;
 import java.util.List;
+import me.drakeet.multitype.Item;
 import me.drakeet.multitype.MultiTypeAdapter;
-import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.sample.R;
 
 /**
@@ -65,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
         // @formatter:off
         JsonData data = new JsonData();
-        List<TypeItem> items = new ArrayList<>();
+        List<Item> items = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             /* You also could use Category as your CategoryItemContent directly */
-            items.add(new TypeItem(new CategoryItemContent(data.category0), null));
-            items.add(new TypeItem(new PostRowItemContent(data.postArray[0], data.postArray[1]), null));
-            items.add(new TypeItem(new PostRowItemContent(data.postArray[2], data.postArray[3]), null));
-            items.add(new TypeItem(new PostList(data.postList), null));
+            items.add(new CategoryItem(data.category0));
+            items.add(new PostRowItem(data.postArray[0], data.postArray[1]));
+            items.add(new PostRowItem(data.postArray[2], data.postArray[3]));
+            items.add(new PostList(data.postList));
         }
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setAdapter(new MultiTypeAdapter(items));

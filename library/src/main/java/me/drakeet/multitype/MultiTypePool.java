@@ -26,12 +26,12 @@ import java.util.ArrayList;
 public final class MultiTypePool {
 
     private static final String TAG = MultiTypePool.class.getSimpleName();
-    private static ArrayList<Class<? extends ItemContent>> contents = new ArrayList<>();
+    private static ArrayList<Class<? extends Item>> contents = new ArrayList<>();
     private static ArrayList<ItemViewProvider> providers = new ArrayList<>();
 
 
     public synchronized static void register(
-        @NonNull Class<? extends ItemContent> clazz,
+        @NonNull Class<? extends Item> clazz,
         @NonNull ItemViewProvider provider) {
         if (!contents.contains(clazz)) {
             contents.add(clazz);
@@ -45,7 +45,7 @@ public final class MultiTypePool {
     }
 
 
-    @NonNull public static ArrayList<Class<? extends ItemContent>> getContents() {
+    @NonNull public static ArrayList<Class<? extends Item>> getContents() {
         return contents;
     }
 

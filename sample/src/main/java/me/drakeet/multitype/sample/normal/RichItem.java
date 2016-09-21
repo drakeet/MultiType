@@ -14,11 +14,22 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
+package me.drakeet.multitype.sample.normal;
+
+import android.support.annotation.NonNull;
+import me.drakeet.multitype.Item;
 
 /**
  * @author drakeet
  */
-public interface ItemContent {
+public class RichItem implements Item {
 
+    @NonNull public String text;
+    public int imageResId;
+
+
+    public RichItem(@NonNull String text, int imageResId) {
+        this.text = text;
+        this.imageResId = imageResId;
+    }
 }

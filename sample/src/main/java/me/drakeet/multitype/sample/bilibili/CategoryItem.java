@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.normal;
+package me.drakeet.multitype.sample.bilibili;
 
-import me.drakeet.multitype.ItemContent;
+import android.support.annotation.NonNull;
+import me.drakeet.multitype.Item;
 
 /**
+ * You also could use {@link Category} as your CategoryItemContent directly
  * @author drakeet
  */
-public class ImageItemContent implements ItemContent {
+public class CategoryItem implements Item {
 
-    public final int resId;
+    public final Category category;
 
 
-    public ImageItemContent(int resId) {this.resId = resId;}
+    public CategoryItem(@NonNull final Category category) {this.category = category;}
 }

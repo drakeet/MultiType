@@ -28,27 +28,15 @@ import me.drakeet.multitype.sample.R;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-
-
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        /* One way:
-
-        TypeItemFactory factory = new TypeItemFactory.Builder().build();
-        TypeItem textItem = factory.newItem(new TextItemContent("world"));
-        TypeItem imageItem = factory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
-        TypeItem richItem = factory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
-        */
-
-        /* Another way: */
         Items items = new Items();
-        TextItemContent textItem = new TextItemContent("world");
-        ImageItemContent imageItem = new ImageItemContent(R.mipmap.ic_launcher);
-        RichItemContent richItem = new RichItemContent("小艾大人赛高", R.mipmap.avatar);
+        TextItem textItem = new TextItem("world");
+        ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
+        RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
 
         for (int i = 0; i < 20; i++) {
             items.add(textItem);
@@ -56,6 +44,6 @@ public class MainActivity extends AppCompatActivity {
             items.add(richItem);
         }
 
-        recyclerView.setAdapter(new MultiTypeAdapter(items.toList()));
+        recyclerView.setAdapter(new MultiTypeAdapter(items));
     }
 }

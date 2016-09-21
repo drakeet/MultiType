@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 import me.drakeet.multitype.ItemViewProvider;
-import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.sample.R;
 
 /**
@@ -42,20 +41,18 @@ public class HorizontalItemViewProvider
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull ViewHolder holder,
-        @NonNull PostList postList, @NonNull TypeItem typeItem) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PostList postList) {
         holder.setPosts(postList.posts);
     }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        RecyclerView recyclerView;
-        PostsAdapter adapter;
+        private RecyclerView recyclerView;
+        private PostsAdapter adapter;
 
 
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             recyclerView = (RecyclerView) itemView.findViewById(R.id.post_list);
             LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext());
@@ -66,7 +63,7 @@ public class HorizontalItemViewProvider
         }
 
 
-        public void setPosts(List<Post> posts) {
+        private void setPosts(List<Post> posts) {
             adapter.setPosts(posts);
             adapter.notifyDataSetChanged();
         }

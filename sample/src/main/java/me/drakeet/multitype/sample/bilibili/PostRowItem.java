@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.normal;
+package me.drakeet.multitype.sample.bilibili;
 
 import android.support.annotation.NonNull;
-import me.drakeet.multitype.ItemContent;
+import me.drakeet.multitype.Item;
 
 /**
  * @author drakeet
  */
-public class RichItemContent implements ItemContent {
+public class PostRowItem implements Item {
 
-    @NonNull public String text;
-    public int imageResId;
+    public final Post[] posts = new Post[2];
 
 
-    public RichItemContent(@NonNull String text, int imageResId) {
-        this.text = text;
-        this.imageResId = imageResId;
+    public PostRowItem(@NonNull Post left, @NonNull Post right) {
+        posts[0] = left;
+        posts[1] = right;
     }
 }
