@@ -20,30 +20,30 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:1.2.4'
+    compile 'me.drakeet.multitype:multitype:2.0.0'
 }
 ```
 
 ## Usage
 
-#### Step 1. Create a class __implements__ `ItemContent`, It would be your `data model`/`Java bean`, for example:
+#### Step 1. Create a class __implements__ `Item`, It would be your `data model`/`Java bean`, for example:
 
 ```java
-public class TextItemContent implements ItemContent, Savable {
+public class TextItem implements Item, Savable {
 
     @NonNull public String text;
 
-    public TextItemContent(@NonNull String text) {
+    public TextItem(@NonNull String text) {
         this.text = text;
     }
 
-    public TextItemContent(@NonNull byte[] data) {
+    public TextItem(@NonNull byte[] data) {
         init(data);
     }
 
     @Override public void init(@NonNull byte[] data) {
         String json = new String(data);
-        this.text = new Gson().fromJson(json, TextItemContent.class).text;
+        this.text = new Gson().fromJson(json, TextItem.class).text;
     }
 
     @NonNull @Override public byte[] toBytes() {
@@ -54,14 +54,15 @@ public class TextItemContent implements ItemContent, Savable {
 }
 ```
 
-#### Step 2. Create a class extends `ItemViewProvider<C extends ItemContent, V extends ViewHolder>`, for example: 
+#### Step 2. Create a class extends `ItemViewProvider<C extends Item, V extends ViewHolder>`, for example:
 
 ```java
 public class TextItemViewProvider
-    extends ItemViewProvider<TextItemContent, TextItemViewProvider.TextHolder> {
+    extends ItemViewProvider<TextItem, TextItemViewProvider.TextHolder> {
 
     static class TextHolder extends RecyclerView.ViewHolder {
-        @NonNull final TextView text;
+        @NonNull private final TextView text;
+
 
         TextHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,15 +75,13 @@ public class TextItemViewProvider
     protected TextHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_text, parent, false);
-        TextHolder holder = new TextHolder(root);
-        return holder;
+        return new TextHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull TextHolder holder, @NonNull TextItemContent content, @NonNull TypeItem typeItem) {
-        holder.text.setText("hello: " + content.text);
+    protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
+        holder.text.setText("hello: " + textItem.text);
     }
 }
 ```
@@ -94,9 +93,12 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        MultiTypePool.register(TextItemContent.class, new TextItemViewProvider());
-        MultiTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-        MultiTypePool.register(RichItemContent.class, new RichItemViewProvider());
+        MultiTypePool.register(TextItem.class, new TextItemViewProvider());
+        MultiTypePool.register(ImageItem.class, new ImageItemViewProvider());
+        MultiTypePool.register(RichItem.class, new RichItemViewProvider());
+        MultiTypePool.register(Category.class, new CategoryItemViewProvider());
+        MultiTypePool.register(PostRowItem.class, new PostRowItemViewProvider());
+        MultiTypePool.register(PostList.class, new HorizontalItemViewProvider());
     }
 }
 ```
@@ -104,26 +106,15 @@ public class App extends Application {
 ```java
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        /* One way:
-
-        TypeItemFactory factory = new TypeItemFactory.Builder().build();
-        TypeItem textItem = factory.newItem(new TextItemContent("world"));
-        TypeItem imageItem = factory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
-        TypeItem richItem = factory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
-        */
-
-        /* Another way: */
         Items items = new Items();
-        TextItemContent textItem = new TextItemContent("world");
-        ImageItemContent imageItem = new ImageItemContent(R.mipmap.ic_launcher);
-        RichItemContent richItem = new RichItemContent("小艾大人赛高", R.mipmap.avatar);
+        TextItem textItem = new TextItem("world");
+        ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
+        RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
 
         for (int i = 0; i < 20; i++) {
             items.add(textItem);
@@ -131,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             items.add(richItem);
         }
 
-        recyclerView.setAdapter(new MultiTypeAdapter(items.toList()));
+        recyclerView.setAdapter(new MultiTypeAdapter(items));
     }
 }
 ```

@@ -19,48 +19,51 @@ GitHub: [https://github.com/drakeet/MultiType](https://github.com/drakeet/MultiT
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:1.2.4'
+    compile 'me.drakeet.multitype:multitype:2.0.0'
 }
 ```
 
 ## 使用
 
-#### Step 1. 创建一个 class __implements__ `ItemContent`，它将是你的数据类型或 `Java bean`，示例：
+#### Step 1. 创建一个 class __implements__ `Item`，它将是你的数据类型或 `Java bean`，示例：
 
 
 ```java
-public class TextItemContent implements ItemContent, Savable {
+public class TextItem implements Item, Savable {
 
     @NonNull public String text;
 
-    public TextItemContent(@NonNull String text) {
+    public TextItem(@NonNull String text) {
         this.text = text;
     }
 
-    public TextItemContent(@NonNull byte[] data) {
+    public TextItem(@NonNull byte[] data) {
         init(data);
     }
 
     @Override public void init(@NonNull byte[] data) {
         String json = new String(data);
-        this.text = new Gson().fromJson(json, TextItemContent.class).text;
+        this.text = new Gson().fromJson(json, TextItem.class).text;
     }
 
     @NonNull @Override public byte[] toBytes() {
         return new Gson().toJson(this).getBytes();
     }
+
+    @NonNull @Override public String describe() { return "Text";}
 }
 ```
 
-#### Step 2. 创建一个 class 继承  `ItemViewProvider<C extends ItemContent, V extends ViewHolder>`，示例：
+#### Step 2. 创建一个 class 继承  `ItemViewProvider<C extends Item, V extends ViewHolder>`，示例：
 
 
 ```java
 public class TextItemViewProvider
-    extends ItemViewProvider<TextItemContent, TextItemViewProvider.TextHolder> {
+    extends ItemViewProvider<TextItem, TextItemViewProvider.TextHolder> {
 
     static class TextHolder extends RecyclerView.ViewHolder {
-        @NonNull final TextView text;
+        @NonNull private final TextView text;
+
 
         TextHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,15 +76,13 @@ public class TextItemViewProvider
     protected TextHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_text, parent, false);
-        TextHolder holder = new TextHolder(root);
-        return holder;
+        return new TextHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull TextHolder holder, @NonNull TextItemContent content, @NonNull TypeItem typeItem) {
-        holder.text.setText("hello: " + content.text);
+    protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
+        holder.text.setText("hello: " + textItem.text);
     }
 }
 ```
@@ -94,9 +95,12 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        MultiTypePool.register(TextItemContent.class, new TextItemViewProvider());
-        MultiTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-        MultiTypePool.register(RichItemContent.class, new RichItemViewProvider());
+        MultiTypePool.register(TextItem.class, new TextItemViewProvider());
+        MultiTypePool.register(ImageItem.class, new ImageItemViewProvider());
+        MultiTypePool.register(RichItem.class, new RichItemViewProvider());
+        MultiTypePool.register(Category.class, new CategoryItemViewProvider());
+        MultiTypePool.register(PostRowItem.class, new PostRowItemViewProvider());
+        MultiTypePool.register(PostList.class, new HorizontalItemViewProvider());
     }
 }
 ```
@@ -104,26 +108,15 @@ public class App extends Application {
 ```java
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        /* One way:
-
-        TypeItemFactory factory = new TypeItemFactory.Builder().build();
-        TypeItem textItem = factory.newItem(new TextItemContent("world"));
-        TypeItem imageItem = factory.newItem(new ImageItemContent(R.mipmap.ic_launcher));
-        TypeItem richItem = factory.newItem(new RichItemContent("小艾大人赛高", R.mipmap.avatar));
-        */
-
-        /* Another way: */
         Items items = new Items();
-        TextItemContent textItem = new TextItemContent("world");
-        ImageItemContent imageItem = new ImageItemContent(R.mipmap.ic_launcher);
-        RichItemContent richItem = new RichItemContent("小艾大人赛高", R.mipmap.avatar);
+        TextItem textItem = new TextItem("world");
+        ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
+        RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
 
         for (int i = 0; i < 20; i++) {
             items.add(textItem);
@@ -131,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             items.add(richItem);
         }
 
-        recyclerView.setAdapter(new MultiTypeAdapter(items.toList()));
+        recyclerView.setAdapter(new MultiTypeAdapter(items));
     }
 }
 ```
@@ -140,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
 你可以阅读源码项目中的 `sample` 模块获得更多信息和示例，当完整的示例代码运行起来，它是这样子的：
 
-![](http://ww2.sinaimg.cn/large/86e2ff85gw1f6hj52rqg1j207i0dcq3c.jpg)
+<img src="art/screenshot-normal.png" width=270 height=486/> <img src="art/screenshot-bilibili.png" width=270 height=486/>
 
 ## 性能测试
 
