@@ -29,7 +29,7 @@ import me.drakeet.multitype.sample.R;
  * @author drakeet
  */
 public class CategoryItemViewProvider
-    extends ItemViewProvider<CategoryItem, CategoryItemViewProvider.ViewHolder> {
+    extends ItemViewProvider<Category, CategoryItemViewProvider.ViewHolder> {
 
     @NonNull @Override protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -39,8 +39,8 @@ public class CategoryItemViewProvider
 
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull CategoryItem content) {
-        holder.title.setText(content.category.title);
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
+        holder.title.setText(category.title);
     }
 
 

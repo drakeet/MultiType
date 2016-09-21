@@ -17,7 +17,7 @@
 package me.drakeet.multitype.sample;
 
 import me.drakeet.multitype.MultiTypePool;
-import me.drakeet.multitype.sample.bilibili.CategoryItem;
+import me.drakeet.multitype.sample.bilibili.Category;
 import me.drakeet.multitype.sample.bilibili.CategoryItemViewProvider;
 import me.drakeet.multitype.sample.bilibili.HorizontalItemViewProvider;
 import me.drakeet.multitype.sample.bilibili.PostList;
@@ -39,7 +39,7 @@ class MultiTypeInstaller {
         MultiTypePool.register(TextItem.class, new TextItemViewProvider());
         MultiTypePool.register(ImageItem.class, new ImageItemViewProvider());
         MultiTypePool.register(RichItem.class, new RichItemViewProvider());
-        MultiTypePool.register(CategoryItem.class, new CategoryItemViewProvider());
+        MultiTypePool.register(Category.class, new CategoryItemViewProvider());
         MultiTypePool.register(PostRowItem.class, new PostRowItemViewProvider());
         MultiTypePool.register(PostList.class, new HorizontalItemViewProvider());
     }

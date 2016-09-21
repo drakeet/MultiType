@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         List<Item> items = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             /* You also could use Category as your CategoryItemContent directly */
-            items.add(new CategoryItem(data.category0));
+            items.add(data.category0);
             items.add(new PostRowItem(data.postArray[0], data.postArray[1]));
             items.add(new PostRowItem(data.postArray[2], data.postArray[3]));
             items.add(new PostList(data.postList));
