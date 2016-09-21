@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author drakeet
  */
-public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implements FlatTypeAdapter {
 
     private final List<? extends Item> items;
     private LayoutInflater inflater;
@@ -37,9 +37,19 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
+    @NonNull @Override public Class onFlattenClass(@NonNull final Item item) {
+        return item.getClass();
+    }
+
+
+    @NonNull @Override public Item onFlattenItem(@NonNull final Item item) {
+        return item;
+    }
+
+
     @Override public int getItemViewType(int position) {
         Item item = items.get(position);
-        return MultiTypePool.getContents().indexOf(item.getClass());
+        return MultiTypePool.getContents().indexOf(onFlattenClass(item));
     }
 
 
@@ -56,7 +66,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         int type = getItemViewType(position);
         Item item = items.get(position);
-        MultiTypePool.getProviderByIndex(type).onBindViewHolder(holder, item);
+        MultiTypePool.getProviderByIndex(type).onBindViewHolder(holder, onFlattenItem(item));
     }
 
 
