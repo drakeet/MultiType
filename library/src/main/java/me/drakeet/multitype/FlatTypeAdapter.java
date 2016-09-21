@@ -16,9 +16,13 @@
 
 package me.drakeet.multitype;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author drakeet
  */
-public interface ItemContent {
+public interface FlatTypeAdapter {
 
+    @NonNull Class onFlattenClass(@NonNull Item item);
+    @NonNull Item onFlattenItem(@NonNull final Item item);
 }

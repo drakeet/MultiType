@@ -24,18 +24,12 @@ import android.view.ViewGroup;
 /***
  * @author drakeet
  */
-public abstract class ItemViewProvider<C extends ItemContent, V extends ViewHolder> {
+public abstract class ItemViewProvider<C extends Item, V extends ViewHolder> {
 
     // @formatter:off
 
     @NonNull
     protected abstract V onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
-    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c, @NonNull TypeItem typeItem);
-
-
-    @SuppressWarnings("unchecked")
-    public final void onBindViewHolder(@NonNull V holder, @NonNull TypeItem data) {
-        this.onBindViewHolder(holder, (C) data.content, data);
-    }
+    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c);
 }

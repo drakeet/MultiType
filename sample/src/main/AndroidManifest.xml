@@ -26,8 +26,8 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".normal.MainActivity"
-            android:label="@string/normal_app_name">
+            android:name=".bilibili.MainActivity"
+            android:label="@string/bilibili_app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -36,8 +36,8 @@
         </activity>
 
         <activity
-            android:name=".bilibili.MainActivity"
-            android:label="@string/bilibili_app_name">
+            android:name=".normal.MainActivity"
+            android:label="@string/normal_app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

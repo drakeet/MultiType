@@ -23,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
 
@@ -31,9 +30,10 @@ import me.drakeet.multitype.sample.R;
  * @author drakeet
  */
 public class RichItemViewProvider
-    extends ItemViewProvider<RichItemContent, RichItemViewProvider.RichHolder> {
+    extends ItemViewProvider<RichItem, RichItemViewProvider.RichHolder> {
 
     static class RichHolder extends RecyclerView.ViewHolder {
+
         @NonNull final TextView text;
         @NonNull final ImageView image;
 
@@ -50,15 +50,12 @@ public class RichItemViewProvider
     protected RichHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_rich, parent, false);
-        RichHolder holder = new RichHolder(root);
-        return holder;
+        return new RichHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull RichHolder holder,
-        @NonNull RichItemContent richContent, @NonNull TypeItem typeItem) {
+    protected void onBindViewHolder(@NonNull RichHolder holder, @NonNull RichItem richContent) {
         holder.text.setText(richContent.text);
         holder.image.setImageResource(richContent.imageResId);
     }

@@ -26,20 +26,30 @@ import java.util.List;
 /**
  * @author drakeet
  */
-public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implements FlatTypeAdapter {
 
-    private final List<? extends TypeItem> typeItems;
+    private final List<? extends Item> items;
     private LayoutInflater inflater;
 
 
-    public MultiTypeAdapter(@NonNull List<? extends TypeItem> typeItems) {
-        this.typeItems = typeItems;
+    public MultiTypeAdapter(@NonNull List<? extends Item> items) {
+        this.items = items;
+    }
+
+
+    @NonNull @Override public Class onFlattenClass(@NonNull final Item item) {
+        return item.getClass();
+    }
+
+
+    @NonNull @Override public Item onFlattenItem(@NonNull final Item item) {
+        return item;
     }
 
 
     @Override public int getItemViewType(int position) {
-        ItemContent content = typeItems.get(position).content;
-        return MultiTypePool.getContents().indexOf(content.getClass());
+        Item item = items.get(position);
+        return MultiTypePool.getContents().indexOf(onFlattenClass(item));
     }
 
 
@@ -55,12 +65,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @SuppressWarnings("unchecked") @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         int type = getItemViewType(position);
-        TypeItem typeItem = typeItems.get(position);
-        MultiTypePool.getProviderByIndex(type).onBindViewHolder(holder, typeItem);
+        Item item = items.get(position);
+        MultiTypePool.getProviderByIndex(type).onBindViewHolder(holder, onFlattenItem(item));
     }
 
 
     @Override public int getItemCount() {
-        return typeItems.size();
+        return items.size();
     }
 }

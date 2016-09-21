@@ -14,17 +14,11 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.normal;
-
-import me.drakeet.multitype.ItemContent;
+package me.drakeet.multitype;
 
 /**
  * @author drakeet
  */
-public class ImageItemContent implements ItemContent {
+public interface Item {
 
-    public final int resId;
-
-
-    public ImageItemContent(int resId) {this.resId = resId;}
 }

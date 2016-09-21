@@ -14,20 +14,41 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
+package me.drakeet.multitype.sample.normal;
 
 import android.support.annotation.NonNull;
+import com.google.gson.Gson;
 import me.drakeet.multitype.Item;
+import me.drakeet.multitype.Savable;
 
 /**
  * @author drakeet
  */
-public class Category implements Item {
+public class TextItem implements Item, Savable {
 
-    public String title;
+    @NonNull public String text;
 
 
-    public Category(@NonNull final String title) {
-        this.title = title;
+    public TextItem(@NonNull String text) {
+        this.text = text;
     }
+
+
+    public TextItem(@NonNull byte[] data) {
+        init(data);
+    }
+
+
+    @Override public void init(@NonNull byte[] data) {
+        String json = new String(data);
+        this.text = new Gson().fromJson(json, TextItem.class).text;
+    }
+
+
+    @NonNull @Override public byte[] toBytes() {
+        return new Gson().toJson(this).getBytes();
+    }
+
+
+    @NonNull @Override public String describe() { return "Text";}
 }
