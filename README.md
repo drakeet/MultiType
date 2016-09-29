@@ -2,7 +2,7 @@
 An Android library to retrofit multiple item view types
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
-![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
+![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg) [sample screenshots(示例程序截图)](https://github.com/drakeet/MultiType#sample-screenshots)
 
 English Version | <a href="https://drakeet.me/multitype" target="_blank" rel="nofollow">中文版</a>
 
@@ -128,7 +128,9 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-**You're good to go!** 
+**You're good to go!**
+
+## Sample screenshots
 
 You could check the `sample` module for more details and after running it will look like: 
 
