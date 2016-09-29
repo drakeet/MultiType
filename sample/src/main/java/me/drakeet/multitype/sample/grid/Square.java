@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
+package me.drakeet.multitype.sample.grid;
 
-import android.support.annotation.NonNull;
 import me.drakeet.multitype.Item;
 
 /**
  * @author drakeet
  */
-public class Category implements Item {
+public class Square implements Item {
 
-    public String title;
+    public final int number;
 
 
-    public Category(@NonNull final String title) {
-        this.title = title;
-    }
+    public Square(int number) {this.number = number;}
 }

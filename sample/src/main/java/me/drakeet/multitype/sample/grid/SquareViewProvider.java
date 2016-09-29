@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
+package me.drakeet.multitype.sample.grid;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -25,33 +25,41 @@ import android.widget.TextView;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
 
+import static java.lang.String.valueOf;
+
 /**
  * @author drakeet
  */
-public class CategoryItemViewProvider
-    extends ItemViewProvider<Category, CategoryItemViewProvider.ViewHolder> {
+public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvider.ViewHolder> {
 
-    @NonNull @Override protected ViewHolder onCreateViewHolder(
+    @NonNull @Override
+    protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_category, parent, false);
-        return new ViewHolder(view);
+        View root = inflater.inflate(R.layout.item_square, parent, false);
+        return new ViewHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
-        holder.title.setText(category.title);
+    protected void onBindViewHolder(
+        @NonNull ViewHolder holder, @NonNull Square square) {
+        holder.squareView.setText(valueOf(square.number));
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @NonNull private final TextView title;
+        private TextView squareView;
 
 
-        ViewHolder(@NonNull View itemView) {
+        ViewHolder(final View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title);
+            squareView = (TextView) itemView.findViewById(R.id.square);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    itemView.setSelected(true);
+                }
+            });
         }
     }
 }

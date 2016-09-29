@@ -26,6 +26,7 @@ import java.util.List;
 import me.drakeet.multitype.Item;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.common.Category;
 
 /**
  * @author drakeet

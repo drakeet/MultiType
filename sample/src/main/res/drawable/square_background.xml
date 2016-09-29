@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2016 drakeet. https://github.com/drakeet
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +14,18 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <string name="normal_app_name">MultiType</string>
-    <string name="bilibili_app_name">MT: Bilibili</string>
-    <string name="multi_grid_app_name">MT: MultiGrid</string>
-</resources>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="true">
+        <color android:color="@color/pink"/>
+    </item>
+
+    <item android:state_pressed="true">
+        <color android:color="@color/pink"/>
+    </item>
+
+    <item>
+        <color android:color="@android:color/white"/>
+    </item>
+
+</selector>
