@@ -41,8 +41,7 @@ public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvi
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull ViewHolder holder, @NonNull Square square) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Square square) {
         holder.squareView.setText(valueOf(square.number));
     }
 

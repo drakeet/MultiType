@@ -49,7 +49,6 @@ public class MultiGridActivity extends AppCompatActivity {
         });
 
         loadData();
-
         long tag = currentThreadTimeMillis();
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter = new MultiTypeAdapter(items));
