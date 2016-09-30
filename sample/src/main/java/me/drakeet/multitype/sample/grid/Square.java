@@ -24,6 +24,7 @@ import me.drakeet.multitype.Item;
 public class Square implements Item {
 
     public final int number;
+    public boolean isSelected;
 
 
     public Square(int number) {this.number = number;}

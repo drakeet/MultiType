@@ -42,13 +42,16 @@ public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvi
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Square square) {
+        holder.square = square;
         holder.squareView.setText(valueOf(square.number));
+        holder.squareView.setSelected(square.isSelected);
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView squareView;
+        private Square square;
 
 
         ViewHolder(final View itemView) {
@@ -56,7 +59,7 @@ public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvi
             squareView = (TextView) itemView.findViewById(R.id.square);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    itemView.setSelected(true);
+                    itemView.setSelected(square.isSelected = !square.isSelected);
                 }
             });
         }
