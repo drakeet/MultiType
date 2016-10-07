@@ -46,7 +46,7 @@ public final class MultiTypePool {
 
 
     /**
-     * For getting index of the content class.
+     * For getting index of the item class.
      * If the subclass is already registered, the registered mapping is used.
      * If the subclass is not registered, then look for the parent class is
      * registered, if the parent class is registered,
@@ -56,7 +56,7 @@ public final class MultiTypePool {
      * @return the index of the first occurrence of the specified element
      * in this list, or -1 if this list does not contain the element.
      */
-    public static int indexOf(Class<? extends Item> clazz) {
+    public static int indexOf(@NonNull final Class<? extends Item> clazz) {
         int index = contents.indexOf(clazz);
         if (index >= 0) {
             return index;
