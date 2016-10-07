@@ -37,11 +37,36 @@ public final class MultiTypePool {
             contents.add(clazz);
             providers.add(provider);
         } else {
-            Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
-                "It should not be added again otherwise it will override the original provider.");
             int index = contents.indexOf(clazz);
             providers.set(index, provider);
+            Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
+                "It should not be added again otherwise it will override the original provider.");
         }
+    }
+
+
+    /**
+     * For getting index of the content class.
+     * If the subclass is already registered, the registered mapping is used.
+     * If the subclass is not registered, then look for the parent class is
+     * registered, if the parent class is registered,
+     * the subclass is regarded as the parent class.
+     *
+     * @param clazz the item class.
+     * @return the index of the first occurrence of the specified element
+     * in this list, or -1 if this list does not contain the element.
+     */
+    public static int indexOf(Class<? extends Item> clazz) {
+        int index = contents.indexOf(clazz);
+        if (index >= 0) {
+            return index;
+        }
+        for (int i = 0; i < contents.size(); i++) {
+            if (contents.get(i).isAssignableFrom(clazz)) {
+                return i;
+            }
+        }
+        return index;
     }
 
 
