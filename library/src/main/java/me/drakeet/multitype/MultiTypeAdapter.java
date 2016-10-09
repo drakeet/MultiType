@@ -47,14 +47,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
     }
 
 
-    @Override public int getItemViewType(int position) {
+    @SuppressWarnings("unchecked") @Override
+    public int getItemViewType(int position) {
         Item item = items.get(position);
-        return MultiTypePool.getContents().indexOf(onFlattenClass(item));
+        return MultiTypePool.indexOf(onFlattenClass(item));
     }
 
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
+    @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
