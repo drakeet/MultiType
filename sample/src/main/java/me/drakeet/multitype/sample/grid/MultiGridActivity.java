@@ -23,12 +23,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
+import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 
 import static android.os.SystemClock.currentThreadTimeMillis;
 
-public class MultiGridActivity extends AppCompatActivity {
+public class MultiGridActivity extends MenuBaseActivity {
 
     private final static int SPAN_COUNT = 5;
     Items items = new Items();

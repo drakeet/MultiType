@@ -21,7 +21,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.drakeet.multitype.sample.normal.MainActivity"
+    tools:context="me.drakeet.multitype.sample.normal.NormalActivity"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView

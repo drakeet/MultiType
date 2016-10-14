@@ -14,34 +14,43 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.normal;
+package me.drakeet.multitype.sample.communicate_with_provider;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
+import me.drakeet.multitype.MultiTypePool;
+import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
+
+import static java.lang.String.valueOf;
 
 /**
  * @author drakeet
  */
-public class MainActivity extends AppCompatActivity {
+public class SimpleActivity extends MenuBaseActivity {
+
+    private String aFieldValue = "aFieldValue of SimpleActivity";
+
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        Items items = new Items();
-        TextItem textItem = new TextItem("world");
-        ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
-        RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
+        /* If you have register the type:
+         * int index = MultiTypePool.indexOf(SimpleData.class);
+         * ((SimpleDataViewProvider) MultiTypePool.getProviderByIndex(index)).aValueFromOutside
+         *     = aFieldValue;
+         * Or:
+         */
+        MultiTypePool.register(SimpleData.class, new SimpleDataViewProvider(aFieldValue));
 
+        Items items = new Items();
         for (int i = 0; i < 20; i++) {
-            items.add(textItem);
-            items.add(imageItem);
-            items.add(richItem);
+            items.add(new SimpleData(valueOf(i)));
         }
 
         recyclerView.setAdapter(new MultiTypeAdapter(items));

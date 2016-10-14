@@ -25,13 +25,14 @@ import java.util.ArrayList;
 import java.util.List;
 import me.drakeet.multitype.Item;
 import me.drakeet.multitype.MultiTypeAdapter;
+import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 
 /**
  * @author drakeet
  */
-public class MainActivity extends AppCompatActivity {
+public class BilibiliActivity extends MenuBaseActivity {
 
     private static class JsonData {
 
