@@ -41,13 +41,17 @@ public class SimpleActivity extends MenuBaseActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
         /* If you have register the type:
+         *
          * int index = MultiTypePool.indexOf(SimpleData.class);
          * ((SimpleDataViewProvider) MultiTypePool.getProviderByIndex(index)).aValueFromOutside
          *     = aFieldValue;
          * Or:
+         * MultiTypePool.register(SimpleData.class, new SimpleDataViewProvider(aFieldValue));
+         *
+         * Or:
          */
-        MultiTypePool.register(SimpleData.class, new SimpleDataViewProvider(aFieldValue));
-
+        SimpleDataViewProvider provider = MultiTypePool.getProviderByClass(SimpleData.class);
+        provider.aValueFromOutside = aFieldValue;
         Items items = new Items();
         for (int i = 0; i < 20; i++) {
             items.add(new SimpleData(valueOf(i)));

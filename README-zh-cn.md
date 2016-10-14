@@ -19,7 +19,7 @@ GitHub: [https://github.com/drakeet/MultiType](https://github.com/drakeet/MultiT
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.1.0'
+    compile 'me.drakeet.multitype:multitype:2.1.1'
 }
 ```
 
@@ -29,28 +29,13 @@ dependencies {
 
 
 ```java
-public class TextItem implements Item, Savable {
+public class TextItem implements Item {
 
     @NonNull public String text;
 
-    public TextItem(@NonNull String text) {
+    public TextItem(@NonNull final String text) {
         this.text = text;
     }
-
-    public TextItem(@NonNull byte[] data) {
-        init(data);
-    }
-
-    @Override public void init(@NonNull byte[] data) {
-        String json = new String(data);
-        this.text = new Gson().fromJson(json, TextItem.class).text;
-    }
-
-    @NonNull @Override public byte[] toBytes() {
-        return new Gson().toJson(this).getBytes();
-    }
-
-    @NonNull @Override public String describe() { return "Text";}
 }
 ```
 

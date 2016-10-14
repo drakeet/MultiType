@@ -83,4 +83,11 @@ public final class MultiTypePool {
     @NonNull public static ItemViewProvider getProviderByIndex(int index) {
         return providers.get(index);
     }
+
+
+    @SuppressWarnings("unchecked") @NonNull
+    public static <T extends ItemViewProvider> T getProviderByClass(
+        @NonNull final Class<? extends Item> clazz) {
+        return (T) getProviderByIndex(indexOf(clazz));
+    }
 }
