@@ -17,7 +17,6 @@
 package me.drakeet.multitype.sample.bilibili;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,10 +28,16 @@ import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 
+import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
+
 /**
  * @author drakeet
  */
 public class BilibiliActivity extends MenuBaseActivity {
+
+    private List<Item> items;
+    private MultiTypeAdapter adapter;
+
 
     private static class JsonData {
 
@@ -67,7 +72,7 @@ public class BilibiliActivity extends MenuBaseActivity {
 
         // @formatter:off
         JsonData data = new JsonData();
-        List<Item> items = new ArrayList<>();
+        items= new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             /* You also could use Category as your CategoryItemContent directly */
             items.add(data.category0);
@@ -75,8 +80,15 @@ public class BilibiliActivity extends MenuBaseActivity {
             items.add(new PostRowItem(data.postArray[2], data.postArray[3]));
             items.add(new PostList(data.postList));
         }
+
+        adapter = new MultiTypeAdapter(items);
+        adapter.applyGlobalMultiTypePool();
+        adapter.register(PostRowItem.class, new PostRowItemViewProvider());
+        adapter.register(PostList.class, new HorizontalItemViewProvider());
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
-        recyclerView.setAdapter(new MultiTypeAdapter(items));
+        assertAllRegistered(adapter, items);
+        recyclerView.setAdapter(adapter);
         // @formatter:on
     }
 

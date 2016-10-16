@@ -9,20 +9,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.normal.TextItem;
 
 /**
  * @author drakeet
  */
-public class SimpleDataViewProvider
-    extends ItemViewProvider<SimpleData, SimpleDataViewProvider.ViewHolder> {
+public class TextItemWithOutsizeDataViewProvider
+    extends ItemViewProvider<TextItem, TextItemWithOutsizeDataViewProvider.ViewHolder> {
 
     public String aValueFromOutside;
 
 
-    public SimpleDataViewProvider() {}
+    public TextItemWithOutsizeDataViewProvider() {}
 
 
-    public SimpleDataViewProvider(String aValueFromOutside) {
+    public TextItemWithOutsizeDataViewProvider(String aValueFromOutside) {
         this.aValueFromOutside = aValueFromOutside;
     }
 
@@ -35,8 +36,8 @@ public class SimpleDataViewProvider
 
 
     @Override protected void onBindViewHolder(
-        @NonNull ViewHolder holder, @NonNull SimpleData simpleData) {
-        holder.setData(simpleData);
+        @NonNull ViewHolder holder, @NonNull TextItem textItem) {
+        holder.setData(textItem);
     }
 
 
@@ -59,9 +60,9 @@ public class SimpleDataViewProvider
         }
 
 
-        void setData(@NonNull final SimpleData simpleData) {
-            textView.setText(simpleData.value);
-            this.value = simpleData.value;
+        void setData(@NonNull final TextItem textItem) {
+            textView.setText(textItem.text);
+            this.value = textItem.text;
         }
     }
 }

@@ -16,14 +16,13 @@
 
 package me.drakeet.multitype;
 
-import android.support.annotation.NonNull;
-
 /**
  * @author drakeet
  */
-public interface FlatTypeAdapter {
+public class ProviderNotFoundException extends RuntimeException {
 
-    @NonNull Class onFlattenClass(@NonNull Item item);
-
-    @NonNull Item onFlattenItem(@NonNull final Item item);
+    public ProviderNotFoundException(Class<? extends Item> clazz) {
+        super("Do you have registered the provider for {className}.class in the adapter/pool?"
+            .replace("{className}", clazz.getSimpleName()));
+    }
 }

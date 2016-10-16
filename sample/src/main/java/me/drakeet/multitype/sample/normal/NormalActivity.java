@@ -17,7 +17,6 @@
 package me.drakeet.multitype.sample.normal;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -29,12 +28,20 @@ import me.drakeet.multitype.sample.R;
  */
 public class NormalActivity extends MenuBaseActivity {
 
+    private MultiTypeAdapter adapter;
+    private Items items;
+
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        Items items = new Items();
+        items = new Items();
+        adapter = new MultiTypeAdapter(items);
+        adapter.applyGlobalMultiTypePool();
+        adapter.register(RichItem.class, new RichItemViewProvider());
+
         TextItem textItem = new TextItem("world");
         ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
         RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
@@ -45,6 +52,6 @@ public class NormalActivity extends MenuBaseActivity {
             items.add(richItem);
         }
 
-        recyclerView.setAdapter(new MultiTypeAdapter(items));
+        recyclerView.setAdapter(adapter);
     }
 }

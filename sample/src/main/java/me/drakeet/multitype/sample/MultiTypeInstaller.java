@@ -16,21 +16,11 @@
 
 package me.drakeet.multitype.sample;
 
-import me.drakeet.multitype.MultiTypePool;
+import me.drakeet.multitype.GlobalMultiTypePool;
 import me.drakeet.multitype.sample.common.Category;
 import me.drakeet.multitype.sample.common.CategoryItemViewProvider;
-import me.drakeet.multitype.sample.bilibili.HorizontalItemViewProvider;
-import me.drakeet.multitype.sample.bilibili.PostList;
-import me.drakeet.multitype.sample.bilibili.PostRowItem;
-import me.drakeet.multitype.sample.bilibili.PostRowItemViewProvider;
-import me.drakeet.multitype.sample.communicate_with_provider.SimpleData;
-import me.drakeet.multitype.sample.communicate_with_provider.SimpleDataViewProvider;
-import me.drakeet.multitype.sample.grid.Square;
-import me.drakeet.multitype.sample.grid.SquareViewProvider;
 import me.drakeet.multitype.sample.normal.ImageItem;
 import me.drakeet.multitype.sample.normal.ImageItemViewProvider;
-import me.drakeet.multitype.sample.normal.RichItem;
-import me.drakeet.multitype.sample.normal.RichItemViewProvider;
 import me.drakeet.multitype.sample.normal.TextItem;
 import me.drakeet.multitype.sample.normal.TextItemViewProvider;
 
@@ -40,13 +30,8 @@ import me.drakeet.multitype.sample.normal.TextItemViewProvider;
 class MultiTypeInstaller {
 
     static void start() {
-        MultiTypePool.register(TextItem.class, new TextItemViewProvider());
-        MultiTypePool.register(ImageItem.class, new ImageItemViewProvider());
-        MultiTypePool.register(RichItem.class, new RichItemViewProvider());
-        MultiTypePool.register(Category.class, new CategoryItemViewProvider());
-        MultiTypePool.register(PostRowItem.class, new PostRowItemViewProvider());
-        MultiTypePool.register(PostList.class, new HorizontalItemViewProvider());
-        MultiTypePool.register(Square.class, new SquareViewProvider());
-        MultiTypePool.register(SimpleData.class, new SimpleDataViewProvider());
+        GlobalMultiTypePool.register(TextItem.class, new TextItemViewProvider());
+        GlobalMultiTypePool.register(ImageItem.class, new ImageItemViewProvider());
+        GlobalMultiTypePool.register(Category.class, new CategoryItemViewProvider());
     }
 }
