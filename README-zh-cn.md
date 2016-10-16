@@ -19,7 +19,7 @@ GitHub: [https://github.com/drakeet/MultiType](https://github.com/drakeet/MultiT
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.1.1'
+    compile 'me.drakeet.multitype:multitype:2.2.0-beta1'
 }
 ```
 
@@ -72,33 +72,25 @@ public class TextItemViewProvider
 }
 ```
 
-#### Step 3. 好了，你不必再创建新的类文件了，只要往你 `Application` 中进行注册类型，同时在 `Activity` 中加入 `RecyclerView` 和 `List<TypeItem>` 即可，示例：
+#### Step 3. 好了，你不必再创建新的类文件了，在 `Activity` 中加入 `RecyclerView` 和 `List<Item>` 并注册你都类型即可，示例：
 
 
 ```java
-public class App extends Application {
+public class NormalActivity extends AppCompatActivity {
 
-    @Override public void onCreate() {
-        super.onCreate();
-        MultiTypePool.register(TextItem.class, new TextItemViewProvider());
-        MultiTypePool.register(ImageItem.class, new ImageItemViewProvider());
-        MultiTypePool.register(RichItem.class, new RichItemViewProvider());
-        MultiTypePool.register(Category.class, new CategoryItemViewProvider());
-        MultiTypePool.register(PostRowItem.class, new PostRowItemViewProvider());
-        MultiTypePool.register(PostList.class, new HorizontalItemViewProvider());
-    }
-}
-```
-
-```java
-public class MainActivity extends AppCompatActivity {
+    private MultiTypeAdapter adapter;
+    private Items items;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        Items items = new Items();
+        items = new Items();
+        adapter = new MultiTypeAdapter(items);
+        adapter.applyGlobalMultiTypePool();
+        adapter.register(RichItem.class, new RichItemViewProvider());
+
         TextItem textItem = new TextItem("world");
         ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
         RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
@@ -109,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             items.add(richItem);
         }
 
-        recyclerView.setAdapter(new MultiTypeAdapter(items));
+        recyclerView.setAdapter(adapter);
     }
 }
 ```
@@ -118,29 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
 你可以阅读源码项目中的 `sample` 模块获得更多信息和示例，当完整的示例代码运行起来，它是这样子的：
 
-<img src="art/screenshot-normal.png" width=270 height=486/> <img src="art/screenshot-bilibili.png" width=270 height=486/>
+<img src="art/screenshot-normal.png" width=270 height=486/> <img src="art/screenshot-bilibili.png" width=270 height=486/> <img src="art/screenshot-multigrid.png" width=270 height=486/>
 
-## 性能测试
+And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMachine), you could check the `Message extends TypeItem` to learn **how to custom TypeItem** and it is recommended to read the `MessageViewProvider`, they are all great guide:
 
-找了一个小米 2s 来对 `MultiType` 进行测试，注入 9999 个 `ItemContent` class 和 `ItemViewProvider` 对象，`ItemContent` 包含 12 个随机 String，`ItemViewProvider.TestViewHolder` 包含 12 个 `TextView` 对象，并将我们使用的 Type 排到第 10000 位以后（检索严格模式）。
+[<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
 
-测试结果表明，性能极好。初始化注册 10000 个类型，只要 10 毫秒左右！而且内存占用也极低，因为类型 class 和 provider 对象都是非常非常轻薄的对象，后者虽然是以传统实例注册（其实 class 也是实例），但 provider 层面不持有任何对象，它只提供生产方法；另外，尽管 target index 在 10000 位以后，但丝毫不会影响列表滑动流畅性，因为计算个 10000 次，对于我们的手机 CPU，简直比我们人类 1 + 1 还简单的事情。这更近坚定了我使用全局类型池的设计。
+## Change logs & Releases
 
-![](http://ww2.sinaimg.cn/large/86e2ff85gw1f6sembftdjj20rq03utbp.jpg)
-
-那么问题来了，即使是淘宝，有超过 10000 个 item types 吗？我们真的需要局部类型池吗？答案我想是显然的。
-
-## Q&A (English Version later)
-
-**Q: 为什么使用静态或者全局类型池？(Why we need static and single TypePool?)**
-
-A: 我不反对局部或临时类型池的设计，你可以 fork 这个项目自行实现，它们对于内存更加友好（但也只是微小优势而已），但在我看来，全局类型池在多方面更好：
-- 它能够**显式**连接 Type 和它的 Item View，能够在同一地方统一 register，这将避免分散，带来很好的直观性和可管理性；
-- 一个应用不会有超级大量的类型定义，类型 class 和 provider 对象都是非常轻薄的对象，直接静态存于内存，并不会导致内存泄漏和大的内存占用问题，几乎可以忽略；
-- 至于要不要支持 optional 的局部类型池参数，我也是不喜欢支持的，前面说了，这是没必要的，而且若是可选（optional）也会使用户疑惑：“到底要还是不要？”
-
-因此我喜欢和坚持使用全局静态类型池，它不会带来什么问题，而且好处诸多，有人给我提交了使用反射的方法来自动获取类型连接，为了避免性能话题，我不喜欢反射，而且将类型连接变得复杂和不可见性未必是好事。我一直坚持的原则是：写简单的代码，写可读的代码，实现复杂的需求（你们看我的代码是不是感觉很自然而然而且可读性十分好？）
-
-## 题外话
-
-这个类库成品看来是挺精巧的，或者说轻巧，但一个人从无到有把它设计和创造出来，还是费了很多思考和多次推翻重构，其中有些点看起来可能自然而然，但是它在开发过程中可能都是一个小坎，如果没有找到合适的结构或设计，整体可能就不能搭建起来，使用也可能没那么简单和灵活。所以，要是有人感兴趣，之后可以分享一下开发过程中遇到的问题和思考，还是很有意思的 : )
+https://github.com/drakeet/MultiType/releases
