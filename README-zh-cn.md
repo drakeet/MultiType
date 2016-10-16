@@ -49,13 +49,11 @@ public class TextItemViewProvider
     static class TextHolder extends RecyclerView.ViewHolder {
         @NonNull private final TextView text;
 
-
         TextHolder(@NonNull View itemView) {
             super(itemView);
             this.text = (TextView) itemView.findViewById(R.id.text);
         }
     }
-
 
     @NonNull @Override
     protected TextHolder onCreateViewHolder(
@@ -63,7 +61,6 @@ public class TextItemViewProvider
         View root = inflater.inflate(R.layout.item_text, parent, false);
         return new TextHolder(root);
     }
-
 
     @Override
     protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
