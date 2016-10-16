@@ -1,18 +1,18 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author drakeet
  */
 public class MultiTypePoolTest {
+
+    private MultiTypePool pool;
+
 
     private class SubClass extends TestItem {
         public SubClass(@NonNull String text) {
@@ -30,27 +30,28 @@ public class MultiTypePoolTest {
 
     @Before
     public void register() {
-        MultiTypePool.getContents().clear();
-        MultiTypePool.register(TestItem.class, new TestItemViewProvider());
-        MultiTypePool.register(RegisteredSubClass.class, new TestItemViewProvider());
+        pool = MultiTypePool.newInstance();
+        pool.getContents().clear();
+        pool.register(TestItem.class, new TestItemViewProvider());
+        pool.register(RegisteredSubClass.class, new TestItemViewProvider());
     }
 
 
     @Test
     public void shouldIndexOfReturn0() {
-        assertEquals(0, MultiTypePool.indexOf(TestItem.class));
+        assertEquals(0, pool.indexOf(TestItem.class));
     }
 
 
     @Test
     public void shouldIndexOfReturn0WithNonRegisterSubclass() {
-        assertEquals(0, MultiTypePool.indexOf(SubClass.class));
+        assertEquals(0, pool.indexOf(SubClass.class));
     }
 
 
     @Test
     public void shouldIndexOfReturn1WithRegisterSubclass() {
-        assertEquals(1, MultiTypePool.indexOf(RegisteredSubClass.class));
+        assertEquals(1, pool.indexOf(RegisteredSubClass.class));
     }
 
 }

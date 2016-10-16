@@ -17,17 +17,15 @@
 package me.drakeet.multitype.sample.grid;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 
-import static android.os.SystemClock.currentThreadTimeMillis;
+import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 
 public class MultiGridActivity extends MenuBaseActivity {
 
@@ -50,10 +48,13 @@ public class MultiGridActivity extends MenuBaseActivity {
         });
 
         loadData();
-        long tag = currentThreadTimeMillis();
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter = new MultiTypeAdapter(items));
-        Log.d("MultiGrid", "duration: " + (currentThreadTimeMillis() - tag) + "ms");
+        adapter = new MultiTypeAdapter(items);
+        adapter.applyGlobalMultiTypePool();
+        adapter.register(Square.class, new SquareViewProvider());
+
+        assertAllRegistered(adapter, items);
+        recyclerView.setAdapter(adapter);
     }
 
 

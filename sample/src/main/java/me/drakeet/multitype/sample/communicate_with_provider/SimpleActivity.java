@@ -17,15 +17,16 @@
 package me.drakeet.multitype.sample.communicate_with_provider;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
-import me.drakeet.multitype.MultiTypePool;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.normal.TextItem;
 
 import static java.lang.String.valueOf;
+import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
+import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
 
 /**
  * @author drakeet
@@ -33,6 +34,8 @@ import static java.lang.String.valueOf;
 public class SimpleActivity extends MenuBaseActivity {
 
     private String aFieldValue = "aFieldValue of SimpleActivity";
+    private Items items;
+    private MultiTypeAdapter adapter;
 
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +43,16 @@ public class SimpleActivity extends MenuBaseActivity {
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        /* If you have register the type:
-         *
-         * int index = MultiTypePool.indexOf(SimpleData.class);
-         * ((SimpleDataViewProvider) MultiTypePool.getProviderByIndex(index)).aValueFromOutside
-         *     = aFieldValue;
-         * Or:
-         * MultiTypePool.register(SimpleData.class, new SimpleDataViewProvider(aFieldValue));
-         *
-         * Or:
-         */
-        SimpleDataViewProvider provider = MultiTypePool.getProviderByClass(SimpleData.class);
-        provider.aValueFromOutside = aFieldValue;
-        Items items = new Items();
+        items = new Items();
+        adapter = new MultiTypeAdapter(items);
+        adapter.register(TextItem.class, new TextItemWithOutsizeDataViewProvider(aFieldValue));
+
         for (int i = 0; i < 20; i++) {
-            items.add(new SimpleData(valueOf(i)));
+            items.add(new TextItem(valueOf(i)));
         }
 
-        recyclerView.setAdapter(new MultiTypeAdapter(items));
+        assertAllRegistered(adapter, items);
+        recyclerView.setAdapter(adapter);
+        assertHasTheSameAdapter(recyclerView, adapter);
     }
 }

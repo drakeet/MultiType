@@ -21,18 +21,22 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author drakeet
  */
-public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implements FlatTypeAdapter {
+public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
+    implements FlatTypeAdapter, TypePool {
 
-    private final List<? extends Item> items;
-    private LayoutInflater inflater;
+    protected final List<? extends Item> items;
+    protected LayoutInflater inflater;
+    protected MultiTypePool delegate;
 
 
     public MultiTypeAdapter(@NonNull List<? extends Item> items) {
+        this.delegate = MultiTypePool.newInstance();
         this.items = items;
     }
 
@@ -50,7 +54,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
     @SuppressWarnings("unchecked") @Override
     public int getItemViewType(int position) {
         Item item = items.get(position);
-        return MultiTypePool.indexOf(onFlattenClass(item));
+        return indexOf(onFlattenClass(item));
     }
 
 
@@ -58,7 +62,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
-        return MultiTypePool.getProviderByIndex(indexViewType).onCreateViewHolder(inflater, parent);
+        return getProviderByIndex(indexViewType).onCreateViewHolder(inflater, parent);
     }
 
 
@@ -66,11 +70,67 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
     public void onBindViewHolder(ViewHolder holder, int position) {
         int type = getItemViewType(position);
         Item item = items.get(position);
-        MultiTypePool.getProviderByIndex(type).onBindViewHolder(holder, onFlattenItem(item));
+        getProviderByIndex(type).onBindViewHolder(holder, onFlattenItem(item));
     }
 
 
     @Override public int getItemCount() {
         return items.size();
+    }
+
+
+    public void applyGlobalMultiTypePool() {
+        for (int i = 0; i < GlobalMultiTypePool.getContents().size(); i++) {
+            final Class<? extends Item> clazz = GlobalMultiTypePool.getContents().get(i);
+            final ItemViewProvider provider = GlobalMultiTypePool.getProviders().get(i);
+            if (!this.getContents().contains(clazz)) {
+                this.register(clazz, provider);
+            }
+        }
+    }
+
+
+    public void registerAll(@NonNull final MultiTypePool pool) {
+        for (int i = 0; i < pool.getContents().size(); i++) {
+            delegate.register(pool.getContents().get(i), pool.getProviders().get(i));
+        }
+    }
+
+
+    @Override
+    public void register(@NonNull Class<? extends Item> clazz, @NonNull ItemViewProvider provider) {
+        delegate.register(clazz, provider);
+    }
+
+
+    @Override public int indexOf(@NonNull Class<? extends Item> clazz)
+        throws ProviderNotFoundException {
+        int index = delegate.indexOf(clazz);
+        if (index >= 0) {
+            return index;
+        }
+        throw new ProviderNotFoundException(clazz);
+    }
+
+
+    @NonNull @Override public ArrayList<Class<? extends Item>> getContents() {
+        return delegate.getContents();
+    }
+
+
+    @NonNull @Override public ArrayList<ItemViewProvider> getProviders() {
+        return delegate.getProviders();
+    }
+
+
+    @NonNull @Override public ItemViewProvider getProviderByIndex(int index) {
+        return delegate.getProviderByIndex(index);
+    }
+
+
+    @NonNull @Override
+    public <T extends ItemViewProvider> T getProviderByClass(
+        @NonNull Class<? extends Item> clazz) {
+        return delegate.getProviderByClass(clazz);
     }
 }

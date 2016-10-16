@@ -23,14 +23,25 @@ import java.util.ArrayList;
 /**
  * @author drakeet
  */
-public final class MultiTypePool {
+public final class MultiTypePool implements TypePool {
 
-    private static final String TAG = MultiTypePool.class.getSimpleName();
-    private static ArrayList<Class<? extends Item>> contents = new ArrayList<>();
-    private static ArrayList<ItemViewProvider> providers = new ArrayList<>();
+    private final String TAG = MultiTypePool.class.getSimpleName();
+    private ArrayList<Class<? extends Item>> contents;
+    private ArrayList<ItemViewProvider> providers;
 
 
-    public synchronized static void register(
+    private MultiTypePool() {
+        this.contents = new ArrayList<>();
+        this.providers = new ArrayList<>();
+    }
+
+
+    static MultiTypePool newInstance() {
+        return new MultiTypePool();
+    }
+
+
+    public void register(
         @NonNull Class<? extends Item> clazz,
         @NonNull ItemViewProvider provider) {
         if (!contents.contains(clazz)) {
@@ -40,23 +51,12 @@ public final class MultiTypePool {
             int index = contents.indexOf(clazz);
             providers.set(index, provider);
             Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
-                "It should not be added again otherwise it will override the original provider.");
+                "It will override the original provider.");
         }
     }
 
 
-    /**
-     * For getting index of the item class.
-     * If the subclass is already registered, the registered mapping is used.
-     * If the subclass is not registered, then look for the parent class is
-     * registered, if the parent class is registered,
-     * the subclass is regarded as the parent class.
-     *
-     * @param clazz the item class.
-     * @return the index of the first occurrence of the specified element
-     * in this list, or -1 if this list does not contain the element.
-     */
-    public static int indexOf(@NonNull final Class<? extends Item> clazz) {
+    @Override public int indexOf(@NonNull final Class<? extends Item> clazz) {
         int index = contents.indexOf(clazz);
         if (index >= 0) {
             return index;
@@ -70,23 +70,23 @@ public final class MultiTypePool {
     }
 
 
-    @NonNull public static ArrayList<Class<? extends Item>> getContents() {
+    @NonNull @Override public ArrayList<Class<? extends Item>> getContents() {
         return contents;
     }
 
 
-    @NonNull public static ArrayList<ItemViewProvider> getProviders() {
+    @NonNull @Override public ArrayList<ItemViewProvider> getProviders() {
         return providers;
     }
 
 
-    @NonNull public static ItemViewProvider getProviderByIndex(int index) {
+    @NonNull @Override public ItemViewProvider getProviderByIndex(int index) {
         return providers.get(index);
     }
 
 
-    @SuppressWarnings("unchecked") @NonNull
-    public static <T extends ItemViewProvider> T getProviderByClass(
+    @SuppressWarnings("unchecked") @NonNull @Override
+    public <T extends ItemViewProvider> T getProviderByClass(
         @NonNull final Class<? extends Item> clazz) {
         return (T) getProviderByIndex(indexOf(clazz));
     }
