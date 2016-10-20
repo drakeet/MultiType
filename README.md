@@ -105,6 +105,14 @@ public class NormalActivity extends AppCompatActivity {
 
 **You're good to go!**
 
+## Android Studio Plugin
+
+- [drakeet/MultiTypeTemplates](https://github.com/drakeet/MultiTypeTemplates)
+
+ An intellij idea plugin for Android to generate `MultiType` `Item` and `ItemViewProvider` easily.
+
+![](http://ww4.sinaimg.cn/large/86e2ff85gw1f8yj0sejd6j21340ben1s.jpg)
+
 ## Sample screenshots
 
 You could check the `sample` module for more details and after running it will look like: 
