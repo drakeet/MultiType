@@ -107,7 +107,7 @@ public class NormalActivity extends AppCompatActivity {
 
 ## Android Studio Plugin
 
-- [drakeet/MultiTypeTemplates](https://github.com/drakeet/MultiTypeTemplates)
+- **[drakeet/MultiTypeTemplates](https://github.com/drakeet/MultiTypeTemplates)**
 
  An intellij idea plugin for Android to generate `MultiType` `Item` and `ItemViewProvider` easily.
 
