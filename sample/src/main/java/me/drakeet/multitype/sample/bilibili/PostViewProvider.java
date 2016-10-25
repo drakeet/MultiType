@@ -29,47 +29,39 @@ import me.drakeet.multitype.sample.R;
 /**
  * @author drakeet
  */
-public class PostRowItemViewProvider
-    extends ItemViewProvider<PostRowItem, PostRowItemViewProvider.ViewHolder> {
+public class PostViewProvider
+    extends ItemViewProvider<Post, PostViewProvider.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_post_row, parent, false);
+        View view = inflater.inflate(R.layout.item_post, parent, false);
         return new ViewHolder(view);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PostRowItem content) {
-        holder.setData(content);
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Post post) {
+        holder.setData(post);
     }
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        View left, right;
-        private ImageView leftCover, rightCover;
-        private TextView leftTitle, rightTitle;
+        private ImageView cover;
+        private TextView title;
 
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            left = itemView.findViewById(R.id.left);
-            right = itemView.findViewById(R.id.right);
-
-            leftCover = (ImageView) left.findViewById(R.id.cover);
-            rightCover = (ImageView) right.findViewById(R.id.cover);
-            leftTitle = (TextView) left.findViewById(R.id.title);
-            rightTitle = (TextView) right.findViewById(R.id.title);
+            cover = (ImageView) itemView.findViewById(R.id.cover);
+            title = (TextView) itemView.findViewById(R.id.title);
         }
 
 
-        void setData(@NonNull final PostRowItem content) {
-            leftCover.setImageResource(content.posts[0].coverResId);
-            rightCover.setImageResource(content.posts[1].coverResId);
-            leftTitle.setText(content.posts[0].title);
-            rightTitle.setText(content.posts[1].title);
+        void setData(@NonNull final Post post) {
+            cover.setImageResource(post.coverResId);
+            title.setText(post.title);
         }
     }
 }

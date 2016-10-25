@@ -29,8 +29,8 @@ import me.drakeet.multitype.sample.R;
 /**
  * @author drakeet
  */
-public class HorizontalItemViewProvider
-    extends ItemViewProvider<PostList, HorizontalItemViewProvider.ViewHolder> {
+public class HorizontalPostsViewProvider
+    extends ItemViewProvider<PostList, HorizontalPostsViewProvider.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(

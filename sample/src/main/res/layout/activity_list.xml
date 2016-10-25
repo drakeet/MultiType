@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright 2016 drakeet. https://github.com/drakeet
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,24 +17,16 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_list"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/cover"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/post_image_height"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/img_00"/>
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        tools:text="title"/>
+        android:layout_height="match_parent"
+        app:layoutManager="LinearLayoutManager"/>
 
 </LinearLayout>

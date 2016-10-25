@@ -17,6 +17,8 @@
 package me.drakeet.multitype.sample.bilibili;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.GridLayoutManager.SpanSizeLookup;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,6 +37,7 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
  */
 public class BilibiliActivity extends MenuBaseActivity {
 
+    private static final int SPAN_COUNT = 2;
     private List<Item> items;
     private MultiTypeAdapter adapter;
 
@@ -68,28 +71,42 @@ public class BilibiliActivity extends MenuBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list);
 
-        // @formatter:off
         JsonData data = new JsonData();
-        items= new ArrayList<>();
+        items = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             /* You also could use Category as your CategoryItemContent directly */
             items.add(data.category0);
-            items.add(new PostRowItem(data.postArray[0], data.postArray[1]));
-            items.add(new PostRowItem(data.postArray[2], data.postArray[3]));
+            items.add(data.postArray[0]);
+            items.add(data.postArray[1]);
+            items.add(data.postArray[2]);
+            items.add(data.postArray[3]);
             items.add(new PostList(data.postList));
         }
 
         adapter = new MultiTypeAdapter(items);
         adapter.applyGlobalMultiTypePool();
-        adapter.register(PostRowItem.class, new PostRowItemViewProvider());
-        adapter.register(PostList.class, new HorizontalItemViewProvider());
+        adapter.register(Post.class, new PostViewProvider());
+        adapter.register(PostList.class, new HorizontalPostsViewProvider());
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
+        SpanSizeLookup spanSizeLookup = new SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                Item item = items.get(position);
+                return (item instanceof PostList || item instanceof Category) ? SPAN_COUNT : 1;
+            }
+        };
+        layoutManager.setSpanSizeLookup(spanSizeLookup);
+        recyclerView.setLayoutManager(layoutManager);
+        int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
+        recyclerView.addItemDecoration(new PostItemDecoration(space, spanSizeLookup));
+
         assertAllRegistered(adapter, items);
         recyclerView.setAdapter(adapter);
-        // @formatter:on
     }
 
 

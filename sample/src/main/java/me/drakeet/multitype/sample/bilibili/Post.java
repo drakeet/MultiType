@@ -17,11 +17,12 @@
 package me.drakeet.multitype.sample.bilibili;
 
 import android.support.annotation.NonNull;
+import me.drakeet.multitype.Item;
 
 /**
  * @author drakeet
  */
-public class Post {
+public class Post implements Item {
 
     public int coverResId;
     public String title;
