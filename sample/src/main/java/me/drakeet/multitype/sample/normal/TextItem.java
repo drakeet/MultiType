@@ -19,7 +19,7 @@ package me.drakeet.multitype.sample.normal;
 import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import me.drakeet.multitype.Item;
-import me.drakeet.multitype.Savable;
+import me.drakeet.multitype.sample.Savable;
 
 /**
  * @author drakeet

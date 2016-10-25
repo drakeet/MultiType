@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
+package me.drakeet.multitype.sample;
 
 import android.support.annotation.NonNull;
 
