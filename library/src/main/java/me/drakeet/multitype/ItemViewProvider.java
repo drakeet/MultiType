@@ -26,7 +26,7 @@ import android.view.ViewGroup;
  */
 public abstract class ItemViewProvider<C extends Item, V extends ViewHolder> {
 
-    // @formatter:off
+    /* @formatter:off */
 
     @NonNull
     protected abstract V onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);

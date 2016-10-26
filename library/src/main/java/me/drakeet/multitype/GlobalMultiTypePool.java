@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class GlobalMultiTypePool {
 
-    private static MultiTypePool pool = MultiTypePool.newInstance();
+    private static MultiTypePool pool = new MultiTypePool();
 
 
     public static void register(
@@ -53,9 +53,13 @@ public class GlobalMultiTypePool {
     }
 
 
-    @NonNull
-    public static <T extends ItemViewProvider> T getProviderByClass(
+    @NonNull public static <T extends ItemViewProvider> T getProviderByClass(
         @NonNull Class<? extends Item> clazz) {
         return pool.getProviderByClass(clazz);
+    }
+
+
+    @NonNull public static MultiTypePool getPool() {
+        return pool;
     }
 }

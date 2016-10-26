@@ -32,11 +32,17 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
     protected final List<? extends Item> items;
     protected LayoutInflater inflater;
-    protected MultiTypePool delegate;
+    protected TypePool delegate;
 
 
     public MultiTypeAdapter(@NonNull List<? extends Item> items) {
-        this.delegate = MultiTypePool.newInstance();
+        this.delegate = new MultiTypePool();
+        this.items = items;
+    }
+
+
+    public MultiTypeAdapter(@NonNull List<? extends Item> items, TypePool pool) {
+        this.delegate = pool;
         this.items = items;
     }
 

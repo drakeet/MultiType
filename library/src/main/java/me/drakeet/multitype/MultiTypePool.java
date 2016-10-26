@@ -30,14 +30,9 @@ public final class MultiTypePool implements TypePool {
     private ArrayList<ItemViewProvider> providers;
 
 
-    private MultiTypePool() {
+    public MultiTypePool() {
         this.contents = new ArrayList<>();
         this.providers = new ArrayList<>();
-    }
-
-
-    static MultiTypePool newInstance() {
-        return new MultiTypePool();
     }
 
 
