@@ -6,12 +6,12 @@ An Android library to retrofit multiple item view types
 
 English Version | <a href="https://drakeet.me/multitype" target="_blank" rel="nofollow">中文版</a>
 
-Previously, when we need to develop a complex RecyclerView/ListView, it is a boring and troublesome work. 
-We should override the `getItemViewType` of `RecyclerView.Adapter` and add some types, 
+Previously, when we need to develop a complex RecyclerView/ListView, it is a boring and troublesome work.
+We should override the `getItemViewType` of `RecyclerView.Adapter` and add some types,
 then we create some `ViewHolder` to relate the type, all of the process it is a very bad experience.
-**And once we need to add a new type, we have to go to the original Adapter and modify some old codes**, so sad. 
+**And once we need to add a new type, we have to go to the original Adapter and modify some old codes**, so sad.
 
-Today, I create a new graceful way to easily develop the complex RecyclerView/ListView, with my MultiType library, 
+Today, I create a new graceful way to easily develop the complex RecyclerView/ListView, with my MultiType library,
 no matter how complex and how frequently changing list, we could insert a new type without changing the old codes.
 
 [sample screenshots(示例程序截图)](https://github.com/drakeet/MultiType#sample-screenshots)
@@ -22,7 +22,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.2.0'
+    compile 'me.drakeet.multitype:multitype:2.2.1'
 }
 ```
 
@@ -115,11 +115,11 @@ public class NormalActivity extends AppCompatActivity {
 
 ## Sample screenshots
 
-You could check the `sample` module for more details and after running it will look like: 
+You could check the `sample` module for more details and after running it will look like:
 
 <img src="art/screenshot-normal.png" width=270 height=486/> <img src="art/screenshot-bilibili.png" width=270 height=486/> <img src="art/screenshot-multigrid.png" width=270 height=486/>
 
-And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMachine): 
+And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMachine):
 
 [<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
 
@@ -143,8 +143,3 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-
-
-
-

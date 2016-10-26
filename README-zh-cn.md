@@ -19,7 +19,7 @@ GitHub: [https://github.com/drakeet/MultiType](https://github.com/drakeet/MultiT
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.2.0'
+    compile 'me.drakeet.multitype:multitype:2.2.1'
 }
 ```
 
