@@ -30,7 +30,7 @@ public class MultiTypePoolTest {
 
     @Before
     public void register() {
-        pool = MultiTypePool.newInstance();
+        pool = new MultiTypePool();
         pool.getContents().clear();
         pool.register(TestItem.class, new TestItemViewProvider());
         pool.register(RegisteredSubClass.class, new TestItemViewProvider());
