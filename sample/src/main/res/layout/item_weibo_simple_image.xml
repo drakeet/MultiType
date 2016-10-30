@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2016 drakeet. https://github.com/drakeet
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +14,8 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/message_margin_top"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
-
-    <ImageView
-        style="@style/Simple.Frame"
-        android:id="@+id/image"
-        android:layout_width="72dp"
-        android:layout_height="72dp"/>
-</LinearLayout>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/WeiboContent.SimpleImage"
+    android:id="@+id/simple_image"
+    tools:src="@drawable/img_00"/>

@@ -8,6 +8,7 @@ import me.drakeet.multitype.sample.bilibili.BilibiliActivity;
 import me.drakeet.multitype.sample.communicate_with_provider.SimpleActivity;
 import me.drakeet.multitype.sample.grid.MultiGridActivity;
 import me.drakeet.multitype.sample.normal.NormalActivity;
+import me.drakeet.multitype.sample.weibo.WeiboActivity;
 
 /**
  * @author drakeet
@@ -35,6 +36,9 @@ public class MenuBaseActivity extends AppCompatActivity {
                 break;
             case R.id.BilibiliActivity:
                 intent.setClass(this, BilibiliActivity.class);
+                break;
+            case R.id.WeiboActivity:
+                intent.setClass(this, WeiboActivity.class);
                 break;
             default:
                 return false;

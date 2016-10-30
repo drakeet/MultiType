@@ -43,6 +43,10 @@
             android:label="@string/normal_app_name"/>
 
         <activity
+            android:name=".weibo.WeiboActivity"
+            android:label="@string/normal_app_name"/>
+
+        <activity
             android:name=".communicate_with_provider.SimpleActivity"
             android:label="@string/normal_app_name"/>
 

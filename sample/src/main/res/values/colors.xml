@@ -20,4 +20,5 @@
     <color name="colorPrimaryDark">#ce3066</color>
     <color name="colorAccent">#FF4081</color>
     <color name="pink">#E07679</color>
+    <color name="material_text_primary">#de000000</color>
 </resources>

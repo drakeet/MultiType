@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright 2016 drakeet. https://github.com/drakeet
   ~
@@ -15,16 +16,21 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/message_margin_top"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        style="@style/Simple.Frame"
-        android:id="@+id/image"
-        android:layout_width="72dp"
-        android:layout_height="72dp"/>
-</LinearLayout>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#10000000" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+
+
+    <item android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white" />
+            <corners android:radius="3dp" />
+        </shape>
+    </item>
+
+</layer-list>

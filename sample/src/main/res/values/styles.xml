@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme"
         parent="Theme.AppCompat.Light.DarkActionBar">
@@ -23,9 +23,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Message"/>
+    <style name="Simple"/>
 
-    <style name="Message.Frame">
+    <style name="Simple.Frame">
         <item name="android:padding">16dp</item>
         <item name="android:background">@drawable/square_border</item>
     </style>
@@ -38,6 +38,64 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/square_background</item>
         <item name="android:textColor">@color/square_number</item>
+    </style>
+
+    <style name="Weibo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Weibo.Frame">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="elevation">2dp</item>
+        <item name="android:elevation"
+            tools:targetApi="lollipop">2dp
+        </item>
+    </style>
+
+    <style name="Weibo.Avatar">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:paddingTop">4dp</item>
+    </style>
+
+    <style name="Weibo.Username">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/material_text_primary</item>
+    </style>
+
+    <style name="Weibo.SubView">
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
+    <style name="Weibo.CreateTime">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/material_text_primary</item>
+    </style>
+
+    <style name="WeiboContent"/>
+
+    <style name="WeiboContent.SimpleText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLength">140</item>
+        <item name="android:textColor">@color/material_text_primary</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="WeiboContent.SimpleImage">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 
 </resources>

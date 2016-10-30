@@ -27,4 +27,9 @@
         android:id="@+id/BilibiliActivity"
         android:title="BilibiliActivity"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/WeiboActivity"
+        android:title="WeiboActivity"
+        app:showAsAction="never"/>
 </menu>
