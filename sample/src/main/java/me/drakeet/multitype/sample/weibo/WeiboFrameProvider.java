@@ -53,11 +53,11 @@ public abstract class WeiboFrameProvider
     @SuppressWarnings("unchecked")
     @Override protected void onBindViewHolder(
         @NonNull FrameHolder holder, @NonNull Weibo weibo) {
-        final WeiboContent weiboContent = weibo.content;
         holder.avatar.setImageResource(weibo.user.avatar);
         holder.username.setText(weibo.user.name);
         holder.createTime.setText(weibo.createTime);
-        onBindContentViewHolder((SubViewHolder) holder.subViewHolder, (Content) weibo.content);
+        final WeiboContent weiboContent = weibo.content;
+        onBindContentViewHolder((SubViewHolder) holder.subViewHolder, (Content) weiboContent);
     }
 
 
