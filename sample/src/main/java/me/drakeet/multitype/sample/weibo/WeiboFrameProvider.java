@@ -61,7 +61,7 @@ public abstract class WeiboFrameProvider
     }
 
 
-    protected static class FrameHolder extends RecyclerView.ViewHolder {
+    static class FrameHolder extends RecyclerView.ViewHolder {
 
         private ImageView avatar;
         private TextView username;
@@ -70,7 +70,7 @@ public abstract class WeiboFrameProvider
         private ContentHolder subViewHolder;
 
 
-        protected FrameHolder(View itemView, ContentHolder subViewHolder) {
+        FrameHolder(View itemView, ContentHolder subViewHolder) {
             super(itemView);
             avatar = (ImageView) findViewById(R.id.avatar);
             username = (TextView) findViewById(R.id.username);
