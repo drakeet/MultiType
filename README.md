@@ -105,6 +105,10 @@ public class NormalActivity extends AppCompatActivity {
 
 **You're good to go!**
 
+## Wiki
+
+[![](http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg)](https://github.com/drakeet/Effective-MultiType/blob/master/README.md)
+
 ## Android Studio Plugin
 
 - **[drakeet/MultiTypeTemplates](https://github.com/drakeet/MultiTypeTemplates)**
