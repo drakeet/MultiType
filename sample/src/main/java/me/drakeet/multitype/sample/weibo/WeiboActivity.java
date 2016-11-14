@@ -18,6 +18,8 @@ package me.drakeet.multitype.sample.weibo;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import com.google.gson.annotations.SerializedName;
+import java.util.List;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
@@ -35,6 +37,34 @@ public class WeiboActivity extends MenuBaseActivity {
 
     private WeiboAdapter adapter;
     private Items items;
+
+    private static final String JSON_FROM_SERVICE =
+        "{\n" +
+            "    \"data\":[\n" +
+            "        {\n" +
+            "            \"content\":{\n" +
+            "                \"text\":\"A simple text Weibo: JSON_FROM_SERVICE.\",\n" +
+            "                \"content_type\":\"simple_text\"\n" +
+            "            },\n" +
+            "            \"createTime\":\"Just now\",\n" +
+            "            \"user\":{\n" +
+            "                \"avatar\":2130903040,\n" +
+            "                \"name\":\"drakeet\"\n" +
+            "            }\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"content\":{\n" +
+            "                \"resId\":2130837591,\n" +
+            "                \"content_type\":\"simple_image\"\n" +
+            "            },\n" +
+            "            \"createTime\":\"Just now(JSON_FROM_SERVICE)\",\n" +
+            "            \"user\":{\n" +
+            "                \"avatar\":2130903040,\n" +
+            "                \"name\":\"drakeet\"\n" +
+            "            }\n" +
+            "        }\n" +
+            "    ]\n" +
+            "}";
 
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -58,5 +88,22 @@ public class WeiboActivity extends MenuBaseActivity {
 
         assertAllRegistered(adapter, items);
         recyclerView.setAdapter(adapter);
+
+        loadRemoteData();
+    }
+
+
+    private void loadRemoteData() {
+        RemoteData dataFromParser = GsonProvider.gson.fromJson(JSON_FROM_SERVICE,
+            RemoteData.class);
+        items.addAll(0, dataFromParser.weibos);
+        adapter.notifyDataSetChanged();
+    }
+
+
+    public static class RemoteData {
+
+        @SerializedName("data")
+        public List<Weibo> weibos;
     }
 }
