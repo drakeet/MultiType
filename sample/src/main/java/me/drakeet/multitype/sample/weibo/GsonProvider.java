@@ -16,20 +16,20 @@
 
 package me.drakeet.multitype.sample.weibo;
 
-import android.support.annotation.NonNull;
-import com.google.gson.annotations.SerializedName;
-import me.drakeet.multitype.Item;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * @author drakeet
  */
-public abstract class WeiboContent implements Item {
+public class GsonProvider {
 
-    @SerializedName("content_type")
-    @NonNull public final String contentType;
+    private GsonProvider() {}
 
 
-    protected WeiboContent(@NonNull String contentType) {
-        this.contentType = contentType;
-    }
+    final static Gson gson = new GsonBuilder()
+        .registerTypeAdapter(WeiboContent.class, new WeiboContentDeserializer())
+        .create();
+
+    final static Gson pureGson = new Gson();
 }
