@@ -14,8 +14,8 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/MultiGridActivity"
-        android:title="MultiGridActivity"
+        android:id="@+id/MultiSelectActivity"
+        android:title="MultiSelectActivity"
         app:showAsAction="never"/>
 
     <item

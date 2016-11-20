@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".grid.MultiGridActivity"
+            android:name=".multi_select.MultiSelectActivity"
             android:label="@string/normal_app_name"/>
 
         <activity

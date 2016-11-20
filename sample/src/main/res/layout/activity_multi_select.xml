@@ -20,7 +20,7 @@
     android:id="@+id/activity_multi_grid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.drakeet.multitype.sample.grid.MultiGridActivity">
+    tools:context="me.drakeet.multitype.sample.multi_select.MultiSelectActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
@@ -29,5 +29,9 @@
         android:padding="8dp"
         android:paddingLeft="8dp"
         android:clipToPadding="false"/>
+
+    <Button
+        style="@style/FAB.Done"
+        android:id="@+id/fab"/>
 
 </RelativeLayout>

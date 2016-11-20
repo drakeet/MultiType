@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.grid;
+package me.drakeet.multitype.sample.multi_select;
 
 import me.drakeet.multitype.Item;
 

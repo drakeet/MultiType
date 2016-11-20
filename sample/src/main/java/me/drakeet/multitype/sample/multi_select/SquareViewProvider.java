@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.grid;
+package me.drakeet.multitype.sample.multi_select;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import java.util.Set;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
 
@@ -31,6 +32,12 @@ import static java.lang.String.valueOf;
  * @author drakeet
  */
 public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvider.ViewHolder> {
+
+    private final Set<Integer> selectedSet;
+
+
+    public SquareViewProvider(Set<Integer> selectedSet) {this.selectedSet = selectedSet;}
+
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(
@@ -48,6 +55,11 @@ public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvi
     }
 
 
+    public Set<Integer> getSelectedSet() {
+        return selectedSet;
+    }
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView squareView;
@@ -60,6 +72,11 @@ public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     itemView.setSelected(square.isSelected = !square.isSelected);
+                    if (square.isSelected) {
+                        selectedSet.add(square.number);
+                    } else {
+                        selectedSet.remove(square.number);
+                    }
                 }
             });
         }
