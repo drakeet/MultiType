@@ -91,7 +91,7 @@ public class MultiSelectActivity extends MenuBaseActivity {
                     content.append(number).append(" ");
                 }
                 Toast.makeText(v.getContext(),
-                    "Selected Set: " + content, Toast.LENGTH_SHORT)
+                    "Selected items: " + content, Toast.LENGTH_SHORT)
                     .show();
             }
         });
