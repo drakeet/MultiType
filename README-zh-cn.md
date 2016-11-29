@@ -25,11 +25,11 @@ dependencies {
 
 ## 使用
 
-#### Step 1. 创建一个 class __implements__ `Item`，它将是你的数据类型或 `Java bean`，示例：
+#### Step 1. 创建一个 class，它将是你的数据类型或 `Java bean`，示例：
 
 
 ```java
-public class TextItem implements Item {
+public class TextItem {
 
     @NonNull public String text;
 
@@ -39,7 +39,7 @@ public class TextItem implements Item {
 }
 ```
 
-#### Step 2. 创建一个 class 继承  `ItemViewProvider<C extends Item, V extends ViewHolder>`，示例：
+#### Step 2. 创建一个 class 继承  `ItemViewProvider<C, V extends ViewHolder>`，示例：
 
 
 ```java
@@ -69,7 +69,7 @@ public class TextItemViewProvider
 }
 ```
 
-#### Step 3. 好了，你不必再创建新的类文件了，在 `Activity` 中加入 `RecyclerView` 和 `List<Item>` 并注册你都类型即可，示例：
+#### Step 3. 好了，你不必再创建新的类文件了，在 `Activity` 中加入 `RecyclerView` 和 `List<Object>` 并注册你都类型即可，示例：
 
 
 ```java
