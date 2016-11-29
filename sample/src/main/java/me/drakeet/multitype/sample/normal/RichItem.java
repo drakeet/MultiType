@@ -17,12 +17,11 @@
 package me.drakeet.multitype.sample.normal;
 
 import android.support.annotation.NonNull;
-import me.drakeet.multitype.Item;
 
 /**
  * @author drakeet
  */
-public class RichItem implements Item {
+public class RichItem {
 
     @NonNull public String text;
     public int imageResId;

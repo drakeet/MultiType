@@ -17,8 +17,11 @@
 package me.drakeet.multitype;
 
 /**
+ * {@link Item} has been Deprecated, use {@link Object} instead.
+ * However you could keep it and it is useless and harmless.
+ *
  * @author drakeet
  */
+@Deprecated
 public interface Item {
-
 }

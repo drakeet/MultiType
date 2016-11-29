@@ -21,5 +21,5 @@ import java.util.ArrayList;
 /**
  * @author drakeet
  */
-public class Items extends ArrayList<Item> {
+public class Items extends ArrayList<Object> {
 }

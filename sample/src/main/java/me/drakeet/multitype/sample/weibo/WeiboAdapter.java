@@ -27,7 +27,7 @@ import me.drakeet.multitype.TypePool;
  */
 public class WeiboAdapter extends MultiTypeAdapter {
 
-    public WeiboAdapter(@NonNull List<? extends Item> items) {
+    public WeiboAdapter(@NonNull List<?> items) {
         super(items);
     }
 
@@ -37,7 +37,7 @@ public class WeiboAdapter extends MultiTypeAdapter {
     }
 
 
-    @NonNull @Override public Class onFlattenClass(@NonNull Item item) {
+    @NonNull @Override public Class onFlattenClass(@NonNull Object item) {
         return ((Weibo) item).content.getClass();
     }
 }

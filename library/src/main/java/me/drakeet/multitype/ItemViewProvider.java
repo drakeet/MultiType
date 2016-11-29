@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 /***
  * @author drakeet
  */
-public abstract class ItemViewProvider<C extends Item, V extends ViewHolder> {
+public abstract class ItemViewProvider<C, V extends ViewHolder> {
 
     /* @formatter:off */
 

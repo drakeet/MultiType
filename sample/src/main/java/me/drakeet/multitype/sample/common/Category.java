@@ -17,12 +17,11 @@
 package me.drakeet.multitype.sample.common;
 
 import android.support.annotation.NonNull;
-import me.drakeet.multitype.Item;
 
 /**
  * @author drakeet
  */
-public class Category implements Item {
+public class Category {
 
     public String title;
 
