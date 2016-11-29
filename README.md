@@ -22,16 +22,16 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.2.1'
+    compile 'me.drakeet.multitype:multitype:2.2.2'
 }
 ```
 
 ## Usage
 
-#### Step 1. Create a class __implements__ `Item`, It would be your `data model`/`Java bean`, for example:
+#### Step 1. Create a class, It would be your `data model`/`Java bean`, for example:
 
 ```java
-public class TextItem implements Item {
+public class TextItem {
 
     @NonNull public String text;
 
@@ -41,7 +41,7 @@ public class TextItem implements Item {
 }
 ```
 
-#### Step 2. Create a class extends `ItemViewProvider<C extends Item, V extends ViewHolder>`, for example:
+#### Step 2. Create a class extends `ItemViewProvider<C, V extends ViewHolder>`, for example:
 
 ```java
 public class TextItemViewProvider
@@ -70,7 +70,7 @@ public class TextItemViewProvider
 }
 ```
 
-#### Step 3. You do not need to create another new class. Just `register` your types and add a `RecyclerView` and `List<Item>` to your `Activity`, for example:
+#### Step 3. You do not need to create another new class. Just `register` your types and add a `RecyclerView` and `List<Object>` to your `Activity`, for example:
 
 ```java
 public class NormalActivity extends AppCompatActivity {
