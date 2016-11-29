@@ -39,13 +39,13 @@ public class MultiTypeAsserts {
     @SuppressWarnings("unchecked")
     public static void assertAllRegistered(
         @NonNull MultiTypeAdapter adapter,
-        @NonNull List<? extends Item> items)
+        @NonNull List<?> items)
         throws ProviderNotFoundException, IllegalArgumentException, IllegalAccessError {
 
         if (items.size() == 0) {
             throw new IllegalArgumentException("Your Items/List is empty.");
         }
-        for (Item item : items) {
+        for (Object item : items) {
             adapter.indexOf(adapter.onFlattenClass(item));
         }
         /* All passed. */

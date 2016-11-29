@@ -18,12 +18,11 @@ package me.drakeet.multitype.sample.weibo;
 
 import android.support.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
-import me.drakeet.multitype.Item;
 
 /**
  * @author drakeet
  */
-public abstract class WeiboContent implements Item {
+public abstract class WeiboContent {
 
     @SerializedName("content_type")
     @NonNull public final String contentType;

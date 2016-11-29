@@ -16,12 +16,10 @@
 
 package me.drakeet.multitype.sample.normal;
 
-import me.drakeet.multitype.Item;
-
 /**
  * @author drakeet
  */
-public class ImageItem implements Item {
+public class ImageItem {
 
     public final int resId;
 

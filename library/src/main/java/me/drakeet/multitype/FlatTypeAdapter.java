@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  */
 public interface FlatTypeAdapter {
 
-    @NonNull Class onFlattenClass(@NonNull Item item);
+    @NonNull Class onFlattenClass(@NonNull Object item);
 
-    @NonNull Item onFlattenItem(@NonNull final Item item);
+    @NonNull Object onFlattenItem(@NonNull final Object item);
 }

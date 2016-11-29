@@ -24,7 +24,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import java.util.ArrayList;
 import java.util.List;
-import me.drakeet.multitype.Item;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
@@ -38,7 +37,7 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 public class BilibiliActivity extends MenuBaseActivity {
 
     private static final int SPAN_COUNT = 2;
-    private List<Item> items;
+    private List<Object> items;
     private MultiTypeAdapter adapter;
 
 
@@ -96,7 +95,7 @@ public class BilibiliActivity extends MenuBaseActivity {
         SpanSizeLookup spanSizeLookup = new SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                Item item = items.get(position);
+                Object item = items.get(position);
                 return (item instanceof PostList || item instanceof Category) ? SPAN_COUNT : 1;
             }
         };

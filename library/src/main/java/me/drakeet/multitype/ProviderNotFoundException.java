@@ -21,7 +21,7 @@ package me.drakeet.multitype;
  */
 public class ProviderNotFoundException extends RuntimeException {
 
-    public ProviderNotFoundException(Class<? extends Item> clazz) {
+    public ProviderNotFoundException(Class<?> clazz) {
         super("Do you have registered the provider for {className}.class in the adapter/pool?"
             .replace("{className}", clazz.getSimpleName()));
     }

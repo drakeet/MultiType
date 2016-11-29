@@ -16,12 +16,10 @@
 
 package me.drakeet.multitype.sample.multi_select;
 
-import me.drakeet.multitype.Item;
-
 /**
  * @author drakeet
  */
-public class Square implements Item {
+public class Square {
 
     public final int number;
     public boolean isSelected;
