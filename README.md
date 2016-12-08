@@ -22,7 +22,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.2.2'
+    compile 'me.drakeet.multitype:multitype:2.3.0'
 }
 ```
 
@@ -41,7 +41,7 @@ public class TextItem {
 }
 ```
 
-#### Step 2. Create a class extends `ItemViewProvider<C, V extends ViewHolder>`, for example:
+#### Step 2. Create a class extends `ItemViewProvider<T, V extends ViewHolder>`, for example:
 
 ```java
 public class TextItemViewProvider
@@ -66,6 +66,7 @@ public class TextItemViewProvider
     @Override
     protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
         holder.text.setText("hello: " + textItem.text);
+        Log.d("demo", "position: " + getPosition());
     }
 }
 ```

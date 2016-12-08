@@ -19,7 +19,7 @@ GitHub: [https://github.com/drakeet/MultiType](https://github.com/drakeet/MultiT
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.2.2'
+    compile 'me.drakeet.multitype:multitype:2.3.0'
 }
 ```
 
@@ -39,7 +39,7 @@ public class TextItem {
 }
 ```
 
-#### Step 2. 创建一个 class 继承  `ItemViewProvider<C, V extends ViewHolder>`，示例：
+#### Step 2. 创建一个 class 继承  `ItemViewProvider<T, V extends ViewHolder>`，示例：
 
 
 ```java
@@ -65,6 +65,7 @@ public class TextItemViewProvider
     @Override
     protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
         holder.text.setText("hello: " + textItem.text);
+        Log.d("demo", "position: " + getPosition());
     }
 }
 ```

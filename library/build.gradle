@@ -25,8 +25,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 24
-        versionCode 37
-        versionName "2.2.2"
+        versionCode 40
+        versionName "2.3.0"
     }
     buildTypes {
         release {
