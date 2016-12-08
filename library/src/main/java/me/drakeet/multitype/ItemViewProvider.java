@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 /***
  * @author drakeet
  */
-public abstract class ItemViewProvider<C, V extends ViewHolder> {
+public abstract class ItemViewProvider<T, V extends ViewHolder> {
 
     /* internal */ int position;
 
@@ -33,7 +33,7 @@ public abstract class ItemViewProvider<C, V extends ViewHolder> {
     @NonNull
     protected abstract V onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
-    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c);
+    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull T t);
 
     /* @formatter:on */
 
