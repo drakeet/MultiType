@@ -26,10 +26,25 @@ import android.view.ViewGroup;
  */
 public abstract class ItemViewProvider<C, V extends ViewHolder> {
 
+    /* internal */ int position;
+
     /* @formatter:off */
 
     @NonNull
     protected abstract V onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
     protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c);
+
+    /* @formatter:on */
+
+
+    /**
+     * Get the adapter position of current item,
+     * the internal position is equals {@link ViewHolder#getAdapterPosition()}.
+     *
+     * @return the adapter position
+     */
+    protected final int getPosition() {
+        return position;
+    }
 }
