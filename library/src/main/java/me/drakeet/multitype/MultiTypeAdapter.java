@@ -75,7 +75,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     @SuppressWarnings("unchecked") @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Object item = items.get(position);
-        getProviderByClass(onFlattenClass(item)).onBindViewHolder(holder, onFlattenItem(item));
+        ItemViewProvider provider = getProviderByClass(onFlattenClass(item));
+        provider.position = holder.getAdapterPosition();
+        provider.onBindViewHolder(holder, onFlattenItem(item));
     }
 
 
