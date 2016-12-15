@@ -86,7 +86,8 @@ public class NormalActivity extends AppCompatActivity {
 
         items = new Items();
         adapter = new MultiTypeAdapter(items);
-        adapter.applyGlobalMultiTypePool();
+        adapter.register(TextItem.class, new TextItemViewProvider());
+        adapter.register(ImageItem.class, new ImageItemViewProvider());
         adapter.register(RichItem.class, new RichItemViewProvider());
 
         TextItem textItem = new TextItem("world");
