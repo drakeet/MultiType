@@ -17,9 +17,11 @@
 package me.drakeet.multitype.sample.one2many;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+import me.drakeet.multitype.FlatTypeClassAdapter;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
@@ -38,7 +40,12 @@ public class OneDataToManyActivity extends MenuBaseActivity {
         setContentView(R.layout.activity_list);
         recyclerView = (RecyclerView) findViewById(R.id.list);
         items = new Items();
-        adapter = new DataAdapter(items);
+        adapter = new MultiTypeAdapter(items);
+        adapter.setFlatTypeAdapter(new FlatTypeClassAdapter() {
+            @NonNull @Override public Class onFlattenClass(@NonNull Object item) {
+                return ((Data) item).typeClass;
+            }
+        });
         adapter.register(Data.Type1.class, new DataType1ViewProvider());
         adapter.register(Data.Type2.class, new DataType2ViewProvider());
 
