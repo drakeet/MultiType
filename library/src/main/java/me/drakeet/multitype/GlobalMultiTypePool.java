@@ -27,8 +27,7 @@ public class GlobalMultiTypePool {
     private static MultiTypePool pool = new MultiTypePool();
 
 
-    public static void register(
-        @NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
+    public static void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
         pool.register(clazz, provider);
     }
 
