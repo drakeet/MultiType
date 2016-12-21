@@ -54,8 +54,8 @@ public class MultiTypeAsserts {
 
     /**
      * @throws IllegalAccessError The assertHasTheSameAdapter() method must be placed after
-     * recyclerView.setAdapter()
-     * @throws IllegalArgumentException If your recyclerView's adapter
+     * recyclerView.setAdapter().
+     * @throws IllegalArgumentException If your recyclerView's adapter.
      * is not the sample with the argument adapter.
      */
     public static void assertHasTheSameAdapter(
