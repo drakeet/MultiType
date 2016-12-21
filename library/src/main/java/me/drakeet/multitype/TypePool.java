@@ -45,6 +45,5 @@ public interface TypePool {
 
     @NonNull ItemViewProvider getProviderByIndex(int index);
 
-    @NonNull <T extends ItemViewProvider> T getProviderByClass(
-        @NonNull Class<?> clazz);
+    @NonNull <T extends ItemViewProvider> T getProviderByClass(@NonNull Class<?> clazz);
 }
