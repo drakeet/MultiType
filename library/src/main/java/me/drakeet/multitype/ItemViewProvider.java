@@ -43,7 +43,7 @@ public abstract class ItemViewProvider<T, V extends ViewHolder> {
      * the internal position equals to RecyclerView.ViewHolder#getAdapterPosition().
      *
      * @return the adapter position
-     * @since v2.3.0
+     * @since v2.3.0. If below v2.3.0, use {@link ViewHolder#getAdapterPosition()} instead.
      */
     protected final int getPosition() {
         return position;
