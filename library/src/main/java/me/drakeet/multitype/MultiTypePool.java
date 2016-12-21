@@ -42,9 +42,7 @@ public final class MultiTypePool implements TypePool {
     }
 
 
-    public void register(
-        @NonNull Class<?> clazz,
-        @NonNull ItemViewProvider provider) {
+    public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
         if (!contents.contains(clazz)) {
             contents.add(clazz);
             providers.add(provider);
