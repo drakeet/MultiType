@@ -41,6 +41,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
+    public MultiTypeAdapter(@NonNull List<?> items, int initialCapacity) {
+        this.delegate = new MultiTypePool(initialCapacity);
+        this.items = items;
+    }
+
+
     public MultiTypeAdapter(@NonNull List<?> items, TypePool pool) {
         this.delegate = pool;
         this.items = items;

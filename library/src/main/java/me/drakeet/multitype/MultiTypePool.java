@@ -36,6 +36,12 @@ public final class MultiTypePool implements TypePool {
     }
 
 
+    public MultiTypePool(int initialCapacity) {
+        this.contents = new ArrayList<>(initialCapacity);
+        this.providers = new ArrayList<>(initialCapacity);
+    }
+
+
     public void register(
         @NonNull Class<?> clazz,
         @NonNull ItemViewProvider provider) {
