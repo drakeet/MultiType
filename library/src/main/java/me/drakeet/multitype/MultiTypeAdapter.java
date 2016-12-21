@@ -124,6 +124,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
+    /**
+     * Set the FlatTypeAdapter to instead of the default inner FlatTypeAdapter of
+     * MultiTypeAdapter.
+     * <p>Note: You could use {@link FlatTypeClassAdapter} and {@link FlatTypeItemAdapter}
+     * to create a special FlatTypeAdapter conveniently.</p>
+     */
     public void setFlatTypeAdapter(@NonNull FlatTypeAdapter flatTypeAdapter) {
         this.providedFlatTypeAdapter = flatTypeAdapter;
     }
