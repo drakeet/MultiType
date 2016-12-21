@@ -14,29 +14,21 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.one2many;
+package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
-import java.util.List;
-import me.drakeet.multitype.MultiTypeAdapter;
-import me.drakeet.multitype.TypePool;
 
 /**
+ * A convenient version of the {@link FlatTypeAdapter} to flatten item
+ *
  * @author drakeet
  */
-public class DataAdapter extends MultiTypeAdapter {
+public abstract class FlatTypeItemAdapter implements FlatTypeAdapter {
 
-    public DataAdapter(@NonNull List<?> items) {
-        super(items);
-    }
-
-
-    public DataAdapter(@NonNull List<?> items, TypePool pool) {
-        super(items, pool);
-    }
+    @NonNull @Override public abstract Object onFlattenItem(@NonNull Object item);
 
 
     @NonNull @Override public Class onFlattenClass(@NonNull Object item) {
-        return ((Data) item).typeClass;
+        return item.getClass();
     }
 }
