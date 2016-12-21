@@ -19,7 +19,7 @@ package me.drakeet.multitype;
 import android.support.annotation.NonNull;
 
 /**
- * A convenient version of the {@link FlatTypeAdapter} to flatten Class
+ * A convenient version of the {@link FlatTypeAdapter} to flatten Class.
  *
  * @author drakeet
  */
