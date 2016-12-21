@@ -32,4 +32,9 @@
         android:id="@+id/WeiboActivity"
         android:title="WeiboActivity"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/OneDataToManyActivity"
+        android:title="OneDataToManyActivity"
+        app:showAsAction="never"/>
 </menu>

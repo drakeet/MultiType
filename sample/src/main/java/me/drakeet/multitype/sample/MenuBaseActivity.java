@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import me.drakeet.multitype.sample.bilibili.BilibiliActivity;
 import me.drakeet.multitype.sample.communicate_with_provider.SimpleActivity;
+import me.drakeet.multitype.sample.one2many.OneDataToManyActivity;
 import me.drakeet.multitype.sample.multi_select.MultiSelectActivity;
 import me.drakeet.multitype.sample.normal.NormalActivity;
 import me.drakeet.multitype.sample.weibo.WeiboActivity;
@@ -39,6 +40,9 @@ public class MenuBaseActivity extends AppCompatActivity {
                 break;
             case R.id.WeiboActivity:
                 intent.setClass(this, WeiboActivity.class);
+                break;
+            case R.id.OneDataToManyActivity:
+                intent.setClass(this, OneDataToManyActivity.class);
                 break;
             default:
                 return false;
