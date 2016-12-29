@@ -24,8 +24,12 @@ import java.util.List;
 import me.drakeet.multitype.FlatTypeClassAdapter;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
+import me.drakeet.multitype.MultiTypeAsserts;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
+
+import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
+import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
 
 public class OneDataToManyActivity extends MenuBaseActivity {
 
@@ -56,7 +60,9 @@ public class OneDataToManyActivity extends MenuBaseActivity {
         //     data.typeClass = Data.getTypeClass(data.type);
         // }
         items.addAll(dataList);
+        assertAllRegistered(adapter, items);
         recyclerView.setAdapter(adapter);
+        assertHasTheSameAdapter(recyclerView, adapter);
     }
 
 
