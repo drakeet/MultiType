@@ -46,7 +46,7 @@ public class MultiTypeAsserts {
             throw new IllegalArgumentException("Your Items/List is empty.");
         }
         for (Object item : items) {
-            adapter.indexOf(adapter.onFlattenClass(item));
+            adapter.indexOf(adapter.flattenClass(item));
         }
         /* All passed. */
     }

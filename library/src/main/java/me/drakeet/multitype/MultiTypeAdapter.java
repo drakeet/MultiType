@@ -138,7 +138,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    private Class flattenClass(@NonNull final Object item) {
+    @NonNull @SuppressWarnings("deprecation")
+    Class flattenClass(@NonNull final Object item) {
         if (providedFlatTypeAdapter != null) {
             return providedFlatTypeAdapter.onFlattenClass(item);
         }
@@ -146,7 +147,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @NonNull private Object flattenItem(@NonNull final Object item) {
+    @NonNull @SuppressWarnings("deprecation")
+    Object flattenItem(@NonNull final Object item) {
         if (providedFlatTypeAdapter != null) {
             return providedFlatTypeAdapter.onFlattenItem(item);
         }
