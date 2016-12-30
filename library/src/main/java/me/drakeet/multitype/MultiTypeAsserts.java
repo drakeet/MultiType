@@ -70,5 +70,4 @@ public class MultiTypeAsserts {
                 "Your recyclerView's adapter is not the sample with the argument adapter.");
         }
     }
-
 }
