@@ -17,6 +17,7 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import android.view.ViewGroup;
 public abstract class ItemViewProvider<T, V extends ViewHolder> {
 
     /* internal */ int position;
+    /* internal */ RecyclerView.Adapter adapter;
 
     /* @formatter:off */
 
@@ -47,5 +49,16 @@ public abstract class ItemViewProvider<T, V extends ViewHolder> {
      */
     protected final int getPosition() {
         return position;
+    }
+
+
+    /**
+     * Get the RecyclerView.Adapter for sending notifications or getting item count, etc.
+     *
+     * @return The RecyclerView.Adapter this item is currently associated with.
+     * @since v2.3.4
+     */
+    @NonNull protected final RecyclerView.Adapter getAdapter() {
+        return adapter;
     }
 }
