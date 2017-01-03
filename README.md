@@ -67,6 +67,7 @@ public class TextItemViewProvider
     protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
         holder.text.setText("hello: " + textItem.text);
         Log.d("demo", "position: " + getPosition());
+        Log.d("demo", "adapter: " + getAdapter().toString());
     }
 }
 ```
