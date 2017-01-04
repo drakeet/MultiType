@@ -14,8 +14,8 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/MultiGridActivity"
-        android:title="MultiGridActivity"
+        android:id="@+id/MultiSelectActivity"
+        android:title="MultiSelectActivity"
         app:showAsAction="never"/>
 
     <item
@@ -31,5 +31,10 @@
     <item
         android:id="@+id/WeiboActivity"
         android:title="WeiboActivity"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/OneDataToManyActivity"
+        android:title="OneDataToManyActivity"
         app:showAsAction="never"/>
 </menu>

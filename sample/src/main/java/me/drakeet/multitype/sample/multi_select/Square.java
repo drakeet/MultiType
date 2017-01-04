@@ -14,19 +14,16 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.common;
-
-import android.support.annotation.NonNull;
+package me.drakeet.multitype.sample.multi_select;
 
 /**
  * @author drakeet
  */
-public class Category {
+public class Square {
 
-    public String title;
+    public final int number;
+    public boolean isSelected;
 
 
-    public Category(@NonNull final String title) {
-        this.title = title;
-    }
+    public Square(int number) {this.number = number;}
 }

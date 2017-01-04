@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public final class MultiTypePool implements TypePool {
 
     private final String TAG = MultiTypePool.class.getSimpleName();
-    private ArrayList<Class<? extends Item>> contents;
+    private ArrayList<Class<?>> contents;
     private ArrayList<ItemViewProvider> providers;
 
 
@@ -36,9 +36,13 @@ public final class MultiTypePool implements TypePool {
     }
 
 
-    public void register(
-        @NonNull Class<? extends Item> clazz,
-        @NonNull ItemViewProvider provider) {
+    public MultiTypePool(int initialCapacity) {
+        this.contents = new ArrayList<>(initialCapacity);
+        this.providers = new ArrayList<>(initialCapacity);
+    }
+
+
+    public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
         if (!contents.contains(clazz)) {
             contents.add(clazz);
             providers.add(provider);
@@ -51,7 +55,7 @@ public final class MultiTypePool implements TypePool {
     }
 
 
-    @Override public int indexOf(@NonNull final Class<? extends Item> clazz) {
+    @Override public int indexOf(@NonNull final Class<?> clazz) {
         int index = contents.indexOf(clazz);
         if (index >= 0) {
             return index;
@@ -65,7 +69,7 @@ public final class MultiTypePool implements TypePool {
     }
 
 
-    @NonNull @Override public ArrayList<Class<? extends Item>> getContents() {
+    @NonNull @Override public ArrayList<Class<?>> getContents() {
         return contents;
     }
 
@@ -81,8 +85,7 @@ public final class MultiTypePool implements TypePool {
 
 
     @SuppressWarnings("unchecked") @NonNull @Override
-    public <T extends ItemViewProvider> T getProviderByClass(
-        @NonNull final Class<? extends Item> clazz) {
+    public <T extends ItemViewProvider> T getProviderByClass(@NonNull final Class<?> clazz) {
         return (T) getProviderByIndex(indexOf(clazz));
     }
 }

@@ -39,14 +39,14 @@ public class MultiTypeAsserts {
     @SuppressWarnings("unchecked")
     public static void assertAllRegistered(
         @NonNull MultiTypeAdapter adapter,
-        @NonNull List<? extends Item> items)
+        @NonNull List<?> items)
         throws ProviderNotFoundException, IllegalArgumentException, IllegalAccessError {
 
         if (items.size() == 0) {
             throw new IllegalArgumentException("Your Items/List is empty.");
         }
-        for (Item item : items) {
-            adapter.indexOf(adapter.onFlattenClass(item));
+        for (Object item : items) {
+            adapter.indexOf(adapter.flattenClass(item));
         }
         /* All passed. */
     }
@@ -54,8 +54,8 @@ public class MultiTypeAsserts {
 
     /**
      * @throws IllegalAccessError The assertHasTheSameAdapter() method must be placed after
-     * recyclerView.setAdapter()
-     * @throws IllegalArgumentException If your recyclerView's adapter
+     * recyclerView.setAdapter().
+     * @throws IllegalArgumentException If your recyclerView's adapter.
      * is not the sample with the argument adapter.
      */
     public static void assertHasTheSameAdapter(
@@ -70,5 +70,4 @@ public class MultiTypeAsserts {
                 "Your recyclerView's adapter is not the sample with the argument adapter.");
         }
     }
-
 }

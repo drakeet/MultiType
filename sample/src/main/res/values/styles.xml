@@ -98,4 +98,17 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <style name="FAB">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">76dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="FAB.Done">
+        <item name="android:background">@drawable/ic_fab_done</item>
+    </style>
+
 </resources>

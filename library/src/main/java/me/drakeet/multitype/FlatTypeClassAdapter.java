@@ -14,18 +14,21 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.grid;
+package me.drakeet.multitype;
 
-import me.drakeet.multitype.Item;
+import android.support.annotation.NonNull;
 
 /**
+ * A convenient version of the {@link FlatTypeAdapter} to flatten Class.
+ *
  * @author drakeet
  */
-public class Square implements Item {
+public abstract class FlatTypeClassAdapter implements FlatTypeAdapter {
 
-    public final int number;
-    public boolean isSelected;
+    @NonNull @Override public abstract Class onFlattenClass(@NonNull Object item);
 
 
-    public Square(int number) {this.number = number;}
+    @NonNull @Override public Object onFlattenItem(@NonNull Object item) {
+        return item;
+    }
 }

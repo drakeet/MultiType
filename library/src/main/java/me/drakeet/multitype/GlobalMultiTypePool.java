@@ -27,18 +27,17 @@ public class GlobalMultiTypePool {
     private static MultiTypePool pool = new MultiTypePool();
 
 
-    public static void register(
-        @NonNull Class<? extends Item> clazz, @NonNull ItemViewProvider provider) {
+    public static void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
         pool.register(clazz, provider);
     }
 
 
-    public static int indexOf(@NonNull Class<? extends Item> clazz) {
+    public static int indexOf(@NonNull Class<?> clazz) {
         return pool.indexOf(clazz);
     }
 
 
-    @NonNull public static ArrayList<Class<? extends Item>> getContents() {
+    @NonNull public static ArrayList<Class<?>> getContents() {
         return pool.getContents();
     }
 
@@ -54,7 +53,7 @@ public class GlobalMultiTypePool {
 
 
     @NonNull public static <T extends ItemViewProvider> T getProviderByClass(
-        @NonNull Class<? extends Item> clazz) {
+        @NonNull Class<?> clazz) {
         return pool.getProviderByClass(clazz);
     }
 

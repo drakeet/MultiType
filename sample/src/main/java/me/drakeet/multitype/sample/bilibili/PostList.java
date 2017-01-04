@@ -18,12 +18,11 @@ package me.drakeet.multitype.sample.bilibili;
 
 import android.support.annotation.NonNull;
 import java.util.List;
-import me.drakeet.multitype.Item;
 
 /**
  * @author drakeet
  */
-public class PostList implements Item {
+public class PostList {
 
     final List<Post> posts;
 

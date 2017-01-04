@@ -17,6 +17,7 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -30,37 +31,40 @@ import java.util.List;
 public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     implements FlatTypeAdapter, TypePool {
 
-    protected final List<? extends Item> items;
-    protected LayoutInflater inflater;
-    protected TypePool delegate;
+    @NonNull protected final List<?> items;
+    @NonNull protected TypePool delegate;
+    @Nullable protected LayoutInflater inflater;
+    @Nullable private FlatTypeAdapter providedFlatTypeAdapter;
 
 
-    public MultiTypeAdapter(@NonNull List<? extends Item> items) {
-        this.delegate = new MultiTypePool();
+    public MultiTypeAdapter(@NonNull List<?> items) {
+        this(items, new MultiTypePool(), null);
+    }
+
+
+    public MultiTypeAdapter(@NonNull List<?> items, int initialCapacity) {
+        this(items, new MultiTypePool(initialCapacity), null);
+    }
+
+
+    public MultiTypeAdapter(@NonNull List<?> items, TypePool pool) {
+        this(items, pool, null);
+    }
+
+
+    public MultiTypeAdapter(
+        @NonNull List<?> items, @NonNull TypePool delegate,
+        @Nullable FlatTypeAdapter providedFlatTypeAdapter) {
         this.items = items;
-    }
-
-
-    public MultiTypeAdapter(@NonNull List<? extends Item> items, TypePool pool) {
-        this.delegate = pool;
-        this.items = items;
-    }
-
-
-    @NonNull @Override public Class onFlattenClass(@NonNull final Item item) {
-        return item.getClass();
-    }
-
-
-    @NonNull @Override public Item onFlattenItem(@NonNull final Item item) {
-        return item;
+        this.delegate = delegate;
+        this.providedFlatTypeAdapter = providedFlatTypeAdapter;
     }
 
 
     @SuppressWarnings("unchecked") @Override
     public int getItemViewType(int position) {
-        Item item = items.get(position);
-        return indexOf(onFlattenClass(item));
+        Object item = items.get(position);
+        return indexOf(flattenClass(item));
     }
 
 
@@ -74,8 +78,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
     @SuppressWarnings("unchecked") @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Item item = items.get(position);
-        getProviderByClass(onFlattenClass(item)).onBindViewHolder(holder, onFlattenItem(item));
+        Object item = items.get(position);
+        ItemViewProvider provider = getProviderByClass(flattenClass(item));
+        provider.adapter = MultiTypeAdapter.this;
+        provider.position = holder.getAdapterPosition();
+        provider.onBindViewHolder(holder, flattenItem(item));
     }
 
 
@@ -84,14 +91,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    public void applyGlobalMultiTypePool() {
-        for (int i = 0; i < GlobalMultiTypePool.getContents().size(); i++) {
-            final Class<? extends Item> clazz = GlobalMultiTypePool.getContents().get(i);
-            final ItemViewProvider provider = GlobalMultiTypePool.getProviders().get(i);
-            if (!this.getContents().contains(clazz)) {
-                this.register(clazz, provider);
-            }
-        }
+    @Override
+    public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
+        delegate.register(clazz, provider);
     }
 
 
@@ -102,13 +104,18 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @Override
-    public void register(@NonNull Class<? extends Item> clazz, @NonNull ItemViewProvider provider) {
-        delegate.register(clazz, provider);
+    public void applyGlobalMultiTypePool() {
+        for (int i = 0; i < GlobalMultiTypePool.getContents().size(); i++) {
+            final Class<?> clazz = GlobalMultiTypePool.getContents().get(i);
+            final ItemViewProvider provider = GlobalMultiTypePool.getProviders().get(i);
+            if (!this.getContents().contains(clazz)) {
+                this.register(clazz, provider);
+            }
+        }
     }
 
 
-    @Override public int indexOf(@NonNull Class<? extends Item> clazz)
+    @Override public int indexOf(@NonNull Class<?> clazz)
         throws ProviderNotFoundException {
         int index = delegate.indexOf(clazz);
         if (index >= 0) {
@@ -118,7 +125,57 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @NonNull @Override public ArrayList<Class<? extends Item>> getContents() {
+    /**
+     * Set the FlatTypeAdapter to instead of the default inner FlatTypeAdapter of
+     * MultiTypeAdapter.
+     * <p>Note: You could use {@link FlatTypeClassAdapter} and {@link FlatTypeItemAdapter}
+     * to create a special FlatTypeAdapter conveniently.</p>
+     *
+     * @param flatTypeAdapter the FlatTypeAdapter
+     * @since v2.3.2
+     */
+    public void setFlatTypeAdapter(@NonNull FlatTypeAdapter flatTypeAdapter) {
+        this.providedFlatTypeAdapter = flatTypeAdapter;
+    }
+
+
+    @NonNull @SuppressWarnings("deprecation")
+    Class flattenClass(@NonNull final Object item) {
+        if (providedFlatTypeAdapter != null) {
+            return providedFlatTypeAdapter.onFlattenClass(item);
+        }
+        return onFlattenClass(item);
+    }
+
+
+    @NonNull @SuppressWarnings("deprecation")
+    Object flattenItem(@NonNull final Object item) {
+        if (providedFlatTypeAdapter != null) {
+            return providedFlatTypeAdapter.onFlattenItem(item);
+        }
+        return onFlattenItem(item);
+    }
+
+
+    /**
+     * @deprecated Use {@link MultiTypeAdapter#setFlatTypeAdapter(FlatTypeAdapter)} instead.
+     * The method may be removed next time.
+     */
+    @NonNull @Override public Class onFlattenClass(@NonNull final Object item) {
+        return item.getClass();
+    }
+
+
+    /**
+     * @deprecated Use {@link MultiTypeAdapter#setFlatTypeAdapter(FlatTypeAdapter)} instead.
+     * The method may be removed next time.
+     */
+    @NonNull @Override public Object onFlattenItem(@NonNull final Object item) {
+        return item;
+    }
+
+
+    @NonNull @Override public ArrayList<Class<?>> getContents() {
         return delegate.getContents();
     }
 
@@ -134,8 +191,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @NonNull @Override
-    public <T extends ItemViewProvider> T getProviderByClass(
-        @NonNull Class<? extends Item> clazz) {
+    public <T extends ItemViewProvider> T getProviderByClass(@NonNull Class<?> clazz) {
         return delegate.getProviderByClass(clazz);
     }
 }

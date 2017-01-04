@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public interface TypePool {
 
-    void register(@NonNull Class<? extends Item> clazz, @NonNull ItemViewProvider provider);
+    void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider);
 
     /**
      * For getting index of the item class.
@@ -37,14 +37,13 @@ public interface TypePool {
      * @return the index of the first occurrence of the specified element
      * in this list, or -1 if this list does not contain the element.
      */
-    int indexOf(@NonNull Class<? extends Item> clazz);
+    int indexOf(@NonNull Class<?> clazz);
 
-    @NonNull ArrayList<Class<? extends Item>> getContents();
+    @NonNull ArrayList<Class<?>> getContents();
 
     @NonNull ArrayList<ItemViewProvider> getProviders();
 
     @NonNull ItemViewProvider getProviderByIndex(int index);
 
-    @NonNull <T extends ItemViewProvider> T getProviderByClass(
-        @NonNull Class<? extends Item> clazz);
+    @NonNull <T extends ItemViewProvider> T getProviderByClass(@NonNull Class<?> clazz);
 }

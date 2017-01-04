@@ -23,11 +23,9 @@
         android:label="@string/normal_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name=".grid.MultiGridActivity"
+            android:name=".multi_select.MultiSelectActivity"
             android:label="@string/normal_app_name"/>
-
         <activity
             android:name=".bilibili.BilibiliActivity"
             android:label="@string/normal_app_name">
@@ -37,19 +35,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".normal.NormalActivity"
             android:label="@string/normal_app_name"/>
-
         <activity
             android:name=".weibo.WeiboActivity"
             android:label="@string/normal_app_name"/>
-
         <activity
             android:name=".communicate_with_provider.SimpleActivity"
             android:label="@string/normal_app_name"/>
 
+        <activity
+            android:name=".one2many.OneDataToManyActivity"
+            android:label="@string/normal_app_name"/>
     </application>
 
 </manifest>

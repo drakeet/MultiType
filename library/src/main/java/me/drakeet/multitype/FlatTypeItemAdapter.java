@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.common;
+package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
 
 /**
+ * A convenient version of the {@link FlatTypeAdapter} to flatten item.
+ *
  * @author drakeet
  */
-public class Category {
+public abstract class FlatTypeItemAdapter implements FlatTypeAdapter {
 
-    public String title;
+    @NonNull @Override public abstract Object onFlattenItem(@NonNull Object item);
 
 
-    public Category(@NonNull final String title) {
-        this.title = title;
+    @NonNull @Override public Class onFlattenClass(@NonNull Object item) {
+        return item.getClass();
     }
 }
