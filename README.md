@@ -108,6 +108,10 @@ public class NormalActivity extends AppCompatActivity {
 
 **You're good to go!**
 
+## Change Log
+
+https://github.com/drakeet/MultiType/releases
+
 ## Wiki
 
 [![](http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg)](https://github.com/drakeet/Effective-MultiType/blob/master/README.md)
