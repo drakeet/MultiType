@@ -24,8 +24,11 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * @author drakeet
@@ -56,6 +59,7 @@ public abstract class WeiboFrameProvider
         holder.avatar.setImageResource(weibo.user.avatar);
         holder.username.setText(weibo.user.name);
         holder.createTime.setText(weibo.createTime);
+        holder.position = getPosition(holder);
         final WeiboContent weiboContent = weibo.content;
         onBindContentViewHolder((SubViewHolder) holder.subViewHolder, (Content) weiboContent);
     }
@@ -68,9 +72,10 @@ public abstract class WeiboFrameProvider
         private FrameLayout container;
         private TextView createTime;
         private ContentHolder subViewHolder;
+        int position;
 
 
-        FrameHolder(View itemView, ContentHolder subViewHolder) {
+        FrameHolder(View itemView, final ContentHolder subViewHolder) {
             super(itemView);
             avatar = (ImageView) findViewById(R.id.avatar);
             username = (TextView) findViewById(R.id.username);
@@ -78,6 +83,14 @@ public abstract class WeiboFrameProvider
             createTime = (TextView) findViewById(R.id.create_time);
             container.addView(subViewHolder.itemView);
             this.subViewHolder = subViewHolder;
+
+            /* Test the getPosition(RecyclerView.ViewHolder) method */
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    Toast.makeText(v.getContext(),
+                        "getPosition: " + position, LENGTH_SHORT).show();
+                }
+            });
         }
 
 

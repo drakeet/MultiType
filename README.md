@@ -66,8 +66,8 @@ public class TextItemViewProvider
     @Override
     protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
         holder.text.setText("hello: " + textItem.text);
-        Log.d("demo", "position: " + getPosition());
-        Log.d("demo", "adapter: " + getAdapter().toString());
+        Log.d("demo", "position: " + getPosition(holder));
+        Log.d("demo", "adapter: " + getAdapter().toString());
     }
 }
 ```

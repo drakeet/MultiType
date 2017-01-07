@@ -27,7 +27,6 @@ import android.view.ViewGroup;
  */
 public abstract class ItemViewProvider<T, V extends ViewHolder> {
 
-    /* internal */ int position;
     /* internal */ RecyclerView.Adapter adapter;
 
     /* @formatter:off */
@@ -43,12 +42,17 @@ public abstract class ItemViewProvider<T, V extends ViewHolder> {
     /**
      * Get the adapter position of current item,
      * the internal position equals to {@link ViewHolder#getAdapterPosition()}.
+     * <p><b>NOTE</b>: Below v2.3.5 we may provide getPosition() method to get the position,
+     * It exists BUG, and sometimes can not get the correct position,
+     * it is recommended to immediately stop using it and use the new {@link
+     * ItemViewProvider#getPosition(ViewHolder)} instead.</p>
      *
-     * @return the adapter position
-     * @since v2.3.0. If below v2.3.0, use {@link ViewHolder#getAdapterPosition()} instead.
+     * @param holder The ViewHolder to call holder.getAdapterPosition().
+     * @return The adapter position.
+     * @since v2.3.5. If below v2.3.5, use {@link ViewHolder#getAdapterPosition()} instead.
      */
-    protected final int getPosition() {
-        return position;
+    protected final int getPosition(@NonNull final ViewHolder holder) {
+        return holder.getAdapterPosition();
     }
 
 

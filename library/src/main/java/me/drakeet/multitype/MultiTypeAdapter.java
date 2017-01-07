@@ -81,7 +81,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
         Object item = items.get(position);
         ItemViewProvider provider = getProviderByClass(flattenClass(item));
         provider.adapter = MultiTypeAdapter.this;
-        provider.position = holder.getAdapterPosition();
         provider.onBindViewHolder(holder, flattenItem(item));
     }
 
