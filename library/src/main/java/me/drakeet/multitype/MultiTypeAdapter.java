@@ -72,7 +72,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
-        return getProviderByIndex(indexViewType).onCreateViewHolder(inflater, parent);
+        ItemViewProvider provider = getProviderByIndex(indexViewType);
+        provider.adapter = MultiTypeAdapter.this;
+        return provider.onCreateViewHolder(inflater, parent);
     }
 
 
@@ -80,7 +82,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     public void onBindViewHolder(ViewHolder holder, int position) {
         Object item = items.get(position);
         ItemViewProvider provider = getProviderByClass(flattenClass(item));
-        provider.adapter = MultiTypeAdapter.this;
         provider.onBindViewHolder(holder, flattenItem(item));
     }
 

@@ -43,6 +43,17 @@ public class PostViewProvider
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Post post) {
         holder.setData(post);
+        assertGetAdapterNonNull();
+    }
+
+
+    /**
+     * Just test
+     */
+    private void assertGetAdapterNonNull() {
+        if (getAdapter() == null) {
+            throw new NullPointerException("getAdapter() == null");
+        }
     }
 
 

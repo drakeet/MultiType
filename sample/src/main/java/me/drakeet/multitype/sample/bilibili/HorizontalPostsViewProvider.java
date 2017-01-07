@@ -43,6 +43,17 @@ public class HorizontalPostsViewProvider
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PostList postList) {
         holder.setPosts(postList.posts);
+        assertGetAdapterNonNull();
+    }
+
+
+    /**
+     * Just test
+     */
+    private void assertGetAdapterNonNull() {
+        if (getAdapter() == null) {
+            throw new NullPointerException("getAdapter() == null");
+        }
     }
 
 
