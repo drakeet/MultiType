@@ -38,8 +38,7 @@ public class NormalActivity extends MenuBaseActivity {
         setContentView(R.layout.activity_list);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        items = new ArrayList<>();
-        adapter = new MultiTypeAdapter(items);
+        adapter = new MultiTypeAdapter();
         adapter.applyGlobalMultiTypePool();
         adapter.register(RichItem.class, new RichItemViewProvider());
 
@@ -47,11 +46,13 @@ public class NormalActivity extends MenuBaseActivity {
         ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
         RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
 
+        items = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             items.add(textItem);
             items.add(imageItem);
             items.add(richItem);
         }
+        adapter.setItems(items);
 
         recyclerView.setAdapter(adapter);
     }

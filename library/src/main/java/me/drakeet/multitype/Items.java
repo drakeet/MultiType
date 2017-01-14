@@ -17,9 +17,22 @@
 package me.drakeet.multitype;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author drakeet
  */
 public class Items extends ArrayList<Object> {
+
+    public Items() {}
+
+
+    public Items(int initialCapacity) {
+        super(initialCapacity);
+    }
+
+
+    public Items(Collection<?> c) {
+        super(c);
+    }
 }

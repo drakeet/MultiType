@@ -53,13 +53,14 @@ public class MultiSelectActivity extends MenuBaseActivity {
             }
         });
 
-        loadData();
         selectedSet = new TreeSet<>();
 
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new MultiTypeAdapter(items);
+        adapter = new MultiTypeAdapter();
         adapter.applyGlobalMultiTypePool();
         adapter.register(Square.class, new SquareViewProvider(selectedSet));
+
+        loadData();
 
         assertAllRegistered(adapter, items);
         recyclerView.setAdapter(adapter);
@@ -79,6 +80,7 @@ public class MultiSelectActivity extends MenuBaseActivity {
         for (int i = 0; i < 1000; i++) {
             items.add(new Square(i + 1));
         }
+        adapter.setItems(items);
     }
 
 

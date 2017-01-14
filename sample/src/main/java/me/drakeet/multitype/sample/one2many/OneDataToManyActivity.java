@@ -22,9 +22,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import me.drakeet.multitype.FlatTypeClassAdapter;
-import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
-import me.drakeet.multitype.MultiTypeAsserts;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 
@@ -35,7 +33,6 @@ public class OneDataToManyActivity extends MenuBaseActivity {
 
     RecyclerView recyclerView;
     MultiTypeAdapter adapter;
-    Items items;
 
 
     @Override
@@ -43,8 +40,7 @@ public class OneDataToManyActivity extends MenuBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         recyclerView = (RecyclerView) findViewById(R.id.list);
-        items = new Items();
-        adapter = new MultiTypeAdapter(items);
+        adapter = new MultiTypeAdapter();
         adapter.setFlatTypeAdapter(new FlatTypeClassAdapter() {
             @NonNull @Override public Class onFlattenClass(@NonNull Object item) {
                 return ((Data) item).typeClass;
@@ -59,8 +55,8 @@ public class OneDataToManyActivity extends MenuBaseActivity {
         // for (Data data : dataList) {
         //     data.typeClass = Data.getTypeClass(data.type);
         // }
-        items.addAll(dataList);
-        assertAllRegistered(adapter, items);
+        adapter.setItems(dataList);
+        assertAllRegistered(adapter, dataList);
         recyclerView.setAdapter(adapter);
         assertHasTheSameAdapter(recyclerView, adapter);
     }

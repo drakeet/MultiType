@@ -74,9 +74,10 @@ public class WeiboActivity extends MenuBaseActivity {
 
         items = new Items();
         /* WeiboAdapter! */
-        adapter = new WeiboAdapter(items);
+        adapter = new WeiboAdapter();
         adapter.register(SimpleText.class, new SimpleTextViewProvider());
         adapter.register(SimpleImage.class, new SimpleImageViewProvider());
+        recyclerView.setAdapter(adapter);
 
         User user = new User("drakeet", R.mipmap.avatar);
         SimpleText simpleText = new SimpleText("A simple text Weibo: Hello World.");
@@ -85,9 +86,9 @@ public class WeiboActivity extends MenuBaseActivity {
             items.add(new Weibo(user, simpleText));
             items.add(new Weibo(user, simpleImage));
         }
+        adapter.setItems(items);
 
         assertAllRegistered(adapter, items);
-        recyclerView.setAdapter(adapter);
 
         loadRemoteData();
     }
