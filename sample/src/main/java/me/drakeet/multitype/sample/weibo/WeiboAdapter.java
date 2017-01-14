@@ -18,7 +18,6 @@ package me.drakeet.multitype.sample.weibo;
 
 import android.support.annotation.NonNull;
 import java.util.List;
-import me.drakeet.multitype.Item;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.TypePool;
 
@@ -35,7 +34,7 @@ public class WeiboAdapter extends MultiTypeAdapter {
     }
 
 
-    public WeiboAdapter(@NonNull List<? extends Item> items, TypePool pool) {
+    public WeiboAdapter(@NonNull List<?> items, TypePool pool) {
         super(items, pool);
     }
 

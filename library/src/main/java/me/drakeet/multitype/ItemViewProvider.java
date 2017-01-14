@@ -42,8 +42,8 @@ public abstract class ItemViewProvider<T, V extends ViewHolder> {
      * the internal position equals to {@link ViewHolder#getAdapterPosition()}.
      * <p><b>NOTE</b>: Below v2.3.5 we may provide getPosition() method to get the position,
      * It exists BUG, and sometimes can not get the correct position,
-     * it is recommended to immediately stop using it and use the new {@link
-     * ItemViewProvider#getPosition(ViewHolder)} instead.</p>
+     * it is recommended to immediately stop using it and use the new
+     * {@code getPosition(ViewHolder)} instead.</p>
      *
      * @param holder The ViewHolder to call holder.getAdapterPosition().
      * @return The adapter position.

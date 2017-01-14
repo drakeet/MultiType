@@ -33,6 +33,8 @@ public class MultiTypeAsserts {
     /**
      * Make the exception to occur in your class for debug and index.
      *
+     * @param adapter The MultiTypeAdapter.
+     * @param items The items list.
      * @throws ProviderNotFoundException If check failed.
      * @throws IllegalArgumentException If your Items/List is empty.
      */
@@ -53,6 +55,8 @@ public class MultiTypeAsserts {
 
 
     /**
+     * @param recyclerView The RecyclerView.
+     * @param adapter The MultiTypeAdapter.
      * @throws IllegalAccessError The assertHasTheSameAdapter() method must be placed after
      * recyclerView.setAdapter().
      * @throws IllegalArgumentException If your recyclerView's adapter.

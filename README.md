@@ -22,7 +22,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.3.5'
+    compile 'me.drakeet.multitype:multitype:2.4.0'
 }
 ```
 
@@ -78,30 +78,29 @@ public class TextItemViewProvider
 public class NormalActivity extends AppCompatActivity {
 
     private MultiTypeAdapter adapter;
-    private Items items;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        items = new Items();
-        adapter = new MultiTypeAdapter(items);
+        adapter = new MultiTypeAdapter();
         adapter.register(TextItem.class, new TextItemViewProvider());
         adapter.register(ImageItem.class, new ImageItemViewProvider());
         adapter.register(RichItem.class, new RichItemViewProvider());
+        recyclerView.setAdapter(adapter);
 
         TextItem textItem = new TextItem("world");
         ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
         RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
 
+        Items items = new Items();
         for (int i = 0; i < 20; i++) {
             items.add(textItem);
             items.add(imageItem);
             items.add(richItem);
         }
-
-        recyclerView.setAdapter(adapter);
+        adapter.setItems(items);
     }
 }
 ```
