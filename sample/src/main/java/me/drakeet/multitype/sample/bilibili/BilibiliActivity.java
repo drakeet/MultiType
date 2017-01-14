@@ -29,8 +29,6 @@ import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 
-import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
-
 /**
  * @author drakeet
  */
@@ -72,19 +70,7 @@ public class BilibiliActivity extends MenuBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        JsonData data = new JsonData();
-        items = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            /* You also could use Category as your CategoryItemContent directly */
-            items.add(data.category0);
-            items.add(data.postArray[0]);
-            items.add(data.postArray[1]);
-            items.add(data.postArray[2]);
-            items.add(data.postArray[3]);
-            items.add(new PostList(data.postList));
-        }
-
-        adapter = new MultiTypeAdapter(items);
+        adapter = new MultiTypeAdapter();
         adapter.applyGlobalMultiTypePool();
         adapter.register(Post.class, new PostViewProvider());
         adapter.register(PostList.class, new HorizontalPostsViewProvider());
@@ -104,8 +90,20 @@ public class BilibiliActivity extends MenuBaseActivity {
         int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
         recyclerView.addItemDecoration(new PostItemDecoration(space, spanSizeLookup));
 
-        assertAllRegistered(adapter, items);
         recyclerView.setAdapter(adapter);
+
+        JsonData data = new JsonData();
+        items = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            /* You also could use Category as your CategoryItemContent directly */
+            items.add(data.category0);
+            items.add(data.postArray[0]);
+            items.add(data.postArray[1]);
+            items.add(data.postArray[2]);
+            items.add(data.postArray[3]);
+            items.add(new PostList(data.postList));
+        }
+        adapter.setItems(items);
     }
 
 

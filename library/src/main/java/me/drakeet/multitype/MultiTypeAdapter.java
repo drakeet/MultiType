@@ -31,29 +31,34 @@ import java.util.List;
 public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     implements FlatTypeAdapter, TypePool {
 
-    @NonNull protected final List<?> items;
+    @Nullable protected List<?> items;
     @NonNull protected TypePool delegate;
     @Nullable protected LayoutInflater inflater;
     @Nullable private FlatTypeAdapter providedFlatTypeAdapter;
 
 
-    public MultiTypeAdapter(@NonNull List<?> items) {
+    public MultiTypeAdapter() {
+        this(null);
+    }
+
+
+    public MultiTypeAdapter(@Nullable List<?> items) {
         this(items, new MultiTypePool(), null);
     }
 
 
-    public MultiTypeAdapter(@NonNull List<?> items, int initialCapacity) {
+    public MultiTypeAdapter(@Nullable List<?> items, int initialCapacity) {
         this(items, new MultiTypePool(initialCapacity), null);
     }
 
 
-    public MultiTypeAdapter(@NonNull List<?> items, TypePool pool) {
+    public MultiTypeAdapter(@Nullable List<?> items, TypePool pool) {
         this(items, pool, null);
     }
 
 
     public MultiTypeAdapter(
-        @NonNull List<?> items, @NonNull TypePool delegate,
+        @Nullable List<?> items, @NonNull TypePool delegate,
         @Nullable FlatTypeAdapter providedFlatTypeAdapter) {
         this.items = items;
         this.delegate = delegate;
@@ -61,8 +66,22 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
+    /**
+     * Update the items and views atomically and safely.
+     * It is recommended to use this method to update the data.
+     *
+     * @param items The <b>new</b> items list.
+     * @since v2.4.0
+     */
+    public void setItems(@Nullable List<?> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
+
     @SuppressWarnings("unchecked") @Override
     public int getItemViewType(int position) {
+        assert items != null;
         Object item = items.get(position);
         return indexOf(flattenClass(item));
     }
@@ -80,6 +99,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
     @SuppressWarnings("unchecked") @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        assert items != null;
         Object item = items.get(position);
         ItemViewProvider provider = getProviderByClass(flattenClass(item));
         provider.onBindViewHolder(holder, flattenItem(item));
@@ -87,7 +107,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @Override public int getItemCount() {
-        return items.size();
+        return items == null ? 0 : items.size();
     }
 
 

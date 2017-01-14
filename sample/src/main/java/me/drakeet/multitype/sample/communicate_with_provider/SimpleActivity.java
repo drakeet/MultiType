@@ -34,7 +34,6 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
 public class SimpleActivity extends MenuBaseActivity {
 
     private String aFieldValue = "aFieldValue of SimpleActivity";
-    private Items items;
     private MultiTypeAdapter adapter;
 
 
@@ -43,16 +42,17 @@ public class SimpleActivity extends MenuBaseActivity {
         setContentView(R.layout.activity_list);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        items = new Items();
-        adapter = new MultiTypeAdapter(items);
+        Items items = new Items();
+        adapter = new MultiTypeAdapter();
         adapter.register(TextItem.class, new TextItemWithOutsizeDataViewProvider(aFieldValue));
+        recyclerView.setAdapter(adapter);
+        assertHasTheSameAdapter(recyclerView, adapter);
 
         for (int i = 0; i < 20; i++) {
             items.add(new TextItem(valueOf(i)));
         }
+        adapter.setItems(items);
 
         assertAllRegistered(adapter, items);
-        recyclerView.setAdapter(adapter);
-        assertHasTheSameAdapter(recyclerView, adapter);
     }
 }
