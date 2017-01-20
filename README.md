@@ -26,9 +26,9 @@ dependencies {
 }
 ```
 
-**NOTE**: If you are updating from v2.4.0 to v2.4.1,
-note that the `setItems(items)` method removes the `notifyDataSetChanged()`
-and you need to call it yourself.
+**NOTE**: If you are updating from **v2.4.0** to v2.4.1,
+note that the `setItems(items)` method has removed the `notifyDataSetChanged()`
+and you need to call it by yourself.
 
 ## Usage
 
