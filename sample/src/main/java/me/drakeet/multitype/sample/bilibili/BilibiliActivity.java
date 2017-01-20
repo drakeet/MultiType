@@ -104,6 +104,7 @@ public class BilibiliActivity extends MenuBaseActivity {
             items.add(new PostList(data.postList));
         }
         adapter.setItems(items);
+        adapter.notifyDataSetChanged();
     }
 
 

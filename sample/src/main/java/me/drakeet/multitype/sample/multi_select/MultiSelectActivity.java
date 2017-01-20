@@ -81,6 +81,7 @@ public class MultiSelectActivity extends MenuBaseActivity {
             items.add(new Square(i + 1));
         }
         adapter.setItems(items);
+        adapter.notifyDataSetChanged();
     }
 
 

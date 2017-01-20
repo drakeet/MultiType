@@ -52,6 +52,7 @@ public class SimpleActivity extends MenuBaseActivity {
             items.add(new TextItem(valueOf(i)));
         }
         adapter.setItems(items);
+        adapter.notifyDataSetChanged();
 
         assertAllRegistered(adapter, items);
     }

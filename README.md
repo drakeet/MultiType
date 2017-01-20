@@ -22,9 +22,13 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.4.0'
+    compile 'me.drakeet.multitype:multitype:2.4.1'
 }
 ```
+
+**NOTE**: If you are updating from **v2.4.0** to v2.4.1,
+note that the `setItems(items)` method has removed the `notifyDataSetChanged()`
+and you need to call it by yourself.
 
 ## Usage
 
@@ -101,6 +105,7 @@ public class NormalActivity extends AppCompatActivity {
             items.add(richItem);
         }
         adapter.setItems(items);
+        adapter.notifyDataSetChanged();
     }
 }
 ```

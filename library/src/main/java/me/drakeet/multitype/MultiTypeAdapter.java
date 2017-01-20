@@ -67,15 +67,18 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     /**
-     * Update the items and views atomically and safely.
+     * Update the items atomically and safely.
      * It is recommended to use this method to update the data.
+     * <p>e.g. {@code adapter.setItems(new Items(changedItems));}</p>
+     *
+     * <p>Note: If you want to refresh the list views, you should
+     * call {@link RecyclerView.Adapter#notifyDataSetChanged()} by yourself.</p>
      *
      * @param items The <b>new</b> items list.
-     * @since v2.4.0
+     * @since v2.4.1
      */
     public void setItems(@Nullable List<?> items) {
         this.items = items;
-        notifyDataSetChanged();
     }
 
 
