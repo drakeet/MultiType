@@ -72,12 +72,13 @@ public class WeiboActivity extends MenuBaseActivity {
         setContentView(R.layout.activity_list);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        items = new Items();
         /* WeiboAdapter! */
         adapter = new WeiboAdapter();
         adapter.register(SimpleText.class, new SimpleTextViewProvider());
         adapter.register(SimpleImage.class, new SimpleImageViewProvider());
         recyclerView.setAdapter(adapter);
+
+        items = new Items();
 
         User user = new User("drakeet", R.mipmap.avatar);
         SimpleText simpleText = new SimpleText("A simple text Weibo: Hello World.");
@@ -87,6 +88,7 @@ public class WeiboActivity extends MenuBaseActivity {
             items.add(new Weibo(user, simpleImage));
         }
         adapter.setItems(items);
+        adapter.notifyDataSetChanged();
 
         assertAllRegistered(adapter, items);
 
@@ -95,9 +97,12 @@ public class WeiboActivity extends MenuBaseActivity {
 
 
     private void loadRemoteData() {
-        RemoteData dataFromParser = GsonProvider.gson.fromJson(JSON_FROM_SERVICE,
-            RemoteData.class);
+        RemoteData dataFromParser = GsonProvider.gson.fromJson(
+            JSON_FROM_SERVICE, RemoteData.class);
+        // Update the items atomically and safely.
+        items = new Items(items);
         items.addAll(0, dataFromParser.weibos);
+        adapter.setItems(items);
         adapter.notifyDataSetChanged();
     }
 

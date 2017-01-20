@@ -41,6 +41,7 @@ public class NormalActivity extends MenuBaseActivity {
         adapter = new MultiTypeAdapter();
         adapter.applyGlobalMultiTypePool();
         adapter.register(RichItem.class, new RichItemViewProvider());
+        recyclerView.setAdapter(adapter);
 
         TextItem textItem = new TextItem("world");
         ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
@@ -53,7 +54,6 @@ public class NormalActivity extends MenuBaseActivity {
             items.add(richItem);
         }
         adapter.setItems(items);
-
-        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }
