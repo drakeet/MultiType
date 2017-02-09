@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import java.util.List;
 import me.drakeet.multitype.sample.R;
 
@@ -69,6 +70,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             super(itemView);
             cover = (ImageView) itemView.findViewById(R.id.cover);
             title = (TextView) itemView.findViewById(R.id.title);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    Toast.makeText(v.getContext(), String.valueOf(getAdapterPosition()),
+                        Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
