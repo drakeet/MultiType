@@ -17,4 +17,5 @@
 <resources>
     <string name="normal_app_name">MultiType</string>
     <string name="bilibili_app_name">MT: Bilibili</string>
+    <string name="multi_grid_app_name">MT: MultiGrid</string>
 </resources>

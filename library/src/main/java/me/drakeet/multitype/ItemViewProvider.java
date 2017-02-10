@@ -17,6 +17,7 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -24,18 +25,42 @@ import android.view.ViewGroup;
 /***
  * @author drakeet
  */
-public abstract class ItemViewProvider<C extends ItemContent, V extends ViewHolder> {
+public abstract class ItemViewProvider<T, V extends ViewHolder> {
 
-    // @formatter:off
+    /* internal */ RecyclerView.Adapter adapter;
+
 
     @NonNull
-    protected abstract V onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+    protected abstract V onCreateViewHolder(
+        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
-    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull C c, @NonNull TypeItem typeItem);
+    protected abstract void onBindViewHolder(@NonNull V holder, @NonNull T t);
 
 
-    @SuppressWarnings("unchecked")
-    public final void onBindViewHolder(@NonNull V holder, @NonNull TypeItem data) {
-        this.onBindViewHolder(holder, (C) data.content, data);
+    /**
+     * Get the adapter position of current item,
+     * the internal position equals to {@link ViewHolder#getAdapterPosition()}.
+     * <p><b>NOTE</b>: Below v2.3.5 we may provide getPosition() method to get the position,
+     * It exists BUG, and sometimes can not get the correct position,
+     * it is recommended to immediately stop using it and use the new
+     * {@code getPosition(ViewHolder)} instead.</p>
+     *
+     * @param holder The ViewHolder to call holder.getAdapterPosition().
+     * @return The adapter position.
+     * @since v2.3.5. If below v2.3.5, use {@link ViewHolder#getAdapterPosition()} instead.
+     */
+    protected final int getPosition(@NonNull final ViewHolder holder) {
+        return holder.getAdapterPosition();
+    }
+
+
+    /**
+     * Get the RecyclerView.Adapter for sending notifications or getting item count, etc.
+     *
+     * @return The RecyclerView.Adapter this item is currently associated with.
+     * @since v2.3.4
+     */
+    @NonNull protected final RecyclerView.Adapter getAdapter() {
+        return adapter;
     }
 }

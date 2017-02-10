@@ -23,7 +23,7 @@
     android:orientation="vertical">
 
     <ImageView
-        style="@style/Message.Frame"
+        style="@style/Simple.Frame"
         android:id="@+id/image"
         android:layout_width="72dp"
         android:layout_height="72dp"/>

@@ -16,36 +16,23 @@
 
 package me.drakeet.multitype;
 
-import android.support.annotation.NonNull;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author drakeet
  */
-public class Items {
+public class Items extends ArrayList<Object> {
 
-    private List<TypeItem> items;
-    private TypeItemFactory factory;
+    public Items() {}
 
 
-    public Items() {
-        this(new ArrayList<TypeItem>());
+    public Items(int initialCapacity) {
+        super(initialCapacity);
     }
 
 
-    public Items(@NonNull final List<TypeItem> items) {
-        this.items = items;
-        factory = new TypeItemFactory.Builder().build();
-    }
-
-
-    public void add(@NonNull final ItemContent content) {
-        items.add(factory.newItem(content));
-    }
-
-
-    @NonNull public List<? extends TypeItem> toList() {
-        return items;
+    public Items(Collection<?> c) {
+        super(c);
     }
 }

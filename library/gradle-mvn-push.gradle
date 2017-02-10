@@ -1,5 +1,6 @@
 /*
  * Copyright 2013 Chris Banes
+ * Copyright 2016 drakeet
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +23,13 @@ def isReleaseBuild() {
 }
 
 def getReleaseRepositoryUrl() {
-    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL
-            : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL :
+            "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
 }
 
 def getSnapshotRepositoryUrl() {
-    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL
-            : "https://oss.sonatype.org/content/repositories/snapshots/"
+    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL :
+            "https://oss.sonatype.org/content/repositories/snapshots/"
 }
 
 def getRepositoryUsername() {
@@ -50,10 +51,12 @@ afterEvaluate { project ->
                 pom.version = VERSION_NAME
 
                 repository(url: getReleaseRepositoryUrl()) {
-                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                    authentication(userName: getRepositoryUsername(),
+                            password: getRepositoryPassword())
                 }
                 snapshotRepository(url: getSnapshotRepositoryUrl()) {
-                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                    authentication(userName: getRepositoryUsername(),
+                            password: getRepositoryPassword())
                 }
 
                 pom.project {
@@ -92,14 +95,22 @@ afterEvaluate { project ->
         sign configurations.archives
     }
 
-    task androidJavadocs(type: Javadoc) {
-        source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    android.libraryVariants.all { variant ->
+        task("${variant.name}Javadoc", type: Javadoc) {
+            description "Generates Javadoc for $variant.name."
+            source = variant.javaCompile.source
+            classpath = files(variant.javaCompile.classpath.files,
+                    project.android.getBootClasspath())
+            exclude '**/BuildConfig.java'
+            exclude '**/R.java'
+        }
     }
 
-    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    task javadocJar(type: Jar, dependsOn: 'releaseJavadoc') {
         classifier = 'javadoc'
-        from androidJavadocs.destinationDir
+        from {
+            releaseJavadoc.destinationDir
+        }
     }
 
     task androidSourcesJar(type: Jar) {
@@ -109,6 +120,6 @@ afterEvaluate { project ->
 
     artifacts {
         archives androidSourcesJar
-        archives androidJavadocsJar
+        archives javadocJar
     }
 }

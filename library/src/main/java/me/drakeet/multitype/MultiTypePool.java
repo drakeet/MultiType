@@ -17,41 +17,75 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import java.util.ArrayList;
 
 /**
  * @author drakeet
  */
-public final class MultiTypePool {
+public final class MultiTypePool implements TypePool {
 
-    private static ArrayList<Class<? extends ItemContent>> contents = new ArrayList<>();
-    private static ArrayList<ItemViewProvider> providers = new ArrayList<>();
+    private final String TAG = MultiTypePool.class.getSimpleName();
+    private ArrayList<Class<?>> contents;
+    private ArrayList<ItemViewProvider> providers;
 
 
-    public synchronized static void register(
-        @NonNull Class<? extends ItemContent> itemContent, @NonNull ItemViewProvider provider) {
-        if (!contents.contains(itemContent)) {
-            contents.add(itemContent);
+    public MultiTypePool() {
+        this.contents = new ArrayList<>();
+        this.providers = new ArrayList<>();
+    }
+
+
+    public MultiTypePool(int initialCapacity) {
+        this.contents = new ArrayList<>(initialCapacity);
+        this.providers = new ArrayList<>(initialCapacity);
+    }
+
+
+    public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
+        if (!contents.contains(clazz)) {
+            contents.add(clazz);
             providers.add(provider);
         } else {
-            throw new IllegalArgumentException(
-                "You have registered the " + itemContent.getSimpleName() +
-                    " type. It should not be added again.");
+            int index = contents.indexOf(clazz);
+            providers.set(index, provider);
+            Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
+                "It will override the original provider.");
         }
     }
 
 
-    @NonNull public static ArrayList<Class<? extends ItemContent>> getContents() {
+    @Override public int indexOf(@NonNull final Class<?> clazz) {
+        int index = contents.indexOf(clazz);
+        if (index >= 0) {
+            return index;
+        }
+        for (int i = 0; i < contents.size(); i++) {
+            if (contents.get(i).isAssignableFrom(clazz)) {
+                return i;
+            }
+        }
+        return index;
+    }
+
+
+    @NonNull @Override public ArrayList<Class<?>> getContents() {
         return contents;
     }
 
 
-    @NonNull public static ArrayList<ItemViewProvider> getProviders() {
+    @NonNull @Override public ArrayList<ItemViewProvider> getProviders() {
         return providers;
     }
 
 
-    @NonNull public static ItemViewProvider getProviderByIndex(int index) {
+    @NonNull @Override public ItemViewProvider getProviderByIndex(int index) {
         return providers.get(index);
+    }
+
+
+    @SuppressWarnings("unchecked") @NonNull @Override
+    public <T extends ItemViewProvider> T getProviderByClass(@NonNull final Class<?> clazz) {
+        return (T) getProviderByIndex(indexOf(clazz));
     }
 }

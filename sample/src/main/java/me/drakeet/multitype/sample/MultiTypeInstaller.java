@@ -16,18 +16,12 @@
 
 package me.drakeet.multitype.sample;
 
-import me.drakeet.multitype.MultiTypePool;
-import me.drakeet.multitype.sample.bilibili.CategoryItemContent;
-import me.drakeet.multitype.sample.bilibili.CategoryItemViewProvider;
-import me.drakeet.multitype.sample.bilibili.HorizontalItemViewProvider;
-import me.drakeet.multitype.sample.bilibili.PostList;
-import me.drakeet.multitype.sample.bilibili.PostRowItemContent;
-import me.drakeet.multitype.sample.bilibili.PostRowItemViewProvider;
-import me.drakeet.multitype.sample.normal.ImageItemContent;
+import me.drakeet.multitype.GlobalMultiTypePool;
+import me.drakeet.multitype.sample.common.Category;
+import me.drakeet.multitype.sample.common.CategoryItemViewProvider;
+import me.drakeet.multitype.sample.normal.ImageItem;
 import me.drakeet.multitype.sample.normal.ImageItemViewProvider;
-import me.drakeet.multitype.sample.normal.RichItemContent;
-import me.drakeet.multitype.sample.normal.RichItemViewProvider;
-import me.drakeet.multitype.sample.normal.TextItemContent;
+import me.drakeet.multitype.sample.normal.TextItem;
 import me.drakeet.multitype.sample.normal.TextItemViewProvider;
 
 /**
@@ -36,11 +30,8 @@ import me.drakeet.multitype.sample.normal.TextItemViewProvider;
 class MultiTypeInstaller {
 
     static void start() {
-        MultiTypePool.register(TextItemContent.class, new TextItemViewProvider());
-        MultiTypePool.register(ImageItemContent.class, new ImageItemViewProvider());
-        MultiTypePool.register(RichItemContent.class, new RichItemViewProvider());
-        MultiTypePool.register(CategoryItemContent.class, new CategoryItemViewProvider());
-        MultiTypePool.register(PostRowItemContent.class, new PostRowItemViewProvider());
-        MultiTypePool.register(PostList.class, new HorizontalItemViewProvider());
+        GlobalMultiTypePool.register(TextItem.class, new TextItemViewProvider());
+        GlobalMultiTypePool.register(ImageItem.class, new ImageItemViewProvider());
+        GlobalMultiTypePool.register(Category.class, new CategoryItemViewProvider());
     }
 }

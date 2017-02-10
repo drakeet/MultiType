@@ -22,7 +22,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import me.drakeet.multitype.TypeItem;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
 
@@ -30,10 +29,10 @@ import me.drakeet.multitype.sample.R;
  * @author drakeet
  */
 public class TextItemViewProvider
-    extends ItemViewProvider<TextItemContent, TextItemViewProvider.TextHolder> {
+    extends ItemViewProvider<TextItem, TextItemViewProvider.TextHolder> {
 
     static class TextHolder extends RecyclerView.ViewHolder {
-        @NonNull final TextView text;
+        @NonNull private final TextView text;
 
 
         TextHolder(@NonNull View itemView) {
@@ -47,14 +46,12 @@ public class TextItemViewProvider
     protected TextHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_text, parent, false);
-        TextHolder holder = new TextHolder(root);
-        return holder;
+        return new TextHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull TextHolder holder, @NonNull TextItemContent content, @NonNull TypeItem typeItem) {
-        holder.text.setText("hello: " + content.text);
+    protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
+        holder.text.setText("hello: " + textItem.text);
     }
 }
