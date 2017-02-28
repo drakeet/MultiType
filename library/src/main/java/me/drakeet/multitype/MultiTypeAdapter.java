@@ -48,12 +48,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     public MultiTypeAdapter(@Nullable List<?> items, int initialCapacity) {
-        this(items, new MultiTypePool(initialCapacity), null);
+        this(items, new MultiTypePool(initialCapacity), /* providedFlatTypeAdapter: */ null);
     }
 
 
     public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
-        this(items, pool, null);
+        this(items, pool, /* providedFlatTypeAdapter: */ null);
     }
 
 
@@ -194,6 +194,16 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
      */
     @NonNull @Override public Object onFlattenItem(@NonNull final Object item) {
         return item;
+    }
+
+
+    /**
+     * Set the TypePool to hold the types and view providers.
+     *
+     * @param typePool The TypePool implementation
+     */
+    public void setTypePool(@NonNull TypePool typePool) {
+        this.delegate = typePool;
     }
 
 
