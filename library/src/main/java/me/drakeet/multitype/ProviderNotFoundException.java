@@ -16,12 +16,14 @@
 
 package me.drakeet.multitype;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author drakeet
  */
 public class ProviderNotFoundException extends RuntimeException {
 
-    public ProviderNotFoundException(Class<?> clazz) {
+    public ProviderNotFoundException(@NonNull Class<?> clazz) {
         super("Do you have registered the provider for {className}.class in the adapter/pool?"
             .replace("{className}", clazz.getSimpleName()));
     }

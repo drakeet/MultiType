@@ -52,7 +52,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    public MultiTypeAdapter(@Nullable List<?> items, TypePool pool) {
+    public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
         this(items, pool, null);
     }
 
@@ -82,8 +82,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @SuppressWarnings("unchecked") @Override
-    public int getItemViewType(int position) {
+    @SuppressWarnings("unchecked")
+    @Override public int getItemViewType(int position) {
         assert items != null;
         Object item = items.get(position);
         return indexOf(flattenClass(item));
@@ -100,8 +100,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @SuppressWarnings("unchecked") @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    @SuppressWarnings("unchecked")
+    @Override public void onBindViewHolder(ViewHolder holder, int position) {
         assert items != null;
         Object item = items.get(position);
         ItemViewProvider provider = getProviderByClass(flattenClass(item));
@@ -114,8 +114,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @Override
-    public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
+    @Override public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
         delegate.register(clazz, provider);
     }
 
@@ -162,8 +161,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @NonNull @SuppressWarnings("deprecation")
-    Class flattenClass(@NonNull final Object item) {
+    @SuppressWarnings("deprecation")
+    @NonNull Class flattenClass(@NonNull final Object item) {
         if (providedFlatTypeAdapter != null) {
             return providedFlatTypeAdapter.onFlattenClass(item);
         }
@@ -171,8 +170,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @NonNull @SuppressWarnings("deprecation")
-    Object flattenItem(@NonNull final Object item) {
+    @SuppressWarnings("deprecation")
+    @NonNull Object flattenItem(@NonNull final Object item) {
         if (providedFlatTypeAdapter != null) {
             return providedFlatTypeAdapter.onFlattenItem(item);
         }

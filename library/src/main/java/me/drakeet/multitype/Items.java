@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype;
 
+import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -32,7 +33,7 @@ public class Items extends ArrayList<Object> {
     }
 
 
-    public Items(Collection<?> c) {
+    public Items(@NonNull Collection<?> c) {
         super(c);
     }
 }
