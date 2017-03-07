@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * @author drakeet
  */
-public final class MultiTypePool implements TypePool {
+public class MultiTypePool implements TypePool {
 
     private final String TAG = MultiTypePool.class.getSimpleName();
     private ArrayList<Class<?>> contents;

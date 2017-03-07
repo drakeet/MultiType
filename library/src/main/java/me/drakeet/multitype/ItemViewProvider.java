@@ -30,8 +30,7 @@ public abstract class ItemViewProvider<T, V extends ViewHolder> {
     /* internal */ RecyclerView.Adapter adapter;
 
 
-    @NonNull
-    protected abstract V onCreateViewHolder(
+    @NonNull protected abstract V onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
     protected abstract void onBindViewHolder(@NonNull V holder, @NonNull T t);

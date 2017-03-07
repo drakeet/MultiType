@@ -31,8 +31,8 @@ import java.util.List;
 public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     implements FlatTypeAdapter, TypePool {
 
-    @Nullable protected List<?> items;
-    @NonNull protected TypePool delegate;
+    @Nullable private List<?> items;
+    @NonNull private TypePool delegate;
     @Nullable protected LayoutInflater inflater;
     @Nullable private FlatTypeAdapter providedFlatTypeAdapter;
 
@@ -48,12 +48,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     public MultiTypeAdapter(@Nullable List<?> items, int initialCapacity) {
-        this(items, new MultiTypePool(initialCapacity), null);
+        this(items, new MultiTypePool(initialCapacity), /* providedFlatTypeAdapter: */ null);
     }
 
 
-    public MultiTypeAdapter(@Nullable List<?> items, TypePool pool) {
-        this(items, pool, null);
+    public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
+        this(items, pool, /* providedFlatTypeAdapter: */ null);
     }
 
 
@@ -63,6 +63,18 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
         this.items = items;
         this.delegate = delegate;
         this.providedFlatTypeAdapter = providedFlatTypeAdapter;
+    }
+
+
+    @Override public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
+        delegate.register(clazz, provider);
+    }
+
+
+    public void registerAll(@NonNull final TypePool pool) {
+        for (int i = 0; i < pool.getContents().size(); i++) {
+            delegate.register(pool.getContents().get(i), pool.getProviders().get(i));
+        }
     }
 
 
@@ -82,8 +94,32 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @SuppressWarnings("unchecked") @Override
-    public int getItemViewType(int position) {
+    /**
+     * Set the TypePool to hold the types and view providers.
+     *
+     * @param typePool The TypePool implementation
+     */
+    public void setTypePool(@NonNull TypePool typePool) {
+        this.delegate = typePool;
+    }
+
+
+    /**
+     * Set the FlatTypeAdapter to instead of the default inner FlatTypeAdapter of
+     * MultiTypeAdapter.
+     * <p>Note: You could use {@link FlatTypeClassAdapter} and {@link FlatTypeItemAdapter}
+     * to create a special FlatTypeAdapter conveniently.</p>
+     *
+     * @param flatTypeAdapter the FlatTypeAdapter
+     * @since v2.3.2
+     */
+    public void setFlatTypeAdapter(@NonNull FlatTypeAdapter flatTypeAdapter) {
+        this.providedFlatTypeAdapter = flatTypeAdapter;
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Override public int getItemViewType(int position) {
         assert items != null;
         Object item = items.get(position);
         return indexOf(flattenClass(item));
@@ -100,7 +136,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @SuppressWarnings("unchecked") @Override
+    @Override @SuppressWarnings("unchecked")
     public void onBindViewHolder(ViewHolder holder, int position) {
         assert items != null;
         Object item = items.get(position);
@@ -111,19 +147,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
     @Override public int getItemCount() {
         return items == null ? 0 : items.size();
-    }
-
-
-    @Override
-    public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
-        delegate.register(clazz, provider);
-    }
-
-
-    public void registerAll(@NonNull final MultiTypePool pool) {
-        for (int i = 0; i < pool.getContents().size(); i++) {
-            delegate.register(pool.getContents().get(i), pool.getProviders().get(i));
-        }
     }
 
 
@@ -145,20 +168,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
             return index;
         }
         throw new ProviderNotFoundException(clazz);
-    }
-
-
-    /**
-     * Set the FlatTypeAdapter to instead of the default inner FlatTypeAdapter of
-     * MultiTypeAdapter.
-     * <p>Note: You could use {@link FlatTypeClassAdapter} and {@link FlatTypeItemAdapter}
-     * to create a special FlatTypeAdapter conveniently.</p>
-     *
-     * @param flatTypeAdapter the FlatTypeAdapter
-     * @since v2.3.2
-     */
-    public void setFlatTypeAdapter(@NonNull FlatTypeAdapter flatTypeAdapter) {
-        this.providedFlatTypeAdapter = flatTypeAdapter;
     }
 
 
@@ -216,5 +225,10 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     @NonNull @Override
     public <T extends ItemViewProvider> T getProviderByClass(@NonNull Class<?> clazz) {
         return delegate.getProviderByClass(clazz);
+    }
+
+
+    @NonNull public TypePool getTypePool() {
+        return delegate;
     }
 }
