@@ -228,6 +228,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
+    @Nullable public List<?> getItems() {
+        return items;
+    }
+
+
     @NonNull public TypePool getTypePool() {
         return delegate;
     }
