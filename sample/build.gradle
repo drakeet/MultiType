@@ -23,8 +23,8 @@ android {
         applicationId "me.drakeet.multitype.sample"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 62
-        versionName "2.4.2"
+        versionCode 63
+        versionName "2.4.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
