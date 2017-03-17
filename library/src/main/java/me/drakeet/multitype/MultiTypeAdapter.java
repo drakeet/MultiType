@@ -136,12 +136,24 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
+    /**
+     * Note that this method is final, and if you need to do something onBindViewHolder(),
+     * you should override {@link #onBindViewHolder(ViewHolder, int, List)} instead.
+     *
+     * @param holder The ViewHolder which should be updated to represent the contents of the
+     * item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
+    @Override
+    public final void onBindViewHolder(ViewHolder holder, int position) {}
+
+
     @Override @SuppressWarnings("unchecked")
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         assert items != null;
         Object item = items.get(position);
         ItemViewProvider provider = getProviderByClass(flattenClass(item));
-        provider.onBindViewHolder(holder, flattenItem(item));
+        provider.onBindViewHolder(holder, flattenItem(item), payloads);
     }
 
 
