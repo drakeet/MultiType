@@ -78,7 +78,8 @@ public abstract class ItemViewProvider<T, VH extends ViewHolder> {
      * update.
      * @since v2.4.5
      */
-    protected void onBindViewHolder(@NonNull VH holder, @NonNull T item, List<Object> payloads) {
+    protected void onBindViewHolder(
+        @NonNull VH holder, @NonNull T item, @NonNull List<Object> payloads) {
         onBindViewHolder(holder, item);
     }
 

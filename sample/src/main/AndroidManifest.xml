@@ -48,6 +48,10 @@
         <activity
             android:name=".one2many.OneDataToManyActivity"
             android:label="@string/normal_app_name"/>
+
+        <activity
+            android:name=".payload.TestPayloadActivity"
+            android:label="@string/normal_app_name"/>
     </application>
 
 </manifest>

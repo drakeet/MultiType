@@ -37,4 +37,10 @@
         android:id="@+id/OneDataToManyActivity"
         android:title="OneDataToManyActivity"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/TestPayloadActivity"
+        android:title="TestPayloadActivity"
+        app:showAsAction="never"/>
+    
 </menu>
