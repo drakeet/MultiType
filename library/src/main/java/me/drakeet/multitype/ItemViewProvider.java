@@ -31,7 +31,8 @@ public abstract class ItemViewProvider<T, VH extends ViewHolder> {
     /* internal */ RecyclerView.Adapter adapter;
 
 
-    @NonNull protected abstract VH onCreateViewHolder(
+    @NonNull
+    protected abstract VH onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
     /**
@@ -107,7 +108,8 @@ public abstract class ItemViewProvider<T, VH extends ViewHolder> {
      * @return The RecyclerView.Adapter this item is currently associated with.
      * @since v2.3.4
      */
-    @NonNull protected final RecyclerView.Adapter getAdapter() {
+    @NonNull
+    protected final RecyclerView.Adapter getAdapter() {
         return adapter;
     }
 }

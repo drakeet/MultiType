@@ -57,7 +57,7 @@ public class HorizontalPostsViewProvider
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         private RecyclerView recyclerView;
         private PostsAdapter adapter;

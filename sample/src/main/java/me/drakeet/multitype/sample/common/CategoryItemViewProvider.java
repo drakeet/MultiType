@@ -31,7 +31,8 @@ import me.drakeet.multitype.sample.R;
 public class CategoryItemViewProvider
     extends ItemViewProvider<Category, CategoryItemViewProvider.ViewHolder> {
 
-    @NonNull @Override protected ViewHolder onCreateViewHolder(
+    @NonNull @Override
+    protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View view = inflater.inflate(R.layout.item_category, parent, false);
         return new ViewHolder(view);

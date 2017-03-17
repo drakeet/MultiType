@@ -25,10 +25,12 @@ import android.support.annotation.NonNull;
  */
 public abstract class FlatTypeItemAdapter implements FlatTypeAdapter {
 
-    @NonNull @Override public abstract Object onFlattenItem(@NonNull Object item);
+    @NonNull @Override
+    public abstract Object onFlattenItem(@NonNull Object item);
 
 
-    @NonNull @Override public Class onFlattenClass(@NonNull Object item) {
+    @NonNull @Override
+    public Class onFlattenClass(@NonNull Object item) {
         return item.getClass();
     }
 }

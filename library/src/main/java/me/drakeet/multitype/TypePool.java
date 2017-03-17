@@ -39,11 +39,15 @@ public interface TypePool {
      */
     int indexOf(@NonNull Class<?> clazz);
 
-    @NonNull ArrayList<Class<?>> getContents();
+    @NonNull
+    ArrayList<Class<?>> getContents();
 
-    @NonNull ArrayList<ItemViewProvider> getProviders();
+    @NonNull
+    ArrayList<ItemViewProvider> getProviders();
 
-    @NonNull ItemViewProvider getProviderByIndex(int index);
+    @NonNull
+    ItemViewProvider getProviderByIndex(int index);
 
-    @NonNull <T extends ItemViewProvider> T getProviderByClass(@NonNull Class<?> clazz);
+    @NonNull
+    <T extends ItemViewProvider> T getProviderByClass(@NonNull Class<?> clazz);
 }

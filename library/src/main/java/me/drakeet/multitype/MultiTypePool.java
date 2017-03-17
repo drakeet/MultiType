@@ -55,7 +55,8 @@ public class MultiTypePool implements TypePool {
     }
 
 
-    @Override public int indexOf(@NonNull final Class<?> clazz) {
+    @Override
+    public int indexOf(@NonNull final Class<?> clazz) {
         int index = contents.indexOf(clazz);
         if (index >= 0) {
             return index;
@@ -69,22 +70,25 @@ public class MultiTypePool implements TypePool {
     }
 
 
-    @NonNull @Override public ArrayList<Class<?>> getContents() {
+    @NonNull @Override
+    public ArrayList<Class<?>> getContents() {
         return contents;
     }
 
 
-    @NonNull @Override public ArrayList<ItemViewProvider> getProviders() {
+    @NonNull @Override
+    public ArrayList<ItemViewProvider> getProviders() {
         return providers;
     }
 
 
-    @NonNull @Override public ItemViewProvider getProviderByIndex(int index) {
+    @NonNull @Override
+    public ItemViewProvider getProviderByIndex(int index) {
         return providers.get(index);
     }
 
 
-    @SuppressWarnings("unchecked") @NonNull @Override
+    @NonNull @Override @SuppressWarnings("unchecked")
     public <T extends ItemViewProvider> T getProviderByClass(@NonNull final Class<?> clazz) {
         return (T) getProviderByIndex(indexOf(clazz));
     }

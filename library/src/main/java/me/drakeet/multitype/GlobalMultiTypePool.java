@@ -37,28 +37,33 @@ public class GlobalMultiTypePool {
     }
 
 
-    @NonNull public static ArrayList<Class<?>> getContents() {
+    @NonNull
+    public static ArrayList<Class<?>> getContents() {
         return pool.getContents();
     }
 
 
-    @NonNull public static ArrayList<ItemViewProvider> getProviders() {
+    @NonNull
+    public static ArrayList<ItemViewProvider> getProviders() {
         return pool.getProviders();
     }
 
 
-    @NonNull public static ItemViewProvider getProviderByIndex(int index) {
+    @NonNull
+    public static ItemViewProvider getProviderByIndex(int index) {
         return pool.getProviderByIndex(index);
     }
 
 
-    @NonNull public static <T extends ItemViewProvider> T getProviderByClass(
+    @NonNull
+    public static <T extends ItemViewProvider> T getProviderByClass(
         @NonNull Class<?> clazz) {
         return pool.getProviderByClass(clazz);
     }
 
 
-    @NonNull public static MultiTypePool getPool() {
+    @NonNull
+    public static MultiTypePool getPool() {
         return pool;
     }
 }

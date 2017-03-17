@@ -38,16 +38,19 @@ public class TextItem implements Savable {
     }
 
 
-    @Override public void init(@NonNull byte[] data) {
+    @Override
+    public void init(@NonNull byte[] data) {
         String json = new String(data);
         this.text = new Gson().fromJson(json, TextItem.class).text;
     }
 
 
-    @NonNull @Override public byte[] toBytes() {
+    @NonNull @Override
+    public byte[] toBytes() {
         return new Gson().toJson(this).getBytes();
     }
 
 
-    @NonNull @Override public String describe() { return "Text";}
+    @NonNull @Override
+    public String describe() { return "Text";}
 }

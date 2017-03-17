@@ -21,6 +21,7 @@ package me.drakeet.multitype;
  * However you could keep it and it is useless and harmless.
  *
  * @author drakeet
+ * @deprecated use {@link Object} instead.
  */
 @Deprecated
 public interface Item {

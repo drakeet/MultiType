@@ -39,7 +39,8 @@ public class WeiboAdapter extends MultiTypeAdapter {
     }
 
 
-    @NonNull @Override public Class onFlattenClass(@NonNull Object item) {
+    @NonNull @Override
+    public Class onFlattenClass(@NonNull Object item) {
         return ((Weibo) item).content.getClass();
     }
 }

@@ -26,8 +26,8 @@ import com.google.gson.annotations.SerializedName;
 public class Data {
 
     // @formatter:off
-    public abstract static class Type1 {}
-    public abstract static class Type2 {}
+    abstract static class Type1 {}
+    abstract static class Type2 {}
     // @formatter:on
 
     @SerializedName("title") public String title;
@@ -43,7 +43,8 @@ public class Data {
     }
 
 
-    @Nullable public static Class getTypeClass(int type) {
+    @Nullable
+    public static Class getTypeClass(int type) {
         switch (type) {
             case 1:
                 return Type1.class;
