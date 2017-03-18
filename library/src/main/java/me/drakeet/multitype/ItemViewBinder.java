@@ -125,10 +125,11 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
     /**
      * Get the {@link MultiTypeAdapter} for sending notifications or getting item count, etc.
      * <p>
-     * Note that if you need to change the item's parent items, you could call {@link #getAdapter()}
+     * Note that if you need to change the item's parent items, you could call this method
      * to get the {@link MultiTypeAdapter}, and call {@link MultiTypeAdapter#getItems()} to get
-     * the unmodifiable items list, so that you should copy the items and just use {@link
-     * MultiTypeAdapter#setItems(List)} to replace the original items list and update the views.
+     * a list that can not be added any new item, so that you should copy the items and just use
+     * {@link MultiTypeAdapter#setItems(List)} to replace the original items list and update the
+     * views.
      * </p>
      *
      * @return The MultiTypeAdapter this item is currently associated with.
