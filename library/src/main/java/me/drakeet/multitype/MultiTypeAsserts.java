@@ -35,14 +35,14 @@ public class MultiTypeAsserts {
      *
      * @param adapter The MultiTypeAdapter.
      * @param items The items list.
-     * @throws ProviderNotFoundException If check failed.
+     * @throws BinderNotFoundException If check failed.
      * @throws IllegalArgumentException If your Items/List is empty.
      */
     @SuppressWarnings("unchecked")
     public static void assertAllRegistered(
         @NonNull MultiTypeAdapter adapter,
         @NonNull List<?> items)
-        throws ProviderNotFoundException, IllegalArgumentException, IllegalAccessError {
+        throws BinderNotFoundException, IllegalArgumentException, IllegalAccessError {
 
         if (items.size() == 0) {
             throw new IllegalArgumentException("Your Items/List is empty.");

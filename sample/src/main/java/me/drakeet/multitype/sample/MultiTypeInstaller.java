@@ -18,11 +18,11 @@ package me.drakeet.multitype.sample;
 
 import me.drakeet.multitype.GlobalMultiTypePool;
 import me.drakeet.multitype.sample.common.Category;
-import me.drakeet.multitype.sample.common.CategoryItemViewProvider;
+import me.drakeet.multitype.sample.common.CategoryItemViewBinder;
 import me.drakeet.multitype.sample.normal.ImageItem;
-import me.drakeet.multitype.sample.normal.ImageItemViewProvider;
+import me.drakeet.multitype.sample.normal.ImageItemViewBinder;
 import me.drakeet.multitype.sample.normal.TextItem;
-import me.drakeet.multitype.sample.normal.TextItemViewProvider;
+import me.drakeet.multitype.sample.normal.TextItemViewBinder;
 
 /**
  * @author drakeet
@@ -30,8 +30,8 @@ import me.drakeet.multitype.sample.normal.TextItemViewProvider;
 class MultiTypeInstaller {
 
     static void start() {
-        GlobalMultiTypePool.register(TextItem.class, new TextItemViewProvider());
-        GlobalMultiTypePool.register(ImageItem.class, new ImageItemViewProvider());
-        GlobalMultiTypePool.register(Category.class, new CategoryItemViewProvider());
+        GlobalMultiTypePool.register(TextItem.class, new TextItemViewBinder());
+        GlobalMultiTypePool.register(ImageItem.class, new ImageItemViewBinder());
+        GlobalMultiTypePool.register(Category.class, new CategoryItemViewBinder());
     }
 }

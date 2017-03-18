@@ -72,8 +72,8 @@ public class BilibiliActivity extends MenuBaseActivity {
 
         adapter = new MultiTypeAdapter();
         adapter.applyGlobalMultiTypePool();
-        adapter.register(Post.class, new PostViewProvider());
-        adapter.register(PostList.class, new HorizontalPostsViewProvider());
+        adapter.register(Post.class, new PostViewBinder());
+        adapter.register(PostList.class, new HorizontalPostsViewBinder());
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 

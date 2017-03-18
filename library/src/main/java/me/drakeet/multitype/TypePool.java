@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public interface TypePool {
 
-    void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider);
+    void register(@NonNull Class<?> clazz, @NonNull ItemViewBinder binder);
 
     /**
      * For getting index of the item class.
@@ -43,11 +43,11 @@ public interface TypePool {
     ArrayList<Class<?>> getContents();
 
     @NonNull
-    ArrayList<ItemViewProvider> getProviders();
+    ArrayList<ItemViewBinder> getItemViewBinders();
 
     @NonNull
-    ItemViewProvider getProviderByIndex(int index);
+    ItemViewBinder getBinderByIndex(int index);
 
     @NonNull
-    <T extends ItemViewProvider> T getProviderByClass(@NonNull Class<?> clazz);
+    <T extends ItemViewBinder> T getBinderByClass(@NonNull Class<?> clazz);
 }

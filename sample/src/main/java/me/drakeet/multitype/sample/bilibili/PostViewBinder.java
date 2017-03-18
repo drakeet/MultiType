@@ -14,45 +14,65 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.common;
+package me.drakeet.multitype.sample.bilibili;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
-public class CategoryItemViewProvider
-    extends ItemViewProvider<Category, CategoryItemViewProvider.ViewHolder> {
+public class PostViewBinder
+    extends ItemViewBinder<Post, PostViewBinder.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_category, parent, false);
+        View view = inflater.inflate(R.layout.item_post, parent, false);
         return new ViewHolder(view);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
-        holder.title.setText(category.title);
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Post post) {
+        holder.setData(post);
+        assertGetAdapterNonNull();
+    }
+
+
+    /**
+     * Just test
+     */
+    private void assertGetAdapterNonNull() {
+        if (getAdapter() == null) {
+            throw new NullPointerException("getAdapter() == null");
+        }
     }
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @NonNull private final TextView title;
+        private ImageView cover;
+        private TextView title;
 
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
+            cover = (ImageView) itemView.findViewById(R.id.cover);
             title = (TextView) itemView.findViewById(R.id.title);
+        }
+
+
+        void setData(@NonNull final Post post) {
+            cover.setImageResource(post.coverResId);
+            title.setText(post.title);
         }
     }
 }

@@ -21,10 +21,10 @@ import android.support.annotation.NonNull;
 /**
  * @author drakeet
  */
-public class ProviderNotFoundException extends RuntimeException {
+public class BinderNotFoundException extends RuntimeException {
 
-    public ProviderNotFoundException(@NonNull Class<?> clazz) {
-        super("Do you have registered the provider for {className}.class in the adapter/pool?"
+    public BinderNotFoundException(@NonNull Class<?> clazz) {
+        super("Do you have registered the binder for {className}.class in the adapter/pool?"
             .replace("{className}", clazz.getSimpleName()));
     }
 }

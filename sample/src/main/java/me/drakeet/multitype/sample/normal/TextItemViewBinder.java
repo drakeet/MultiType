@@ -21,37 +21,37 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import me.drakeet.multitype.ItemViewProvider;
+import android.widget.TextView;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
-public class ImageItemViewProvider
-    extends ItemViewProvider<ImageItem, ImageItemViewProvider.ImageHolder> {
+public class TextItemViewBinder
+    extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
 
-    class ImageHolder extends RecyclerView.ViewHolder {
-        @NonNull private final ImageView image;
+    static class TextHolder extends RecyclerView.ViewHolder {
+        @NonNull private final TextView text;
 
 
-        ImageHolder(View itemView) {
+        TextHolder(@NonNull View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            this.text = (TextView) itemView.findViewById(R.id.text);
         }
     }
 
 
     @NonNull @Override
-    protected ImageHolder onCreateViewHolder(
+    protected TextHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_image, parent, false);
-        return new ImageHolder(root);
+        View root = inflater.inflate(R.layout.item_text, parent, false);
+        return new TextHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull ImageHolder holder, @NonNull ImageItem imageContent) {
-        holder.image.setImageResource(imageContent.resId);
+    protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
+        holder.text.setText("hello: " + textItem.text);
     }
 }

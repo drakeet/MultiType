@@ -24,9 +24,9 @@ import me.drakeet.multitype.Items;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.weibo.content.SimpleImage;
-import me.drakeet.multitype.sample.weibo.content.SimpleImageViewProvider;
+import me.drakeet.multitype.sample.weibo.content.SimpleImageViewBinder;
 import me.drakeet.multitype.sample.weibo.content.SimpleText;
-import me.drakeet.multitype.sample.weibo.content.SimpleTextViewProvider;
+import me.drakeet.multitype.sample.weibo.content.SimpleTextViewBinder;
 
 import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 
@@ -75,8 +75,8 @@ public class WeiboActivity extends MenuBaseActivity {
 
         /* WeiboAdapter! */
         adapter = new WeiboAdapter();
-        adapter.register(SimpleText.class, new SimpleTextViewProvider());
-        adapter.register(SimpleImage.class, new SimpleImageViewProvider());
+        adapter.register(SimpleText.class, new SimpleTextViewBinder());
+        adapter.register(SimpleImage.class, new SimpleImageViewBinder());
         recyclerView.setAdapter(adapter);
 
         items = new Items();

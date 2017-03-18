@@ -41,7 +41,7 @@ public class NormalActivity extends MenuBaseActivity {
 
         adapter = new MultiTypeAdapter();
         adapter.applyGlobalMultiTypePool();
-        adapter.register(RichItem.class, new RichItemViewProvider());
+        adapter.register(RichItem.class, new RichItemViewBinder());
         recyclerView.setAdapter(adapter);
 
         TextItem textItem = new TextItem("world");

@@ -46,8 +46,8 @@ public class OneDataToManyActivity extends MenuBaseActivity {
                 return ((Data) item).typeClass;
             }
         });
-        adapter.register(Data.Type1.class, new DataType1ViewProvider());
-        adapter.register(Data.Type2.class, new DataType2ViewProvider());
+        adapter.register(Data.Type1.class, new DataType1ViewBinder());
+        adapter.register(Data.Type2.class, new DataType2ViewBinder());
 
         List<Data> dataList = getDataFromService();
         // 如果 Data 们不会自动把 int type -> Class typeClass 的话，
