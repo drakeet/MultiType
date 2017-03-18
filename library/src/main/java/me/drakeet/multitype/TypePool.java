@@ -17,7 +17,7 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author drakeet
@@ -39,15 +39,19 @@ public interface TypePool {
      */
     int indexOf(@NonNull Class<?> clazz);
 
+    /**
+     * Get the item classes. Its contents are not duplicated.
+     *
+     * @return the item classes list
+     */
     @NonNull
-    ArrayList<Class<?>> getContents();
+    List<Class<?>> getContents();
 
     @NonNull
-    ArrayList<ItemViewBinder> getItemViewBinders();
+    List<ItemViewBinder> getItemViewBinders();
 
     @NonNull
     ItemViewBinder getBinderByIndex(int index);
 
-    @NonNull
-    <T extends ItemViewBinder> T getBinderByClass(@NonNull Class<?> clazz);
+    @NonNull <T extends ItemViewBinder> T getBinderByClass(@NonNull Class<?> clazz);
 }

@@ -19,6 +19,7 @@ package me.drakeet.multitype;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author drakeet
@@ -26,8 +27,9 @@ import java.util.ArrayList;
 public class MultiTypePool implements TypePool {
 
     private final String TAG = MultiTypePool.class.getSimpleName();
-    private ArrayList<Class<?>> contents;
-    private ArrayList<ItemViewBinder> binders;
+
+    @NonNull private final List<Class<?>> contents;
+    @NonNull private final List<ItemViewBinder> binders;
 
 
     public MultiTypePool() {
@@ -39,6 +41,12 @@ public class MultiTypePool implements TypePool {
     public MultiTypePool(int initialCapacity) {
         this.contents = new ArrayList<>(initialCapacity);
         this.binders = new ArrayList<>(initialCapacity);
+    }
+
+
+    public MultiTypePool(@NonNull List<Class<?>> contents, @NonNull List<ItemViewBinder> binders) {
+        this.contents = contents;
+        this.binders = binders;
     }
 
 
@@ -71,13 +79,13 @@ public class MultiTypePool implements TypePool {
 
 
     @NonNull @Override
-    public ArrayList<Class<?>> getContents() {
+    public List<Class<?>> getContents() {
         return contents;
     }
 
 
     @NonNull @Override
-    public ArrayList<ItemViewBinder> getItemViewBinders() {
+    public List<ItemViewBinder> getItemViewBinders() {
         return binders;
     }
 

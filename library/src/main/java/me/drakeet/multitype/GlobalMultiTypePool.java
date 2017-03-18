@@ -17,7 +17,7 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author drakeet
@@ -38,13 +38,13 @@ public class GlobalMultiTypePool {
 
 
     @NonNull
-    public static ArrayList<Class<?>> getContents() {
+    public static List<Class<?>> getContents() {
         return pool.getContents();
     }
 
 
     @NonNull
-    public static ArrayList<ItemViewBinder> getBinders() {
+    public static List<ItemViewBinder> getBinders() {
         return pool.getItemViewBinders();
     }
 

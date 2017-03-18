@@ -22,7 +22,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -265,13 +264,13 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @NonNull @Override
-    public ArrayList<Class<?>> getContents() {
+    public List<Class<?>> getContents() {
         return delegate.getContents();
     }
 
 
     @NonNull @Override
-    public ArrayList<ItemViewBinder> getItemViewBinders() {
+    public List<ItemViewBinder> getItemViewBinders() {
         return delegate.getItemViewBinders();
     }
 
