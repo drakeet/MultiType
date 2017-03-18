@@ -22,11 +22,11 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.4.3'
+    compile 'me.drakeet.multitype:multitype:2.5.0-beta'
 }
 ```
 
-**NOTE**: If you are updating from **v2.4.0** to v2.4.3,
+**NOTE**: If you are updating from **v2.4.0** to v2.5.0-beta,
 note that the `setItems(items)` method has removed the `notifyDataSetChanged()`
 and you need to call it by yourself.
 
@@ -45,11 +45,11 @@ public class TextItem {
 }
 ```
 
-#### Step 2. Create a class extends `ItemViewProvider<T, V extends ViewHolder>`, for example:
+#### Step 2. Create a class extends `ItemViewBinder<T, VH extends ViewHolder>`, for example:
 
 ```java
-public class TextItemViewProvider
-    extends ItemViewProvider<TextItem, TextItemViewProvider.TextHolder> {
+public class TextItemViewBinder
+    extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
 
     static class TextHolder extends RecyclerView.ViewHolder {
         @NonNull private final TextView text;
@@ -89,9 +89,9 @@ public class NormalActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
         adapter = new MultiTypeAdapter();
-        adapter.register(TextItem.class, new TextItemViewProvider());
-        adapter.register(ImageItem.class, new ImageItemViewProvider());
-        adapter.register(RichItem.class, new RichItemViewProvider());
+        adapter.register(TextItem.class, new TextItemViewBinder());
+        adapter.register(ImageItem.class, new ImageItemViewBinder());
+        adapter.register(RichItem.class, new RichItemViewBinder());
         recyclerView.setAdapter(adapter);
 
         TextItem textItem = new TextItem("world");
@@ -124,7 +124,7 @@ https://github.com/drakeet/MultiType/releases
 
 - **[drakeet/MultiTypeTemplates](https://github.com/drakeet/MultiTypeTemplates)**
 
- An intellij idea plugin for Android to generate `MultiType` `Item` and `ItemViewProvider` easily.
+ An intellij idea plugin for Android to generate `MultiType` `Item` and `ItemViewBinder` easily.
 
 ![](http://ww4.sinaimg.cn/large/86e2ff85gw1f8yj0sejd6j21340ben1s.jpg)
 
