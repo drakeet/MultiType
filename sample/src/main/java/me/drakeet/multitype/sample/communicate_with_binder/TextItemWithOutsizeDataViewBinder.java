@@ -1,4 +1,4 @@
-package me.drakeet.multitype.sample.communicate_with_provider;
+package me.drakeet.multitype.sample.communicate_with_binder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,23 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.normal.TextItem;
 
 /**
  * @author drakeet
  */
-public class TextItemWithOutsizeDataViewProvider
-    extends ItemViewProvider<TextItem, TextItemWithOutsizeDataViewProvider.ViewHolder> {
+public class TextItemWithOutsizeDataViewBinder
+    extends ItemViewBinder<TextItem, TextItemWithOutsizeDataViewBinder.ViewHolder> {
 
     public String aValueFromOutside;
 
 
-    public TextItemWithOutsizeDataViewProvider() {}
+    public TextItemWithOutsizeDataViewBinder() {}
 
 
-    public TextItemWithOutsizeDataViewProvider(String aValueFromOutside) {
+    public TextItemWithOutsizeDataViewBinder(String aValueFromOutside) {
         this.aValueFromOutside = aValueFromOutside;
     }
 

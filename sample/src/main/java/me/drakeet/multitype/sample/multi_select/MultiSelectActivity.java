@@ -58,7 +58,7 @@ public class MultiSelectActivity extends MenuBaseActivity {
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MultiTypeAdapter();
         adapter.applyGlobalMultiTypePool();
-        adapter.register(Square.class, new SquareViewProvider(selectedSet));
+        adapter.register(Square.class, new SquareViewBinder(selectedSet));
 
         loadData();
 

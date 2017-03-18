@@ -27,30 +27,30 @@ public class MultiTypePool implements TypePool {
 
     private final String TAG = MultiTypePool.class.getSimpleName();
     private ArrayList<Class<?>> contents;
-    private ArrayList<ItemViewProvider> providers;
+    private ArrayList<ItemViewBinder> binders;
 
 
     public MultiTypePool() {
         this.contents = new ArrayList<>();
-        this.providers = new ArrayList<>();
+        this.binders = new ArrayList<>();
     }
 
 
     public MultiTypePool(int initialCapacity) {
         this.contents = new ArrayList<>(initialCapacity);
-        this.providers = new ArrayList<>(initialCapacity);
+        this.binders = new ArrayList<>(initialCapacity);
     }
 
 
-    public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
+    public void register(@NonNull Class<?> clazz, @NonNull ItemViewBinder binder) {
         if (!contents.contains(clazz)) {
             contents.add(clazz);
-            providers.add(provider);
+            binders.add(binder);
         } else {
             int index = contents.indexOf(clazz);
-            providers.set(index, provider);
+            binders.set(index, binder);
             Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
-                "It will override the original provider.");
+                "It will override the original binder.");
         }
     }
 
@@ -77,19 +77,19 @@ public class MultiTypePool implements TypePool {
 
 
     @NonNull @Override
-    public ArrayList<ItemViewProvider> getProviders() {
-        return providers;
+    public ArrayList<ItemViewBinder> getItemViewBinders() {
+        return binders;
     }
 
 
     @NonNull @Override
-    public ItemViewProvider getProviderByIndex(int index) {
-        return providers.get(index);
+    public ItemViewBinder getBinderByIndex(int index) {
+        return binders.get(index);
     }
 
 
     @NonNull @Override @SuppressWarnings("unchecked")
-    public <T extends ItemViewProvider> T getProviderByClass(@NonNull final Class<?> clazz) {
-        return (T) getProviderByIndex(indexOf(clazz));
+    public <T extends ItemViewBinder> T getBinderByClass(@NonNull final Class<?> clazz) {
+        return (T) getBinderByIndex(indexOf(clazz));
     }
 }

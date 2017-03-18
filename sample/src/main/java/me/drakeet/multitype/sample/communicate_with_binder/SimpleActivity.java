@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.communicate_with_provider;
+package me.drakeet.multitype.sample.communicate_with_binder;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -45,7 +45,7 @@ public class SimpleActivity extends MenuBaseActivity {
 
         Items items = new Items();
         adapter = new MultiTypeAdapter();
-        adapter.register(TextItem.class, new TextItemWithOutsizeDataViewProvider(aFieldValue));
+        adapter.register(TextItem.class, new TextItemWithOutsizeDataViewBinder(aFieldValue));
         recyclerView.setAdapter(adapter);
         assertHasTheSameAdapter(recyclerView, adapter);
 

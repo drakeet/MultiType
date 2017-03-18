@@ -67,14 +67,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @Override
-    public void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
-        delegate.register(clazz, provider);
+    public void register(@NonNull Class<?> clazz, @NonNull ItemViewBinder binder) {
+        delegate.register(clazz, binder);
     }
 
 
     public void registerAll(@NonNull final TypePool pool) {
         for (int i = 0; i < pool.getContents().size(); i++) {
-            delegate.register(pool.getContents().get(i), pool.getProviders().get(i));
+            delegate.register(pool.getContents().get(i), pool.getItemViewBinders().get(i));
         }
     }
 
@@ -96,7 +96,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     /**
-     * Set the TypePool to hold the types and view providers.
+     * Set the TypePool to hold the types and view binders.
      *
      * @param typePool The TypePool implementation
      */
@@ -132,11 +132,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
-        ItemViewProvider provider = getProviderByIndex(indexViewType);
-        provider.adapter = MultiTypeAdapter.this;
-        provider.items = items;
+        ItemViewBinder binder = getBinderByIndex(indexViewType);
+        binder.adapter = MultiTypeAdapter.this;
+        binder.items = items;
         assert inflater != null;
-        return provider.onCreateViewHolder(inflater, parent);
+        return binder.onCreateViewHolder(inflater, parent);
     }
 
 
@@ -156,8 +156,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         assert items != null;
         Object item = items.get(position);
-        ItemViewProvider provider = getProviderByItem(item);
-        provider.onBindViewHolder(holder, flattenItem(item), payloads);
+        ItemViewBinder binder = getBinderByItem(item);
+        binder.onBindViewHolder(holder, flattenItem(item), payloads);
     }
 
 
@@ -170,60 +170,59 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     public void applyGlobalMultiTypePool() {
         for (int i = 0; i < GlobalMultiTypePool.getContents().size(); i++) {
             final Class<?> clazz = GlobalMultiTypePool.getContents().get(i);
-            final ItemViewProvider provider = GlobalMultiTypePool.getProviders().get(i);
+            final ItemViewBinder binder = GlobalMultiTypePool.getBinders().get(i);
             if (!this.getContents().contains(clazz)) {
-                this.register(clazz, provider);
+                this.register(clazz, binder);
             }
         }
     }
 
 
     @Override
-    public int indexOf(@NonNull Class<?> clazz)
-        throws ProviderNotFoundException {
+    public int indexOf(@NonNull Class<?> clazz) throws BinderNotFoundException {
         int index = delegate.indexOf(clazz);
         if (index >= 0) {
             return index;
         }
-        throw new ProviderNotFoundException(clazz);
+        throw new BinderNotFoundException(clazz);
     }
 
 
     @Override @SuppressWarnings("unchecked")
     public void onViewRecycled(ViewHolder holder) {
-        getProviderByViewHolder(holder).onViewRecycled(holder);
+        getBinderByViewHolder(holder).onViewRecycled(holder);
     }
 
 
     @Override @SuppressWarnings("unchecked")
     public boolean onFailedToRecycleView(ViewHolder holder) {
-        return getProviderByViewHolder(holder).onFailedToRecycleView(holder);
+        return getBinderByViewHolder(holder).onFailedToRecycleView(holder);
     }
 
 
     @Override @SuppressWarnings("unchecked")
     public void onViewAttachedToWindow(ViewHolder holder) {
-        getProviderByViewHolder(holder).onViewAttachedToWindow(holder);
+        getBinderByViewHolder(holder).onViewAttachedToWindow(holder);
     }
 
 
     @Override @SuppressWarnings("unchecked")
     public void onViewDetachedFromWindow(ViewHolder holder) {
-        getProviderByViewHolder(holder).onViewDetachedFromWindow(holder);
+        getBinderByViewHolder(holder).onViewDetachedFromWindow(holder);
     }
 
 
     @NonNull
-    private ItemViewProvider getProviderByViewHolder(@NonNull ViewHolder holder) {
+    private ItemViewBinder getBinderByViewHolder(@NonNull ViewHolder holder) {
         assert items != null;
         Object item = items.get(holder.getAdapterPosition());
-        return getProviderByItem(item);
+        return getBinderByItem(item);
     }
 
 
     @NonNull
-    private ItemViewProvider getProviderByItem(@NonNull Object item) {
-        return getProviderByClass(flattenClass(item));
+    private ItemViewBinder getBinderByItem(@NonNull Object item) {
+        return getBinderByClass(flattenClass(item));
     }
 
 
@@ -272,20 +271,20 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @NonNull @Override
-    public ArrayList<ItemViewProvider> getProviders() {
-        return delegate.getProviders();
+    public ArrayList<ItemViewBinder> getItemViewBinders() {
+        return delegate.getItemViewBinders();
     }
 
 
     @NonNull @Override
-    public ItemViewProvider getProviderByIndex(int index) {
-        return delegate.getProviderByIndex(index);
+    public ItemViewBinder getBinderByIndex(int index) {
+        return delegate.getBinderByIndex(index);
     }
 
 
     @NonNull @Override
-    public <T extends ItemViewProvider> T getProviderByClass(@NonNull Class<?> clazz) {
-        return delegate.getProviderByClass(clazz);
+    public <T extends ItemViewBinder> T getBinderByClass(@NonNull Class<?> clazz) {
+        return delegate.getBinderByClass(clazz);
     }
 
 

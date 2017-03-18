@@ -23,7 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.Set;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 import static java.lang.String.valueOf;
@@ -31,12 +31,12 @@ import static java.lang.String.valueOf;
 /**
  * @author drakeet
  */
-public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvider.ViewHolder> {
+public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.ViewHolder> {
 
     private final Set<Integer> selectedSet;
 
 
-    public SquareViewProvider(Set<Integer> selectedSet) {this.selectedSet = selectedSet;}
+    public SquareViewBinder(Set<Integer> selectedSet) {this.selectedSet = selectedSet;}
 
 
     @NonNull @Override

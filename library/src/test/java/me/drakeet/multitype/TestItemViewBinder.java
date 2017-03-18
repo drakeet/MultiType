@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 /**
  * @author drakeet
  */
-public class TestItemViewProvider
-    extends ItemViewProvider<TestItem, TestItemViewProvider.ViewHolder> {
+public class TestItemViewBinder
+    extends ItemViewBinder<TestItem, TestItemViewBinder.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(

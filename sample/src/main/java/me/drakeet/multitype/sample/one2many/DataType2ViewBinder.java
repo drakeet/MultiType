@@ -14,65 +14,53 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
+package me.drakeet.multitype.sample.one2many;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 /**
+ * Note: Data - DataType2ViewBinder
+ *
  * @author drakeet
  */
-public class PostViewProvider
-    extends ItemViewProvider<Post, PostViewProvider.ViewHolder> {
+public class DataType2ViewBinder
+    extends ItemViewBinder<Data, DataType2ViewBinder.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_post, parent, false);
-        return new ViewHolder(view);
+        View root = inflater.inflate(R.layout.item_data_type2, parent, false);
+        return new ViewHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Post post) {
-        holder.setData(post);
-        assertGetAdapterNonNull();
-    }
-
-
-    /**
-     * Just test
-     */
-    private void assertGetAdapterNonNull() {
-        if (getAdapter() == null) {
-            throw new NullPointerException("getAdapter() == null");
-        }
+    protected void onBindViewHolder(
+        @NonNull DataType2ViewBinder.ViewHolder holder, @NonNull Data data) {
+        holder.setTitle(data.title);
     }
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView cover;
-        private TextView title;
+        TextView titleView;
 
 
-        ViewHolder(@NonNull View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.cover);
-            title = (TextView) itemView.findViewById(R.id.title);
+            titleView = (TextView) itemView.findViewById(android.R.id.title);
         }
 
 
-        void setData(@NonNull final Post post) {
-            cover.setImageResource(post.coverResId);
-            title.setText(post.title);
+        void setTitle(String title) {
+            titleView.setText(title);
         }
     }
 }

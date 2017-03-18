@@ -14,52 +14,46 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.one2many;
+package me.drakeet.multitype.sample.weibo.content;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import me.drakeet.multitype.ItemViewProvider;
+import android.widget.ImageView;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.weibo.ContentHolder;
+import me.drakeet.multitype.sample.weibo.WeiboFrameBinder;
 
 /**
- * Note: Data - DataType1ViewProvider
- *
  * @author drakeet
  */
-public class DataType1ViewProvider
-    extends ItemViewProvider<Data, DataType1ViewProvider.ViewHolder> {
+public class SimpleImageViewBinder
+    extends WeiboFrameBinder<SimpleImage, SimpleImageViewBinder.ViewHolder> {
 
-    @NonNull @Override
-    protected ViewHolder onCreateViewHolder(
+    @Override
+    protected ContentHolder onCreateContentViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_data_type1, parent, false);
-        return new ViewHolder(root);
+        View contentView = inflater.inflate(R.layout.item_weibo_simple_image, parent, false);
+        return new ViewHolder(contentView);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Data data) {
-        holder.setTitle(data.title);
+    protected void onBindContentViewHolder(
+        @NonNull ViewHolder holder, @NonNull SimpleImage simpleImage) {
+        holder.simpleImage.setImageResource(simpleImage.resId);
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends ContentHolder {
 
-        TextView titleView;
+        private ImageView simpleImage;
 
 
         ViewHolder(View itemView) {
             super(itemView);
-            titleView = (TextView) itemView.findViewById(android.R.id.title);
-        }
-
-
-        void setTitle(String title) {
-            titleView.setText(title);
+            simpleImage = (ImageView) itemView.findViewById(R.id.simple_image);
         }
     }
 }

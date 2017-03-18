@@ -27,8 +27,8 @@ public class GlobalMultiTypePool {
     private static MultiTypePool pool = new MultiTypePool();
 
 
-    public static void register(@NonNull Class<?> clazz, @NonNull ItemViewProvider provider) {
-        pool.register(clazz, provider);
+    public static void register(@NonNull Class<?> clazz, @NonNull ItemViewBinder binder) {
+        pool.register(clazz, binder);
     }
 
 
@@ -44,21 +44,21 @@ public class GlobalMultiTypePool {
 
 
     @NonNull
-    public static ArrayList<ItemViewProvider> getProviders() {
-        return pool.getProviders();
+    public static ArrayList<ItemViewBinder> getBinders() {
+        return pool.getItemViewBinders();
     }
 
 
     @NonNull
-    public static ItemViewProvider getProviderByIndex(int index) {
-        return pool.getProviderByIndex(index);
+    public static ItemViewBinder getBinderByIndex(int index) {
+        return pool.getBinderByIndex(index);
     }
 
 
     @NonNull
-    public static <T extends ItemViewProvider> T getProviderByClass(
+    public static <T extends ItemViewBinder> T getBinderByClass(
         @NonNull Class<?> clazz) {
-        return pool.getProviderByClass(clazz);
+        return pool.getBinderByClass(clazz);
     }
 
 

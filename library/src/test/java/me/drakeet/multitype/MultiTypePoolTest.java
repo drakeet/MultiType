@@ -32,8 +32,8 @@ public class MultiTypePoolTest {
     public void register() {
         pool = new MultiTypePool();
         pool.getContents().clear();
-        pool.register(TestItem.class, new TestItemViewProvider());
-        pool.register(RegisteredSubClass.class, new TestItemViewProvider());
+        pool.register(TestItem.class, new TestItemViewBinder());
+        pool.register(RegisteredSubClass.class, new TestItemViewBinder());
     }
 
 

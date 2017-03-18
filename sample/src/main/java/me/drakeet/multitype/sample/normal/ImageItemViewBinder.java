@@ -22,41 +22,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
-public class RichItemViewProvider
-    extends ItemViewProvider<RichItem, RichItemViewProvider.RichHolder> {
+public class ImageItemViewBinder
+    extends ItemViewBinder<ImageItem, ImageItemViewBinder.ImageHolder> {
 
-    static class RichHolder extends RecyclerView.ViewHolder {
-
-        @NonNull final TextView text;
-        @NonNull final ImageView image;
+    class ImageHolder extends RecyclerView.ViewHolder {
+        @NonNull private final ImageView image;
 
 
-        RichHolder(@NonNull View itemView) {
+        ImageHolder(View itemView) {
             super(itemView);
-            this.text = (TextView) itemView.findViewById(R.id.text);
-            this.image = (ImageView) itemView.findViewById(R.id.image);
+            image = (ImageView) itemView.findViewById(R.id.image);
         }
     }
 
 
     @NonNull @Override
-    protected RichHolder onCreateViewHolder(
+    protected ImageHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_rich, parent, false);
-        return new RichHolder(root);
+        View root = inflater.inflate(R.layout.item_image, parent, false);
+        return new ImageHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull RichHolder holder, @NonNull RichItem richContent) {
-        holder.text.setText(richContent.text);
-        holder.image.setImageResource(richContent.imageResId);
+    protected void onBindViewHolder(@NonNull ImageHolder holder, @NonNull ImageItem imageContent) {
+        holder.image.setImageResource(imageContent.resId);
     }
 }

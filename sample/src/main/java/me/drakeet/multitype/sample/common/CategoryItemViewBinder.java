@@ -14,46 +14,45 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.weibo.content;
+package me.drakeet.multitype.sample.common;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
-import me.drakeet.multitype.sample.weibo.ContentHolder;
-import me.drakeet.multitype.sample.weibo.WeiboFrameProvider;
 
 /**
  * @author drakeet
  */
-public class SimpleTextViewProvider
-    extends WeiboFrameProvider<SimpleText, SimpleTextViewProvider.ViewHolder> {
+public class CategoryItemViewBinder
+    extends ItemViewBinder<Category, CategoryItemViewBinder.ViewHolder> {
 
-    @Override
-    protected ContentHolder onCreateContentViewHolder(
+    @NonNull @Override
+    protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View contentView = inflater.inflate(R.layout.item_weibo_simple_text, parent, false);
-        return new ViewHolder(contentView);
+        View view = inflater.inflate(R.layout.item_category, parent, false);
+        return new ViewHolder(view);
     }
 
 
     @Override
-    protected void onBindContentViewHolder(
-        @NonNull ViewHolder holder, @NonNull SimpleText simpleText) {
-        holder.simpleText.setText(simpleText.text);
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
+        holder.title.setText(category.title);
     }
 
 
-    static class ViewHolder extends ContentHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView simpleText;
+        @NonNull private final TextView title;
 
 
-        ViewHolder(View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
-            simpleText = (TextView) itemView.findViewById(R.id.simple_text);
+            title = (TextView) itemView.findViewById(R.id.title);
         }
     }
 }

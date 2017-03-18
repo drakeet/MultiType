@@ -23,14 +23,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
-public class HorizontalPostsViewProvider
-    extends ItemViewProvider<PostList, HorizontalPostsViewProvider.ViewHolder> {
+public class HorizontalPostsViewBinder
+    extends ItemViewBinder<PostList, HorizontalPostsViewBinder.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(

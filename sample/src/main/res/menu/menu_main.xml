@@ -19,7 +19,7 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/communicate_with_provider"
+        android:id="@+id/communicate_with_binder"
         android:title="communicate with provider"
         app:showAsAction="never"/>
 

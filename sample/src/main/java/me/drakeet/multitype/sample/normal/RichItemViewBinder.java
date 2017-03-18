@@ -21,37 +21,42 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
-public class TextItemViewProvider
-    extends ItemViewProvider<TextItem, TextItemViewProvider.TextHolder> {
+public class RichItemViewBinder
+    extends ItemViewBinder<RichItem, RichItemViewBinder.RichHolder> {
 
-    static class TextHolder extends RecyclerView.ViewHolder {
-        @NonNull private final TextView text;
+    static class RichHolder extends RecyclerView.ViewHolder {
+
+        @NonNull final TextView text;
+        @NonNull final ImageView image;
 
 
-        TextHolder(@NonNull View itemView) {
+        RichHolder(@NonNull View itemView) {
             super(itemView);
             this.text = (TextView) itemView.findViewById(R.id.text);
+            this.image = (ImageView) itemView.findViewById(R.id.image);
         }
     }
 
 
     @NonNull @Override
-    protected TextHolder onCreateViewHolder(
+    protected RichHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_text, parent, false);
-        return new TextHolder(root);
+        View root = inflater.inflate(R.layout.item_rich, parent, false);
+        return new RichHolder(root);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
-        holder.text.setText("hello: " + textItem.text);
+    protected void onBindViewHolder(@NonNull RichHolder holder, @NonNull RichItem richContent) {
+        holder.text.setText(richContent.text);
+        holder.image.setImageResource(richContent.imageResId);
     }
 }

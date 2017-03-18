@@ -42,7 +42,7 @@
             android:name=".weibo.WeiboActivity"
             android:label="@string/normal_app_name"/>
         <activity
-            android:name=".communicate_with_provider.SimpleActivity"
+            android:name=".communicate_with_binder.SimpleActivity"
             android:label="@string/normal_app_name"/>
 
         <activity

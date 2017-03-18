@@ -25,7 +25,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -33,9 +33,9 @@ import static android.widget.Toast.LENGTH_SHORT;
 /**
  * @author drakeet
  */
-public abstract class WeiboFrameProvider
+public abstract class WeiboFrameBinder
     <Content extends WeiboContent, SubViewHolder extends ContentHolder>
-    extends ItemViewProvider<Weibo, WeiboFrameProvider.FrameHolder> {
+    extends ItemViewBinder<Weibo, WeiboFrameBinder.FrameHolder> {
 
     protected abstract ContentHolder onCreateContentViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);

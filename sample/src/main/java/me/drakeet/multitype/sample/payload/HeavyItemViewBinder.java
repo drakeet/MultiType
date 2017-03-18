@@ -25,13 +25,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
-import me.drakeet.multitype.ItemViewProvider;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
 
 /**
  * @author drakeet
  */
-class HeavyItemViewProvider extends ItemViewProvider<HeavyItem, HeavyItemViewProvider.ViewHolder> {
+class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(

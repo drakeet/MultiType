@@ -38,7 +38,7 @@ public class TestPayloadActivity extends MenuBaseActivity {
         MultiTypeAdapter adapter = new MultiTypeAdapter();
         recyclerView.setAdapter(adapter);
 
-        adapter.register(HeavyItem.class, new HeavyItemViewProvider());
+        adapter.register(HeavyItem.class, new HeavyItemViewBinder());
 
         Items items = new Items();
         for (int i = 0; i < 30; i++) {
