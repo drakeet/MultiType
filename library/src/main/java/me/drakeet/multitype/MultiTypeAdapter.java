@@ -134,6 +134,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
         }
         ItemViewProvider provider = getProviderByIndex(indexViewType);
         provider.adapter = MultiTypeAdapter.this;
+        provider.items = items;
+        assert inflater != null;
         return provider.onCreateViewHolder(inflater, parent);
     }
 
@@ -154,7 +156,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         assert items != null;
         Object item = items.get(position);
-        ItemViewProvider provider = getProviderByClass(flattenClass(item));
+        ItemViewProvider provider = getProviderByItem(item);
         provider.onBindViewHolder(holder, flattenItem(item), payloads);
     }
 
@@ -184,6 +186,44 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
             return index;
         }
         throw new ProviderNotFoundException(clazz);
+    }
+
+
+    @Override @SuppressWarnings("unchecked")
+    public void onViewRecycled(ViewHolder holder) {
+        getProviderByViewHolder(holder).onViewRecycled(holder);
+    }
+
+
+    @Override @SuppressWarnings("unchecked")
+    public boolean onFailedToRecycleView(ViewHolder holder) {
+        return getProviderByViewHolder(holder).onFailedToRecycleView(holder);
+    }
+
+
+    @Override @SuppressWarnings("unchecked")
+    public void onViewAttachedToWindow(ViewHolder holder) {
+        getProviderByViewHolder(holder).onViewAttachedToWindow(holder);
+    }
+
+
+    @Override @SuppressWarnings("unchecked")
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        getProviderByViewHolder(holder).onViewDetachedFromWindow(holder);
+    }
+
+
+    @NonNull
+    private ItemViewProvider getProviderByViewHolder(@NonNull ViewHolder holder) {
+        assert items != null;
+        Object item = items.get(holder.getAdapterPosition());
+        return getProviderByItem(item);
+    }
+
+
+    @NonNull
+    private ItemViewProvider getProviderByItem(@NonNull Object item) {
+        return getProviderByClass(flattenClass(item));
     }
 
 
@@ -250,9 +290,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @Nullable
-    public List<?> getItems() {
-        return items;
-    }
+    public List<?> getItems() { return items; }
 
 
     @NonNull
