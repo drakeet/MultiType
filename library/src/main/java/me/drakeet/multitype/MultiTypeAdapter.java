@@ -71,7 +71,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    public void registerAll(@NonNull final TypePool pool) {
+    public final void registerAll(@NonNull final TypePool pool) {
         for (int i = 0; i < pool.getContents().size(); i++) {
             delegate.register(pool.getContents().get(i), pool.getItemViewBinders().get(i));
         }
@@ -118,8 +118,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @Override @SuppressWarnings("unchecked")
-    public int getItemViewType(int position) {
+    @Override
+    public final int getItemViewType(int position) {
         assert items != null;
         Object item = items.get(position);
         return indexOf(flattenClass(item));
@@ -127,7 +127,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
+    public final ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
@@ -139,20 +139,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    /**
-     * Note that this method is final, and if you need to do something onBindViewHolder(),
-     * you should override {@link #onBindViewHolder(ViewHolder, int, List)} instead.
-     *
-     * @param holder The ViewHolder which should be updated to represent the contents of the
-     * item at the given position in the data set.
-     * @param position The position of the item within the adapter's data set.
-     */
     @Override
     public final void onBindViewHolder(ViewHolder holder, int position) {}
 
 
     @Override @SuppressWarnings("unchecked")
-    public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
+    public final void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         assert items != null;
         Object item = items.get(position);
         ItemViewBinder binder = getBinderByItem(item);
@@ -161,12 +153,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @Override
-    public int getItemCount() {
+    public final int getItemCount() {
         return items == null ? 0 : items.size();
     }
 
 
-    public void applyGlobalMultiTypePool() {
+    public final void applyGlobalMultiTypePool() {
         for (int i = 0; i < GlobalMultiTypePool.getContents().size(); i++) {
             final Class<?> clazz = GlobalMultiTypePool.getContents().get(i);
             final ItemViewBinder binder = GlobalMultiTypePool.getBinders().get(i);
@@ -226,7 +218,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @NonNull @SuppressWarnings("deprecation")
-    Class flattenClass(@NonNull final Object item) {
+    final Class<?> flattenClass(@NonNull final Object item) {
         if (providedFlatTypeAdapter != null) {
             return providedFlatTypeAdapter.onFlattenClass(item);
         }
@@ -235,7 +227,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
 
     @NonNull @SuppressWarnings("deprecation")
-    Object flattenItem(@NonNull final Object item) {
+    final Object flattenItem(@NonNull final Object item) {
         if (providedFlatTypeAdapter != null) {
             return providedFlatTypeAdapter.onFlattenItem(item);
         }
@@ -248,7 +240,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
      * The method may be removed next time.
      */
     @NonNull @Override
-    public Class onFlattenClass(@NonNull final Object item) {
+    public Class<?> onFlattenClass(@NonNull final Object item) {
         return item.getClass();
     }
 
