@@ -23,35 +23,28 @@
         android:label="@string/normal_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".multi_select.MultiSelectActivity"
-            android:label="@string/normal_app_name"/>
-        <activity
-            android:name=".bilibili.BilibiliActivity"
-            android:label="@string/normal_app_name">
+            android:name=".bilibili.BilibiliActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".normal.NormalActivity"
-            android:label="@string/normal_app_name"/>
-        <activity
-            android:name=".weibo.WeiboActivity"
-            android:label="@string/normal_app_name"/>
-        <activity
-            android:name=".communicate_with_binder.SimpleActivity"
-            android:label="@string/normal_app_name"/>
 
-        <activity
-            android:name=".one2many.OneDataToManyActivity"
-            android:label="@string/normal_app_name"/>
+        <activity android:name=".multi_select.MultiSelectActivity"/>
 
-        <activity
-            android:name=".payload.TestPayloadActivity"
-            android:label="@string/normal_app_name"/>
+        <activity android:name=".normal.NormalActivity"/>
+
+        <activity android:name=".weibo.WeiboActivity"/>
+
+        <activity android:name=".communicate_with_binder.SimpleActivity"/>
+
+        <activity android:name=".one2many.OneDataToManyActivity"/>
+
+        <activity android:name=".payload.TestPayloadActivity"/>
+        
     </application>
 
 </manifest>
