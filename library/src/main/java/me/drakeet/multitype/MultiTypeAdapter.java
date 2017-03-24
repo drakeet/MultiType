@@ -206,7 +206,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     @NonNull
     private ItemViewBinder getBinderByViewHolder(@NonNull ViewHolder holder) {
         assert items != null;
-        Object item = items.get(holder.getAdapterPosition());
+        Object item = items.get(holder.getLayoutPosition());
         return getBinderByItem(item);
     }
 
