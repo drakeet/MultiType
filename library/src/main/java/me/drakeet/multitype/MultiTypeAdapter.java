@@ -181,30 +181,30 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
 
     @Override @SuppressWarnings("unchecked")
     public void onViewRecycled(ViewHolder holder) {
-        getBinderByViewHolder(holder).onViewRecycled(holder);
+        getLaidBinderByViewHolder(holder).onViewRecycled(holder);
     }
 
 
     @Override @SuppressWarnings("unchecked")
     public boolean onFailedToRecycleView(ViewHolder holder) {
-        return getBinderByViewHolder(holder).onFailedToRecycleView(holder);
+        return getLaidBinderByViewHolder(holder).onFailedToRecycleView(holder);
     }
 
 
     @Override @SuppressWarnings("unchecked")
     public void onViewAttachedToWindow(ViewHolder holder) {
-        getBinderByViewHolder(holder).onViewAttachedToWindow(holder);
+        getLaidBinderByViewHolder(holder).onViewAttachedToWindow(holder);
     }
 
 
     @Override @SuppressWarnings("unchecked")
     public void onViewDetachedFromWindow(ViewHolder holder) {
-        getBinderByViewHolder(holder).onViewDetachedFromWindow(holder);
+        getLaidBinderByViewHolder(holder).onViewDetachedFromWindow(holder);
     }
 
 
     @NonNull
-    private ItemViewBinder getBinderByViewHolder(@NonNull ViewHolder holder) {
+    private ItemViewBinder getLaidBinderByViewHolder(@NonNull ViewHolder holder) {
         assert items != null;
         Object item = items.get(holder.getLayoutPosition());
         return getBinderByItem(item);
