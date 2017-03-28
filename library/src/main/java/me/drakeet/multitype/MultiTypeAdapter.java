@@ -147,7 +147,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     public final void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         assert items != null;
         Object item = items.get(position);
-        ItemViewBinder binder = getBinderByItem(item);
+        ItemViewBinder binder = getBinderByClass(flattenClass(item));
         binder.onBindViewHolder(holder, flattenItem(item), payloads);
     }
 
@@ -176,44 +176,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
             return index;
         }
         throw new BinderNotFoundException(clazz);
-    }
-
-
-    @Override @SuppressWarnings("unchecked")
-    public void onViewRecycled(ViewHolder holder) {
-        getLaidBinderByViewHolder(holder).onViewRecycled(holder);
-    }
-
-
-    @Override @SuppressWarnings("unchecked")
-    public boolean onFailedToRecycleView(ViewHolder holder) {
-        return getLaidBinderByViewHolder(holder).onFailedToRecycleView(holder);
-    }
-
-
-    @Override @SuppressWarnings("unchecked")
-    public void onViewAttachedToWindow(ViewHolder holder) {
-        getLaidBinderByViewHolder(holder).onViewAttachedToWindow(holder);
-    }
-
-
-    @Override @SuppressWarnings("unchecked")
-    public void onViewDetachedFromWindow(ViewHolder holder) {
-        getLaidBinderByViewHolder(holder).onViewDetachedFromWindow(holder);
-    }
-
-
-    @NonNull
-    private ItemViewBinder getLaidBinderByViewHolder(@NonNull ViewHolder holder) {
-        assert items != null;
-        Object item = items.get(holder.getLayoutPosition());
-        return getBinderByItem(item);
-    }
-
-
-    @NonNull
-    private ItemViewBinder getBinderByItem(@NonNull Object item) {
-        return getBinderByClass(flattenClass(item));
     }
 
 
