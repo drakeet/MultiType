@@ -80,5 +80,4 @@ public class SmokeTest {
             allOf(withId(R.id.title), withText("TestPayloadActivity"), isDisplayed()));
         appCompatTextView6.perform(click());
     }
-
 }
