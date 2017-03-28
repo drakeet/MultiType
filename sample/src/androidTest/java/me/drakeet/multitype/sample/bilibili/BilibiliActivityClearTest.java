@@ -32,7 +32,7 @@ public class BilibiliActivityClearTest {
 
 
     @Test
-    public void bilibiliActivityClearTest() throws Throwable {
+    public void bilibiliActivityClearTest() {
         try {
             rule.runOnUiThread(new Runnable() {
                 @Override public void run() {
