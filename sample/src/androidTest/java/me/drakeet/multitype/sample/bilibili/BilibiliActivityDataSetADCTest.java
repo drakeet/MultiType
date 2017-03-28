@@ -32,6 +32,9 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static me.drakeet.multitype.sample.RecyclerViewMatcher.withRecyclerView;
 
+/**
+ * @author drakeet
+ */
 @RunWith(AndroidJUnit4.class)
 public class BilibiliActivityDataSetADCTest {
 

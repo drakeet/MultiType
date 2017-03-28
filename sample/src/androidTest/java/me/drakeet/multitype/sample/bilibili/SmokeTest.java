@@ -34,6 +34,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
+/**
+ * @author drakeet
+ */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class SmokeTest {
