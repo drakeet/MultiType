@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
+package me.drakeet.multitype.sample;
 
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.bilibili.BilibiliActivity;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
