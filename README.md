@@ -22,11 +22,11 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:2.5.0-beta2'
+    compile 'me.drakeet.multitype:multitype:2.5.0-beta3'
 }
 ```
 
-**NOTE**: If you are updating from **v2.4.0** to v2.5.0-beta2,
+**NOTE**: If you are updating from **v2.4.0** to v2.5.0,
 note that the `setItems(items)` method has removed the `notifyDataSetChanged()`
 and you need to call it by yourself.
 
