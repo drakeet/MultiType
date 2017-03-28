@@ -17,6 +17,7 @@
 package me.drakeet.multitype.sample.bilibili;
 
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.GridLayoutManager.SpanSizeLookup;
 import android.support.v7.widget.RecyclerView;
@@ -35,8 +36,10 @@ import me.drakeet.multitype.sample.common.Category;
 public class BilibiliActivity extends MenuBaseActivity {
 
     private static final int SPAN_COUNT = 2;
-    private List<Object> items;
-    private MultiTypeAdapter adapter;
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    List<Object> items;
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    MultiTypeAdapter adapter;
 
 
     private static class JsonData {
