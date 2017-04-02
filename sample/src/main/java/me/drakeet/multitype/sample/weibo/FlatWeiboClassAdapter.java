@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
+package me.drakeet.multitype.sample.weibo;
 
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import me.drakeet.multitype.FlatTypeClassAdapter;
 
 /**
  * @author drakeet
- * @deprecated use {@link ItemViewBinder} instead.
  */
-@Deprecated
-public abstract class ItemViewProvider<T, VH extends RecyclerView.ViewHolder>
-    extends ItemViewBinder<T, VH> {
+public class FlatWeiboClassAdapter extends FlatTypeClassAdapter {
+
+    @NonNull @Override
+    public Class onFlattenClass(@NonNull Object item) {
+        return ((Weibo) item).content.getClass();
+    }
 }

@@ -28,6 +28,11 @@ import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
+import me.drakeet.multitype.sample.common.CategoryItemViewBinder;
+import me.drakeet.multitype.sample.normal.ImageItem;
+import me.drakeet.multitype.sample.normal.ImageItemViewBinder;
+import me.drakeet.multitype.sample.normal.TextItem;
+import me.drakeet.multitype.sample.normal.TextItemViewBinder;
 
 import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 
@@ -57,7 +62,9 @@ public class MultiSelectActivity extends MenuBaseActivity {
 
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MultiTypeAdapter();
-        adapter.applyGlobalMultiTypePool();
+        adapter.register(TextItem.class, new TextItemViewBinder());
+        adapter.register(ImageItem.class, new ImageItemViewBinder());
+        adapter.register(Category.class, new CategoryItemViewBinder());
         adapter.register(Square.class, new SquareViewBinder(selectedSet));
 
         loadData();

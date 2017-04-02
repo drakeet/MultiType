@@ -23,6 +23,8 @@ import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.common.Category;
+import me.drakeet.multitype.sample.common.CategoryItemViewBinder;
 
 /**
  * @author drakeet
@@ -40,7 +42,9 @@ public class NormalActivity extends MenuBaseActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
         adapter = new MultiTypeAdapter();
-        adapter.applyGlobalMultiTypePool();
+        adapter.register(TextItem.class, new TextItemViewBinder());
+        adapter.register(ImageItem.class, new ImageItemViewBinder());
+        adapter.register(Category.class, new CategoryItemViewBinder());
         adapter.register(RichItem.class, new RichItemViewBinder());
         recyclerView.setAdapter(adapter);
 
