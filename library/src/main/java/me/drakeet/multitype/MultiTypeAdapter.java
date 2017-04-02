@@ -66,7 +66,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     @CheckResult
-    public <T> OneToManyBuilder<T> register(@NonNull Class<T> clazz) {
+    public <T> OneToManyFlow<T> register(@NonNull Class<T> clazz) {
         if (delegate.getContents().contains(clazz)) {
             Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
                 "It will override the original binder(s).");

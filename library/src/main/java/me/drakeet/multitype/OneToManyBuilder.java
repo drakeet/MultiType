@@ -22,7 +22,7 @@ import android.support.annotation.NonNull;
 /**
  * @author drakeet
  */
-public class OneToManyBuilder<T> implements OneToManyEndpoint<T> {
+public class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
 
     @NonNull private final MultiTypeAdapter adapter;
     @NonNull private final Class<T> clazz;
@@ -35,7 +35,7 @@ public class OneToManyBuilder<T> implements OneToManyEndpoint<T> {
     }
 
 
-    @NonNull @CheckResult
+    @Override @NonNull @CheckResult
     public OneToManyEndpoint<T> to(@NonNull ItemViewBinder[] binders) {
         // TODO: 2017/4/2
         this.binders = binders;
