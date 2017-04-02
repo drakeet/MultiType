@@ -27,8 +27,7 @@ import java.util.List;
 /**
  * @author drakeet
  */
-public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
-    implements FlatTypeAdapter, TypePool {
+public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implements TypePool {
 
     @Nullable private List<?> items;
     @NonNull private TypePool delegate;
@@ -158,17 +157,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    public final void applyGlobalMultiTypePool() {
-        for (int i = 0; i < GlobalMultiTypePool.getContents().size(); i++) {
-            final Class<?> clazz = GlobalMultiTypePool.getContents().get(i);
-            final ItemViewBinder binder = GlobalMultiTypePool.getBinders().get(i);
-            if (!this.getContents().contains(clazz)) {
-                this.register(clazz, binder);
-            }
-        }
-    }
-
-
     @Override
     public int indexOf(@NonNull Class<?> clazz) throws BinderNotFoundException {
         int index = delegate.indexOf(clazz);
@@ -179,40 +167,20 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @NonNull @SuppressWarnings("deprecation")
+    @NonNull
     final Class<?> flattenClass(@NonNull final Object item) {
         if (providedFlatTypeAdapter != null) {
             return providedFlatTypeAdapter.onFlattenClass(item);
         }
-        return onFlattenClass(item);
-    }
-
-
-    @NonNull @SuppressWarnings("deprecation")
-    final Object flattenItem(@NonNull final Object item) {
-        if (providedFlatTypeAdapter != null) {
-            return providedFlatTypeAdapter.onFlattenItem(item);
-        }
-        return onFlattenItem(item);
-    }
-
-
-    /**
-     * @deprecated Use {@link MultiTypeAdapter#setFlatTypeAdapter(FlatTypeAdapter)} instead.
-     * The method may be removed next time.
-     */
-    @NonNull @Override
-    public Class<?> onFlattenClass(@NonNull final Object item) {
         return item.getClass();
     }
 
 
-    /**
-     * @deprecated Use {@link MultiTypeAdapter#setFlatTypeAdapter(FlatTypeAdapter)} instead.
-     * The method may be removed next time.
-     */
-    @NonNull @Override
-    public Object onFlattenItem(@NonNull final Object item) {
+    @NonNull
+    private Object flattenItem(@NonNull final Object item) {
+        if (providedFlatTypeAdapter != null) {
+            return providedFlatTypeAdapter.onFlattenItem(item);
+        }
         return item;
     }
 
