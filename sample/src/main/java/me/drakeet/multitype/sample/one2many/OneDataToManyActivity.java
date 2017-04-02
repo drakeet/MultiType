@@ -17,11 +17,11 @@
 package me.drakeet.multitype.sample.one2many;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import me.drakeet.multitype.FlatTypeClassAdapter;
+import me.drakeet.multitype.ItemViewBinder;
+import me.drakeet.multitype.Linker;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
@@ -41,20 +41,17 @@ public class OneDataToManyActivity extends MenuBaseActivity {
         setContentView(R.layout.activity_list);
         recyclerView = (RecyclerView) findViewById(R.id.list);
         adapter = new MultiTypeAdapter();
-        adapter.setFlatTypeAdapter(new FlatTypeClassAdapter() {
-            @NonNull @Override public Class onFlattenClass(@NonNull Object item) {
-                return ((Data) item).typeClass;
+
+        adapter.register(Data.class).to(new ItemViewBinder[] {
+            new DataType1ViewBinder(),
+            new DataType2ViewBinder()
+        }).withLinker(new Linker<Data>() {
+            @Override public int index(Data data) {
+            if (data.type == Data.TYPE_2) return 1; else return 0;
             }
         });
-        adapter.register(Data.Type1.class, new DataType1ViewBinder());
-        adapter.register(Data.Type2.class, new DataType2ViewBinder());
 
         List<Data> dataList = getDataFromService();
-        // 如果 Data 们不会自动把 int type -> Class typeClass 的话，
-        // 需要自行处理，示例如下：
-        // for (Data data : dataList) {
-        //     data.typeClass = Data.getTypeClass(data.type);
-        // }
         adapter.setItems(dataList);
         adapter.notifyDataSetChanged();
         assertAllRegistered(adapter, dataList);
@@ -65,10 +62,9 @@ public class OneDataToManyActivity extends MenuBaseActivity {
 
     private List<Data> getDataFromService() {
         List<Data> list = new ArrayList<>();
-        final int TYPE1 = 1, TYPE2 = 2;
         for (int i = 0; i < 30; i = i + 2) {
-            list.add(new Data("title: " + i, TYPE1));
-            list.add(new Data("title: " + i + 1, TYPE2));
+            list.add(new Data("title: " + i, Data.TYPE_1));
+            list.add(new Data("title: " + i + 1, Data.TYPE_2));
         }
         return list;
     }

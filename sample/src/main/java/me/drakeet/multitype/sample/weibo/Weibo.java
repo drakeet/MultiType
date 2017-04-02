@@ -34,4 +34,9 @@ public class Weibo {
         this.content = content;
         this.createTime = "Just now";
     }
+
+
+    @Override public String toString() {
+        return "content: " + content.getClass().getSimpleName();
+    }
 }

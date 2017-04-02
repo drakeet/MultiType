@@ -17,7 +17,6 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,44 +28,49 @@ public class MultiTypePool implements TypePool {
     private final String TAG = MultiTypePool.class.getSimpleName();
 
     @NonNull private final List<Class<?>> contents;
-    @NonNull private final List<ItemViewBinder> binders;
+    @NonNull private final List<ItemViewBinder<?, ?>> binders;
+    @NonNull private final List<Linker<?>> linkers;
 
 
     public MultiTypePool() {
         this.contents = new ArrayList<>();
         this.binders = new ArrayList<>();
+        this.linkers = new ArrayList<>();
     }
 
 
     public MultiTypePool(int initialCapacity) {
         this.contents = new ArrayList<>(initialCapacity);
         this.binders = new ArrayList<>(initialCapacity);
+        this.linkers = new ArrayList<>(initialCapacity);
     }
 
 
-    public MultiTypePool(@NonNull List<Class<?>> contents, @NonNull List<ItemViewBinder> binders) {
+    public MultiTypePool(
+        @NonNull List<Class<?>> contents,
+        @NonNull List<ItemViewBinder<?, ?>> binders,
+        @NonNull List<Linker<?>> linkers) {
         this.contents = contents;
         this.binders = binders;
-    }
-
-
-    public void register(@NonNull Class<?> clazz, @NonNull ItemViewBinder binder) {
-        if (!contents.contains(clazz)) {
-            contents.add(clazz);
-            binders.add(binder);
-        } else {
-            int index = contents.indexOf(clazz);
-            binders.set(index, binder);
-            Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
-                "It will override the original binder.");
-        }
+        this.linkers = linkers;
     }
 
 
     @Override
-    public int indexOf(@NonNull final Class<?> clazz) {
+    public synchronized <T> void register(
+        @NonNull Class<? extends T> clazz,
+        @NonNull ItemViewBinder<T, ?> list,
+        @NonNull Linker<T> linker) {
+        contents.add(clazz);
+        binders.add(list);
+        linkers.add(linker);
+    }
+
+
+    @Override
+    public int firstIndexOf(@NonNull final Class<?> clazz) {
         int index = contents.indexOf(clazz);
-        if (index >= 0) {
+        if (index != -1) {
             return index;
         }
         for (int i = 0; i < contents.size(); i++) {
@@ -74,7 +78,7 @@ public class MultiTypePool implements TypePool {
                 return i;
             }
         }
-        return index;
+        return -1;
     }
 
 
@@ -85,19 +89,13 @@ public class MultiTypePool implements TypePool {
 
 
     @NonNull @Override
-    public List<ItemViewBinder> getItemViewBinders() {
+    public List<ItemViewBinder<?, ?>> getItemViewBinders() {
         return binders;
     }
 
 
-    @NonNull @Override
-    public ItemViewBinder getBinderByIndex(int index) {
-        return binders.get(index);
-    }
-
-
-    @NonNull @Override @SuppressWarnings("unchecked")
-    public <T extends ItemViewBinder> T getBinderByClass(@NonNull final Class<?> clazz) {
-        return (T) getBinderByIndex(indexOf(clazz));
+    @NonNull
+    public List<Linker<?>> getLinkers() {
+        return linkers;
     }
 }

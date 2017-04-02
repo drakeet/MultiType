@@ -39,19 +39,19 @@ public class MultiTypePoolTest {
 
     @Test
     public void shouldIndexOfReturn0() {
-        assertEquals(0, pool.indexOf(TestItem.class));
+        assertEquals(0, pool.firstIndexOf(TestItem.class));
     }
 
 
     @Test
     public void shouldIndexOfReturn0WithNonRegisterSubclass() {
-        assertEquals(0, pool.indexOf(SubClass.class));
+        assertEquals(0, pool.firstIndexOf(SubClass.class));
     }
 
 
     @Test
     public void shouldIndexOfReturn1WithRegisterSubclass() {
-        assertEquals(1, pool.indexOf(RegisteredSubClass.class));
+        assertEquals(1, pool.firstIndexOf(RegisteredSubClass.class));
     }
 
 }

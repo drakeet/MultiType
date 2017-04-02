@@ -17,7 +17,6 @@
 package me.drakeet.multitype.sample.one2many;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -25,33 +24,15 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Data {
 
-    // @formatter:off
-    abstract static class Type1 {}
-    abstract static class Type2 {}
-    // @formatter:on
+    public static final int TYPE_1 = 1;
+    public static final int TYPE_2 = 2;
 
     @SerializedName("title") public String title;
     @SerializedName("type") public int type;
-
-    public Class typeClass;
 
 
     public Data(@NonNull String title, int type) {
         this.title = title;
         this.type = type;
-        this.typeClass = getTypeClass(type);
-    }
-
-
-    @Nullable
-    public static Class getTypeClass(int type) {
-        switch (type) {
-            case 1:
-                return Type1.class;
-            case 2:
-                return Type2.class;
-            // ...
-        }
-        return null;
     }
 }

@@ -24,7 +24,10 @@ import java.util.List;
  */
 public interface TypePool {
 
-    void register(@NonNull Class<?> clazz, @NonNull ItemViewBinder binder);
+    <T> void register(
+        @NonNull Class<? extends T> clazz,
+        @NonNull ItemViewBinder<T, ?> list,
+        @NonNull Linker<T> linker);
 
     /**
      * For getting index of the item class.
@@ -37,7 +40,7 @@ public interface TypePool {
      * @return the index of the first occurrence of the specified element
      * in this list, or -1 if this list does not contain the element.
      */
-    int indexOf(@NonNull Class<?> clazz);
+    int firstIndexOf(@NonNull Class<?> clazz);
 
     /**
      * Get the item classes. Its contents are not duplicated.
@@ -48,10 +51,8 @@ public interface TypePool {
     List<Class<?>> getContents();
 
     @NonNull
-    List<ItemViewBinder> getItemViewBinders();
+    List<ItemViewBinder<?, ?>> getItemViewBinders();
 
     @NonNull
-    ItemViewBinder getBinderByIndex(int index);
-
-    @NonNull <T extends ItemViewBinder> T getBinderByClass(@NonNull Class<?> clazz);
+    List<Linker<?>> getLinkers();
 }

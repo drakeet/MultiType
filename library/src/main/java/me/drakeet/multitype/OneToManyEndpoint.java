@@ -14,18 +14,15 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.weibo;
+package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
-import me.drakeet.multitype.FlatTypeClassAdapter;
 
 /**
  * @author drakeet
  */
-public class FlatWeiboClassAdapter extends FlatTypeClassAdapter {
 
-    @NonNull @Override
-    public Class onFlattenClass(@NonNull Object item) {
-        return ((Weibo) item).content.getClass();
-    }
+public interface OneToManyEndpoint<T> {
+
+    void withLinker(@NonNull Linker<T> linker);
 }

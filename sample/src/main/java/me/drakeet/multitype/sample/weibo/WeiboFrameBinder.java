@@ -53,9 +53,8 @@ public abstract class WeiboFrameBinder
     }
 
 
-    @SuppressWarnings("unchecked")
-    @Override protected void onBindViewHolder(
-        @NonNull FrameHolder holder, @NonNull Weibo weibo) {
+    @Override @SuppressWarnings("unchecked")
+    protected void onBindViewHolder(@NonNull FrameHolder holder, @NonNull Weibo weibo) {
         holder.avatar.setImageResource(weibo.user.avatar);
         holder.username.setText(weibo.user.name);
         holder.createTime.setText(weibo.createTime);
