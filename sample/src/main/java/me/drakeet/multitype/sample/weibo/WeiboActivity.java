@@ -21,6 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import me.drakeet.multitype.Items;
+import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.weibo.content.SimpleImage;
@@ -35,7 +36,7 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
  */
 public class WeiboActivity extends MenuBaseActivity {
 
-    private WeiboAdapter adapter;
+    private MultiTypeAdapter adapter;
     private Items items;
 
     private static final String JSON_FROM_SERVICE =
@@ -73,8 +74,9 @@ public class WeiboActivity extends MenuBaseActivity {
         setContentView(R.layout.activity_list);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        /* WeiboAdapter! */
-        adapter = new WeiboAdapter();
+        adapter = new MultiTypeAdapter();
+        adapter.setFlatTypeAdapter(new FlatWeiboClassAdapter());
+
         adapter.register(SimpleText.class, new SimpleTextViewBinder());
         adapter.register(SimpleImage.class, new SimpleImageViewBinder());
         recyclerView.setAdapter(adapter);
