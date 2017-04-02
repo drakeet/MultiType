@@ -22,7 +22,7 @@ import android.support.annotation.NonNull;
 /**
  * @author drakeet
  */
-public class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
+class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
 
     @NonNull private final MultiTypeAdapter adapter;
     @NonNull private final Class<T> clazz;

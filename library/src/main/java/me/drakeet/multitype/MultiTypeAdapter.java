@@ -61,6 +61,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public <T> void register(
         @NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
+        // TODO: 2017/4/3 check duplicately register and supply test case
         delegate.register(clazz, binder, new DefaultLinker<T>());
     }
 
