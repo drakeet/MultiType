@@ -48,7 +48,7 @@ public class OneDataToManyActivity extends MenuBaseActivity {
         ).withLinker(new Linker<Data>() {
             @Override
             public int index(Data data) {
-            if (data.type == Data.TYPE_2) return 1; else return 0;
+                if (data.type == Data.TYPE_2) return 1; else return 0;
             }
         });
 
