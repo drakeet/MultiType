@@ -26,7 +26,7 @@ public interface TypePool {
 
     <T> void register(
         @NonNull Class<? extends T> clazz,
-        @NonNull ItemViewBinder<T, ?> list,
+        @NonNull ItemViewBinder<T, ?> binder,
         @NonNull Linker<T> linker);
 
     /**

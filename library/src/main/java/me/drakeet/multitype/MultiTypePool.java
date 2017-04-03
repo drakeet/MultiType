@@ -59,10 +59,10 @@ public class MultiTypePool implements TypePool {
     @Override
     public synchronized <T> void register(
         @NonNull Class<? extends T> clazz,
-        @NonNull ItemViewBinder<T, ?> list,
+        @NonNull ItemViewBinder<T, ?> binder,
         @NonNull Linker<T> linker) {
         contents.add(clazz);
-        binders.add(list);
+        binders.add(binder);
         linkers.add(linker);
     }
 

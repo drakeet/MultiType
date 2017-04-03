@@ -26,12 +26,12 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * @author drakeet
  */
 public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
+
+    private static final String TAG = "MultiTypeAdapter";
 
     @Nullable private List<?> items;
     @NonNull private TypePool delegate;
@@ -59,37 +59,27 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    public <T> void register(
+    public final <T> void register(
         @NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
-        // TODO: 2017/4/3 check duplicately register and supply test case
+        checkAndRemoveAllTypesIfNeed(clazz);
         delegate.register(clazz, binder, new DefaultLinker<T>());
     }
 
 
     @CheckResult
-    public <T> OneToManyFlow<T> register(@NonNull Class<T> clazz) {
-        if (delegate.getContents().contains(clazz)) {
-            Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
-                "It will override the original binder(s).");
-            for (; ; ) {
-                int index = delegate.getContents().indexOf(clazz);
-                if (index != -1) {
-                    delegate.getContents().remove(index);
-                    delegate.getItemViewBinders().remove(index);
-                    delegate.getLinkers().remove(index);
-                } else {
-                    break;
-                }
-            }
-        }
+    public final <T> OneToManyFlow<T> register(@NonNull Class<T> clazz) {
+        checkAndRemoveAllTypesIfNeed(clazz);
         return new OneToManyBuilder<T>(this, clazz);
     }
 
 
     public final void registerAll(@NonNull final TypePool pool) {
         for (int i = 0; i < pool.getContents().size(); i++) {
-            registerFromTypePoolContent(pool.getContents().get(i),
-                pool.getItemViewBinders().get(i), pool.getLinkers().get(i));
+            registerFromTypePoolContent(
+                pool.getContents().get(i),
+                pool.getItemViewBinders().get(i),
+                pool.getLinkers().get(i)
+            );
         }
     }
 
@@ -98,6 +88,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @SuppressWarnings("unchecked")
     private void registerFromTypePoolContent(
         @NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
+        checkAndRemoveAllTypesIfNeed(clazz);
         delegate.register(clazz, itemViewBinder, linker);
     }
 
@@ -186,5 +177,32 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @NonNull
     public TypePool getTypePool() {
         return delegate;
+    }
+
+
+    private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
+        if (!delegate.getContents().contains(clazz)) {
+            return;
+        }
+        Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
+            "It will override the original binder(s).");
+        for (; ; ) {
+            int index = delegate.getContents().indexOf(clazz);
+            if (index != -1) {
+                delegate.getContents().remove(index);
+                delegate.getItemViewBinders().remove(index);
+                delegate.getLinkers().remove(index);
+            } else {
+                break;
+            }
+        }
+    }
+
+
+    <T> void registerWithoutChecking(
+        @NonNull Class<? extends T> clazz,
+        @NonNull ItemViewBinder<T, ?> binder,
+        @NonNull Linker<T> linker) {
+        delegate.register(clazz, binder, linker);
     }
 }
