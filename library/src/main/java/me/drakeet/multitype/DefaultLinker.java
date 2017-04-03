@@ -23,7 +23,7 @@ package me.drakeet.multitype;
 class DefaultLinker<T> implements Linker<T> {
 
     @Override
-    public int index(T t) {
+    public final int index(T t) {
         return 0;
     }
 }

@@ -69,7 +69,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @CheckResult
     public final <T> OneToManyFlow<T> register(@NonNull Class<T> clazz) {
         checkAndRemoveAllTypesIfNeed(clazz);
-        return new OneToManyBuilder<T>(this, clazz);
+        return new OneToManyBuilder<>(this, clazz);
     }
 
 
