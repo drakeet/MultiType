@@ -21,7 +21,7 @@ import android.support.annotation.NonNull;
 /**
  * @author drakeet
  */
-class TestItem implements Item {
+class TestItem {
 
     @NonNull final String text;
 
