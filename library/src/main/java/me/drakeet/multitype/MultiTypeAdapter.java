@@ -133,7 +133,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
         }
         ItemViewBinder binder = getBinderByIndex(indexViewType);
         binder.adapter = MultiTypeAdapter.this;
-        binder.items = items;
         assert inflater != null;
         return binder.onCreateViewHolder(inflater, parent);
     }
