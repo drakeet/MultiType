@@ -28,7 +28,6 @@ import java.util.List;
 public abstract class ItemViewBinder<T, VH extends ViewHolder> {
 
     /* internal */ MultiTypeAdapter adapter;
-    /* internal */ List<?> items;
 
 
     @NonNull

@@ -134,7 +134,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
         ItemViewBinder<?, ?> binder = typePool.getItemViewBinders().get(indexViewType);
         binder.adapter = this;
-        binder.items = items;
         assert inflater != null;
         return binder.onCreateViewHolder(inflater, parent);
     }
