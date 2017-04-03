@@ -34,7 +34,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     private static final String TAG = "MultiTypeAdapter";
 
     @Nullable private List<?> items;
-    @NonNull private TypePool delegate;
+    @NonNull private TypePool typePool;
     @Nullable protected LayoutInflater inflater;
 
 
@@ -55,14 +55,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
         this.items = items;
-        this.delegate = pool;
+        this.typePool = pool;
     }
 
 
     public final <T> void register(
         @NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
         checkAndRemoveAllTypesIfNeed(clazz);
-        delegate.register(clazz, binder, new DefaultLinker<T>());
+        typePool.register(clazz, binder, new DefaultLinker<T>());
     }
 
 
@@ -89,7 +89,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     private void registerFromTypePoolContent(
         @NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
         checkAndRemoveAllTypesIfNeed(clazz);
-        delegate.register(clazz, itemViewBinder, linker);
+        typePool.register(clazz, itemViewBinder, linker);
     }
 
 
@@ -115,7 +115,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param typePool The TypePool implementation
      */
     public void setTypePool(@NonNull TypePool typePool) {
-        this.delegate = typePool;
+        this.typePool = typePool;
     }
 
 
@@ -123,7 +123,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     public final int getItemViewType(int position) {
         assert items != null;
         Object item = items.get(position);
-        return indexInPoolOf(item);
+        return indexInTypesOf(item);
     }
 
 
@@ -132,7 +132,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
-        ItemViewBinder<?, ?> binder = delegate.getItemViewBinders().get(indexViewType);
+        ItemViewBinder<?, ?> binder = typePool.getItemViewBinders().get(indexViewType);
         binder.adapter = this;
         binder.items = items;
         assert inflater != null;
@@ -148,7 +148,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     public final void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         assert items != null;
         Object item = items.get(position);
-        ItemViewBinder binder = delegate.getItemViewBinders().get(holder.getItemViewType());
+        ItemViewBinder binder = typePool.getItemViewBinders().get(holder.getItemViewType());
         binder.onBindViewHolder(holder, item, payloads);
     }
 
@@ -159,11 +159,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    int indexInPoolOf(@NonNull Object item) throws BinderNotFoundException {
-        int index = delegate.firstIndexOf(item.getClass());
+    int indexInTypesOf(@NonNull Object item) throws BinderNotFoundException {
+        int index = typePool.firstIndexOf(item.getClass());
         if (index != -1) {
             @SuppressWarnings("unchecked")
-            Linker<Object> linker = (Linker<Object>) delegate.getLinkers().get(index);
+            Linker<Object> linker = (Linker<Object>) typePool.getLinkers().get(index);
             return index + linker.index(item);
         }
         throw new BinderNotFoundException(item.getClass());
@@ -176,22 +176,22 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @NonNull
     public TypePool getTypePool() {
-        return delegate;
+        return typePool;
     }
 
 
     private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
-        if (!delegate.getContents().contains(clazz)) {
+        if (!typePool.getContents().contains(clazz)) {
             return;
         }
         Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
             "It will override the original binder(s).");
         for (; ; ) {
-            int index = delegate.getContents().indexOf(clazz);
+            int index = typePool.getContents().indexOf(clazz);
             if (index != -1) {
-                delegate.getContents().remove(index);
-                delegate.getItemViewBinders().remove(index);
-                delegate.getLinkers().remove(index);
+                typePool.getContents().remove(index);
+                typePool.getItemViewBinders().remove(index);
+                typePool.getLinkers().remove(index);
             } else {
                 break;
             }
@@ -203,6 +203,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         @NonNull Class<? extends T> clazz,
         @NonNull ItemViewBinder<T, ?> binder,
         @NonNull Linker<T> linker) {
-        delegate.register(clazz, binder, linker);
+        typePool.register(clazz, binder, linker);
     }
 }
