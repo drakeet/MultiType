@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.weibo;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+package me.drakeet.multitype;
 
 /**
  * @author drakeet
  */
-public class GsonProvider {
 
-    private GsonProvider() {}
+class DefaultLinker<T> implements Linker<T> {
 
-
-    final static Gson gson = new GsonBuilder()
-        .registerTypeAdapter(WeiboContent.class, new WeiboContentDeserializer())
-        .create();
-
-    final static Gson pureGson = new Gson();
+    @Override
+    public int index(T t) {
+        return 0;
+    }
 }

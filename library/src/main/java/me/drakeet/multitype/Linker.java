@@ -16,21 +16,11 @@
 
 package me.drakeet.multitype;
 
-import android.support.annotation.NonNull;
-
 /**
- * A convenient version of the {@link FlatTypeAdapter} to flatten item.
- *
  * @author drakeet
  */
-public abstract class FlatTypeItemAdapter implements FlatTypeAdapter {
 
-    @NonNull @Override
-    public abstract Object onFlattenItem(@NonNull Object item);
+public interface Linker<T> {
 
-
-    @NonNull @Override
-    public Class onFlattenClass(@NonNull Object item) {
-        return item.getClass();
-    }
+    int index(T t);
 }
