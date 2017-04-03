@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype;
 
+import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 
 /**
@@ -23,6 +24,6 @@ import android.support.annotation.NonNull;
  */
 public interface OneToManyFlow<T> {
 
-    @NonNull
+    @NonNull @CheckResult
     OneToManyEndpoint<T> to(@NonNull ItemViewBinder[] binders);
 }
