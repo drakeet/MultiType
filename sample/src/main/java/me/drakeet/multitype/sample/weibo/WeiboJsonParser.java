@@ -14,18 +14,30 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
+package me.drakeet.multitype.sample.weibo;
 
-import android.support.annotation.NonNull;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author drakeet
  */
-public interface FlatTypeAdapter {
+class WeiboJsonParser {
 
-    @NonNull
-    Class<?> onFlattenClass(@NonNull Object item);
+    private WeiboJsonParser() {}
 
-    @NonNull
-    Object onFlattenItem(@NonNull Object item);
+
+    final static Gson gson = new GsonBuilder()
+        .registerTypeAdapter(WeiboContent.class, new WeiboContentDeserializer())
+        .create();
+
+    final static Gson pureGson = new Gson();
+
+
+    static List<Weibo> fromJson(String json) {
+        return gson.fromJson(json, new TypeToken<ArrayList<Weibo>>() {}.getType());
+    }
 }

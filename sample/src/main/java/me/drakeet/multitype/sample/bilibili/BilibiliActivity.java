@@ -41,10 +41,8 @@ import me.drakeet.multitype.sample.normal.TextItemViewBinder;
 public class BilibiliActivity extends MenuBaseActivity {
 
     private static final int SPAN_COUNT = 2;
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    List<Object> items;
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    MultiTypeAdapter adapter;
+    @VisibleForTesting List<Object> items;
+    @VisibleForTesting MultiTypeAdapter adapter;
 
 
     private static class JsonData {
@@ -82,7 +80,7 @@ public class BilibiliActivity extends MenuBaseActivity {
         adapter.register(TextItem.class, new TextItemViewBinder());
         adapter.register(ImageItem.class, new ImageItemViewBinder());
         adapter.register(Category.class, new CategoryItemViewBinder());
-        
+
         adapter.register(Post.class, new PostViewBinder());
         adapter.register(PostList.class, new HorizontalPostsViewBinder());
 
