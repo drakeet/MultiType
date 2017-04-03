@@ -21,7 +21,6 @@ import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.Linker;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
@@ -43,12 +42,13 @@ public class OneDataToManyActivity extends MenuBaseActivity {
         recyclerView = (RecyclerView) findViewById(R.id.list);
         adapter = new MultiTypeAdapter();
 
-        adapter.register(Data.class).to(new ItemViewBinder[] {
+        adapter.register(Data.class).to(
             new DataType1ViewBinder(),
             new DataType2ViewBinder()
-        }).withLinker(new Linker<Data>() {
-            @Override public int index(Data data) {
-                return (data.type == Data.TYPE_2) ? 1 : 0;
+        ).withLinker(new Linker<Data>() {
+            @Override
+            public int index(Data data) {
+            if (data.type == Data.TYPE_2) return 1; else return 0;
             }
         });
 

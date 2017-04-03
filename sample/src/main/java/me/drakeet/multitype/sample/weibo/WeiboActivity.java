@@ -19,7 +19,6 @@ package me.drakeet.multitype.sample.weibo;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
-import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.Linker;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -77,10 +76,10 @@ public class WeiboActivity extends MenuBaseActivity {
 
         adapter = new MultiTypeAdapter();
 
-        adapter.register(Weibo.class).to(new ItemViewBinder[] {
+        adapter.register(Weibo.class).to(
             new SimpleTextViewBinder(),
             new SimpleImageViewBinder()
-        }).withLinker(new Linker<Weibo>() {
+        ).withLinker(new Linker<Weibo>() {
             @Override
             public int index(Weibo weibo) {
                 if (weibo.content instanceof SimpleText) {
