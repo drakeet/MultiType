@@ -25,5 +25,5 @@ import android.support.annotation.NonNull;
 public interface OneToManyFlow<T> {
 
     @NonNull @CheckResult
-    OneToManyEndpoint<T> to(@NonNull ItemViewBinder[] binders);
+    OneToManyEndpoint<T> to(@NonNull ItemViewBinder<T, ?>... binders);
 }

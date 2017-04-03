@@ -19,7 +19,6 @@ package me.drakeet.multitype.sample.one2many;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.Linker;
 import me.drakeet.multitype.MultiTypeAdapter;
 import org.junit.Before;
@@ -99,10 +98,10 @@ public class DuplicateTypesTest {
                 resetRecyclerViewState();
                 adapter.register(Data.class, new DataType1ViewBinder());
 
-                adapter.register(Data.class).to(new ItemViewBinder[] {
+                adapter.register(Data.class).to(
                     new DataType2ViewBinder(),
                     new DataType1ViewBinder()
-                }).withLinker(linker);
+                ).withLinker(linker);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -131,15 +130,15 @@ public class DuplicateTypesTest {
         rule.runOnUiThread(new Runnable() {
             @Override public void run() {
                 resetRecyclerViewState();
-                adapter.register(Data.class).to(new ItemViewBinder[] {
+                adapter.register(Data.class).to(
                     new DataType2ViewBinder(),
                     new DataType1ViewBinder()
-                }).withLinker(linker);
+                ).withLinker(linker);
 
-                adapter.register(Data.class).to(new ItemViewBinder[] {
+                adapter.register(Data.class).to(
                     new DataType1ViewBinder(),
                     new DataType2ViewBinder()
-                }).withLinker(linker);
+                ).withLinker(linker);
                 adapter.notifyDataSetChanged();
             }
         });
