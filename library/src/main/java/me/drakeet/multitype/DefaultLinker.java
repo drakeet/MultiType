@@ -20,10 +20,10 @@ package me.drakeet.multitype;
  * @author drakeet
  */
 
-class DefaultLinker<T> implements Linker<T> {
+final class DefaultLinker<T> implements Linker<T> {
 
     @Override
-    public final int index(T t) {
+    public int index(T t) {
         return 0;
     }
 }

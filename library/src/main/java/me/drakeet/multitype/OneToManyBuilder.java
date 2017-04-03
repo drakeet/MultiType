@@ -25,11 +25,11 @@ import android.support.annotation.NonNull;
 class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
 
     @NonNull private final MultiTypeAdapter adapter;
-    @NonNull private final Class<T> clazz;
+    @NonNull private final Class<? extends T> clazz;
     private ItemViewBinder<T, ?>[] binders;
 
 
-    OneToManyBuilder(@NonNull MultiTypeAdapter adapter, @NonNull Class<T> clazz) {
+    OneToManyBuilder(@NonNull MultiTypeAdapter adapter, @NonNull Class<? extends T> clazz) {
         this.clazz = clazz;
         this.adapter = adapter;
     }
