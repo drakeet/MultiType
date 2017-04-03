@@ -17,6 +17,7 @@
 package me.drakeet.multitype.sample.one2many;
 
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +32,8 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
 
 public class OneDataToManyActivity extends MenuBaseActivity {
 
-    RecyclerView recyclerView;
-    MultiTypeAdapter adapter;
+    @VisibleForTesting RecyclerView recyclerView;
+    @VisibleForTesting MultiTypeAdapter adapter;
 
 
     @Override
@@ -47,7 +48,7 @@ public class OneDataToManyActivity extends MenuBaseActivity {
             new DataType2ViewBinder()
         }).withLinker(new Linker<Data>() {
             @Override public int index(Data data) {
-                if (data.type == Data.TYPE_2) return 1; else return 0;
+                return (data.type == Data.TYPE_2) ? 1 : 0;
             }
         });
 
@@ -60,7 +61,8 @@ public class OneDataToManyActivity extends MenuBaseActivity {
     }
 
 
-    private List<Data> getDataFromService() {
+    @VisibleForTesting
+    List<Data> getDataFromService() {
         List<Data> list = new ArrayList<>();
         for (int i = 0; i < 30; i = i + 2) {
             list.add(new Data("title: " + i, Data.TYPE_1));
