@@ -16,10 +16,12 @@
 
 package me.drakeet.multitype;
 
+import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import java.util.List;
@@ -27,12 +29,13 @@ import java.util.List;
 /**
  * @author drakeet
  */
-public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implements TypePool {
+public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
+
+    private static final String TAG = "MultiTypeAdapter";
 
     @Nullable private List<?> items;
-    @NonNull private TypePool delegate;
+    @NonNull private TypePool typePool;
     @Nullable protected LayoutInflater inflater;
-    @Nullable private FlatTypeAdapter providedFlatTypeAdapter;
 
 
     public MultiTypeAdapter() {
@@ -41,39 +44,52 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
 
 
     public MultiTypeAdapter(@Nullable List<?> items) {
-        this(items, new MultiTypePool(), null);
+        this(items, new MultiTypePool());
     }
 
 
     public MultiTypeAdapter(@Nullable List<?> items, int initialCapacity) {
-        this(items, new MultiTypePool(initialCapacity), /* providedFlatTypeAdapter: */ null);
+        this(items, new MultiTypePool(initialCapacity));
     }
 
 
     public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
-        this(items, pool, /* providedFlatTypeAdapter: */ null);
-    }
-
-
-    public MultiTypeAdapter(
-        @Nullable List<?> items, @NonNull TypePool delegate,
-        @Nullable FlatTypeAdapter providedFlatTypeAdapter) {
         this.items = items;
-        this.delegate = delegate;
-        this.providedFlatTypeAdapter = providedFlatTypeAdapter;
+        this.typePool = pool;
     }
 
 
-    @Override
-    public void register(@NonNull Class<?> clazz, @NonNull ItemViewBinder binder) {
-        delegate.register(clazz, binder);
+    public final <T> void register(
+        @NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
+        checkAndRemoveAllTypesIfNeed(clazz);
+        typePool.register(clazz, binder, new DefaultLinker<T>());
+    }
+
+
+    @CheckResult
+    public final <T> OneToManyFlow<T> register(@NonNull Class<T> clazz) {
+        checkAndRemoveAllTypesIfNeed(clazz);
+        return new OneToManyBuilder<T>(this, clazz);
     }
 
 
     public final void registerAll(@NonNull final TypePool pool) {
         for (int i = 0; i < pool.getContents().size(); i++) {
-            delegate.register(pool.getContents().get(i), pool.getItemViewBinders().get(i));
+            registerFromTypePoolContent(
+                pool.getContents().get(i),
+                pool.getItemViewBinders().get(i),
+                pool.getLinkers().get(i)
+            );
         }
+    }
+
+
+    /** A safe register method base on the TypePool's safety. */
+    @SuppressWarnings("unchecked")
+    private void registerFromTypePoolContent(
+        @NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
+        checkAndRemoveAllTypesIfNeed(clazz);
+        typePool.register(clazz, itemViewBinder, linker);
     }
 
 
@@ -99,21 +115,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
      * @param typePool The TypePool implementation
      */
     public void setTypePool(@NonNull TypePool typePool) {
-        this.delegate = typePool;
-    }
-
-
-    /**
-     * Set the FlatTypeAdapter to instead of the default inner FlatTypeAdapter of
-     * MultiTypeAdapter.
-     * <p>Note: You could use {@link FlatTypeClassAdapter} and {@link FlatTypeItemAdapter}
-     * to create a special FlatTypeAdapter conveniently.</p>
-     *
-     * @param flatTypeAdapter the FlatTypeAdapter
-     * @since v2.3.2
-     */
-    public void setFlatTypeAdapter(@NonNull FlatTypeAdapter flatTypeAdapter) {
-        this.providedFlatTypeAdapter = flatTypeAdapter;
+        this.typePool = typePool;
     }
 
 
@@ -121,7 +123,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
     public final int getItemViewType(int position) {
         assert items != null;
         Object item = items.get(position);
-        return indexOf(flattenClass(item));
+        return indexInTypesOf(item);
     }
 
 
@@ -130,8 +132,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
-        ItemViewBinder binder = getBinderByIndex(indexViewType);
-        binder.adapter = MultiTypeAdapter.this;
+        ItemViewBinder<?, ?> binder = typePool.getItemViewBinders().get(indexViewType);
+        binder.adapter = this;
         binder.items = items;
         assert inflater != null;
         return binder.onCreateViewHolder(inflater, parent);
@@ -146,8 +148,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
     public final void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         assert items != null;
         Object item = items.get(position);
-        ItemViewBinder binder = getBinderByClass(flattenClass(item));
-        binder.onBindViewHolder(holder, flattenItem(item), payloads);
+        ItemViewBinder binder = typePool.getItemViewBinders().get(holder.getItemViewType());
+        binder.onBindViewHolder(holder, item, payloads);
     }
 
 
@@ -157,55 +159,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
     }
 
 
-    @Override
-    public int indexOf(@NonNull Class<?> clazz) throws BinderNotFoundException {
-        int index = delegate.indexOf(clazz);
-        if (index >= 0) {
-            return index;
+    int indexInTypesOf(@NonNull Object item) throws BinderNotFoundException {
+        int index = typePool.firstIndexOf(item.getClass());
+        if (index != -1) {
+            @SuppressWarnings("unchecked")
+            Linker<Object> linker = (Linker<Object>) typePool.getLinkers().get(index);
+            return index + linker.index(item);
         }
-        throw new BinderNotFoundException(clazz);
-    }
-
-
-    @NonNull
-    final Class<?> flattenClass(@NonNull final Object item) {
-        if (providedFlatTypeAdapter != null) {
-            return providedFlatTypeAdapter.onFlattenClass(item);
-        }
-        return item.getClass();
-    }
-
-
-    @NonNull
-    private Object flattenItem(@NonNull final Object item) {
-        if (providedFlatTypeAdapter != null) {
-            return providedFlatTypeAdapter.onFlattenItem(item);
-        }
-        return item;
-    }
-
-
-    @NonNull @Override
-    public List<Class<?>> getContents() {
-        return delegate.getContents();
-    }
-
-
-    @NonNull @Override
-    public List<ItemViewBinder> getItemViewBinders() {
-        return delegate.getItemViewBinders();
-    }
-
-
-    @NonNull @Override
-    public ItemViewBinder getBinderByIndex(int index) {
-        return delegate.getBinderByIndex(index);
-    }
-
-
-    @NonNull @Override
-    public <T extends ItemViewBinder> T getBinderByClass(@NonNull Class<?> clazz) {
-        return delegate.getBinderByClass(clazz);
+        throw new BinderNotFoundException(item.getClass());
     }
 
 
@@ -215,6 +176,33 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
 
     @NonNull
     public TypePool getTypePool() {
-        return delegate;
+        return typePool;
+    }
+
+
+    private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
+        if (!typePool.getContents().contains(clazz)) {
+            return;
+        }
+        Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
+            "It will override the original binder(s).");
+        for (; ; ) {
+            int index = typePool.getContents().indexOf(clazz);
+            if (index != -1) {
+                typePool.getContents().remove(index);
+                typePool.getItemViewBinders().remove(index);
+                typePool.getLinkers().remove(index);
+            } else {
+                break;
+            }
+        }
+    }
+
+
+    <T> void registerWithoutChecking(
+        @NonNull Class<? extends T> clazz,
+        @NonNull ItemViewBinder<T, ?> binder,
+        @NonNull Linker<T> linker) {
+        typePool.register(clazz, binder, linker);
     }
 }

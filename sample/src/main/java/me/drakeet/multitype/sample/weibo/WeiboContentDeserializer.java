@@ -34,7 +34,7 @@ public class WeiboContentDeserializer implements JsonDeserializer<WeiboContent> 
     @Override
     public WeiboContent deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
         throws JsonParseException {
-        Gson gson = GsonProvider.gson;
+        Gson gson = WeiboJsonParser.gson;
         JsonObject jsonObject = (JsonObject) json;
         final String contentType = stringOrEmpty(jsonObject.get("content_type"));
         WeiboContent content = null;

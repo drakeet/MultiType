@@ -18,9 +18,10 @@ package me.drakeet.multitype.sample.weibo;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import com.google.gson.annotations.SerializedName;
 import java.util.List;
+import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.Items;
+import me.drakeet.multitype.Linker;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
@@ -39,33 +40,33 @@ public class WeiboActivity extends MenuBaseActivity {
     private MultiTypeAdapter adapter;
     private Items items;
 
+    /* @formatter:off */
     private static final String JSON_FROM_SERVICE =
-        "{\n" +
-            "    \"data\":[\n" +
-            "        {\n" +
-            "            \"content\":{\n" +
-            "                \"text\":\"A simple text Weibo: JSON_FROM_SERVICE.\",\n" +
-            "                \"content_type\":\"simple_text\"\n" +
-            "            },\n" +
-            "            \"createTime\":\"Just now\",\n" +
-            "            \"user\":{\n" +
-            "                \"avatar\":2130903040,\n" +
-            "                \"name\":\"drakeet\"\n" +
-            "            }\n" +
+            "[\n" +
+            "    {\n" +
+            "        \"content\":{\n" +
+            "            \"text\":\"A simple text Weibo: JSON_FROM_SERVICE.\",\n" +
+            "            \"content_type\":\"simple_text\"\n" +
             "        },\n" +
-            "        {\n" +
-            "            \"content\":{\n" +
-            "                \"resId\":2130837591,\n" +
-            "                \"content_type\":\"simple_image\"\n" +
-            "            },\n" +
-            "            \"createTime\":\"Just now(JSON_FROM_SERVICE)\",\n" +
-            "            \"user\":{\n" +
-            "                \"avatar\":2130903040,\n" +
-            "                \"name\":\"drakeet\"\n" +
-            "            }\n" +
+            "        \"createTime\":\"Just now\",\n" +
+            "        \"user\":{\n" +
+            "            \"avatar\":2130903040,\n" +
+            "            \"name\":\"drakeet\"\n" +
             "        }\n" +
-            "    ]\n" +
-            "}";
+            "    },\n" +
+            "    {\n" +
+            "        \"content\":{\n" +
+            "            \"resId\":2130837591,\n" +
+            "            \"content_type\":\"simple_image\"\n" +
+            "        },\n" +
+            "        \"createTime\":\"Just now(JSON_FROM_SERVICE)\",\n" +
+            "        \"user\":{\n" +
+            "            \"avatar\":2130903040,\n" +
+            "            \"name\":\"drakeet\"\n" +
+            "        }\n" +
+            "    }\n" +
+            "]";
+    /* @formatter:on */
 
 
     @Override
@@ -75,10 +76,22 @@ public class WeiboActivity extends MenuBaseActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
         adapter = new MultiTypeAdapter();
-        adapter.setFlatTypeAdapter(new FlatWeiboClassAdapter());
 
-        adapter.register(SimpleText.class, new SimpleTextViewBinder());
-        adapter.register(SimpleImage.class, new SimpleImageViewBinder());
+        adapter.register(Weibo.class).to(new ItemViewBinder[] {
+            new SimpleTextViewBinder(),
+            new SimpleImageViewBinder()
+        }).withLinker(new Linker<Weibo>() {
+            @Override
+            public int index(Weibo weibo) {
+                if (weibo.content instanceof SimpleText) {
+                    return 0;
+                } else if (weibo.content instanceof SimpleImage) {
+                    return 1;
+                }
+                return 0;
+            }
+        });
+
         recyclerView.setAdapter(adapter);
 
         items = new Items();
@@ -100,19 +113,11 @@ public class WeiboActivity extends MenuBaseActivity {
 
 
     private void loadRemoteData() {
-        RemoteData dataFromParser = GsonProvider.gson.fromJson(
-            JSON_FROM_SERVICE, RemoteData.class);
-        // Update the items atomically and safely.
+        List<Weibo> weiboList = WeiboJsonParser.fromJson(JSON_FROM_SERVICE);
+        // atomically
         items = new Items(items);
-        items.addAll(0, dataFromParser.weibos);
+        items.addAll(0, weiboList);
         adapter.setItems(items);
         adapter.notifyDataSetChanged();
-    }
-
-
-    public static class RemoteData {
-
-        @SerializedName("data")
-        public List<Weibo> weibos;
     }
 }

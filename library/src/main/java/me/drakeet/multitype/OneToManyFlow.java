@@ -19,18 +19,10 @@ package me.drakeet.multitype;
 import android.support.annotation.NonNull;
 
 /**
- * A convenient version of the {@link FlatTypeAdapter} to flatten Class.
- *
  * @author drakeet
  */
-public abstract class FlatTypeClassAdapter implements FlatTypeAdapter {
+public interface OneToManyFlow<T> {
 
-    @NonNull @Override
-    public abstract Class onFlattenClass(@NonNull Object item);
-
-
-    @NonNull @Override
-    public Object onFlattenItem(@NonNull Object item) {
-        return item;
-    }
+    @NonNull
+    OneToManyEndpoint<T> to(@NonNull ItemViewBinder[] binders);
 }
