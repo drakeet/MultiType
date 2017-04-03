@@ -7,6 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
+ * More tests: {@literal /sample/src/androidTest}
+ *
  * @author drakeet
  */
 public class MultiTypePoolTest {
@@ -32,8 +34,9 @@ public class MultiTypePoolTest {
     public void register() {
         pool = new MultiTypePool();
         pool.getContents().clear();
-        pool.register(TestItem.class, new TestItemViewBinder());
-        pool.register(RegisteredSubClass.class, new TestItemViewBinder());
+        pool.register(TestItem.class, new TestItemViewBinder(), new DefaultLinker<TestItem>());
+        pool.register(RegisteredSubClass.class, new TestItemViewBinder(),
+            new DefaultLinker<TestItem>());
     }
 
 
@@ -53,5 +56,4 @@ public class MultiTypePoolTest {
     public void shouldIndexOfReturn1WithRegisterSubclass() {
         assertEquals(1, pool.firstIndexOf(RegisteredSubClass.class));
     }
-
 }
