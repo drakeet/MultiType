@@ -61,8 +61,8 @@ public class DuplicateTypesTest {
                 adapter.notifyDataSetChanged();
             }
         });
-        assertEquals(1, adapter.getTypePool().getContents().size());
-        assertEquals(Data.class, adapter.getTypePool().getContents().get(0));
+        assertEquals(1, adapter.getTypePool().getClasses().size());
+        assertEquals(Data.class, adapter.getTypePool().getClasses().get(0));
         assertEquals(DataType1ViewBinder.class,
             adapter.getTypePool().getItemViewBinders().get(0).getClass());
     }
@@ -79,8 +79,8 @@ public class DuplicateTypesTest {
                 adapter.notifyDataSetChanged();
             }
         });
-        assertEquals(1, adapter.getTypePool().getContents().size());
-        assertEquals(Data.class, adapter.getTypePool().getContents().get(0));
+        assertEquals(1, adapter.getTypePool().getClasses().size());
+        assertEquals(Data.class, adapter.getTypePool().getClasses().get(0));
         assertEquals(DataType2ViewBinder.class,
             adapter.getTypePool().getItemViewBinders().get(0).getClass());
     }
@@ -105,10 +105,10 @@ public class DuplicateTypesTest {
                 adapter.notifyDataSetChanged();
             }
         });
-        assertEquals(2, adapter.getTypePool().getContents().size());
+        assertEquals(2, adapter.getTypePool().getClasses().size());
 
-        assertEquals(Data.class, adapter.getTypePool().getContents().get(0));
-        assertEquals(Data.class, adapter.getTypePool().getContents().get(1));
+        assertEquals(Data.class, adapter.getTypePool().getClasses().get(0));
+        assertEquals(Data.class, adapter.getTypePool().getClasses().get(1));
 
         assertEquals(DataType2ViewBinder.class,
             adapter.getTypePool().getItemViewBinders().get(0).getClass());
@@ -142,10 +142,10 @@ public class DuplicateTypesTest {
                 adapter.notifyDataSetChanged();
             }
         });
-        assertEquals(2, adapter.getTypePool().getContents().size());
+        assertEquals(2, adapter.getTypePool().getClasses().size());
 
-        assertEquals(Data.class, adapter.getTypePool().getContents().get(0));
-        assertEquals(Data.class, adapter.getTypePool().getContents().get(1));
+        assertEquals(Data.class, adapter.getTypePool().getClasses().get(0));
+        assertEquals(Data.class, adapter.getTypePool().getClasses().get(1));
 
         assertEquals(DataType1ViewBinder.class,
             adapter.getTypePool().getItemViewBinders().get(0).getClass());
