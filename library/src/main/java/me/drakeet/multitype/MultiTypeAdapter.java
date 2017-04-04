@@ -59,24 +59,52 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    public final <T> void register(
+    /**
+     * Register a type class and its item view binder. If you have registered the class,
+     * it will override the original binder(s). Note that the method is non-thread-safe
+     * so that you should not use it in concurrent operation.
+     *
+     * @param clazz the class of a item
+     * @param binder the item view binder
+     * @param <T> the item data type
+     */
+    public <T> void register(
         @NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
         checkAndRemoveAllTypesIfNeed(clazz);
         typePool.register(clazz, binder, new DefaultLinker<T>());
     }
 
 
+    /**
+     * Register a type class to multiple item view binders. If you have registered the
+     * class, it will override the original binder(s). Note that the method is non-thread-safe
+     * so that you should not use it in concurrent operation.
+     *
+     * @param clazz the class of a item
+     * @param <T> the item data type
+     * @return {@link OneToManyFlow} for setting the binders
+     * @see #register(Class, ItemViewBinder)
+     */
     @CheckResult
-    public final <T> OneToManyFlow<T> register(@NonNull Class<? extends T> clazz) {
+    public <T> OneToManyFlow<T> register(@NonNull Class<? extends T> clazz) {
         checkAndRemoveAllTypesIfNeed(clazz);
         return new OneToManyBuilder<T>(this, clazz);
     }
 
 
-    public final void registerAll(@NonNull final TypePool pool) {
-        for (int i = 0; i < pool.getContents().size(); i++) {
+    /**
+     * Register all of the contents in the specified type pool. If you have registered a
+     * class, it will override the original binder(s). Note that the method is non-thread-safe
+     * so that you should not use it in concurrent operation.
+     *
+     * @param pool type pool containing contents to be added to this adapter inner pool
+     * @see #register(Class, ItemViewBinder)
+     * @see #register(Class)
+     */
+    public void registerAll(@NonNull final TypePool pool) {
+        for (int i = 0; i < pool.getClasses().size(); i++) {
             registerFromTypePoolContent(
-                pool.getContents().get(i),
+                pool.getClasses().get(i),
                 pool.getItemViewBinders().get(i),
                 pool.getLinkers().get(i)
             );
@@ -197,15 +225,15 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
-        if (!typePool.getContents().contains(clazz)) {
+        if (!typePool.getClasses().contains(clazz)) {
             return;
         }
         Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
             "It will override the original binder(s).");
         for (; ; ) {
-            int index = typePool.getContents().indexOf(clazz);
+            int index = typePool.getClasses().indexOf(clazz);
             if (index != -1) {
-                typePool.getContents().remove(index);
+                typePool.getClasses().remove(index);
                 typePool.getItemViewBinders().remove(index);
                 typePool.getLinkers().remove(index);
             } else {
