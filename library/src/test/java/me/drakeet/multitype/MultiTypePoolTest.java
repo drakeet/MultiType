@@ -33,7 +33,7 @@ public class MultiTypePoolTest {
     @Before
     public void register() {
         pool = new MultiTypePool();
-        pool.getContents().clear();
+        pool.getClasses().clear();
         pool.register(TestItem.class, new TestItemViewBinder(), new DefaultLinker<TestItem>());
         pool.register(RegisteredSubClass.class, new TestItemViewBinder(),
             new DefaultLinker<TestItem>());

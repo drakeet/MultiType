@@ -30,25 +30,24 @@ public interface TypePool {
         @NonNull Linker<T> linker);
 
     /**
-     * For getting index of the item class.
-     * If the subclass is already registered, the registered mapping is used.
-     * If the subclass is not registered, then look for the parent class is
-     * registered, if the parent class is registered,
+     * For getting index of the item class. If the subclass is already registered,
+     * the registered mapping is used. If the subclass is not registered, then look
+     * for its parent class if is registered, if the parent class is registered,
      * the subclass is regarded as the parent class.
      *
      * @param clazz the item class.
-     * @return the index of the first occurrence of the specified element
-     * in this list, or -1 if this list does not contain the element.
+     * @return the index of the first occurrence of the specified class
+     * in this pool, or -1 if this pool does not contain the class.
      */
     int firstIndexOf(@NonNull Class<?> clazz);
 
     /**
-     * Get the item classes. Its contents are not duplicated.
+     * Get the item classes.
      *
      * @return the item classes list
      */
     @NonNull
-    List<Class<?>> getContents();
+    List<Class<?>> getClasses();
 
     @NonNull
     List<ItemViewBinder<?, ?>> getItemViewBinders();

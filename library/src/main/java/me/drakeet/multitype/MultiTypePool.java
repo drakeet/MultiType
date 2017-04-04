@@ -27,41 +27,41 @@ public class MultiTypePool implements TypePool {
 
     private final String TAG = MultiTypePool.class.getSimpleName();
 
-    @NonNull private final List<Class<?>> contents;
+    @NonNull private final List<Class<?>> classes;
     @NonNull private final List<ItemViewBinder<?, ?>> binders;
     @NonNull private final List<Linker<?>> linkers;
 
 
     public MultiTypePool() {
-        this.contents = new ArrayList<>();
+        this.classes = new ArrayList<>();
         this.binders = new ArrayList<>();
         this.linkers = new ArrayList<>();
     }
 
 
     public MultiTypePool(int initialCapacity) {
-        this.contents = new ArrayList<>(initialCapacity);
+        this.classes = new ArrayList<>(initialCapacity);
         this.binders = new ArrayList<>(initialCapacity);
         this.linkers = new ArrayList<>(initialCapacity);
     }
 
 
     public MultiTypePool(
-        @NonNull List<Class<?>> contents,
+        @NonNull List<Class<?>> classes,
         @NonNull List<ItemViewBinder<?, ?>> binders,
         @NonNull List<Linker<?>> linkers) {
-        this.contents = contents;
+        this.classes = classes;
         this.binders = binders;
         this.linkers = linkers;
     }
 
 
     @Override
-    public synchronized <T> void register(
+    public <T> void register(
         @NonNull Class<? extends T> clazz,
         @NonNull ItemViewBinder<T, ?> binder,
         @NonNull Linker<T> linker) {
-        contents.add(clazz);
+        classes.add(clazz);
         binders.add(binder);
         linkers.add(linker);
     }
@@ -69,12 +69,12 @@ public class MultiTypePool implements TypePool {
 
     @Override
     public int firstIndexOf(@NonNull final Class<?> clazz) {
-        int index = contents.indexOf(clazz);
+        int index = classes.indexOf(clazz);
         if (index != -1) {
             return index;
         }
-        for (int i = 0; i < contents.size(); i++) {
-            if (contents.get(i).isAssignableFrom(clazz)) {
+        for (int i = 0; i < classes.size(); i++) {
+            if (classes.get(i).isAssignableFrom(clazz)) {
                 return i;
             }
         }
@@ -83,8 +83,8 @@ public class MultiTypePool implements TypePool {
 
 
     @NonNull @Override
-    public List<Class<?>> getContents() {
-        return contents;
+    public List<Class<?>> getClasses() {
+        return classes;
     }
 
 
