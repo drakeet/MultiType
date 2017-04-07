@@ -19,7 +19,6 @@ package me.drakeet.multitype;
 /**
  * @author drakeet
  */
-
 final class DefaultLinker<T> implements Linker<T> {
 
     @Override

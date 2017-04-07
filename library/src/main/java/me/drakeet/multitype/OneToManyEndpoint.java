@@ -21,7 +21,6 @@ import android.support.annotation.NonNull;
 /**
  * @author drakeet
  */
-
 public interface OneToManyEndpoint<T> {
 
     void withLinker(@NonNull Linker<T> linker);

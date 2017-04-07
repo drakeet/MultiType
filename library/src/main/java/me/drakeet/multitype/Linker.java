@@ -19,7 +19,6 @@ package me.drakeet.multitype;
 /**
  * @author drakeet
  */
-
 public interface Linker<T> {
 
     int index(T t);
