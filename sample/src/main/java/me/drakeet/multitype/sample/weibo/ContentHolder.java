@@ -16,15 +16,51 @@
 
 package me.drakeet.multitype.sample.weibo;
 
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 /**
  * @author drakeet
  */
-public class ContentHolder extends RecyclerView.ViewHolder {
+public class ContentHolder {
 
-    public ContentHolder(View itemView) {
-        super(itemView);
+    WeiboFrameBinder.FrameHolder frameHolder;
+
+    public final View itemView;
+
+
+    public ContentHolder(@NonNull final View itemView) {
+        this.itemView = itemView;
+    }
+
+
+    @NonNull
+    public WeiboFrameBinder.FrameHolder getParent() {
+        return frameHolder;
+    }
+
+
+    public final int getAdapterPosition() {
+        return getParent().getAdapterPosition();
+    }
+
+
+    public final int getLayoutPosition() {
+        return getParent().getLayoutPosition();
+    }
+
+
+    public final int getOldPosition() {
+        return getParent().getOldPosition();
+    }
+
+
+    public final boolean isRecyclable() {
+        return getParent().isRecyclable();
+    }
+
+
+    public final void setIsRecyclable(boolean recyclable) {
+        getParent().setIsRecyclable(recyclable);
     }
 }

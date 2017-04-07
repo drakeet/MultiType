@@ -58,20 +58,18 @@ public abstract class WeiboFrameBinder
         holder.avatar.setImageResource(weibo.user.avatar);
         holder.username.setText(weibo.user.name);
         holder.createTime.setText(weibo.createTime);
-        holder.position = getPosition(holder);
         final WeiboContent weiboContent = weibo.content;
         onBindContentViewHolder((SubViewHolder) holder.subViewHolder, (Content) weiboContent);
     }
 
 
-    static class FrameHolder extends RecyclerView.ViewHolder {
+    public static class FrameHolder extends RecyclerView.ViewHolder {
 
         private ImageView avatar;
         private TextView username;
         private FrameLayout container;
         private TextView createTime;
         private ContentHolder subViewHolder;
-        int position;
 
 
         FrameHolder(View itemView, final ContentHolder subViewHolder) {
@@ -82,12 +80,12 @@ public abstract class WeiboFrameBinder
             createTime = (TextView) findViewById(R.id.create_time);
             container.addView(subViewHolder.itemView);
             this.subViewHolder = subViewHolder;
+            this.subViewHolder.frameHolder = this;
 
-            /* Test the getPosition(RecyclerView.ViewHolder) method */
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     Toast.makeText(v.getContext(),
-                        "getPosition: " + position, LENGTH_SHORT).show();
+                        "Position: " + getAdapterPosition(), LENGTH_SHORT).show();
                 }
             });
         }
