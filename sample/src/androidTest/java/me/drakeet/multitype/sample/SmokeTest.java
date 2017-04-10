@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype.sample;
 
+import android.support.test.espresso.Espresso;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -46,6 +47,8 @@ public class SmokeTest {
 
     @Test
     public void smokeTest() {
+        Espresso.closeSoftKeyboard();
+
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
         onView(
