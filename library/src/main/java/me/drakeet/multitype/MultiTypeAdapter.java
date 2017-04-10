@@ -138,8 +138,25 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
 
-    @Override
-    public final void onBindViewHolder(ViewHolder holder, int position) {}
+    /**
+     * This method is deprecated and unused. You should not call this method.
+     * <p>
+     * If you need to call the binding, use {@link RecyclerView.Adapter#onBindViewHolder(ViewHolder,
+     * int, List)} instead.
+     * <p/>
+     *
+     * @param holder The ViewHolder which should be updated to represent the contents of the
+     * item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     * @throws IllegalAccessError By default.
+     * @deprecated Call {@link RecyclerView.Adapter#onBindViewHolder(ViewHolder, int, List)}
+     * instead.
+     */
+    @Override @Deprecated
+    public final void onBindViewHolder(ViewHolder holder, int position) {
+        throw new IllegalAccessError("You should not call this method. " +
+            "Call RecyclerView.Adapter#onBindViewHolder(holder, position, payloads) instead.");
+    }
 
 
     @Override @SuppressWarnings("unchecked")
