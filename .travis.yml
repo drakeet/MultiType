@@ -10,10 +10,10 @@ android:
     - android-23
     - android-25
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-25
+    - sys-img-armeabi-v7a-android-22
 env:
   matrix:
-    - ANDROID_SDKS=android-25,sysimg-25  ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-22,sysimg-22  ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a
 before_install:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
