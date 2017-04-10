@@ -1,17 +1,31 @@
 language: android
+jdk: oraclejdk8
+
 android:
   components:
     - platform-tools
     - tools
     - build-tools-25.0.2
+    - android-22
+    - android-23
     - android-25
     - extra-android-m2repository
-jdk:
-  - oraclejdk8
-script:
-  - ./gradlew
+    - sys-img-armeabi-v7a-android-25
+env:
+  matrix:
+    - ANDROID_SDKS=android-25,sysimg-25
+    - ANDROID_TARGET=android-25
+    - ANDROID_ABI=armeabi-v7a
+before_install:
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+before_script:
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+script:
+    - ./gradlew connectedAndroidTest
 cache:
   directories:
     - $HOME/.m2
