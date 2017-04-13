@@ -21,10 +21,14 @@ import android.support.annotation.NonNull;
 /**
  * @author drakeet
  */
-final class DefaultLinker<T> implements Linker<T> {
+public interface ClassLinker<T> {
 
-    @Override
-    public int index(@NonNull T t) {
-        return 0;
-    }
+    /**
+     * Return the class of your registered binders for your item.
+     *
+     * @param t Your item data
+     * @return The index of your registered binders
+     * @see OneToManyEndpoint#withClassLinker(ClassLinker)
+     */
+    @NonNull Class<? extends ItemViewBinder<T, ?>> index(@NonNull T t);
 }

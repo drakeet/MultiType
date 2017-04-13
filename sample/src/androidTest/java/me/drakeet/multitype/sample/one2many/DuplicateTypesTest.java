@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype.sample.one2many;
 
+import android.support.annotation.NonNull;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -89,7 +90,7 @@ public class DuplicateTypesTest {
     @Test
     public void shouldManyOverrideOne() throws Throwable {
         final Linker<Data> linker = new Linker<Data>() {
-            @Override public int index(Data data) {
+            @Override public int index(@NonNull Data data) {
                 return (data.type == Data.TYPE_1) ? 1 : 0;
             }
         };
@@ -123,7 +124,8 @@ public class DuplicateTypesTest {
     @Test
     public void shouldManyOverrideMany() throws Throwable {
         final Linker<Data> linker = new Linker<Data>() {
-            @Override public int index(Data data) {
+            @Override
+            public int index(@NonNull Data data) {
                 return (data.type == Data.TYPE_1) ? 1 : 0;
             }
         };
