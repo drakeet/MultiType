@@ -17,6 +17,7 @@
 package me.drakeet.multitype.sample.weibo;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
 import me.drakeet.multitype.Items;
@@ -81,7 +82,7 @@ public class WeiboActivity extends MenuBaseActivity {
             new SimpleImageViewBinder()
         ).withLinker(new Linker<Weibo>() {
             @Override
-            public int index(Weibo weibo) {
+            public int index(@NonNull Weibo weibo) {
                 if (weibo.content instanceof SimpleText) {
                     return 0;
                 } else if (weibo.content instanceof SimpleImage) {
