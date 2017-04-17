@@ -172,7 +172,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * <p>
      * If you need to call the binding, use {@link RecyclerView.Adapter#onBindViewHolder(ViewHolder,
      * int, List)} instead.
-     * <p/>
+     * </p>
      *
      * @param holder The ViewHolder which should be updated to represent the contents of the
      * item at the given position in the data set.

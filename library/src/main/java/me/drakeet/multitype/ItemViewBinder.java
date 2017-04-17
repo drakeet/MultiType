@@ -39,9 +39,9 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * update the contents of the {@link ViewHolder#itemView} to reflect the given item.
      * <p>
      * If you need the position of an item later on (e.g. in a click listener), use
-     * {@link ViewHolder#getAdapterPosition()} which will have the updated adapter position.
+     * {@code ViewHolder#getAdapterPosition()} which will have the updated adapter position.
      *
-     * Override {@link #onBindViewHolder(ViewHolder, Object, List)} instead if your ItemViewBinder
+     * Override {@code onBindViewHolder(ViewHolder, Object, List)} instead if your ItemViewBinder
      * can handle efficient partial bind.
      *
      * @param holder The ViewHolder which should be updated to represent the contents of the
@@ -69,7 +69,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * received by onBindViewHolder().  For example when the view is not attached to the screen,
      * the payload in notifyItemChange() will be simply dropped.
      *
-     * This implementation calls the {@link #onBindViewHolder(ViewHolder, Object)} by default.
+     * This implementation calls the {@code onBindViewHolder(ViewHolder, Object)} by default.
      *
      * @param holder The ViewHolder which should be updated to represent the contents of the
      * given item in the items data set.
