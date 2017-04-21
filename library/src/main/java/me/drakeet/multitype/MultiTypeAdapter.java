@@ -38,21 +38,41 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Nullable protected LayoutInflater inflater;
 
 
+    /**
+     * Constructs a MultiTypeAdapter with a null items list.
+     */
     public MultiTypeAdapter() {
         this(null);
     }
 
 
+    /**
+     * Constructs a MultiTypeAdapter with a items list.
+     *
+     * @param items The items list
+     */
     public MultiTypeAdapter(@Nullable List<?> items) {
         this(items, new MultiTypePool());
     }
 
 
+    /**
+     * Constructs a MultiTypeAdapter with a items list and an initial capacity of TypePool.
+     *
+     * @param items The items list
+     * @param initialCapacity The initial capacity of TypePool
+     */
     public MultiTypeAdapter(@Nullable List<?> items, int initialCapacity) {
         this(items, new MultiTypePool(initialCapacity));
     }
 
 
+    /**
+     * Constructs a MultiTypeAdapter with a items list and a TypePool.
+     *
+     * @param items The items list
+     * @param pool The type pool
+     */
     public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
         this.items = items;
         this.typePool = pool;
@@ -103,7 +123,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      */
     public void registerAll(@NonNull final TypePool pool) {
         for (int i = 0; i < pool.getClasses().size(); i++) {
-            registerFromTypePoolContent(
+            registerWithoutChecking(
                 pool.getClasses().get(i),
                 pool.getItemViewBinders().get(i),
                 pool.getLinkers().get(i)
@@ -112,17 +132,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    /** A safe register method base on the TypePool's safety. */
-    @SuppressWarnings("unchecked")
-    private void registerFromTypePoolContent(
-        @NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
-        checkAndRemoveAllTypesIfNeed(clazz);
-        typePool.register(clazz, itemViewBinder, linker);
-    }
-
-
     /**
-     * Update the items atomically and safely.
+     * Set and update the items atomically and safely.
      * It is recommended to use this method to update the data.
      * <p>e.g. {@code adapter.setItems(new Items(changedItems));}</p>
      *
@@ -137,6 +148,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
+    @Nullable
+    public List<?> getItems() {
+        return items;
+    }
+
+
     /**
      * Set the TypePool to hold the types and view binders.
      *
@@ -144,6 +161,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      */
     public void setTypePool(@NonNull TypePool typePool) {
         this.typePool = typePool;
+    }
+
+
+    @NonNull
+    public TypePool getTypePool() {
+        return typePool;
     }
 
 
@@ -214,16 +237,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    @Nullable
-    public List<?> getItems() { return items; }
-
-
-    @NonNull
-    public TypePool getTypePool() {
-        return typePool;
-    }
-
-
     private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
         if (!typePool.getClasses().contains(clazz)) {
             return;
@@ -243,10 +256,19 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    <T> void registerWithoutChecking(
+    <T> void registerWithLinker(
         @NonNull Class<? extends T> clazz,
         @NonNull ItemViewBinder<T, ?> binder,
         @NonNull Linker<T> linker) {
         typePool.register(clazz, binder, linker);
+    }
+
+
+    /** A safe register method base on the TypePool's safety for TypePool. */
+    @SuppressWarnings("unchecked")
+    private void registerWithoutChecking(
+        @NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
+        checkAndRemoveAllTypesIfNeed(clazz);
+        typePool.register(clazz, itemViewBinder, linker);
     }
 }

@@ -25,7 +25,7 @@ import android.support.annotation.NonNull;
 public interface Linker<T> {
 
     /**
-     * Return the index of your registered binders for your item. The result should be in range of
+     * Returns the index of your registered binders for your item. The result should be in range of
      * {@code [0, one-to-multiple-binders.length)}.
      *
      * <p>Note: The argument of {@link OneToManyFlow#to(ItemViewBinder[])} is the

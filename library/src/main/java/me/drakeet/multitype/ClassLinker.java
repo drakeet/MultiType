@@ -24,7 +24,7 @@ import android.support.annotation.NonNull;
 public interface ClassLinker<T> {
 
     /**
-     * Return the class of your registered binders for your item.
+     * Returns the class of your registered binders for your item.
      *
      * @param t Your item data
      * @return The index of your registered binders
