@@ -16,13 +16,15 @@
 
 package me.drakeet.multitype;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author drakeet
  */
 final class DefaultLinker<T> implements Linker<T> {
 
     @Override
-    public int index(T t) {
+    public int index(@NonNull T t) {
         return 0;
     }
 }

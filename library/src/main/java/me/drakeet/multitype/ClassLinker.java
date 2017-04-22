@@ -16,22 +16,21 @@
 
 package me.drakeet.multitype;
 
-import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 
 /**
- * Process and flow operators for one-to-many.
+ * An interface to link the items and binders by the classes of binders.
  *
  * @author drakeet
  */
-public interface OneToManyFlow<T> {
+public interface ClassLinker<T> {
 
     /**
-     * Sets some item view binders to the item type.
+     * Returns the class of your registered binders for your item.
      *
-     * @param binders the item view binders
-     * @return end flow operator
+     * @param t Your item data
+     * @return The index of your registered binders
+     * @see OneToManyEndpoint#withClassLinker(ClassLinker)
      */
-    @NonNull @CheckResult @SuppressWarnings("unchecked")
-    OneToManyEndpoint<T> to(@NonNull ItemViewBinder<T, ?>... binders);
+    @NonNull Class<? extends ItemViewBinder<T, ?>> index(@NonNull T t);
 }

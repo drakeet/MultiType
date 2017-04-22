@@ -20,10 +20,20 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 /**
+ * An ordered collection to hold the types, binders and linkers.
+ *
  * @author drakeet
  */
 public interface TypePool {
 
+    /**
+     * Registers a type class and its item view binder.
+     *
+     * @param clazz the class of a item
+     * @param binder the item view binder
+     * @param linker the linker to link the class and view binder
+     * @param <T> the item data type
+     */
     <T> void register(
         @NonNull Class<? extends T> clazz,
         @NonNull ItemViewBinder<T, ?> binder,
@@ -36,22 +46,32 @@ public interface TypePool {
      * the subclass is regarded as the parent class.
      *
      * @param clazz the item class.
-     * @return the index of the first occurrence of the specified class
+     * @return The index of the first occurrence of the specified class
      * in this pool, or -1 if this pool does not contain the class.
      */
     int firstIndexOf(@NonNull Class<?> clazz);
 
     /**
-     * Get the item classes.
+     * Gets the item classes.
      *
-     * @return the item classes list
+     * @return The item classes list
      */
     @NonNull
     List<Class<?>> getClasses();
 
+    /**
+     * Gets the item view binders list.
+     *
+     * @return the binders list
+     */
     @NonNull
     List<ItemViewBinder<?, ?>> getItemViewBinders();
 
+    /**
+     * Gets the linkers list.
+     *
+     * @return the linkers list
+     */
     @NonNull
     List<Linker<?>> getLinkers();
 }

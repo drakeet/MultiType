@@ -38,21 +38,41 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Nullable protected LayoutInflater inflater;
 
 
+    /**
+     * Constructs a MultiTypeAdapter with a null items list.
+     */
     public MultiTypeAdapter() {
         this(null);
     }
 
 
+    /**
+     * Constructs a MultiTypeAdapter with a items list.
+     *
+     * @param items the items list
+     */
     public MultiTypeAdapter(@Nullable List<?> items) {
         this(items, new MultiTypePool());
     }
 
 
+    /**
+     * Constructs a MultiTypeAdapter with a items list and an initial capacity of TypePool.
+     *
+     * @param items the items list
+     * @param initialCapacity the initial capacity of TypePool
+     */
     public MultiTypeAdapter(@Nullable List<?> items, int initialCapacity) {
         this(items, new MultiTypePool(initialCapacity));
     }
 
 
+    /**
+     * Constructs a MultiTypeAdapter with a items list and a TypePool.
+     *
+     * @param items the items list
+     * @param pool the type pool
+     */
     public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
         this.items = items;
         this.typePool = pool;
@@ -60,7 +80,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Register a type class and its item view binder. If you have registered the class,
+     * Registers a type class and its item view binder. If you have registered the class,
      * it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
      *
@@ -76,7 +96,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Register a type class to multiple item view binders. If you have registered the
+     * Registers a type class to multiple item view binders. If you have registered the
      * class, it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
      *
@@ -93,7 +113,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Register all of the contents in the specified type pool. If you have registered a
+     * Registers all of the contents in the specified type pool. If you have registered a
      * class, it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
      *
@@ -103,7 +123,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      */
     public void registerAll(@NonNull final TypePool pool) {
         for (int i = 0; i < pool.getClasses().size(); i++) {
-            registerFromTypePoolContent(
+            registerWithoutChecking(
                 pool.getClasses().get(i),
                 pool.getItemViewBinders().get(i),
                 pool.getLinkers().get(i)
@@ -112,24 +132,15 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    /** A safe register method base on the TypePool's safety. */
-    @SuppressWarnings("unchecked")
-    private void registerFromTypePoolContent(
-        @NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
-        checkAndRemoveAllTypesIfNeed(clazz);
-        typePool.register(clazz, itemViewBinder, linker);
-    }
-
-
     /**
-     * Update the items atomically and safely.
+     * Sets and updates the items atomically and safely.
      * It is recommended to use this method to update the data.
      * <p>e.g. {@code adapter.setItems(new Items(changedItems));}</p>
      *
      * <p>Note: If you want to refresh the list views, you should
      * call {@link RecyclerView.Adapter#notifyDataSetChanged()} by yourself.</p>
      *
-     * @param items The <b>new</b> items list.
+     * @param items the <b>new</b> items list
      * @since v2.4.1
      */
     public void setItems(@Nullable List<?> items) {
@@ -137,13 +148,25 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
+    @Nullable
+    public List<?> getItems() {
+        return items;
+    }
+
+
     /**
      * Set the TypePool to hold the types and view binders.
      *
-     * @param typePool The TypePool implementation
+     * @param typePool the TypePool implementation
      */
     public void setTypePool(@NonNull TypePool typePool) {
         this.typePool = typePool;
+    }
+
+
+    @NonNull
+    public TypePool getTypePool() {
+        return typePool;
     }
 
 
@@ -172,7 +195,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * <p>
      * If you need to call the binding, use {@link RecyclerView.Adapter#onBindViewHolder(ViewHolder,
      * int, List)} instead.
-     * <p/>
+     * </p>
      *
      * @param holder The ViewHolder which should be updated to represent the contents of the
      * item at the given position in the data set.
@@ -214,16 +237,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    @Nullable
-    public List<?> getItems() { return items; }
-
-
-    @NonNull
-    public TypePool getTypePool() {
-        return typePool;
-    }
-
-
     private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
         if (!typePool.getClasses().contains(clazz)) {
             return;
@@ -243,10 +256,19 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    <T> void registerWithoutChecking(
+    <T> void registerWithLinker(
         @NonNull Class<? extends T> clazz,
         @NonNull ItemViewBinder<T, ?> binder,
         @NonNull Linker<T> linker) {
         typePool.register(clazz, binder, linker);
+    }
+
+
+    /** A safe register method base on the TypePool's safety for TypePool. */
+    @SuppressWarnings("unchecked")
+    private void registerWithoutChecking(
+        @NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
+        checkAndRemoveAllTypesIfNeed(clazz);
+        typePool.register(clazz, itemViewBinder, linker);
     }
 }
