@@ -11,22 +11,18 @@ android:
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-22
 env:
-  matrix:
-    - ANDROID_SDKS=android-22,sysimg-22  ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a
+  global:
+    - ANDROID_TARGET=android-25
+    - ANDROID_BUILD_TOOLS_VERSION=25.0.0
+    - ANDROID_ABI=armeabi-v7a
 before_install:
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-audio &
+  - echo yes | android update sdk --all --filter build-tools-$ANDROID_BUILD_TOOLS_VERSION --no-ui --force
+
 before_script:
+  - echo no | android create avd --force -n test -t android-19 --abi $ANDROID_ABI
+  - emulator -avd test -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
-before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+
 script:
-    - ./gradlew connectedAndroidTest
-cache:
-  directories:
-    - $HOME/.m2
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - ./gradlew clean check connectedAndroidTest
