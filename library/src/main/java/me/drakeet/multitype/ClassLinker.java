@@ -19,6 +19,8 @@ package me.drakeet.multitype;
 import android.support.annotation.NonNull;
 
 /**
+ * An interface to link the items and binders by the classes of binders.
+ *
  * @author drakeet
  */
 public interface ClassLinker<T> {

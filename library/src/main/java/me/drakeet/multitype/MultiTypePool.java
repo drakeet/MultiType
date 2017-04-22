@@ -21,17 +21,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * An List implementation of TypePool.
+ *
  * @author drakeet
  */
 public class MultiTypePool implements TypePool {
-
-    private final String TAG = MultiTypePool.class.getSimpleName();
 
     @NonNull private final List<Class<?>> classes;
     @NonNull private final List<ItemViewBinder<?, ?>> binders;
     @NonNull private final List<Linker<?>> linkers;
 
 
+    /**
+     * Constructs a MultiTypePool with default lists.
+     */
     public MultiTypePool() {
         this.classes = new ArrayList<>();
         this.binders = new ArrayList<>();
@@ -39,6 +42,11 @@ public class MultiTypePool implements TypePool {
     }
 
 
+    /**
+     * Constructs a MultiTypePool with default lists and a specified initial capacity.
+     *
+     * @param initialCapacity the initial capacity of the list
+     */
     public MultiTypePool(int initialCapacity) {
         this.classes = new ArrayList<>(initialCapacity);
         this.binders = new ArrayList<>(initialCapacity);
@@ -46,6 +54,13 @@ public class MultiTypePool implements TypePool {
     }
 
 
+    /**
+     * Constructs a MultiTypePool with specified lists.
+     *
+     * @param classes the list for classes
+     * @param binders the list for binders
+     * @param linkers the list for linkers
+     */
     public MultiTypePool(
         @NonNull List<Class<?>> classes,
         @NonNull List<ItemViewBinder<?, ?>> binders,

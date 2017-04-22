@@ -31,12 +31,12 @@ public class MultiTypeAsserts {
 
 
     /**
-     * Make the exception to occur in your class for debug and index.
+     * Makes the exception to occur in your class for debug and index.
      *
-     * @param adapter The MultiTypeAdapter.
-     * @param items The items list.
-     * @throws BinderNotFoundException If check failed.
-     * @throws IllegalArgumentException If your Items/List is empty.
+     * @param adapter the MultiTypeAdapter
+     * @param items the items list
+     * @throws BinderNotFoundException if check failed
+     * @throws IllegalArgumentException if your Items/List is empty
      */
     @SuppressWarnings("unchecked")
     public static void assertAllRegistered(
@@ -55,8 +55,8 @@ public class MultiTypeAsserts {
 
 
     /**
-     * @param recyclerView The RecyclerView.
-     * @param adapter The MultiTypeAdapter.
+     * @param recyclerView the RecyclerView
+     * @param adapter the MultiTypeAdapter
      * @throws IllegalAccessError The assertHasTheSameAdapter() method must be placed after
      * recyclerView.setAdapter().
      * @throws IllegalArgumentException If your recyclerView's adapter.

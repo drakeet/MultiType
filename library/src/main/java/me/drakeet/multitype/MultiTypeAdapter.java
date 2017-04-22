@@ -49,7 +49,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     /**
      * Constructs a MultiTypeAdapter with a items list.
      *
-     * @param items The items list
+     * @param items the items list
      */
     public MultiTypeAdapter(@Nullable List<?> items) {
         this(items, new MultiTypePool());
@@ -59,8 +59,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     /**
      * Constructs a MultiTypeAdapter with a items list and an initial capacity of TypePool.
      *
-     * @param items The items list
-     * @param initialCapacity The initial capacity of TypePool
+     * @param items the items list
+     * @param initialCapacity the initial capacity of TypePool
      */
     public MultiTypeAdapter(@Nullable List<?> items, int initialCapacity) {
         this(items, new MultiTypePool(initialCapacity));
@@ -70,8 +70,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     /**
      * Constructs a MultiTypeAdapter with a items list and a TypePool.
      *
-     * @param items The items list
-     * @param pool The type pool
+     * @param items the items list
+     * @param pool the type pool
      */
     public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
         this.items = items;
@@ -80,7 +80,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Register a type class and its item view binder. If you have registered the class,
+     * Registers a type class and its item view binder. If you have registered the class,
      * it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
      *
@@ -96,7 +96,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Register a type class to multiple item view binders. If you have registered the
+     * Registers a type class to multiple item view binders. If you have registered the
      * class, it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
      *
@@ -113,7 +113,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Register all of the contents in the specified type pool. If you have registered a
+     * Registers all of the contents in the specified type pool. If you have registered a
      * class, it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
      *
@@ -133,14 +133,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Set and update the items atomically and safely.
+     * Sets and updates the items atomically and safely.
      * It is recommended to use this method to update the data.
      * <p>e.g. {@code adapter.setItems(new Items(changedItems));}</p>
      *
      * <p>Note: If you want to refresh the list views, you should
      * call {@link RecyclerView.Adapter#notifyDataSetChanged()} by yourself.</p>
      *
-     * @param items The <b>new</b> items list.
+     * @param items the <b>new</b> items list
      * @since v2.4.1
      */
     public void setItems(@Nullable List<?> items) {
@@ -157,7 +157,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     /**
      * Set the TypePool to hold the types and view binders.
      *
-     * @param typePool The TypePool implementation
+     * @param typePool the TypePool implementation
      */
     public void setTypePool(@NonNull TypePool typePool) {
         this.typePool = typePool;

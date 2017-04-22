@@ -20,6 +20,8 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 
 /**
+ * An interface to link the items and binders by array integer index.
+ *
  * @author drakeet
  */
 public interface Linker<T> {
