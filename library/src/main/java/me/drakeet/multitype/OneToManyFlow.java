@@ -24,6 +24,6 @@ import android.support.annotation.NonNull;
  */
 public interface OneToManyFlow<T> {
 
-    @NonNull @CheckResult
+    @NonNull @CheckResult @SuppressWarnings("unchecked")
     OneToManyEndpoint<T> to(@NonNull ItemViewBinder<T, ?>... binders);
 }
