@@ -32,6 +32,6 @@ public interface OneToManyFlow<T> {
      * @param binders the item view binders
      * @return end flow operator
      */
-    @NonNull @CheckResult
+    @NonNull @CheckResult @SuppressWarnings("unchecked")
     OneToManyEndpoint<T> to(@NonNull ItemViewBinder<T, ?>... binders);
 }

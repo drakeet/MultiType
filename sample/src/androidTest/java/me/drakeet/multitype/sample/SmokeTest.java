@@ -16,7 +16,7 @@
 
 package me.drakeet.multitype.sample;
 
-import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.Espresso;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -47,40 +47,42 @@ public class SmokeTest {
 
     @Test
     public void smokeTest() {
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-
-        ViewInteraction appCompatTextView = onView(
-            allOf(withId(R.id.title), withText("NormalActivity"), isDisplayed()));
-        appCompatTextView.perform(click());
+        Espresso.closeSoftKeyboard();
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        ViewInteraction appCompatTextView2 = onView(
-            allOf(withId(R.id.title), withText("MultiSelectActivity"), isDisplayed()));
-        appCompatTextView2.perform(click());
+        onView(
+            allOf(withId(R.id.title), withText("NormalActivity"), isDisplayed())
+        ).perform(click());
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        ViewInteraction appCompatTextView3 = onView(
-            allOf(withId(R.id.title), withText("communicate with provider"), isDisplayed()));
-        appCompatTextView3.perform(click());
+        onView(
+            allOf(withId(R.id.title), withText("MultiSelectActivity"), isDisplayed())
+        ).perform(click());
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        ViewInteraction appCompatTextView4 = onView(
-            allOf(withId(R.id.title), withText("WeiboActivity"), isDisplayed()));
-        appCompatTextView4.perform(click());
+        onView(
+            allOf(withId(R.id.title), withText("communicate with provider"), isDisplayed())
+        ).perform(click());
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        ViewInteraction appCompatTextView5 = onView(
-            allOf(withId(R.id.title), withText("OneDataToManyActivity"), isDisplayed()));
-        appCompatTextView5.perform(click());
+        onView(
+            allOf(withId(R.id.title), withText("WeiboActivity"), isDisplayed())
+        ).perform(click());
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        ViewInteraction appCompatTextView6 = onView(
-            allOf(withId(R.id.title), withText("TestPayloadActivity"), isDisplayed()));
-        appCompatTextView6.perform(click());
+        onView(
+            allOf(withId(R.id.title), withText("OneDataToManyActivity"), isDisplayed())
+        ).perform(click());
+
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+
+        onView(
+            allOf(withId(R.id.title), withText("TestPayloadActivity"), isDisplayed())
+        ).perform(click());
     }
 }
