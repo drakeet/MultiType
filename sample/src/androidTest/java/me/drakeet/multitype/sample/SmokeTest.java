@@ -64,7 +64,7 @@ public class SmokeTest {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
         onView(
-            allOf(withId(R.id.title), withText("communicate with provider"), isDisplayed())
+            allOf(withId(R.id.title), withText("communicate with binder"), isDisplayed())
         ).perform(click());
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
