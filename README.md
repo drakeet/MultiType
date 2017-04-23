@@ -1,7 +1,7 @@
 # MultiType
 An Android library to retrofit multiple item view types
 
-![travis-ci](https://travis-ci.org/drakeet/MultiType.svg?branch=3.x)
+[![Build Status](https://travis-ci.org/drakeet/MultiType.svg?branch=3.x)](https://travis-ci.org/drakeet/MultiType)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
 ![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
 
