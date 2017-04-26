@@ -1,0 +1,102 @@
+/*
+ * Copyright 2016 drakeet. https://github.com/drakeet
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package me.drakeet.multitype.sample.databinding;
+
+import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import me.drakeet.multitype.MultiTypeAdapter;
+import me.drakeet.multitype.databinding.BindingHolder;
+import me.drakeet.multitype.databinding.ItemViewBindingTemplate;
+import me.drakeet.multitype.databinding.SimpleItemViewBindingTemplate;
+import me.drakeet.multitype.sample.BR;
+import me.drakeet.multitype.sample.MenuBaseActivity;
+import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.normal.ImageItem;
+import me.drakeet.multitype.sample.normal.RichItem;
+import me.drakeet.multitype.sample.normal.TextItem;
+import me.drakeet.multitype.sample.databinding.ItemBindingTextBinding;
+import me.drakeet.multitype.sample.databinding.ItemBindingImageBinding;
+import me.drakeet.multitype.sample.databinding.ItemBindingRichBinding;
+
+/**
+ * @author drakeet
+ */
+public class DatabindingDemoActivity extends MenuBaseActivity {
+
+    private MultiTypeAdapter adapter;
+    private List<Object> items;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+
+        adapter = new MultiTypeAdapter();
+        adapter.register(TextItem.class, new SimpleItemViewBindingTemplate<TextItem, ItemBindingTextBinding>(R.layout.item_binding_text, BR.textItem));
+        adapter.register(ImageItem.class, new SimpleItemViewBindingTemplate<ImageItem, ItemBindingImageBinding>(R.layout.item_binding_image, BR.imageItem));
+        adapter.register(RichItem.class, new RichItemViewTemplate());
+        recyclerView.setAdapter(adapter);
+        TextItem textItem = new TextItem("world");
+        ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
+        RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
+
+        items = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            items.add(textItem);
+            items.add(imageItem);
+            items.add(richItem);
+        }
+        adapter.setItems(items);
+        adapter.notifyDataSetChanged();
+    }
+
+    private class RichItemViewTemplate extends ItemViewBindingTemplate<RichItem, ItemBindingRichBinding> {
+
+        @Override
+        protected int getItemLayoutId() {
+            return R.layout.item_binding_rich;
+        }
+
+        @Override
+        protected int getVariableId() {
+            return BR.richItem;
+        }
+
+        @Override
+        protected void onBindViewHolder(BindingHolder<ItemBindingRichBinding> holder, RichItem item) {
+            super.onBindViewHolder(holder, item);
+            final ItemBindingRichBinding richBinding = holder.getViewDataBinding();
+            //DataBinding框架自动在layout文件对应的Binding对象中创建了所有view的引用，免去编写ViewHolder的步骤
+            richBinding.text.setText("position:" + holder.getAdapterPosition() + " -->" + richBinding.text.getText());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), richBinding.text.getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+}

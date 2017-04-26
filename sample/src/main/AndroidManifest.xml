@@ -44,6 +44,7 @@
         <activity android:name=".one2many.OneDataToManyActivity"/>
 
         <activity android:name=".payload.TestPayloadActivity"/>
+        <activity android:name=".databinding.DatabindingDemoActivity"/>
         
     </application>
 
