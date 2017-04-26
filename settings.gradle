@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-include ':sample', ':library'
+include ':sample', ':library', ':databinding'

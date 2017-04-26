@@ -4,43 +4,47 @@
 
     <item
         android:id="@+id/more"
+        android:orderInCategory="1"
         android:title="More ->"
-        app:showAsAction="always"
-        android:orderInCategory="1"/>
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/NormalActivity"
         android:title="NormalActivity"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/MultiSelectActivity"
         android:title="MultiSelectActivity"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/communicate_with_binder"
         android:title="communicate with provider"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/BilibiliActivity"
         android:title="BilibiliActivity"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/WeiboActivity"
         android:title="WeiboActivity"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/OneDataToManyActivity"
         android:title="OneDataToManyActivity"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/TestPayloadActivity"
         android:title="TestPayloadActivity"
-        app:showAsAction="never"/>
-    
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/DatabindingDemoActivity"
+        android:title="DatabindingDemoActivity"
+        app:showAsAction="never" />
+
 </menu>

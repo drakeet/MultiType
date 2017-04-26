@@ -22,10 +22,19 @@ import android.app.Application;
  * @author drakeet
  */
 public class App extends Application {
+    private static App instance;
+
+    public App() {
+        instance = this;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         MultiTypeInstaller.start();
+    }
+
+    public static App getContext() {
+        return instance;
     }
 }
