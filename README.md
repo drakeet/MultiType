@@ -121,7 +121,7 @@ public class SampleActivity extends AppCompatActivity {
 
 ## Wiki
 
-[![](http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg)](https://github.com/drakeet/Effective-MultiType/blob/master/README.md)
+<img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg" width=640/>
 
 ## Change Log
 
