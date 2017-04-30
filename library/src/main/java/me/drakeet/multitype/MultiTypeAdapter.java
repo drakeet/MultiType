@@ -83,6 +83,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * Registers a type class and its item view binder. If you have registered the class,
      * it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
+     * <p>
+     * Note that the method should not be called after
+     * {@link RecyclerView#setAdapter(RecyclerView.Adapter)}, or you have to call the setAdapter
+     * again.
+     * </p>
      *
      * @param clazz the class of a item
      * @param binder the item view binder
@@ -99,6 +104,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * Registers a type class to multiple item view binders. If you have registered the
      * class, it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
+     * <p>
+     * Note that the method should not be called after
+     * {@link RecyclerView#setAdapter(RecyclerView.Adapter)}, or you have to call the setAdapter
+     * again.
+     * </p>
      *
      * @param clazz the class of a item
      * @param <T> the item data type
@@ -116,6 +126,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * Registers all of the contents in the specified type pool. If you have registered a
      * class, it will override the original binder(s). Note that the method is non-thread-safe
      * so that you should not use it in concurrent operation.
+     * <p>
+     * Note that the method should not be called after
+     * {@link RecyclerView#setAdapter(RecyclerView.Adapter)}, or you have to call the setAdapter
+     * again.
+     * </p>
      *
      * @param pool type pool containing contents to be added to this adapter inner pool
      * @see #register(Class, ItemViewBinder)
