@@ -117,7 +117,7 @@ public class SampleActivity extends AppCompatActivity {
 
 **One to Multiple**:  
 
-![snip20170413_21](https://cloud.githubusercontent.com/assets/5214214/25094943/e458121a-23cb-11e7-9bb6-106d6b1d8401.png)
+<img src="https://cloud.githubusercontent.com/assets/5214214/25094943/e458121a-23cb-11e7-9bb6-106d6b1d8401.png" width=640/>
 
 ## Wiki
 
