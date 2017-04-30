@@ -1,5 +1,5 @@
 # MultiType
-An Android library to retrofit multiple item view types
+An Android library to create multiple item types list views easily and flexibly.
 
 [![Build Status](https://travis-ci.org/drakeet/MultiType.svg?branch=3.x)](https://travis-ci.org/drakeet/MultiType)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
@@ -7,15 +7,16 @@ An Android library to retrofit multiple item view types
 
 English Version | [《Android 复杂的列表视图新写法 · 详解篇》](https://github.com/drakeet/Effective-MultiType/blob/master/README.md)
 
-Previously, when we need to develop a complex RecyclerView/ListView, it is a boring and troublesome work.
-We should override the `getItemViewType` of `RecyclerView.Adapter` and add some types,
-then we create some `ViewHolder` to relate the type, all of the process it is a very bad experience.
-**And once we need to add a new type, we have to go to the original Adapter and modify some old codes**, so sad.
+Previously, when we need to develop a complex RecyclerView/ListView, it is a difficult and 
+troublesome work. We should override the `getItemViewType` of `RecyclerView.Adapter` , add some 
+types, and create some `ViewHolder`s relating to the types. The process is cumbersome.
 
-Today, I create a new graceful way to easily develop the complex RecyclerView/ListView, with my MultiType library,
-no matter how complex and how frequently changing list, we could insert a new type without changing the old codes.
+**Once we need to add a new item type, we have to go to the original adapter and modify some old codes,** 
+and adapter classes will be more bulky.
 
-[sample screenshots(示例程序截图)](https://github.com/drakeet/MultiType#sample-screenshots)
+Today, I create a new intuitive and flexible way to easily create the complex RecyclerView/ListView, 
+with the MultiType library, we could insert a new item type without changing the old adapter codes 
+and make them more readable.
 
 ## Getting started
 
@@ -45,8 +46,7 @@ public class TextItem {
 #### Step 2. Create a class extends `ItemViewBinder<T, VH extends ViewHolder>`, for example:
 
 ```java
-public class TextItemViewBinder
-    extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
+public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
 
     static class TextHolder extends RecyclerView.ViewHolder {
         @NonNull private final TextView text;
@@ -58,8 +58,7 @@ public class TextItemViewBinder
     }
 
     @NonNull @Override
-    protected TextHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_text, parent, false);
         return new TextHolder(root);
     }
@@ -68,19 +67,21 @@ public class TextItemViewBinder
     protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
         holder.text.setText("hello: " + textItem.text);
         Log.d("demo", "position: " + getPosition(holder));
-        Log.d("demo", "adapter: " + getAdapter().toString());
+        Log.d("demo", "adapter: " + getAdapter());
     }
 }
 ```
 
-#### Step 3. You do not need to create another new class. Just `register` your types and add a `RecyclerView` and `List<Object>` to your `Activity`, for example:
+#### Step 3. Just `register` your types and setup your `RecyclerView` and `List<Object>` in your 
+`Activity`, for example:
 
 ```java
-public class NormalActivity extends AppCompatActivity {
+public class SampleActivity extends AppCompatActivity {
 
     private MultiTypeAdapter adapter;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override 
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
@@ -91,6 +92,7 @@ public class NormalActivity extends AppCompatActivity {
         adapter.register(RichItem.class, new RichItemViewBinder());
         recyclerView.setAdapter(adapter);
 
+        /* Mock the data */
         TextItem textItem = new TextItem("world");
         ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
         RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
@@ -107,20 +109,23 @@ public class NormalActivity extends AppCompatActivity {
 }
 ```
 
-**You're good to go!**
+**That's all, you're good to go!**
 
-## Change Log
 
-https://github.com/drakeet/MultiType/releases
 
-## One to Multiple
+## Advanced usage 
+
+**One to Multiple**:  
 
 ![snip20170413_21](https://cloud.githubusercontent.com/assets/5214214/25094943/e458121a-23cb-11e7-9bb6-106d6b1d8401.png)
-
 
 ## Wiki
 
 [![](http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg)](https://github.com/drakeet/Effective-MultiType/blob/master/README.md)
+
+## Change Log
+
+https://github.com/drakeet/MultiType/releases
 
 ## Android Studio Plugin
 
@@ -128,7 +133,7 @@ https://github.com/drakeet/MultiType/releases
 
  An intellij idea plugin for Android to generate `MultiType` `Item` and `ItemViewBinder` easily.
 
-![](http://ww4.sinaimg.cn/large/86e2ff85gw1f8yj0sejd6j21340ben1s.jpg)
+<img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f8yj0sejd6j21340ben1s.jpg" width=640 />
 
 ## Sample screenshots
 
@@ -142,14 +147,10 @@ And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMach
 
 [<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
 
-## Change logs & Releases
-
-https://github.com/drakeet/MultiType/releases
-
 License
 -------
 
-    Copyright 2016 drakeet.
+    Copyright 2017 drakeet.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
