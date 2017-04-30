@@ -133,14 +133,14 @@ https://github.com/drakeet/MultiType/releases
 
  An intellij idea plugin for Android to generate `MultiType` `Item` and `ItemViewBinder` easily.
 
-<img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f8yj0sejd6j21340ben1s.jpg" width=640 />
+<img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f8yj0sejd6j21340ben1s.jpg" width=640/>
 
 ## Sample screenshots
 
 You could check the `sample` module for more details and after running it will look like:
 
-<img src="art/screenshot-normal.png" width=270 height=486/> <img src="art/screenshot-bilibili.png" width=270 height=486/> <img src="art/screenshot-multigrid.png" width=270 height=486/>
-<img src="http://ww3.sinaimg.cn/large/86e2ff85jw1f9a7tek74lj21401z414s.jpg" width=270 height=486/> <img src="http://ww1.sinaimg.cn/mw1024/86e2ff85jw1f9a7z4yqlkj21401z4n8r.jpg" width=270 height=486/>
+<img src="art/screenshot-normal.png" width=216/> <img src="art/screenshot-bilibili.png" width=216/> <img src="art/screenshot-multigrid.png" width=216/>
+<img src="http://ww3.sinaimg.cn/large/86e2ff85jw1f9a7tek74lj21401z414s.jpg" width=216/> <img src="http://ww1.sinaimg.cn/mw1024/86e2ff85jw1f9a7z4yqlkj21401z4n8r.jpg" width=216/>
 
 
 And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMachine):
