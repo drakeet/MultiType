@@ -72,8 +72,7 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
 }
 ```
 
-#### Step 3. Just `register` your types and setup your `RecyclerView` and `List<Object>` in your 
-`Activity`, for example:
+#### Step 3. Just `register` your types and setup your `RecyclerView` and `List<Object>` in your `Activity`, for example:
 
 ```java
 public class SampleActivity extends AppCompatActivity {
