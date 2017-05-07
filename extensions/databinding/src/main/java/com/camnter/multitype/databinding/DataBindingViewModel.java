@@ -1,5 +1,4 @@
 /*
- * Copyright 2016 drakeet. https://github.com/drakeet
  * Copyright 2017 CaMnter. https://github.com/CaMnter
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,38 @@
  * limitations under the License.
  */
 
-include ':sample',
-        ':library',
-        ':extensions:databinding'
+package com.camnter.multitype.databinding;
+
+import android.databinding.BaseObservable;
+
+/**
+ * @author CaMnter
+ */
+
+public abstract class DataBindingViewModel<T> extends BaseObservable
+    implements DataBindingBinder.VHandler {
+
+    protected T data;
+    protected DataBindingViewModel<T> adapter;
+
+
+    public T getData() {
+        return this.data;
+    }
+
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+
+    public DataBindingViewModel<T> getAdapter() {
+        return this.adapter;
+    }
+
+
+    public void setAdapter(DataBindingViewModel<T> adapter) {
+        this.adapter = adapter;
+    }
+
+}

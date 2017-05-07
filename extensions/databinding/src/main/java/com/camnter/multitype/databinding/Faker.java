@@ -1,5 +1,4 @@
 /*
- * Copyright 2016 drakeet. https://github.com/drakeet
  * Copyright 2017 CaMnter. https://github.com/CaMnter
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,11 @@
  * limitations under the License.
  */
 
-include ':sample',
-        ':library',
-        ':extensions:databinding'
+package com.camnter.multitype.databinding;
+
+/**
+ * @author CaMnter
+ */
+
+public class Faker {
+}
