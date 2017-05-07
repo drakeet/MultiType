@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.camnter.multitype.databinding.sample.normal.DataBindingNormalActivity;
 import me.drakeet.multitype.sample.bilibili.BilibiliActivity;
 import me.drakeet.multitype.sample.communicate_with_binder.SimpleActivity;
 import me.drakeet.multitype.sample.multi_select.MultiSelectActivity;
@@ -49,6 +50,9 @@ public class MenuBaseActivity extends AppCompatActivity {
                 break;
             case R.id.TestPayloadActivity:
                 intent.setClass(this, TestPayloadActivity.class);
+                break;
+            case R.id.DataBindingNormalActivity:
+                intent.setClass(this, DataBindingNormalActivity.class);
                 break;
             default:
                 return false;

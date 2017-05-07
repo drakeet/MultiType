@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright 2016 drakeet. https://github.com/drakeet
+  ~ Copyright 2017 CaMnter. https://github.com/CaMnter
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -43,7 +45,10 @@
         <activity android:name=".one2many.OneDataToManyActivity"/>
 
         <activity android:name=".payload.TestPayloadActivity"/>
-        
+
+        <!-- DataBinding Activity -->
+        <activity android:name="com.camnter.multitype.databinding.sample.normal.DataBindingNormalActivity"/>
+
     </application>
 
 </manifest>
