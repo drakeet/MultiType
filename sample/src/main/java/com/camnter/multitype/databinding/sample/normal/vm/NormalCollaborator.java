@@ -72,8 +72,17 @@ public class NormalCollaborator extends BindingCollaborator {
     }
 
 
+    public void handleRichItemClick(final int position,
+                                    @NonNull final RichItem richItem) {
+        if (listener != null) {
+            listener.onRichItemClick(position, richItem);
+        }
+    }
+
+
     public interface Listener {
         void querySuccess(List<Object> item);
+        void onRichItemClick(final int position, @NonNull final RichItem richItem);
     }
 
 }

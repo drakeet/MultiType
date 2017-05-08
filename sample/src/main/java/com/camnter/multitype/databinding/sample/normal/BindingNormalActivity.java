@@ -18,7 +18,9 @@ package com.camnter.multitype.databinding.sample.normal;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 import com.camnter.multitype.databinding.sample.normal.binder.CategoryItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.ImageItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.RichItemBindingBinder;
@@ -44,7 +46,8 @@ public class BindingNormalActivity extends MenuBaseActivity
     private MultiTypeAdapter adapter;
 
 
-    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityBindingNormalListBinding binding = DataBindingUtil.setContentView(this,
             R.layout.activity_binding_normal_list);
@@ -89,9 +92,19 @@ public class BindingNormalActivity extends MenuBaseActivity
     }
 
 
-    @Override public void querySuccess(List<Object> item) {
+    @Override
+    public void querySuccess(List<Object> item) {
         adapter.setItems(item);
         adapter.notifyDataSetChanged();
+    }
+
+
+    @Override
+    public void onRichItemClick(final int position,
+                                @NonNull final RichItem richItem) {
+        Toast.makeText(this, "[position] = " + position + "\n[richItem.text] = " + richItem.text +
+                "\n[richItem.imageResId] = " + richItem.imageResId,
+            Toast.LENGTH_LONG).show();
     }
 
 }

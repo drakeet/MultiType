@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2017 CaMnter. https://github.com/CaMnter
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,8 +20,16 @@
     <data>
 
         <variable
+            name="position"
+            type="java.lang.Integer"/>
+
+        <variable
             name="itemValue"
             type="me.drakeet.multitype.sample.normal.RichItem"/>
+
+        <variable
+            name="collaborator"
+            type="com.camnter.multitype.databinding.sample.normal.vm.NormalCollaborator"/>
 
     </data>
 
@@ -31,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/message_margin_top"
         android:gravity="center_horizontal"
+        android:onClick="@{() -> collaborator.handleRichItemClick(position, itemValue)}"
         android:orientation="vertical">
 
         <LinearLayout
