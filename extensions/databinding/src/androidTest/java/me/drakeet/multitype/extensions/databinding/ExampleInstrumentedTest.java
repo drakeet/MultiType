@@ -1,4 +1,4 @@
-package com.camnter.multitype.databinding;
+package me.drakeet.multitype.extensions.databinding;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

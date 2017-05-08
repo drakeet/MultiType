@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.camnter.multitype.databinding;
+package me.drakeet.multitype.extensions.databinding;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -61,11 +61,13 @@ public abstract class BindingBinder<T>
     protected void onBindViewHolder(
         @NonNull BindingViewHolder holder, @NonNull T item) {
         final ViewDataBinding binding = holder.getBinding();
-        binding.setVariable(com.camnter.multitype.databinding.BR.position,
+        binding.setVariable(BR.position,
             holder.getAdapterPosition());
-        binding.setVariable(com.camnter.multitype.databinding.BR.itemValue, item);
-        binding.setVariable(com.camnter.multitype.databinding.BR.collaborator,
-            this.collaborator.get());
+        binding.setVariable(BR.itemValue, item);
+        if (this.collaborator != null) {
+            binding.setVariable(BR.collaborator,
+                this.collaborator.get());
+        }
         binding.executePendingBindings();
     }
 

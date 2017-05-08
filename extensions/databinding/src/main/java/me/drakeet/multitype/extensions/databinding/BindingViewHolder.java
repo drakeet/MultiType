@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.camnter.multitype.databinding;
+package me.drakeet.multitype.extensions.databinding;
 
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;

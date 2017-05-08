@@ -14,11 +14,17 @@
  * limitations under the License.
  */
 
-package com.camnter.multitype.databinding;
+package me.drakeet.multitype.extensions.databinding;
+
+import android.support.annotation.NonNull;
 
 /**
  * @author CaMnter
  */
 
-public class Faker {
+public class LayoutIdNotFoundException extends RuntimeException {
+    public LayoutIdNotFoundException(@NonNull Class<?> dataBindingBinderClass) {
+        super("Do you have set the layout id for {className}.class?"
+            .replace("{className}", dataBindingBinderClass.getSimpleName()));
+    }
 }

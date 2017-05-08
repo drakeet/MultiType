@@ -14,4 +14,4 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.camnter.multitype.databinding"/>
+<manifest package="me.drakeet.multitype.extensions.databinding"/>

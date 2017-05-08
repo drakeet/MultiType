@@ -25,7 +25,7 @@ import com.camnter.multitype.databinding.sample.normal.binder.CategoryItemBindin
 import com.camnter.multitype.databinding.sample.normal.binder.ImageItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.RichItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.TextItemBindingBinder;
-import com.camnter.multitype.databinding.sample.normal.vm.NormalCollaborator;
+import com.camnter.multitype.databinding.sample.normal.collaborator.NormalCollaborator;
 import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
@@ -102,8 +102,8 @@ public class BindingNormalActivity extends MenuBaseActivity
     @Override
     public void onRichItemClick(final int position,
                                 @NonNull final RichItem richItem) {
-        Toast.makeText(this, "[position] = " + position + "\n[richItem.text] = " + richItem.text +
-                "\n[richItem.imageResId] = " + richItem.imageResId,
+        Toast.makeText(this, "[ position ] = " + position + "\n[ richItem.text ] = " + richItem.text +
+                "\n[ richItem.imageResId ] = " + richItem.imageResId,
             Toast.LENGTH_LONG).show();
     }
 

@@ -1,4 +1,4 @@
-package com.camnter.multitype.databinding;
+package me.drakeet.multitype.extensions.databinding;
 
 import org.junit.Test;
 

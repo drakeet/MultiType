@@ -16,7 +16,7 @@
 
 package com.camnter.multitype.databinding.sample.normal.binder;
 
-import com.camnter.multitype.databinding.BindingBinder;
+import me.drakeet.multitype.extensions.databinding.BindingBinder;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 

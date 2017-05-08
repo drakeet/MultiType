@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.camnter.multitype.databinding;
+package me.drakeet.multitype.extensions.databinding;
 
 import android.databinding.BaseObservable;
 import android.support.annotation.Nullable;

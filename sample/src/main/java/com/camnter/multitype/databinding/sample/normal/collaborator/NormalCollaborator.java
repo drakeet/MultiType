@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.camnter.multitype.databinding.sample.normal.vm;
+package com.camnter.multitype.databinding.sample.normal.collaborator;
 
 import android.databinding.ObservableBoolean;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import com.camnter.multitype.databinding.BindingCollaborator;
+import me.drakeet.multitype.extensions.databinding.BindingCollaborator;
 import java.util.ArrayList;
 import java.util.List;
 import me.drakeet.multitype.sample.R;

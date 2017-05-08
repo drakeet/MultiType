@@ -29,7 +29,7 @@
 
         <variable
             name="collaborator"
-            type="com.camnter.multitype.databinding.sample.normal.vm.NormalCollaborator"/>
+            type="com.camnter.multitype.databinding.sample.normal.collaborator.NormalCollaborator"/>
 
     </data>
 

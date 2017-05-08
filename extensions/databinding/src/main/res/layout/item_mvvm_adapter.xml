@@ -25,11 +25,11 @@
 
         <variable
             name="itemValue"
-            type="com.camnter.multitype.databinding.Faker"/>
+            type="me.drakeet.multitype.extensions.databinding.Faker"/>
 
         <variable
             name="collaborator"
-            type="com.camnter.multitype.databinding.Faker"/>
+            type="me.drakeet.multitype.extensions.databinding.Faker"/>
 
     </data>
 
