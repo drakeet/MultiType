@@ -50,26 +50,20 @@ public abstract class DataBindingBinder<T>
         if (layoutId == 0) {
             throw new LayoutIdNotFoundException(this.getClass());
         }
-        return new DataBindingViewHolder(
+        return new DataBindingViewHolder<>(
             DataBindingUtil.inflate(inflater, layoutId, parent, false));
     }
 
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
     protected void onBindViewHolder(
         @NonNull DataBindingViewHolder holder, @NonNull T item) {
-        try {
-            final List<?> items = this.getAdapter().getItems();
-            if (items == null) return;
-            final T itemValue = (T) items.get(holder.getAdapterPosition());
-            final ViewDataBinding binding = holder.getBinding();
-            binding.setVariable(com.camnter.multitype.databinding.BR.position, holder.getAdapterPosition());
-            binding.setVariable(com.camnter.multitype.databinding.BR.itemValue, itemValue);
-            binding.setVariable(com.camnter.multitype.databinding.BR.vHandler, this.vHandler.get());
-            binding.executePendingBindings();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        final ViewDataBinding binding = holder.getBinding();
+        binding.setVariable(com.camnter.multitype.databinding.BR.position,
+            holder.getAdapterPosition());
+        binding.setVariable(com.camnter.multitype.databinding.BR.itemValue, item);
+        binding.setVariable(com.camnter.multitype.databinding.BR.vHandler, this.vHandler.get());
+        binding.executePendingBindings();
     }
 
 
