@@ -17,35 +17,26 @@
 package com.camnter.multitype.databinding;
 
 import android.databinding.BaseObservable;
+import android.support.annotation.Nullable;
+import java.util.List;
 
 /**
  * @author CaMnter
  */
 
-public abstract class DataBindingViewModel<T> extends BaseObservable
+public abstract class DataBindingViewModel extends BaseObservable
     implements DataBindingBinder.VHandler {
 
-    protected T data;
-    protected DataBindingViewModel<T> adapter;
+    @Nullable protected List<?> items;
 
 
-    public T getData() {
-        return this.data;
+    @Nullable public List<?> getItems() {
+        return items;
     }
 
 
-    public void setData(T data) {
-        this.data = data;
-    }
-
-
-    public DataBindingViewModel<T> getAdapter() {
-        return this.adapter;
-    }
-
-
-    public void setAdapter(DataBindingViewModel<T> adapter) {
-        this.adapter = adapter;
+    public void setItems(@Nullable List<?> items) {
+        this.items = items;
     }
 
 }

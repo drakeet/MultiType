@@ -32,7 +32,7 @@ import me.drakeet.multitype.sample.normal.TextItem;
  * @author CaMnter
  */
 
-public class NormalViewModel<T> extends DataBindingViewModel<T> {
+public class NormalViewModel extends DataBindingViewModel {
 
     public final ObservableBoolean dataLoading = new ObservableBoolean(false);
 
