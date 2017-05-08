@@ -23,7 +23,7 @@ import com.camnter.multitype.databinding.sample.normal.binder.CategoryItemBindin
 import com.camnter.multitype.databinding.sample.normal.binder.ImageItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.RichItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.TextItemBindingBinder;
-import com.camnter.multitype.databinding.sample.normal.vm.NormalViewModel;
+import com.camnter.multitype.databinding.sample.normal.vm.NormalCollaborator;
 import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
@@ -39,7 +39,7 @@ import me.drakeet.multitype.sample.normal.TextItem;
  */
 
 public class DataBindingNormalActivity extends MenuBaseActivity
-    implements NormalViewModel.Listener {
+    implements NormalCollaborator.Listener {
 
     private MultiTypeAdapter adapter;
 
@@ -63,12 +63,12 @@ public class DataBindingNormalActivity extends MenuBaseActivity
         /*
          * Each Binder by setting the VHandler complete custom functions (such as click events)
          */
-        final NormalViewModel viewModel = new NormalViewModel();
-        viewModel.setListener(this);
-        textBinder.setCollaborator(viewModel);
-        imageBinder.setCollaborator(viewModel);
-        categoryBinder.setCollaborator(viewModel);
-        richBinder.setCollaborator(viewModel);
+        final NormalCollaborator collaborator = new NormalCollaborator();
+        collaborator.setListener(this);
+        textBinder.setCollaborator(collaborator);
+        imageBinder.setCollaborator(collaborator);
+        categoryBinder.setCollaborator(collaborator);
+        richBinder.setCollaborator(collaborator);
 
         /*
          *  binding variable
@@ -83,9 +83,9 @@ public class DataBindingNormalActivity extends MenuBaseActivity
          *      type="com.camnter.multitype.databinding.sample.normal.vm.NormalViewModel"/>
          */
         binding.setAdapter(adapter);
-        binding.setViewModel(viewModel);
+        binding.setViewModel(collaborator);
 
-        viewModel.query();
+        collaborator.query();
     }
 
 

@@ -20,7 +20,7 @@ import android.databinding.ObservableBoolean;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import com.camnter.multitype.databinding.DataBindingViewModel;
+import com.camnter.multitype.databinding.DataBindingCollaborator;
 import java.util.ArrayList;
 import java.util.List;
 import me.drakeet.multitype.sample.R;
@@ -32,7 +32,7 @@ import me.drakeet.multitype.sample.normal.TextItem;
  * @author CaMnter
  */
 
-public class NormalViewModel extends DataBindingViewModel {
+public class NormalCollaborator extends DataBindingCollaborator {
 
     public final ObservableBoolean dataLoading = new ObservableBoolean(false);
 

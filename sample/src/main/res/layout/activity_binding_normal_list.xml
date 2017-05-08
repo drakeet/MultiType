@@ -28,7 +28,7 @@
 
         <variable
             name="viewModel"
-            type="com.camnter.multitype.databinding.sample.normal.vm.NormalViewModel"/>
+            type="com.camnter.multitype.databinding.sample.normal.vm.NormalCollaborator"/>
 
     </data>
 

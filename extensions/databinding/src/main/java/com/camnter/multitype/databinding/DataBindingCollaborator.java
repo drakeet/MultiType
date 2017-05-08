@@ -24,18 +24,20 @@ import java.util.List;
  * @author CaMnter
  */
 
-public abstract class DataBindingViewModel extends BaseObservable
+public abstract class DataBindingCollaborator extends BaseObservable
     implements DataBindingBinder.Collaborator {
 
-    @Nullable protected List<?> items;
+    @Nullable
+    protected List<?> items;
 
 
-    @Nullable public List<?> getItems() {
+    @Nullable
+    public List<?> getItems() {
         return items;
     }
 
 
-    public void setItems(@Nullable List<?> items) {
+    public void setItems(@Nullable final List<?> items) {
         this.items = items;
     }
 
