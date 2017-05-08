@@ -62,10 +62,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="正在加载..."
+                android:layout_marginLeft="@dimen/loading_text_margin_left"
+                android:text="@string/loading_text"
                 android:textColor="@color/text_color_grey"
-                android:textSize="14dp"/>
+                android:textSize="@dimen/loading_text_size"/>
 
         </LinearLayout>
 
