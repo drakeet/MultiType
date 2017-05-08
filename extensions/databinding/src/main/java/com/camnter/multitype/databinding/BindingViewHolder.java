@@ -16,29 +16,29 @@
 
 package com.camnter.multitype.databinding;
 
-import android.databinding.BaseObservable;
-import android.support.annotation.Nullable;
-import java.util.List;
+import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 
 /**
  * @author CaMnter
  */
 
-public abstract class DataBindingCollaborator extends BaseObservable
-    implements DataBindingBinder.Collaborator {
+public class BindingViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
 
-    @Nullable
-    protected List<?> items;
+    @NonNull
+    private final T binding;
 
 
-    @Nullable
-    public List<?> getItems() {
-        return items;
+    public BindingViewHolder(@NonNull final T binding) {
+        super(binding.getRoot());
+        this.binding = binding;
     }
 
 
-    public void setItems(@Nullable final List<?> items) {
-        this.items = items;
+    @NonNull
+    public T getBinding() {
+        return this.binding;
     }
 
 }

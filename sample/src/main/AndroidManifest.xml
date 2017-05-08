@@ -47,7 +47,7 @@
         <activity android:name=".payload.TestPayloadActivity"/>
 
         <!-- DataBinding Activity -->
-        <activity android:name="com.camnter.multitype.databinding.sample.normal.DataBindingNormalActivity"/>
+        <activity android:name="com.camnter.multitype.databinding.sample.normal.BindingNormalActivity"/>
 
     </application>
 

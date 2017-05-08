@@ -16,7 +16,7 @@
 
 package com.camnter.multitype.databinding.sample.normal.binder;
 
-import com.camnter.multitype.databinding.DataBindingBinder;
+import com.camnter.multitype.databinding.BindingBinder;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 
@@ -24,7 +24,7 @@ import me.drakeet.multitype.sample.common.Category;
  * @author CaMnter
  */
 
-public class CategoryItemBindingBinder extends DataBindingBinder<Category> {
+public class CategoryItemBindingBinder extends BindingBinder<Category> {
 
     @Override protected int getItemLayoutId() {
         return R.layout.item_binding_category;

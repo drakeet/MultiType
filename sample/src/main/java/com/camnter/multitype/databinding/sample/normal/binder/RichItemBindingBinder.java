@@ -16,7 +16,7 @@
 
 package com.camnter.multitype.databinding.sample.normal.binder;
 
-import com.camnter.multitype.databinding.DataBindingBinder;
+import com.camnter.multitype.databinding.BindingBinder;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.normal.RichItem;
 
@@ -24,7 +24,7 @@ import me.drakeet.multitype.sample.normal.RichItem;
  * @author CaMnter
  */
 
-public class RichItemBindingBinder extends DataBindingBinder<RichItem> {
+public class RichItemBindingBinder extends BindingBinder<RichItem> {
 
     @Override protected int getItemLayoutId() {
         return R.layout.item_binding_rich;

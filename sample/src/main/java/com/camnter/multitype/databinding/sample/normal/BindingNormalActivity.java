@@ -38,7 +38,7 @@ import me.drakeet.multitype.sample.normal.TextItem;
  * @author CaMnter
  */
 
-public class DataBindingNormalActivity extends MenuBaseActivity
+public class BindingNormalActivity extends MenuBaseActivity
     implements NormalCollaborator.Listener {
 
     private MultiTypeAdapter adapter;

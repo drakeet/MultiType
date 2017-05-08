@@ -44,8 +44,8 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/DataBindingNormalActivity"
-        android:title="DataBindingNormalActivity"
+        android:id="@+id/BindingNormalActivity"
+        android:title="BindingNormalActivity"
         app:showAsAction="never"/>
     
 </menu>

@@ -30,8 +30,8 @@ import me.drakeet.multitype.ItemViewBinder;
  * @author CaMnter
  */
 
-public abstract class DataBindingBinder<T>
-    extends ItemViewBinder<T, DataBindingViewHolder> {
+public abstract class BindingBinder<T>
+    extends ItemViewBinder<T, BindingViewHolder> {
 
     @Nullable
     private WeakReference<Collaborator> collaborator;
@@ -46,20 +46,20 @@ public abstract class DataBindingBinder<T>
 
 
     @NonNull @Override
-    protected DataBindingViewHolder onCreateViewHolder(
+    protected BindingViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         final int layoutId = this.getItemLayoutId();
         if (layoutId == 0) {
             throw new LayoutIdNotFoundException(this.getClass());
         }
-        return new DataBindingViewHolder<>(
+        return new BindingViewHolder<>(
             DataBindingUtil.inflate(inflater, layoutId, parent, false));
     }
 
 
     @Override
     protected void onBindViewHolder(
-        @NonNull DataBindingViewHolder holder, @NonNull T item) {
+        @NonNull BindingViewHolder holder, @NonNull T item) {
         final ViewDataBinding binding = holder.getBinding();
         binding.setVariable(com.camnter.multitype.databinding.BR.position,
             holder.getAdapterPosition());
@@ -72,7 +72,7 @@ public abstract class DataBindingBinder<T>
 
     @Override
     protected void onBindViewHolder(
-        @NonNull DataBindingViewHolder holder, @NonNull T item, @NonNull List<Object> payloads) {
+        @NonNull BindingViewHolder holder, @NonNull T item, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, item, payloads);
     }
 
