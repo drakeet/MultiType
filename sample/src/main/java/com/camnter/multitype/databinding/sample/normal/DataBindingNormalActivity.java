@@ -65,10 +65,10 @@ public class DataBindingNormalActivity extends MenuBaseActivity
          */
         final NormalViewModel viewModel = new NormalViewModel();
         viewModel.setListener(this);
-        textBinder.setVHandler(viewModel);
-        imageBinder.setVHandler(viewModel);
-        categoryBinder.setVHandler(viewModel);
-        richBinder.setVHandler(viewModel);
+        textBinder.setCollaborator(viewModel);
+        imageBinder.setCollaborator(viewModel);
+        categoryBinder.setCollaborator(viewModel);
+        richBinder.setCollaborator(viewModel);
 
         /*
          *  binding variable

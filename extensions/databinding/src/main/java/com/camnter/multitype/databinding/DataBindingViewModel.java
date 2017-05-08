@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 public abstract class DataBindingViewModel extends BaseObservable
-    implements DataBindingBinder.VHandler {
+    implements DataBindingBinder.Collaborator {
 
     @Nullable protected List<?> items;
 

@@ -28,7 +28,7 @@
             type="com.camnter.multitype.databinding.Faker"/>
 
         <variable
-            name="vHandler"
+            name="collaborator"
             type="com.camnter.multitype.databinding.Faker"/>
 
     </data>

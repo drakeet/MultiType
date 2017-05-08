@@ -19,6 +19,7 @@ package com.camnter.multitype.databinding;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import java.lang.ref.WeakReference;
@@ -32,18 +33,19 @@ import me.drakeet.multitype.ItemViewBinder;
 public abstract class DataBindingBinder<T>
     extends ItemViewBinder<T, DataBindingViewHolder> {
 
-    private WeakReference<VHandler> vHandler;
+    @Nullable
+    private WeakReference<Collaborator> collaborator;
 
 
-    public void setVHandler(VHandler vHandler) {
-        this.vHandler = new WeakReference<>(vHandler);
+    public void setCollaborator(@NonNull final Collaborator collaborator) {
+        this.collaborator = new WeakReference<>(collaborator);
     }
 
 
     protected abstract int getItemLayoutId();
 
 
-    @NonNull @Override @SuppressWarnings("unchecked")
+    @NonNull @Override
     protected DataBindingViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         final int layoutId = this.getItemLayoutId();
@@ -62,18 +64,20 @@ public abstract class DataBindingBinder<T>
         binding.setVariable(com.camnter.multitype.databinding.BR.position,
             holder.getAdapterPosition());
         binding.setVariable(com.camnter.multitype.databinding.BR.itemValue, item);
-        binding.setVariable(com.camnter.multitype.databinding.BR.vHandler, this.vHandler.get());
+        binding.setVariable(com.camnter.multitype.databinding.BR.collaborator,
+            this.collaborator.get());
         binding.executePendingBindings();
     }
 
 
-    @Override protected void onBindViewHolder(
+    @Override
+    protected void onBindViewHolder(
         @NonNull DataBindingViewHolder holder, @NonNull T item, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, item, payloads);
     }
 
 
-    public interface VHandler {
+    public interface Collaborator {
     }
 
 }
