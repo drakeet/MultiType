@@ -83,7 +83,7 @@ public class DataBindingNormalActivity extends MenuBaseActivity
          *      type="com.camnter.multitype.databinding.sample.normal.vm.NormalViewModel"/>
          */
         binding.setAdapter(adapter);
-        binding.setViewModel(collaborator);
+        binding.setCollaborator(collaborator);
 
         collaborator.query();
     }

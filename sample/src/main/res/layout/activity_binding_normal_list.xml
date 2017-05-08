@@ -27,7 +27,7 @@
             type="me.drakeet.multitype.MultiTypeAdapter"/>
 
         <variable
-            name="viewModel"
+            name="collaborator"
             type="com.camnter.multitype.databinding.sample.normal.vm.NormalCollaborator"/>
 
     </data>
