@@ -60,15 +60,28 @@ public class DataBindingNormalActivity extends MenuBaseActivity
         adapter.register(Category.class, categoryBinder);
         adapter.register(RichItem.class, richBinder);
 
+        /*
+         * Each Binder by setting the VHandler complete custom functions (such as click events)
+         */
         final NormalViewModel viewModel = new NormalViewModel();
         viewModel.setListener(this);
-
-        // Each Binder by setting the VHandler complete custom functions (such as click events)
         textBinder.setVHandler(viewModel);
         imageBinder.setVHandler(viewModel);
         categoryBinder.setVHandler(viewModel);
         richBinder.setVHandler(viewModel);
 
+        /*
+         *  binding variable
+         *  R.layout.activity_binding_normal_list:
+         *
+         *  <variable
+         *      name="adapter"
+         *      type="me.drakeet.multitype.MultiTypeAdapter"/>
+         *
+         *   <variable
+         *      name="viewModel"
+         *      type="com.camnter.multitype.databinding.sample.normal.vm.NormalViewModel"/>
+         */
         binding.setAdapter(adapter);
         binding.setViewModel(viewModel);
 

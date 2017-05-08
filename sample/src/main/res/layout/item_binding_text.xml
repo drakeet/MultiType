@@ -20,10 +20,6 @@
     <data>
 
         <variable
-            name="position"
-            type="java.lang.Integer"/>
-
-        <variable
             name="itemValue"
             type="me.drakeet.multitype.sample.normal.TextItem"/>
 
