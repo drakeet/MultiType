@@ -68,9 +68,6 @@ public class BindingNormalActivity extends MenuBaseActivity
          */
         final NormalCollaborator collaborator = new NormalCollaborator();
         collaborator.setListener(this);
-        textBinder.setCollaborator(collaborator);
-        imageBinder.setCollaborator(collaborator);
-        categoryBinder.setCollaborator(collaborator);
         richBinder.setCollaborator(collaborator);
 
         /*
@@ -81,9 +78,10 @@ public class BindingNormalActivity extends MenuBaseActivity
          *      name="adapter"
          *      type="me.drakeet.multitype.MultiTypeAdapter"/>
          *
-         *   <variable
-         *      name="viewModel"
-         *      type="com.camnter.multitype.databinding.sample.normal.vm.NormalViewModel"/>
+         *  <variable
+         *      name="collaborator"
+         *      type="com.camnter.multitype.databinding.sample.normal.collaborator.NormalCollaborator"/>
+         *
          */
         binding.setAdapter(adapter);
         binding.setCollaborator(collaborator);
