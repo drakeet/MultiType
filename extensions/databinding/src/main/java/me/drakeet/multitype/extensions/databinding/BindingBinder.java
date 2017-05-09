@@ -34,11 +34,16 @@ public abstract class BindingBinder<T>
     extends ItemViewBinder<T, BindingViewHolder> {
 
     @Nullable
-    private WeakReference<Collaborator> collaborator;
+    private WeakReference<Object> collaborator;
 
 
-    public void setCollaborator(@NonNull final Collaborator collaborator) {
+    public void setCollaborator(@NonNull final Object collaborator) {
         this.collaborator = new WeakReference<>(collaborator);
+    }
+
+
+    protected int getCollaboratorId() {
+        return me.drakeet.multitype.extensions.databinding.BR.collaborator;
     }
 
 
@@ -65,7 +70,7 @@ public abstract class BindingBinder<T>
             holder.getAdapterPosition());
         binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.itemValue, item);
         if (this.collaborator != null) {
-            binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.collaborator,
+            binding.setVariable(this.getCollaboratorId(),
                 this.collaborator.get());
         }
         binding.executePendingBindings();
@@ -76,10 +81,6 @@ public abstract class BindingBinder<T>
     protected void onBindViewHolder(
         @NonNull BindingViewHolder holder, @NonNull T item, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, item, payloads);
-    }
-
-
-    public interface Collaborator {
     }
 
 }
