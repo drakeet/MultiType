@@ -21,7 +21,7 @@
     <data>
 
         <variable
-            name="itemValue"
+            name="item"
             type="me.drakeet.multitype.sample.common.Category"/>
 
     </data>
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@android:color/black"
-            tool:text="@{itemValue.title}"/>
+            tool:text="@{item.title}"/>
 
         <TextView
             android:layout_width="wrap_content"

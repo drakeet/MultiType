@@ -68,7 +68,7 @@ public abstract class BindingBinder<T>
         final ViewDataBinding binding = holder.getBinding();
         binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.position,
             holder.getAdapterPosition());
-        binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.itemValue, item);
+        binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.item, item);
         if (this.collaborator != null) {
             binding.setVariable(this.getCollaboratorId(),
                 this.collaborator.get());

@@ -21,7 +21,7 @@
     <data>
 
         <variable
-            name="itemValue"
+            name="item"
             type="me.drakeet.multitype.sample.normal.ImageItem"/>
 
     </data>
@@ -38,7 +38,7 @@
             android:id="@+id/binding_image_picture"
             android:layout_width="72dp"
             android:layout_height="72dp"
-            app:imageResource="@{itemValue.resId}"/>
+            app:imageResource="@{item.resId}"/>
 
     </LinearLayout>
 

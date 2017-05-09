@@ -20,7 +20,7 @@
     <data>
 
         <variable
-            name="itemValue"
+            name="item"
             type="me.drakeet.multitype.sample.normal.TextItem"/>
 
     </data>
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:text="@{itemValue.text}"/>
+            android:text="@{item.text}"/>
 
     </LinearLayout>
 

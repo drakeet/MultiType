@@ -24,7 +24,7 @@
             type="java.lang.Integer"/>
 
         <variable
-            name="itemValue"
+            name="item"
             type="me.drakeet.multitype.extensions.databinding.Faker"/>
 
         <variable
