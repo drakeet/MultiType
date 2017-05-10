@@ -49,10 +49,10 @@ public class BindingNormalActivity extends MenuBaseActivity {
         ActivityBindingNormalListBinding binding = DataBindingUtil.setContentView(this,
             R.layout.activity_binding_normal_list);
 
-        final TextItemBindingBinder textBinder = new TextItemBindingBinder();
-        final ImageItemBindingBinder imageBinder = new ImageItemBindingBinder();
-        final CategoryItemBindingBinder categoryBinder = new CategoryItemBindingBinder();
-        final RichItemBindingBinder richBinder = new RichItemBindingBinder();
+        TextItemBindingBinder textBinder = new TextItemBindingBinder();
+        ImageItemBindingBinder imageBinder = new ImageItemBindingBinder();
+        CategoryItemBindingBinder categoryBinder = new CategoryItemBindingBinder();
+        RichItemBindingBinder richBinder = new RichItemBindingBinder();
 
         this.adapter = new MultiTypeAdapter();
         adapter.register(TextItem.class, textBinder);
@@ -73,7 +73,7 @@ public class BindingNormalActivity extends MenuBaseActivity {
         ImageItem imageItem = new ImageItem(R.mipmap.ic_camnter_avatar);
         RichItem richItem = new RichItem("CaMnter", R.mipmap.ic_camnter_avatar);
 
-        final List<Object> items;
+        List<Object> items;
         items = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             items.add(textItem);

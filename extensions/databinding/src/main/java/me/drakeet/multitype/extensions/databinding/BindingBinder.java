@@ -37,7 +37,7 @@ public abstract class BindingBinder<T>
     @NonNull @Override
     protected BindingViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        final int layoutId = this.getItemLayoutId();
+        int layoutId = this.getItemLayoutId();
         if (layoutId == 0) {
             throw new LayoutIdNotFoundException(this.getClass());
         }
@@ -49,7 +49,7 @@ public abstract class BindingBinder<T>
     @Override
     protected void onBindViewHolder(
         @NonNull BindingViewHolder holder, @NonNull T item) {
-        final ViewDataBinding binding = holder.getBinding();
+        ViewDataBinding binding = holder.getBinding();
         binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.position,
             holder.getAdapterPosition());
         binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.item, item);
