@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2017 CaMnter. https://github.com/CaMnter
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +25,6 @@
             name="adapter"
             type="me.drakeet.multitype.MultiTypeAdapter"/>
 
-        <variable
-            name="collaborator"
-            type="com.camnter.multitype.databinding.sample.normal.collaborator.NormalCollaborator"/>
-
     </data>
 
     <RelativeLayout
@@ -45,29 +40,6 @@
             android:descendantFocusability="blocksDescendants"
             app:adapter="@{adapter}"
             app:layoutManager="LinearLayoutManager"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="@{collaborator.dataLoading?View.VISIBLE:View.GONE}">
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/loading_text_margin_left"
-                android:text="@string/loading_text"
-                android:textColor="@color/text_color_grey"
-                android:textSize="@dimen/loading_text_size"/>
-
-        </LinearLayout>
 
     </RelativeLayout>
 

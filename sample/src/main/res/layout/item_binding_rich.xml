@@ -20,16 +20,8 @@
     <data>
 
         <variable
-            name="position"
-            type="java.lang.Integer"/>
-
-        <variable
             name="item"
             type="me.drakeet.multitype.sample.normal.RichItem"/>
-
-        <variable
-            name="collaborator"
-            type="com.camnter.multitype.databinding.sample.normal.collaborator.NormalCollaborator"/>
 
     </data>
 
@@ -38,7 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/message_margin_top"
         android:gravity="center_horizontal"
-        android:onClick="@{() -> collaborator.handleRichItemClick(position, item)}"
         android:orientation="vertical">
 
         <LinearLayout

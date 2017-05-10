@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2017 CaMnter. https://github.com/CaMnter
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,10 +24,6 @@
 
         <variable
             name="item"
-            type="java.lang.Object"/>
-
-        <variable
-            name="collaborator"
             type="java.lang.Object"/>
 
     </data>

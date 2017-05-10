@@ -18,14 +18,12 @@ package com.camnter.multitype.databinding.sample.normal;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 import com.camnter.multitype.databinding.sample.normal.binder.CategoryItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.ImageItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.RichItemBindingBinder;
 import com.camnter.multitype.databinding.sample.normal.binder.TextItemBindingBinder;
-import com.camnter.multitype.databinding.sample.normal.collaborator.NormalCollaborator;
+import java.util.ArrayList;
 import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
@@ -40,8 +38,7 @@ import me.drakeet.multitype.sample.normal.TextItem;
  * @author CaMnter
  */
 
-public class BindingNormalActivity extends MenuBaseActivity
-    implements NormalCollaborator.Listener {
+public class BindingNormalActivity extends MenuBaseActivity {
 
     private MultiTypeAdapter adapter;
 
@@ -62,14 +59,6 @@ public class BindingNormalActivity extends MenuBaseActivity
         adapter.register(ImageItem.class, imageBinder);
         adapter.register(Category.class, categoryBinder);
         adapter.register(RichItem.class, richBinder);
-
-        /*
-         * Each Binder by setting the VHandler complete custom functions (such as click events)
-         */
-        final NormalCollaborator collaborator = new NormalCollaborator();
-        collaborator.setListener(this);
-        richBinder.setCollaborator(collaborator);
-
         /*
          *  binding variable
          *  R.layout.activity_binding_normal_list:
@@ -77,32 +66,22 @@ public class BindingNormalActivity extends MenuBaseActivity
          *  <variable
          *      name="adapter"
          *      type="me.drakeet.multitype.MultiTypeAdapter"/>
-         *
-         *  <variable
-         *      name="collaborator"
-         *      type="com.camnter.multitype.databinding.sample.normal.collaborator.NormalCollaborator"/>
-         *
          */
         binding.setAdapter(adapter);
-        binding.setCollaborator(collaborator);
 
-        collaborator.query();
-    }
+        TextItem textItem = new TextItem("Save you form anything");
+        ImageItem imageItem = new ImageItem(R.mipmap.ic_camnter_avatar);
+        RichItem richItem = new RichItem("CaMnter", R.mipmap.ic_camnter_avatar);
 
-
-    @Override
-    public void querySuccess(List<Object> item) {
-        adapter.setItems(item);
-        adapter.notifyDataSetChanged();
-    }
-
-
-    @Override
-    public void onRichItemClick(final int position,
-                                @NonNull final RichItem richItem) {
-        Toast.makeText(this, "[ position ] = " + position + "\n[ richItem.text ] = " + richItem.text +
-                "\n[ richItem.imageResId ] = " + richItem.imageResId,
-            Toast.LENGTH_LONG).show();
+        final List<Object> items;
+        items = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            items.add(textItem);
+            items.add(imageItem);
+            items.add(richItem);
+        }
+        this.adapter.setItems(items);
+        this.adapter.notifyDataSetChanged();
     }
 
 }

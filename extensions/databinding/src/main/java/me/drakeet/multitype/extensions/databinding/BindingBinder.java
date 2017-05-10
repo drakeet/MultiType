@@ -19,10 +19,8 @@ package me.drakeet.multitype.extensions.databinding;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import java.lang.ref.WeakReference;
 import java.util.List;
 import me.drakeet.multitype.ItemViewBinder;
 
@@ -32,20 +30,6 @@ import me.drakeet.multitype.ItemViewBinder;
 
 public abstract class BindingBinder<T>
     extends ItemViewBinder<T, BindingViewHolder> {
-
-    @Nullable
-    private WeakReference<Object> collaborator;
-
-
-    public void setCollaborator(@NonNull final Object collaborator) {
-        this.collaborator = new WeakReference<>(collaborator);
-    }
-
-
-    protected int getCollaboratorId() {
-        return me.drakeet.multitype.extensions.databinding.BR.collaborator;
-    }
-
 
     protected abstract int getItemLayoutId();
 
@@ -69,10 +53,6 @@ public abstract class BindingBinder<T>
         binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.position,
             holder.getAdapterPosition());
         binding.setVariable(me.drakeet.multitype.extensions.databinding.BR.item, item);
-        if (this.collaborator != null) {
-            binding.setVariable(this.getCollaboratorId(),
-                this.collaborator.get());
-        }
         binding.executePendingBindings();
     }
 
