@@ -25,11 +25,11 @@
 
         <variable
             name="item"
-            type="me.drakeet.multitype.extensions.databinding.Faker"/>
+            type="java.lang.Object"/>
 
         <variable
             name="collaborator"
-            type="me.drakeet.multitype.extensions.databinding.Faker"/>
+            type="java.lang.Object"/>
 
     </data>
 
