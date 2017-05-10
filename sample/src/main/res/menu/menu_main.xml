@@ -42,5 +42,10 @@
         android:id="@+id/TestPayloadActivity"
         android:title="TestPayloadActivity"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/BindingNormalActivity"
+        android:title="BindingNormalActivity"
+        app:showAsAction="never"/>
     
 </menu>

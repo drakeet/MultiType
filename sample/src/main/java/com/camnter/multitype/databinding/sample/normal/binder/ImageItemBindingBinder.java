@@ -1,5 +1,4 @@
 /*
- * Copyright 2016 drakeet. https://github.com/drakeet
  * Copyright 2017 CaMnter. https://github.com/CaMnter
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,20 @@
  * limitations under the License.
  */
 
-include ':sample',
-        ':library',
-        ':extensions:databinding'
+package com.camnter.multitype.databinding.sample.normal.binder;
+
+import me.drakeet.multitype.extensions.databinding.BindingBinder;
+import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.normal.ImageItem;
+
+/**
+ * @author CaMnter
+ */
+
+public class ImageItemBindingBinder extends BindingBinder<ImageItem> {
+
+    @Override protected int getItemLayoutId() {
+        return R.layout.item_binding_image;
+    }
+
+}

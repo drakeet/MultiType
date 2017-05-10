@@ -1,5 +1,4 @@
 /*
- * Copyright 2016 drakeet. https://github.com/drakeet
  * Copyright 2017 CaMnter. https://github.com/CaMnter
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,31 @@
  * limitations under the License.
  */
 
-include ':sample',
-        ':library',
-        ':extensions:databinding'
+package me.drakeet.multitype.extensions.databinding;
+
+import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+
+/**
+ * @author CaMnter
+ */
+
+public class BindingViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
+
+    @NonNull
+    private final T binding;
+
+
+    public BindingViewHolder(@NonNull final T binding) {
+        super(binding.getRoot());
+        this.binding = binding;
+    }
+
+
+    @NonNull
+    public T getBinding() {
+        return this.binding;
+    }
+
+}
