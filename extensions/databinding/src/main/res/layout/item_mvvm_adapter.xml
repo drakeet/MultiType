@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2017 CaMnter. https://github.com/CaMnter
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +28,7 @@
 
     </data>
 
-    <android.support.v4.widget.Space
+    <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
