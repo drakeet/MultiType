@@ -24,6 +24,7 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private static final String TAG = "MultiTypeAdapter";
 
-    @Nullable private List<?> items;
+    @NonNull private List<?> items;
     @NonNull private TypePool typePool;
     @Nullable protected LayoutInflater inflater;
 
@@ -42,7 +43,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * Constructs a MultiTypeAdapter with a null items list.
      */
     public MultiTypeAdapter() {
-        this(null);
+        this(Collections.emptyList());
     }
 
 
@@ -51,7 +52,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      *
      * @param items the items list
      */
-    public MultiTypeAdapter(@Nullable List<?> items) {
+    public MultiTypeAdapter(@NonNull List<?> items) {
         this(items, new MultiTypePool());
     }
 
@@ -62,7 +63,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param items the items list
      * @param initialCapacity the initial capacity of TypePool
      */
-    public MultiTypeAdapter(@Nullable List<?> items, int initialCapacity) {
+    public MultiTypeAdapter(@NonNull List<?> items, int initialCapacity) {
         this(items, new MultiTypePool(initialCapacity));
     }
 
@@ -73,7 +74,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param items the items list
      * @param pool the type pool
      */
-    public MultiTypeAdapter(@Nullable List<?> items, @NonNull TypePool pool) {
+    public MultiTypeAdapter(@NonNull List<?> items, @NonNull TypePool pool) {
         this.items = items;
         this.typePool = pool;
     }
@@ -118,7 +119,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @CheckResult
     public <T> OneToManyFlow<T> register(@NonNull Class<? extends T> clazz) {
         checkAndRemoveAllTypesIfNeed(clazz);
-        return new OneToManyBuilder<T>(this, clazz);
+        return new OneToManyBuilder<>(this, clazz);
     }
 
 
@@ -158,12 +159,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param items the <b>new</b> items list
      * @since v2.4.1
      */
-    public void setItems(@Nullable List<?> items) {
+    public void setItems(@NonNull List<?> items) {
         this.items = items;
     }
 
 
-    @Nullable
+    @NonNull
     public List<?> getItems() {
         return items;
     }
@@ -187,7 +188,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public final int getItemViewType(int position) {
-        assert items != null;
         Object item = items.get(position);
         return indexInTypesOf(item);
     }
@@ -228,7 +228,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override @SuppressWarnings("unchecked")
     public final void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
-        assert items != null;
         Object item = items.get(position);
         ItemViewBinder binder = typePool.getItemViewBinders().get(holder.getItemViewType());
         binder.onBindViewHolder(holder, item, payloads);
@@ -237,7 +236,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public final int getItemCount() {
-        return items == null ? 0 : items.size();
+        return items.size();
     }
 
 
