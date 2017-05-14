@@ -41,7 +41,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Constructs a MultiTypeAdapter with a null items list.
+     * Constructs a MultiTypeAdapter with an empty items list.
      */
     public MultiTypeAdapter() {
         this(Collections.emptyList());
