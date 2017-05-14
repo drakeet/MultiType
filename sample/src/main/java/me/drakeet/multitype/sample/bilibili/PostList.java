@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class PostList {
 
-    final List<Post> posts;
+    @NonNull final List<Post> posts;
 
 
     public PostList(@NonNull List<Post> posts) {this.posts = posts;}

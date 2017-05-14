@@ -25,7 +25,7 @@ import me.drakeet.multitype.sample.weibo.WeiboContent;
 public class SimpleText extends WeiboContent {
 
     public static final String TYPE = "simple_text";
-    @NonNull public String text;
+    public @NonNull String text;
 
 
     public SimpleText(@NonNull String text) {

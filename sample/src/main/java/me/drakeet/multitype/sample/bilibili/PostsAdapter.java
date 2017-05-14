@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype.sample.bilibili;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     private List<Post> posts;
 
 
-    public void setPosts(List<Post> posts) {
+    public void setPosts(@NonNull List<Post> posts) {
         this.posts = posts;
     }
 
@@ -62,8 +63,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView cover;
-        TextView title;
+        @NonNull ImageView cover;
+        @NonNull TextView title;
 
 
         ViewHolder(View itemView) {

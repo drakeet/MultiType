@@ -25,7 +25,7 @@ import me.drakeet.multitype.sample.Savable;
  */
 public class TextItem implements Savable {
 
-    @NonNull public String text;
+    public String text;
 
 
     public TextItem(@NonNull String text) {

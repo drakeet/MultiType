@@ -47,7 +47,7 @@ public class CategoryItemViewBinder
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @NonNull private final TextView title;
+        private @NonNull final TextView title;
 
 
         ViewHolder(@NonNull View itemView) {

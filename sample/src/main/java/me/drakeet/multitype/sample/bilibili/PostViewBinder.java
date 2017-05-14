@@ -48,8 +48,8 @@ public class PostViewBinder
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView cover;
-        private TextView title;
+        private @NonNull ImageView cover;
+        private @NonNull TextView title;
 
 
         ViewHolder(@NonNull View itemView) {

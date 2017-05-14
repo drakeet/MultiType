@@ -25,7 +25,7 @@ import me.drakeet.multitype.sample.weibo.WeiboContent;
 public class SimpleImage extends WeiboContent {
 
     public static final String TYPE = "simple_image";
-    @DrawableRes public int resId;
+    public @DrawableRes int resId;
 
 
     public SimpleImage(@DrawableRes int resId) {

@@ -21,9 +21,9 @@ import android.support.annotation.NonNull;
 /**
  * @author drakeet
  */
-public class BinderNotFoundException extends RuntimeException {
+class BinderNotFoundException extends RuntimeException {
 
-    public BinderNotFoundException(@NonNull Class<?> clazz) {
+    BinderNotFoundException(@NonNull Class<?> clazz) {
         super("Do you have registered the binder for {className}.class in the adapter/pool?"
             .replace("{className}", clazz.getSimpleName()));
     }

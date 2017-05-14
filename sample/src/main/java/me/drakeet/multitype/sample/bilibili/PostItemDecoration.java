@@ -28,7 +28,7 @@ import android.view.View;
 public class PostItemDecoration extends RecyclerView.ItemDecoration {
 
     private int space;
-    private SpanSizeLookup spanSizeLookup;
+    private @NonNull SpanSizeLookup spanSizeLookup;
 
 
     public PostItemDecoration(int space, @NonNull SpanSizeLookup spanSizeLookup) {

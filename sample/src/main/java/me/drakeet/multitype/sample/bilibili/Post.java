@@ -24,7 +24,7 @@ import android.support.annotation.NonNull;
 public class Post {
 
     public int coverResId;
-    public String title;
+    public @NonNull String title;
 
 
     public Post(int coverResId, @NonNull final String title) {

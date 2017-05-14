@@ -27,9 +27,9 @@ import java.util.List;
  */
 public class MultiTypePool implements TypePool {
 
-    @NonNull private final List<Class<?>> classes;
-    @NonNull private final List<ItemViewBinder<?, ?>> binders;
-    @NonNull private final List<Linker<?>> linkers;
+    private @NonNull final List<Class<?>> classes;
+    private @NonNull final List<ItemViewBinder<?, ?>> binders;
+    private @NonNull final List<Linker<?>> linkers;
 
 
     /**

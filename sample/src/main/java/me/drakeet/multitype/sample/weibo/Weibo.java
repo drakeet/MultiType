@@ -23,9 +23,9 @@ import android.support.annotation.NonNull;
  */
 public class Weibo {
 
-    @NonNull public User user;
-    @NonNull public WeiboContent content;
-    @NonNull public String createTime;
+    public @NonNull User user;
+    public @NonNull WeiboContent content;
+    public @NonNull String createTime;
     /* ... id, counts, etc. */
 
 

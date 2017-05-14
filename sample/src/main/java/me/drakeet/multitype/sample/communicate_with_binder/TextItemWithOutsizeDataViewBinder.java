@@ -37,8 +37,7 @@ public class TextItemWithOutsizeDataViewBinder
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull ViewHolder holder, @NonNull TextItem textItem) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull TextItem textItem) {
         holder.setData(textItem);
     }
 

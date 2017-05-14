@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  */
 public class Category {
 
-    public String title;
+    public @NonNull String title;
 
 
     public Category(@NonNull final String title) {

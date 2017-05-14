@@ -25,7 +25,7 @@ import com.google.gson.annotations.SerializedName;
 public abstract class WeiboContent {
 
     @SerializedName("content_type")
-    @NonNull public final String contentType;
+    public @NonNull final String contentType;
 
 
     protected WeiboContent(@NonNull String contentType) {

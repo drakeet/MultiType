@@ -34,9 +34,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private static final String TAG = "MultiTypeAdapter";
 
-    @NonNull private List<?> items;
-    @NonNull private TypePool typePool;
-    @Nullable protected LayoutInflater inflater;
+    private @NonNull List<?> items;
+    private @NonNull TypePool typePool;
+    protected @Nullable LayoutInflater inflater;
 
 
     /**

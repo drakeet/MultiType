@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  */
 public class RichItem {
 
-    @NonNull public String text;
+    public @NonNull String text;
     public int imageResId;
 
 

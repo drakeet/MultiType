@@ -27,8 +27,8 @@ public class Data {
     public static final int TYPE_1 = 1;
     public static final int TYPE_2 = 2;
 
-    @SerializedName("title") public String title;
-    @SerializedName("type") public int type;
+    public @SerializedName("title") String title;
+    public @SerializedName("type") int type;
 
 
     public Data(@NonNull String title, int type) {
