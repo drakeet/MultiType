@@ -49,7 +49,7 @@ public abstract class WeiboFrameBinder
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_weibo_frame, parent, false);
         ContentHolder subViewHolder = onCreateContentViewHolder(inflater, parent);
-        return new FrameHolder(root, subViewHolder);
+        return new FrameHolder(root, subViewHolder, this);
     }
 
 
@@ -63,21 +63,23 @@ public abstract class WeiboFrameBinder
     }
 
 
-    public static class FrameHolder extends RecyclerView.ViewHolder {
+    static class FrameHolder extends RecyclerView.ViewHolder {
 
         private ImageView avatar;
         private TextView username;
         private FrameLayout container;
         private TextView createTime;
+        private TextView close;
         private ContentHolder subViewHolder;
 
 
-        FrameHolder(View itemView, final ContentHolder subViewHolder) {
+        FrameHolder(View itemView, final ContentHolder subViewHolder, final WeiboFrameBinder binder) {
             super(itemView);
             avatar = (ImageView) findViewById(R.id.avatar);
             username = (TextView) findViewById(R.id.username);
             container = (FrameLayout) findViewById(R.id.container);
             createTime = (TextView) findViewById(R.id.create_time);
+            close = (TextView) findViewById(R.id.close);
             container.addView(subViewHolder.itemView);
             this.subViewHolder = subViewHolder;
             this.subViewHolder.frameHolder = this;
@@ -86,6 +88,12 @@ public abstract class WeiboFrameBinder
                 @Override public void onClick(View v) {
                     Toast.makeText(v.getContext(),
                         "Position: " + getAdapterPosition(), LENGTH_SHORT).show();
+                }
+            });
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    binder.getAdapter().getItems().remove(getAdapterPosition());
+                    binder.getAdapter().notifyItemRemoved(getAdapterPosition());
                 }
             });
         }
