@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author drakeet
@@ -149,14 +150,13 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Sets and updates the items atomically and safely.
-     * It is recommended to use this method to update the data.
-     * <p>e.g. {@code adapter.setItems(new Items(changedItems));}</p>
+     * Sets and updates the items atomically and safely. It is recommended to use this method
+     * to update the items with a new wrapper list or consider using {@link CopyOnWriteArrayList}.
      *
-     * <p>Note: If you want to refresh the list views, you should
+     * <p>Note: If you want to refresh the list views after setting items, you should
      * call {@link RecyclerView.Adapter#notifyDataSetChanged()} by yourself.</p>
      *
-     * @param items the <b>new</b> items list
+     * @param items the new items list
      * @since v2.4.1
      */
     public void setItems(@NonNull List<?> items) {
