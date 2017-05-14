@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Collections;
 import java.util.List;
 import me.drakeet.multitype.sample.R;
 
@@ -32,7 +33,7 @@ import me.drakeet.multitype.sample.R;
  */
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
-    private List<Post> posts;
+    private List<Post> posts = Collections.emptyList();
 
 
     public void setPosts(@NonNull List<Post> posts) {
@@ -56,8 +57,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     }
 
 
-    @Override public int getItemCount() {
-        return posts != null ? posts.size() : 0;
+    @Override
+    public int getItemCount() {
+        return posts.size();
     }
 
 

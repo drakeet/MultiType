@@ -30,10 +30,6 @@ import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 import me.drakeet.multitype.sample.common.CategoryItemViewBinder;
-import me.drakeet.multitype.sample.normal.ImageItem;
-import me.drakeet.multitype.sample.normal.ImageItemViewBinder;
-import me.drakeet.multitype.sample.normal.TextItem;
-import me.drakeet.multitype.sample.normal.TextItemViewBinder;
 
 /**
  * @author drakeet
@@ -77,8 +73,6 @@ public class BilibiliActivity extends MenuBaseActivity {
         setContentView(R.layout.activity_list);
 
         adapter = new MultiTypeAdapter();
-        adapter.register(TextItem.class, new TextItemViewBinder());
-        adapter.register(ImageItem.class, new ImageItemViewBinder());
         adapter.register(Category.class, new CategoryItemViewBinder());
 
         adapter.register(Post.class, new PostViewBinder());
