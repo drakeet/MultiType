@@ -257,7 +257,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
         Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
             "It will override the original binder(s).");
-        for (; ; ) {
+        while (true) {
             int index = typePool.getClasses().indexOf(clazz);
             if (index != -1) {
                 typePool.getClasses().remove(index);

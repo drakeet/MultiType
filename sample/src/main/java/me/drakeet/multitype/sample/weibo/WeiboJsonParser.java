@@ -25,19 +25,19 @@ import java.util.List;
 /**
  * @author drakeet
  */
-class WeiboJsonParser {
+final class WeiboJsonParser {
 
     private WeiboJsonParser() {}
 
 
-    final static Gson gson = new GsonBuilder()
+    static final Gson GSON = new GsonBuilder()
         .registerTypeAdapter(WeiboContent.class, new WeiboContentDeserializer())
         .create();
 
-    final static Gson pureGson = new Gson();
+    static final Gson SIMPLE_DEFAULT_GSON = new Gson();
 
 
     static List<Weibo> fromJson(String json) {
-        return gson.fromJson(json, new TypeToken<ArrayList<Weibo>>() {}.getType());
+        return GSON.fromJson(json, new TypeToken<ArrayList<Weibo>>() {}.getType());
     }
 }

@@ -36,7 +36,7 @@ public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.Vi
     private final Set<Integer> selectedSet;
 
 
-    public SquareViewBinder(Set<Integer> selectedSet) {this.selectedSet = selectedSet;}
+    public SquareViewBinder(Set<Integer> selectedSet) { this.selectedSet = selectedSet; }
 
 
     @NonNull @Override

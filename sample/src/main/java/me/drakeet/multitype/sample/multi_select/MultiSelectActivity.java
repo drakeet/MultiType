@@ -34,7 +34,7 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 
 public class MultiSelectActivity extends MenuBaseActivity {
 
-    private final static int SPAN_COUNT = 5;
+    private static final int SPAN_COUNT = 5;
     Items items = new Items();
     MultiTypeAdapter adapter;
     Button fab;
