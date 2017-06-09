@@ -32,9 +32,9 @@ import me.drakeet.multitype.sample.weibo.content.SimpleText;
 public class WeiboContentDeserializer implements JsonDeserializer<WeiboContent> {
 
     @Override
-    public WeiboContent deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+    public WeiboContent deserialize(JsonElement json, Type type, JsonDeserializationContext context)
         throws JsonParseException {
-        Gson gson = WeiboJsonParser.gson;
+        Gson gson = WeiboJsonParser.GSON;
         JsonObject jsonObject = (JsonObject) json;
         final String contentType = stringOrEmpty(jsonObject.get("content_type"));
         WeiboContent content = null;

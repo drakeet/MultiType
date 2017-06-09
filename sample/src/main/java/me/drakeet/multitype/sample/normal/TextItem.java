@@ -52,5 +52,5 @@ public class TextItem implements Savable {
 
 
     @NonNull @Override
-    public String describe() { return "Text";}
+    public String describe() { return "Text"; }
 }

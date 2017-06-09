@@ -22,7 +22,7 @@ import java.util.Arrays;
 /**
  * @author drakeet
  */
-class ClassLinkerWrapper<T> implements Linker<T> {
+final class ClassLinkerWrapper<T> implements Linker<T> {
 
     private @NonNull final ClassLinker<T> classLinker;
     private @NonNull ItemViewBinder<T, ?>[] binders;

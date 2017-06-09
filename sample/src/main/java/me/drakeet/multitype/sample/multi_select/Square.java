@@ -25,5 +25,5 @@ public class Square {
     public boolean isSelected;
 
 
-    public Square(int number) {this.number = number;}
+    public Square(int number) { this.number = number; }
 }

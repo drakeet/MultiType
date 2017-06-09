@@ -73,7 +73,11 @@ public abstract class WeiboFrameBinder
         private ContentHolder subViewHolder;
 
 
-        FrameHolder(View itemView, final ContentHolder subViewHolder, final WeiboFrameBinder binder) {
+        FrameHolder(
+            @NonNull View itemView,
+            @NonNull final ContentHolder subViewHolder,
+            @NonNull final WeiboFrameBinder binder) {
+
             super(itemView);
             avatar = (ImageView) findViewById(R.id.avatar);
             username = (TextView) findViewById(R.id.username);

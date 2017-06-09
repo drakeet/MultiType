@@ -27,5 +27,5 @@ public class PostList {
     @NonNull final List<Post> posts;
 
 
-    public PostList(@NonNull List<Post> posts) {this.posts = posts;}
+    public PostList(@NonNull List<Post> posts) { this.posts = posts; }
 }

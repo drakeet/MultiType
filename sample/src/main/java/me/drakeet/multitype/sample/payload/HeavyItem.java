@@ -24,5 +24,5 @@ public class HeavyItem {
     public String text;
 
 
-    public HeavyItem(String text) {this.text = text;}
+    public HeavyItem(String text) { this.text = text; }
 }

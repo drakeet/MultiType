@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+
+    <!-- Rationale: Any source files and text files in general should end with a line separator
+         to let other easily add new content at the end of file and "diff" command does not
+         show previous lines as changed.
+         See http://checkstyle.sourceforge.net/config_misc.html#NewlineAtEndOfFile -->
+    <module name="NewlineAtEndOfFile">
+        <property name="lineSeparator" value="lf"/>
+    </module>
+    <!-- Checks for long source files. Default max: 2000                    -->
+    <!-- See http://checkstyle.sourceforge.net/config_sizes.html#FileLength -->
+    <module name="FileLength"/>
+    <module name="FileTabCharacter"/>
+    <!-- Checks that property files contain the same keys. -->
+    <module name="Translation"/>
+
+    <module name="TreeWalker">
+        <!-- Checks for Javadoc comments.                     -->
+        <!-- See http://checkstyle.sf.net/config_javadoc.html -->
+        <!--module name="JavadocMethod"/-->
+        <!--module name="JavadocType"/-->
+        <!--module name="JavadocVariable"/-->
+        <!--module name="JavadocStyle"/-->
+
+        <!-- Checks for Naming Conventions.                  -->
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <module name="ConstantName"/>
+        <!-- local, final variables, including catch parameters -->
+        <module name="LocalFinalVariableName"/>
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <!--<module name="PackageName"/>-->
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <!-- classes and interfaces -->
+        <module name="TypeName"/>
+
+        <!-- Checks for imports                              -->
+        <!-- See http://checkstyle.sf.net/config_import.html -->
+        <module name="AvoidStarImport"/>
+        <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
+        <module name="RedundantImport"/>
+        <module name="UnusedImports">
+            <property name="processJavadoc" value="true"/>
+        </module>
+
+        <!-- Checks for Size Violations.                    -->
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <module name="LineLength">
+            <property name="max" value="100"/>
+        </module>
+        <module name="MethodLength"/>
+        <!--module name="ParameterNumber"/-->
+
+        <!-- Checks for whitespace                               -->
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <module name="GenericWhitespace"/>
+        <module name="EmptyForIteratorPad"/>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
+        </module>
+        <module name="NoWhitespaceBefore"/>
+        <!-- Checks the policy on how to wrap lines on operators. -->
+        <!-- <module name="OperatorWrap"/> -->
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <!-- <module name="WhitespaceAfter"/> -->
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLoops" value="true"/>
+        </module>
+        <module name="SingleSpaceSeparator">
+            <property name="validateComments" value="true"/>
+        </module>
+
+        <!-- Modifier Checks                                    -->
+        <!-- See http://checkstyle.sf.net/config_modifiers.html -->
+        <!-- Default order: public, protected, private, abstract, static, final, transient, volatile, synchronized, native, strictfp -->
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+
+        <!-- Checks for blocks. You know, those {}'s         -->
+        <!-- See http://checkstyle.sf.net/config_blocks.html -->
+        <!--module name="AvoidNestedBlocks"/-->
+        <!--module name="EmptyBlock"/-->
+        <!-- See http://checkstyle.sourceforge.net/config_blocks.html#LeftCurly -->
+        <!-- <module name="LeftCurly"/> -->
+        <!--module name="NeedBraces"/-->
+        <!-- See http://checkstyle.sourceforge.net/property_types.html#rcurly#rcurly -->
+        <!-- <module name="RightCurly"/> -->
+
+        <!-- Checks for common coding problems               -->
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!--module name="AvoidInlineConditionals"/-->
+        <module name="CovariantEquals"/>
+        <module name="EmptyStatement"/>
+        <module name="EqualsAvoidNull"/>
+        <module name="EqualsHashCode"/>
+        <!--module name="HiddenField"/-->
+        <module name="IllegalInstantiation"/>
+        <!--module name="InnerAssignment"/-->
+        <!--module name="MagicNumber"/-->
+        <module name="MissingSwitchDefault"/>
+        <!-- Checks for overly complicated boolean expressions. Currently finds code like  if (b == true), b || true, !false, etc.
+             Rationale: Complex boolean logic makes code hard to understand and maintain. -->
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+
+        <!-- Checks for class design                         -->
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <!--module name="DesignForExtension"/-->
+        <!-- Checks that a class which has only private constructors is declared as final. -->
+        <module name="FinalClass"/>
+        <!--module name="HideUtilityClassConstructor"/-->
+        <module name="InterfaceIsType"/>
+        <!--module name="VisibilityModifier"/-->
+
+        <!-- Miscellaneous other checks.                   -->
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- Checks the style of array type definitions.
+             Some like Java-style: public static void main(String[] args) and
+             some like C-style: public static void main(String args[]) -->
+        <module name="ArrayTypeStyle"/>
+        <!--module name="FinalParameters"/-->
+        <!--module name="TodoComment"/-->
+        <module name="UpperEll"/>
+        <!-- Checks correct indentation of Java code. Default basicOffset: 4 -->
+        <module name="Indentation"/>
+        <module name="CommentsIndentation"/>
+
+        <module name="StringLiteralEquality"/>
+
+        <module name="NestedIfDepth">
+            <property name="max" value="3"/>
+        </module>
+        <module name="NestedTryDepth">
+            <property name="max" value="2"/>
+        </module>
+
+    </module>
+</module>

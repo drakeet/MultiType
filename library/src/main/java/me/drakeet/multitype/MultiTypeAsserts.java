@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * @author drakeet
  */
-public class MultiTypeAsserts {
+public final class MultiTypeAsserts {
 
     private MultiTypeAsserts() {
         throw new AssertionError();
@@ -66,8 +66,8 @@ public class MultiTypeAsserts {
         @NonNull RecyclerView recyclerView, @NonNull MultiTypeAdapter adapter)
         throws IllegalArgumentException, IllegalAccessError {
         if (recyclerView.getAdapter() == null) {
-            throw new IllegalAccessError(
-                "The assertHasTheSameAdapter() method must be placed after recyclerView.setAdapter()");
+            throw new IllegalAccessError("The assertHasTheSameAdapter() method must " +
+                "be placed after recyclerView.setAdapter()");
         }
         if (recyclerView.getAdapter() != adapter) {
             throw new IllegalArgumentException(
