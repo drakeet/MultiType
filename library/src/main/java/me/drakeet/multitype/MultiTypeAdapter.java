@@ -240,6 +240,70 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
+    /**
+     * Called when a view created by this adapter has been recycled, and passes the event to its
+     * associated binder.
+     *
+     * @param holder The ViewHolder for the view being recycled
+     * @see RecyclerView.Adapter#onViewRecycled(ViewHolder)
+     */
+    @Override @SuppressWarnings("unchecked")
+    public final void onViewRecycled(@NonNull ViewHolder holder) {
+        getRawBinderByViewHolder(holder).onViewRecycled(holder);
+    }
+
+
+    /**
+     * Called by the RecyclerView if a ViewHolder created by this Adapter cannot be recycled
+     * due to its transient state, and passes the event to its associated item view binder.
+     *
+     * @param holder The ViewHolder containing the View that could not be recycled due to its
+     * transient state.
+     * @return True if the View should be recycled, false otherwise. Note that if this method
+     * returns <code>true</code>, RecyclerView <em>will ignore</em> the transient state of
+     * the View and recycle it regardless. If this method returns <code>false</code>,
+     * RecyclerView will check the View's transient state again before giving a final decision.
+     * Default implementation returns false.
+     * @see RecyclerView.Adapter#onFailedToRecycleView(ViewHolder)
+     */
+    @Override @SuppressWarnings("unchecked")
+    public final boolean onFailedToRecycleView(@NonNull ViewHolder holder) {
+        return getRawBinderByViewHolder(holder).onFailedToRecycleView(holder);
+    }
+
+
+    /**
+     * Called when a view created by this adapter has been attached to a window, and passes the
+     * event to its associated item view binder.
+     *
+     * @param holder Holder of the view being attached
+     * @see RecyclerView.Adapter#onViewAttachedToWindow(ViewHolder)
+     */
+    @Override @SuppressWarnings("unchecked")
+    public final void onViewAttachedToWindow(@NonNull ViewHolder holder) {
+        getRawBinderByViewHolder(holder).onViewAttachedToWindow(holder);
+    }
+
+
+    /**
+     * Called when a view created by this adapter has been detached from its window, and passes
+     * the event to its associated item view binder.
+     *
+     * @param holder Holder of the view being detached
+     * @see RecyclerView.Adapter#onViewDetachedFromWindow(ViewHolder)
+     */
+    @Override @SuppressWarnings("unchecked")
+    public final void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
+        getRawBinderByViewHolder(holder).onViewDetachedFromWindow(holder);
+    }
+
+
+    @NonNull
+    private ItemViewBinder getRawBinderByViewHolder(@NonNull ViewHolder holder) {
+        return typePool.getItemViewBinders().get(holder.getItemViewType());
+    }
+
+
     int indexInTypesOf(@NonNull Object item) throws BinderNotFoundException {
         int index = typePool.firstIndexOf(item.getClass());
         if (index != -1) {

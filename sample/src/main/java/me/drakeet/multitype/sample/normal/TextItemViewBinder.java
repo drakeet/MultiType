@@ -32,7 +32,8 @@ public class TextItemViewBinder
     extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
 
     static class TextHolder extends RecyclerView.ViewHolder {
-        @NonNull private final TextView text;
+
+        private @NonNull final TextView text;
 
 
         TextHolder(@NonNull View itemView) {

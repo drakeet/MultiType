@@ -45,6 +45,8 @@
 
         <activity android:name=".payload.TestPayloadActivity"/>
 
+        <activity android:name=".extra_apis.SeldomUsedApisPlayground"/>
+
     </application>
 
 </manifest>
