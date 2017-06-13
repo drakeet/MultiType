@@ -28,6 +28,14 @@ dependencies {
 }
 ```
 
+If you are using `com.android.tools.build:gradle:3.+`, use this instead:
+
+```groovy
+dependencies {
+    implementation 'me.drakeet.multitype:multitype:3.1.0-beta1'
+}
+```
+
 ## Usage
 
 #### Step 1. Create a class, It would be your `data model`/`Java bean`, for example:
