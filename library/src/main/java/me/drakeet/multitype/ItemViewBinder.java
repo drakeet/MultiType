@@ -186,7 +186,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * Called when a view created by this {@link ItemViewBinder} has been attached to a window.
      *
      * <p>This can be used as a reasonable signal that the view is about to be seen
-     * by the user. If the {@link ItemViewProvider} previously freed any resources in
+     * by the user. If the {@link ItemViewBinder} previously freed any resources in
      * {@link #onViewDetachedFromWindow(RecyclerView.ViewHolder) onViewDetachedFromWindow}
      * those resources should be restored here.</p>
      *
