@@ -39,9 +39,9 @@ public class WeiboContentDeserializer implements JsonDeserializer<WeiboContent> 
         final String contentType = stringOrEmpty(jsonObject.get("content_type"));
         WeiboContent content = null;
 
-        if (contentType.equals(SimpleText.TYPE)) {
+        if (SimpleText.TYPE.equals(contentType)) {
             content = gson.fromJson(json, SimpleText.class);
-        } else if (contentType.equals(SimpleImage.TYPE)) {
+        } else if (SimpleImage.TYPE.equals(contentType)) {
             content = gson.fromJson(json, SimpleImage.class);
         }
         return content;

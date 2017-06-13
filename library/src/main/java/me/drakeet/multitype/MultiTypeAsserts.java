@@ -44,7 +44,7 @@ public final class MultiTypeAsserts {
         @NonNull List<?> items)
         throws BinderNotFoundException, IllegalArgumentException, IllegalAccessError {
 
-        if (items.size() == 0) {
+        if (items.isEmpty()) {
             throw new IllegalArgumentException("Your Items/List is empty.");
         }
         for (Object item : items) {

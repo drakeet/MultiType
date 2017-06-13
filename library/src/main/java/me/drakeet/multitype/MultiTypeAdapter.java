@@ -139,7 +139,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @see #register(Class)
      */
     public void registerAll(@NonNull final TypePool pool) {
-        for (int i = 0; i < pool.getClasses().size(); i++) {
+        final int size = pool.getClasses().size();
+        for (int i = 0; i < size; i++) {
             registerWithoutChecking(
                 pool.getClasses().get(i),
                 pool.getItemViewBinders().get(i),

@@ -40,7 +40,7 @@ public class TextItem implements Savable {
 
 
     @Override
-    public void init(@NonNull byte[] data) {
+    public final void init(@NonNull byte[] data) {
         String json = new String(data, UTF_8);
         this.text = new Gson().fromJson(json, TextItem.class).text;
     }

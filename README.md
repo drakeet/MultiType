@@ -43,9 +43,9 @@ dependencies {
 ```java
 public class TextItem {
 
-    @NonNull public String text;
+    public @NonNull final String text;
 
-    public TextItem(@NonNull final String text) {
+    public TextItem(@NonNull String text) {
         this.text = text;
     }
 }
