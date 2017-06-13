@@ -246,6 +246,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      *
      * @param holder The ViewHolder for the view being recycled
      * @see RecyclerView.Adapter#onViewRecycled(ViewHolder)
+     * @see ItemViewBinder#onViewRecycled(ViewHolder)
      */
     @Override @SuppressWarnings("unchecked")
     public final void onViewRecycled(@NonNull ViewHolder holder) {
@@ -265,6 +266,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * RecyclerView will check the View's transient state again before giving a final decision.
      * Default implementation returns false.
      * @see RecyclerView.Adapter#onFailedToRecycleView(ViewHolder)
+     * @see ItemViewBinder#onFailedToRecycleView(ViewHolder)
      */
     @Override @SuppressWarnings("unchecked")
     public final boolean onFailedToRecycleView(@NonNull ViewHolder holder) {
@@ -278,6 +280,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      *
      * @param holder Holder of the view being attached
      * @see RecyclerView.Adapter#onViewAttachedToWindow(ViewHolder)
+     * @see ItemViewBinder#onViewAttachedToWindow(ViewHolder)
      */
     @Override @SuppressWarnings("unchecked")
     public final void onViewAttachedToWindow(@NonNull ViewHolder holder) {
@@ -291,6 +294,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      *
      * @param holder Holder of the view being detached
      * @see RecyclerView.Adapter#onViewDetachedFromWindow(ViewHolder)
+     * @see ItemViewBinder#onViewDetachedFromWindow(ViewHolder)
      */
     @Override @SuppressWarnings("unchecked")
     public final void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
