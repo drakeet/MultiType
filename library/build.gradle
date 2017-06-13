@@ -20,13 +20,13 @@ apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 25
-        versionCode 304
-        versionName "3.0.1"
+        versionCode 310
+        versionName "3.1.0-beta1"
     }
     buildTypes {
         release {

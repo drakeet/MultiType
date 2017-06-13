@@ -24,7 +24,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:3.0.1'
+    compile 'me.drakeet.multitype:multitype:3.1.0-beta1'
 }
 ```
 
