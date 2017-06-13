@@ -24,7 +24,15 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:3.0.1'
+    compile 'me.drakeet.multitype:multitype:3.1.0-beta1'
+}
+```
+
+If you are using `com.android.tools.build:gradle:3.+`, use this instead:
+
+```groovy
+dependencies {
+    implementation 'me.drakeet.multitype:multitype:3.1.0-beta1'
 }
 ```
 
@@ -35,9 +43,9 @@ dependencies {
 ```java
 public class TextItem {
 
-    @NonNull public String text;
+    public @NonNull final String text;
 
-    public TextItem(@NonNull final String text) {
+    public TextItem(@NonNull String text) {
         this.text = text;
     }
 }
@@ -49,7 +57,8 @@ public class TextItem {
 public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
 
     static class TextHolder extends RecyclerView.ViewHolder {
-        @NonNull private final TextView text;
+    
+        private @NonNull final TextView text;
 
         TextHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +87,7 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
 public class SampleActivity extends AppCompatActivity {
 
     private MultiTypeAdapter adapter;
+    private Items items;
 
     @Override 
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +106,7 @@ public class SampleActivity extends AppCompatActivity {
         ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
         RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
 
-        Items items = new Items();
+        items = new Items();
         for (int i = 0; i < 20; i++) {
             items.add(textItem);
             items.add(imageItem);
@@ -116,7 +126,7 @@ public class SampleActivity extends AppCompatActivity {
 
 **One to Multiple**:  
 
-<img src="https://cloud.githubusercontent.com/assets/5214214/25094943/e458121a-23cb-11e7-9bb6-106d6b1d8401.png" width=640/>
+<img src="art/sample-one2many.png" width=640/>
 
 ## Wiki
 
