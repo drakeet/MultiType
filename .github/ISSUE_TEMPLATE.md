@@ -5,7 +5,7 @@ What kind of issue is this?
        Overflow. https://stackoverflow.com/questions/tagged/MultiType
 
  - [ ] Bug report. If you’ve found a bug, spend the time to write a failing test. Please provide 
-       your device name, system version, and describe the reproduction path.
+       your device name, device OS version, and describe the reproduction steps.
 
  - [ ] Feature Request. Start by telling us what problem you’re trying to solve. Often a solution
        already exists! Don’t send pull requests to implement new features without first getting our
