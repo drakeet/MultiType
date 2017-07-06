@@ -36,7 +36,7 @@ dependencies {
 }
 ```
 
-_Note: MultiType does not support RecyclerView below version 23.0.0.
+_Note: MultiType does not support RecyclerView below version 23.0.0._
 
 ## Usage
 
