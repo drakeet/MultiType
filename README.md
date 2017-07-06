@@ -36,6 +36,8 @@ dependencies {
 }
 ```
 
+_Note: MultiType does not support RecyclerView below version 23.0.0.
+
 ## Usage
 
 #### Step 1. Create a class, It would be your `data model`/`Java bean`, for example:
