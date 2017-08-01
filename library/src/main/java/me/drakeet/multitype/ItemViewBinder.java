@@ -123,6 +123,21 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
 
 
     /**
+     * Return the stable ID for the <code>item</code>. If {@link RecyclerView.Adapter#hasStableIds()}
+     * would return false this method should return {@link RecyclerView#NO_ID}. The default
+     * implementation of this method returns {@link RecyclerView#NO_ID}.
+     *
+     * @param item The item within the MultiTypeAdapter's items data set to query
+     * @return the stable ID of the item
+     * @see RecyclerView.Adapter#setHasStableIds(boolean)
+     * @since v3.2.0
+     */
+    protected long getItemId(@NonNull T item) {
+        return RecyclerView.NO_ID;
+    }
+
+
+    /**
      * Called when a view created by this {@link ItemViewBinder} has been recycled.
      *
      * <p>A view is recycled when a {@link LayoutManager} decides that it no longer

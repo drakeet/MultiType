@@ -242,6 +242,24 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
+     * Called to return the stable ID for the item, and passes the event to its associated binder.
+     *
+     * @param position Adapter position to query
+     * @return the stable ID of the item at position
+     * @see ItemViewBinder#getItemId(Object)
+     * @see RecyclerView.Adapter#setHasStableIds(boolean)
+     * @since v3.2.0
+     */
+    @Override @SuppressWarnings("unchecked")
+    public final long getItemId(int position) {
+        Object item = items.get(position);
+        int itemViewType = getItemViewType(position);
+        ItemViewBinder binder = typePool.getItemViewBinders().get(itemViewType);
+        return binder.getItemId(item);
+    }
+
+
+    /**
      * Called when a view created by this adapter has been recycled, and passes the event to its
      * associated binder.
      *
