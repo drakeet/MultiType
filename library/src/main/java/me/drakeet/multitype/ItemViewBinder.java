@@ -208,4 +208,8 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * @since v3.1.0
      */
     protected void onViewDetachedFromWindow(@NonNull VH holder) {}
+
+    protected long getItemId(T item) {
+        return RecyclerView.NO_ID;
+    }
 }

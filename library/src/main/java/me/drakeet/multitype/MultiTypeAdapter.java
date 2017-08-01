@@ -234,6 +234,13 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         binder.onBindViewHolder(holder, item, payloads);
     }
 
+    @Override @SuppressWarnings("unchecked")
+    public long getItemId(int position) {
+        Object item = items.get(position);
+        int itemViewType = indexInTypesOf(item);
+        ItemViewBinder binder = typePool.getItemViewBinders().get(itemViewType);
+        return binder.getItemId(item);
+    }
 
     @Override
     public final int getItemCount() {
