@@ -24,7 +24,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:3.1.0'
+    compile 'me.drakeet.multitype:multitype:3.2.0'
 }
 ```
 
@@ -32,7 +32,7 @@ If you are using `com.android.tools.build:gradle:3.+`, use this instead:
 
 ```groovy
 dependencies {
-    implementation 'me.drakeet.multitype:multitype:3.1.0'
+    implementation 'me.drakeet.multitype:multitype:3.2.0'
 }
 ```
 
