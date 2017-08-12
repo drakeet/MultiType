@@ -18,7 +18,6 @@ package me.drakeet.multitype;
 
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.Log;
@@ -37,8 +36,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private @NonNull List<?> items;
     private @NonNull TypePool typePool;
-    protected @Nullable LayoutInflater inflater;
-
 
     /**
      * Constructs a MultiTypeAdapter with an empty items list.
@@ -195,12 +192,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public final ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
-        if (inflater == null) {
-            inflater = LayoutInflater.from(parent.getContext());
-        }
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         ItemViewBinder<?, ?> binder = typePool.getItemViewBinders().get(indexViewType);
         binder.adapter = this;
-        assert inflater != null;
         return binder.onCreateViewHolder(inflater, parent);
     }
 
