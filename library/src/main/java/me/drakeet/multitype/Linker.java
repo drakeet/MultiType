@@ -38,5 +38,6 @@ public interface Linker<T> {
      * @see OneToManyFlow#to(ItemViewBinder[])
      * @see OneToManyEndpoint#withLinker(Linker)
      */
-    @IntRange(from = 0) int index(@NonNull T t);
+    @IntRange(from = 0)
+    int index(@NonNull T t);
 }

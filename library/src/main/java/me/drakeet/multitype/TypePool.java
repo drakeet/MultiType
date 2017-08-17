@@ -17,7 +17,6 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
-import java.util.List;
 
 /**
  * An ordered collection to hold the types, binders and linkers.
@@ -40,6 +39,21 @@ public interface TypePool {
         @NonNull Linker<T> linker);
 
     /**
+     * Unregister all items with the specified class.
+     *
+     * @param clazz the class of items
+     * @return true if any items are unregistered from the pool
+     */
+    boolean unregister(@NonNull Class<?> clazz);
+
+    /**
+     * Returns the number of items in this pool.
+     *
+     * @return the number of items in this pool
+     */
+    int size();
+
+    /**
      * For getting index of the item class. If the subclass is already registered,
      * the registered mapping is used. If the subclass is not registered, then look
      * for its parent class if is registered, if the parent class is registered,
@@ -52,26 +66,32 @@ public interface TypePool {
     int firstIndexOf(@NonNull Class<?> clazz);
 
     /**
-     * Gets the item classes.
+     * Gets the class at the specified index.
      *
-     * @return The item classes list
+     * @param index the item index
+     * @return the class at the specified index
+     * @throws IndexOutOfBoundsException if the index is out of range
      */
     @NonNull
-    List<Class<?>> getClasses();
+    Class<?> getClass(int index);
 
     /**
-     * Gets the item view binders list.
+     * Gets the item view binder at the specified index.
      *
-     * @return the binders list
+     * @param index the item index
+     * @return the item class at the specified index
+     * @throws IndexOutOfBoundsException if the index is out of range
      */
     @NonNull
-    List<ItemViewBinder<?, ?>> getItemViewBinders();
+    ItemViewBinder<?, ?> getItemViewBinder(int index);
 
     /**
-     * Gets the linkers list.
+     * Gets the linker at the specified index.
      *
-     * @return the linkers list
+     * @param index the item index
+     * @return the linker at the specified index
+     * @throws IndexOutOfBoundsException if the index is out of range
      */
     @NonNull
-    List<Linker<?>> getLinkers();
+    Linker<?> getLinker(int index);
 }
