@@ -17,6 +17,7 @@
 package me.drakeet.multitype;
 
 import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,6 +82,27 @@ public class MultiTypePool implements TypePool {
         linkers.add(linker);
     }
 
+    @Override
+    public void unregister(@NonNull Class<?> clazz) {
+        if (!classes.contains(clazz)) {
+            return;
+        }
+        while (true) {
+            int index = classes.indexOf(clazz);
+            if (index != -1) {
+                classes.remove(index);
+                binders.remove(index);
+                linkers.remove(index);
+            } else {
+                break;
+            }
+        }
+    }
+
+    @Override
+    public int size() {
+        return classes.size();
+    }
 
     @Override
     public int firstIndexOf(@NonNull final Class<?> clazz) {
@@ -96,21 +118,18 @@ public class MultiTypePool implements TypePool {
         return -1;
     }
 
-
     @NonNull @Override
-    public List<Class<?>> getClasses() {
-        return classes;
+    public Class<?> getClass(int index) {
+        return classes.get(index);
     }
 
-
     @NonNull @Override
-    public List<ItemViewBinder<?, ?>> getItemViewBinders() {
-        return binders;
+    public ItemViewBinder<?, ?> getItemViewBinder(int index) {
+        return binders.get(index);
     }
 
-
-    @NonNull
-    public List<Linker<?>> getLinkers() {
-        return linkers;
+    @NonNull @Override
+    public Linker<?> getLinker(int index) {
+        return linkers.get(index);
     }
 }

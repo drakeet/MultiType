@@ -62,10 +62,10 @@ public class DuplicateTypesTest {
                 adapter.notifyDataSetChanged();
             }
         });
-        assertEquals(1, adapter.getTypePool().getClasses().size());
-        assertEquals(Data.class, adapter.getTypePool().getClasses().get(0));
+        assertEquals(1, adapter.getTypePool().size());
+        assertEquals(Data.class, adapter.getTypePool().getClass(0));
         assertEquals(DataType1ViewBinder.class,
-            adapter.getTypePool().getItemViewBinders().get(0).getClass());
+            adapter.getTypePool().getItemViewBinder(0).getClass());
     }
 
 
@@ -80,10 +80,10 @@ public class DuplicateTypesTest {
                 adapter.notifyDataSetChanged();
             }
         });
-        assertEquals(1, adapter.getTypePool().getClasses().size());
-        assertEquals(Data.class, adapter.getTypePool().getClasses().get(0));
+        assertEquals(1, adapter.getTypePool().size());
+        assertEquals(Data.class, adapter.getTypePool().getClass(0));
         assertEquals(DataType2ViewBinder.class,
-            adapter.getTypePool().getItemViewBinders().get(0).getClass());
+            adapter.getTypePool().getItemViewBinder(0).getClass());
     }
 
 
@@ -106,18 +106,18 @@ public class DuplicateTypesTest {
                 adapter.notifyDataSetChanged();
             }
         });
-        assertEquals(2, adapter.getTypePool().getClasses().size());
+        assertEquals(2, adapter.getTypePool().size());
 
-        assertEquals(Data.class, adapter.getTypePool().getClasses().get(0));
-        assertEquals(Data.class, adapter.getTypePool().getClasses().get(1));
+        assertEquals(Data.class, adapter.getTypePool().getClass(0));
+        assertEquals(Data.class, adapter.getTypePool().getClass(1));
 
         assertEquals(DataType2ViewBinder.class,
-            adapter.getTypePool().getItemViewBinders().get(0).getClass());
+            adapter.getTypePool().getItemViewBinder(0).getClass());
         assertEquals(DataType1ViewBinder.class,
-            adapter.getTypePool().getItemViewBinders().get(1).getClass());
+            adapter.getTypePool().getItemViewBinder(1).getClass());
 
-        assertSame(linker, adapter.getTypePool().getLinkers().get(0));
-        assertSame(linker, adapter.getTypePool().getLinkers().get(1));
+        assertSame(linker, adapter.getTypePool().getLinker(0));
+        assertSame(linker, adapter.getTypePool().getLinker(1));
     }
 
 
@@ -144,17 +144,17 @@ public class DuplicateTypesTest {
                 adapter.notifyDataSetChanged();
             }
         });
-        assertEquals(2, adapter.getTypePool().getClasses().size());
+        assertEquals(2, adapter.getTypePool().size());
 
-        assertEquals(Data.class, adapter.getTypePool().getClasses().get(0));
-        assertEquals(Data.class, adapter.getTypePool().getClasses().get(1));
+        assertEquals(Data.class, adapter.getTypePool().getClass(0));
+        assertEquals(Data.class, adapter.getTypePool().getClass(1));
 
         assertEquals(DataType1ViewBinder.class,
-            adapter.getTypePool().getItemViewBinders().get(0).getClass());
+            adapter.getTypePool().getItemViewBinder(0).getClass());
         assertEquals(DataType2ViewBinder.class,
-            adapter.getTypePool().getItemViewBinders().get(1).getClass());
+            adapter.getTypePool().getItemViewBinder(1).getClass());
 
-        assertSame(linker, adapter.getTypePool().getLinkers().get(0));
-        assertSame(linker, adapter.getTypePool().getLinkers().get(1));
+        assertSame(linker, adapter.getTypePool().getLinker(0));
+        assertSame(linker, adapter.getTypePool().getLinker(1));
     }
 }

@@ -20,7 +20,6 @@ import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import java.util.Collections;
@@ -136,12 +135,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @see #register(Class)
      */
     public void registerAll(@NonNull final TypePool pool) {
-        final int size = pool.getClasses().size();
+        final int size = pool.size();
         for (int i = 0; i < size; i++) {
             registerWithoutChecking(
-                pool.getClasses().get(i),
-                pool.getItemViewBinders().get(i),
-                pool.getLinkers().get(i)
+                pool.getClass(i),
+                pool.getItemViewBinder(i),
+                pool.getLinker(i)
             );
         }
     }
@@ -194,7 +193,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public final ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ItemViewBinder<?, ?> binder = typePool.getItemViewBinders().get(indexViewType);
+        ItemViewBinder<?, ?> binder = typePool.getItemViewBinder(indexViewType);
         binder.adapter = this;
         return binder.onCreateViewHolder(inflater, parent);
     }
@@ -224,7 +223,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override @SuppressWarnings("unchecked")
     public final void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         Object item = items.get(position);
-        ItemViewBinder binder = typePool.getItemViewBinders().get(holder.getItemViewType());
+        ItemViewBinder binder = typePool.getItemViewBinder(holder.getItemViewType());
         binder.onBindViewHolder(holder, item, payloads);
     }
 
@@ -248,7 +247,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     public final long getItemId(int position) {
         Object item = items.get(position);
         int itemViewType = getItemViewType(position);
-        ItemViewBinder binder = typePool.getItemViewBinders().get(itemViewType);
+        ItemViewBinder binder = typePool.getItemViewBinder(itemViewType);
         return binder.getItemId(item);
     }
 
@@ -317,7 +316,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @NonNull
     private ItemViewBinder getRawBinderByViewHolder(@NonNull ViewHolder holder) {
-        return typePool.getItemViewBinders().get(holder.getItemViewType());
+        return typePool.getItemViewBinder(holder.getItemViewType());
     }
 
 
@@ -325,31 +324,15 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         int index = typePool.firstIndexOf(item.getClass());
         if (index != -1) {
             @SuppressWarnings("unchecked")
-            Linker<Object> linker = (Linker<Object>) typePool.getLinkers().get(index);
+            Linker<Object> linker = (Linker<Object>) typePool.getLinker(index);
             return index + linker.index(item);
         }
         throw new BinderNotFoundException(item.getClass());
     }
 
-
     private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
-        if (!typePool.getClasses().contains(clazz)) {
-            return;
-        }
-        Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
-            "It will override the original binder(s).");
-        while (true) {
-            int index = typePool.getClasses().indexOf(clazz);
-            if (index != -1) {
-                typePool.getClasses().remove(index);
-                typePool.getItemViewBinders().remove(index);
-                typePool.getLinkers().remove(index);
-            } else {
-                break;
-            }
-        }
+        typePool.unregister(clazz);
     }
-
 
     <T> void registerWithLinker(
         @NonNull Class<? extends T> clazz,
