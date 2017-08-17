@@ -37,6 +37,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     private @NonNull List<?> items;
     private @NonNull TypePool typePool;
 
+
     /**
      * Constructs a MultiTypeAdapter with an empty items list.
      */
@@ -331,12 +332,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         throw new BinderNotFoundException(item.getClass());
     }
 
+
     private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
         if (typePool.unregister(clazz)) {
             Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
-                    "It will override the original binder(s).");
+                "It will override the original binder(s).");
         }
     }
+
 
     <T> void registerWithLinker(
         @NonNull Class<? extends T> clazz,

@@ -82,6 +82,7 @@ public class MultiTypePool implements TypePool {
         linkers.add(linker);
     }
 
+
     @Override
     public boolean unregister(@NonNull Class<?> clazz) {
         boolean removed = false;
@@ -99,10 +100,12 @@ public class MultiTypePool implements TypePool {
         return removed;
     }
 
+
     @Override
     public int size() {
         return classes.size();
     }
+
 
     @Override
     public int firstIndexOf(@NonNull final Class<?> clazz) {
@@ -118,15 +121,18 @@ public class MultiTypePool implements TypePool {
         return -1;
     }
 
+
     @NonNull @Override
     public Class<?> getClass(int index) {
         return classes.get(index);
     }
 
+
     @NonNull @Override
     public ItemViewBinder<?, ?> getItemViewBinder(int index) {
         return binders.get(index);
     }
+
 
     @NonNull @Override
     public Linker<?> getLinker(int index) {

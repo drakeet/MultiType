@@ -32,5 +32,6 @@ public interface ClassLinker<T> {
      * @return The index of your registered binders
      * @see OneToManyEndpoint#withClassLinker(ClassLinker)
      */
-    @NonNull Class<? extends ItemViewBinder<T, ?>> index(@NonNull T t);
+    @NonNull
+    Class<? extends ItemViewBinder<T, ?>> index(@NonNull T t);
 }

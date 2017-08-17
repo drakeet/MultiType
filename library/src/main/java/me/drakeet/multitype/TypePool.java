@@ -39,10 +39,10 @@ public interface TypePool {
         @NonNull Linker<T> linker);
 
     /**
-     * Unregister all items with specific class.
+     * Unregister all items with the specified class.
      *
      * @param clazz the class of items
-     * @return true if any items are unregistered form the pool
+     * @return true if any items are unregistered from the pool
      */
     boolean unregister(@NonNull Class<?> clazz);
 
@@ -66,30 +66,30 @@ public interface TypePool {
     int firstIndexOf(@NonNull Class<?> clazz);
 
     /**
-     * Gets the class at specific index.
+     * Gets the class at the specified index.
      *
      * @param index the item index
-     * @return the class at specific index
+     * @return the class at the specified index
      * @throws IndexOutOfBoundsException if the index is out of range
      */
     @NonNull
     Class<?> getClass(int index);
 
     /**
-     * Gets the item view binder at specific index.
+     * Gets the item view binder at the specified index.
      *
      * @param index the item index
-     * @return the item class at specific index
+     * @return the item class at the specified index
      * @throws IndexOutOfBoundsException if the index is out of range
      */
     @NonNull
     ItemViewBinder<?, ?> getItemViewBinder(int index);
 
     /**
-     * Gets the linker at specific index.
+     * Gets the linker at the specified index.
      *
      * @param index the item index
-     * @return the linker at specific index
+     * @return the linker at the specified index
      * @throws IndexOutOfBoundsException if the index is out of range
      */
     @NonNull
