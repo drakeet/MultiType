@@ -20,6 +20,7 @@ import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import java.util.Collections;
@@ -331,7 +332,10 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
-        typePool.unregister(clazz);
+        if (typePool.unregister(clazz)) {
+            Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
+                    "It will override the original binder(s).");
+        }
     }
 
     <T> void registerWithLinker(

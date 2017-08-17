@@ -42,8 +42,9 @@ public interface TypePool {
      * Unregister all items with specific class.
      *
      * @param clazz the class of items
+     * @return true if any items are unregistered form the pool
      */
-    void unregister(@NonNull Class<?> clazz);
+    boolean unregister(@NonNull Class<?> clazz);
 
     /**
      * Returns the number of items in this pool.

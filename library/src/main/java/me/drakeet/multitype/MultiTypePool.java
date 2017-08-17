@@ -83,20 +83,20 @@ public class MultiTypePool implements TypePool {
     }
 
     @Override
-    public void unregister(@NonNull Class<?> clazz) {
-        if (!classes.contains(clazz)) {
-            return;
-        }
+    public boolean unregister(@NonNull Class<?> clazz) {
+        boolean removed = false;
         while (true) {
             int index = classes.indexOf(clazz);
             if (index != -1) {
                 classes.remove(index);
                 binders.remove(index);
                 linkers.remove(index);
+                removed = true;
             } else {
                 break;
             }
         }
+        return removed;
     }
 
     @Override
