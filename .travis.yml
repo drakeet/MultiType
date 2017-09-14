@@ -11,16 +11,21 @@ android:
   components:
     - tools
     - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+    - android-22
     - $ANDROID_TARGET
+    - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
     - extra-android-support
     - extra
+  licenses:
+    - android-sdk-license-.+
 
 before_install:
   - echo yes | android update sdk --all --filter build-tools-$ANDROID_BUILD_TOOLS_VERSION --no-ui --force
 
 before_script:
-  - echo no | android create avd --force -n test -t android-19 --abi $ANDROID_ABI
+  - chmod +x gradlew
+  - echo no | android create avd --force -n test -t android-22 --abi $ANDROID_ABI
   - emulator -avd test -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
