@@ -45,8 +45,7 @@ public abstract class WeiboFrameBinder
 
 
     @NonNull @Override
-    protected FrameHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected FrameHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_weibo_frame, parent, false);
         ContentHolder subViewHolder = onCreateContentViewHolder(inflater, parent);
         return new FrameHolder(root, subViewHolder, this);

@@ -93,8 +93,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param binder the item view binder
      * @param <T> the item data type
      */
-    public <T> void register(
-        @NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
+    public <T> void register(@NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
         checkAndRemoveAllTypesIfNeed(clazz);
         typePool.register(clazz, binder, new DefaultLinker<T>());
     }
@@ -351,8 +350,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     /** A safe register method base on the TypePool's safety for TypePool. */
     @SuppressWarnings("unchecked")
-    private void registerWithoutChecking(
-        @NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
+    private void registerWithoutChecking(@NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
         checkAndRemoveAllTypesIfNeed(clazz);
         typePool.register(clazz, itemViewBinder, linker);
     }

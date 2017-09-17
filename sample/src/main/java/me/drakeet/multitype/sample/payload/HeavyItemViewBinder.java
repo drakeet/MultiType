@@ -34,8 +34,7 @@ import me.drakeet.multitype.sample.R;
 class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.ViewHolder> {
 
     @NonNull @Override
-    protected ViewHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_heavy, parent, false);
         return new ViewHolder(root);
     }
@@ -50,9 +49,7 @@ class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.
 
 
     @Override @SuppressLint("SetTextI18n")
-    protected void onBindViewHolder(
-        @NonNull ViewHolder holder,
-        @NonNull HeavyItem item, @NonNull List<Object> payloads) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem item, @NonNull List<Object> payloads) {
         if (payloads.isEmpty()) {
             super.onBindViewHolder(holder, item, payloads);
         } else {

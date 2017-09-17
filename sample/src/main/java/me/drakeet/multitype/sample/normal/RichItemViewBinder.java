@@ -29,8 +29,7 @@ import me.drakeet.multitype.sample.R;
 /**
  * @author drakeet
  */
-public class RichItemViewBinder
-    extends ItemViewBinder<RichItem, RichItemViewBinder.RichHolder> {
+public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBinder.RichHolder> {
 
     static class RichHolder extends RecyclerView.ViewHolder {
 
@@ -47,8 +46,7 @@ public class RichItemViewBinder
 
 
     @NonNull @Override
-    protected RichHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected RichHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_rich, parent, false);
         return new RichHolder(root);
     }

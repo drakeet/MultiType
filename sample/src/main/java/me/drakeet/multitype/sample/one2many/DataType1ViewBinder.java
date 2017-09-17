@@ -30,12 +30,10 @@ import me.drakeet.multitype.sample.R;
  *
  * @author drakeet
  */
-public class DataType1ViewBinder
-    extends ItemViewBinder<Data, DataType1ViewBinder.ViewHolder> {
+public class DataType1ViewBinder extends ItemViewBinder<Data, DataType1ViewBinder.ViewHolder> {
 
     @NonNull @Override
-    protected ViewHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_data_type1, parent, false);
         return new ViewHolder(root);
     }

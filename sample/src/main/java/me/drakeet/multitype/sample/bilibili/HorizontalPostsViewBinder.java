@@ -33,8 +33,7 @@ public class HorizontalPostsViewBinder
     extends ItemViewBinder<PostList, HorizontalPostsViewBinder.ViewHolder> {
 
     @NonNull @Override
-    protected ViewHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View view = inflater.inflate(R.layout.item_horizontal_list, parent, false);
         return new ViewHolder(view);
     }
@@ -47,10 +46,8 @@ public class HorizontalPostsViewBinder
     }
 
 
-    /**
-     * Just test
-     */
     private void assertGetAdapterNonNull() {
+        // noinspection ConstantConditions
         if (getAdapter() == null) {
             throw new NullPointerException("getAdapter() == null");
         }

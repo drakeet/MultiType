@@ -110,8 +110,7 @@ public class SeldomUsedApisPlayground extends MenuBaseActivity {
 
 
         @NonNull @Override
-        protected TextHolder onCreateViewHolder(
-            @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+        protected TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
             View root = inflater.inflate(R.layout.item_text, parent, false);
             return new TextHolder(root);
         }

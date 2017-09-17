@@ -28,11 +28,11 @@ import me.drakeet.multitype.sample.R;
 /**
  * @author drakeet
  */
-public class ImageItemViewBinder
-    extends ItemViewBinder<ImageItem, ImageItemViewBinder.ImageHolder> {
+public class ImageItemViewBinder extends ItemViewBinder<ImageItem, ImageItemViewBinder.ImageHolder> {
 
     class ImageHolder extends RecyclerView.ViewHolder {
-        @NonNull private final ImageView image;
+
+        private @NonNull final ImageView image;
 
 
         ImageHolder(View itemView) {
@@ -43,8 +43,7 @@ public class ImageItemViewBinder
 
 
     @NonNull @Override
-    protected ImageHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ImageHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_image, parent, false);
         return new ImageHolder(root);
     }
