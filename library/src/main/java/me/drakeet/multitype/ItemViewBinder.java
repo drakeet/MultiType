@@ -33,8 +33,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
 
 
     @NonNull
-    protected abstract VH onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+    protected abstract VH onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
     /**
      * Called by MultiTypeAdapter to display the data with its view holder. This method should
@@ -80,8 +79,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * update.
      * @since v2.5.0
      */
-    protected void onBindViewHolder(
-        @NonNull VH holder, @NonNull T item, @NonNull List<Object> payloads) {
+    protected void onBindViewHolder(@NonNull VH holder, @NonNull T item, @NonNull List<Object> payloads) {
         onBindViewHolder(holder, item);
     }
 

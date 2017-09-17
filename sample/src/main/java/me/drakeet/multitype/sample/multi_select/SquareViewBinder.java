@@ -40,8 +40,7 @@ public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.Vi
 
 
     @NonNull @Override
-    protected ViewHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_square, parent, false);
         return new ViewHolder(root);
     }

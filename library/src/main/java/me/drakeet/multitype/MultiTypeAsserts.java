@@ -39,9 +39,7 @@ public final class MultiTypeAsserts {
      * @throws IllegalArgumentException if your Items/List is empty
      */
     @SuppressWarnings("unchecked")
-    public static void assertAllRegistered(
-        @NonNull MultiTypeAdapter adapter,
-        @NonNull List<?> items)
+    public static void assertAllRegistered(@NonNull MultiTypeAdapter adapter, @NonNull List<?> items)
         throws BinderNotFoundException, IllegalArgumentException, IllegalAccessError {
 
         if (items.isEmpty()) {
@@ -62,8 +60,7 @@ public final class MultiTypeAsserts {
      * @throws IllegalArgumentException If your recyclerView's adapter.
      * is not the sample with the argument adapter.
      */
-    public static void assertHasTheSameAdapter(
-        @NonNull RecyclerView recyclerView, @NonNull MultiTypeAdapter adapter)
+    public static void assertHasTheSameAdapter(@NonNull RecyclerView recyclerView, @NonNull MultiTypeAdapter adapter)
         throws IllegalArgumentException, IllegalAccessError {
         if (recyclerView.getAdapter() == null) {
             throw new IllegalAccessError("The assertHasTheSameAdapter() method must " +

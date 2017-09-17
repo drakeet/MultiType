@@ -16,13 +16,15 @@
 
 package me.drakeet.multitype.sample.payload;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author drakeet
  */
 public class HeavyItem {
 
-    public String text;
+    public @NonNull String text;
 
 
-    public HeavyItem(String text) { this.text = text; }
+    public HeavyItem(@NonNull String text) { this.text = text; }
 }

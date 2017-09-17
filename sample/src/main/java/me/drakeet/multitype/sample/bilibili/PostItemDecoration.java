@@ -38,8 +38,7 @@ public class PostItemDecoration extends RecyclerView.ItemDecoration {
 
 
     @Override
-    public void getItemOffsets(
-        Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int position = parent.getChildLayoutPosition(view);
         if (spanSizeLookup.getSpanSize(position) == 1) {
             outRect.left = space;

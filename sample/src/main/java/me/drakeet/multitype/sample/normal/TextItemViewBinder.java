@@ -30,8 +30,7 @@ import me.drakeet.multitype.sample.R;
 /**
  * @author drakeet
  */
-public class TextItemViewBinder
-    extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
+public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
 
     private int lastShownAnimationPosition;
 
@@ -49,8 +48,7 @@ public class TextItemViewBinder
 
 
     @NonNull @Override
-    protected TextHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_text, parent, false);
         return new TextHolder(root);
     }

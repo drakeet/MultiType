@@ -33,16 +33,14 @@ public class SimpleImageViewBinder
     extends WeiboFrameBinder<SimpleImage, SimpleImageViewBinder.ViewHolder> {
 
     @Override
-    protected ContentHolder onCreateContentViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ContentHolder onCreateContentViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View contentView = inflater.inflate(R.layout.item_weibo_simple_image, parent, false);
         return new ViewHolder(contentView);
     }
 
 
     @Override
-    protected void onBindContentViewHolder(
-        @NonNull ViewHolder holder, @NonNull SimpleImage simpleImage) {
+    protected void onBindContentViewHolder(@NonNull ViewHolder holder, @NonNull SimpleImage simpleImage) {
         Log.d("weibo", "getAdapterPosition: " + holder.getAdapterPosition());
         Log.d("weibo", "getLayoutPosition: " + holder.getLayoutPosition());
         Log.d("weibo", "getOldPosition: " + holder.getOldPosition());

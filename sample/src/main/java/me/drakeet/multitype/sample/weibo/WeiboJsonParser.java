@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype.sample.weibo;
 
+import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -37,7 +38,7 @@ final class WeiboJsonParser {
     static final Gson SIMPLE_DEFAULT_GSON = new Gson();
 
 
-    static List<Weibo> fromJson(String json) {
+    static List<Weibo> fromJson(@NonNull String json) {
         return GSON.fromJson(json, new TypeToken<ArrayList<Weibo>>() {}.getType());
     }
 }
