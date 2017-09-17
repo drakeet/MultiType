@@ -92,7 +92,7 @@ public class MultiSelectActivity extends MenuBaseActivity {
             @Override public void onClick(View v) {
                 StringBuilder content = new StringBuilder();
                 for (Integer number : selectedSet) {
-                    content.append(number + ' ');
+                    content.append(number).append(" ");
                 }
                 Toast.makeText(v.getContext(),
                     "Selected items: " + content, Toast.LENGTH_SHORT)
