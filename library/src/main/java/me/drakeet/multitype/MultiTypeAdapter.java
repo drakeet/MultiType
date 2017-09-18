@@ -216,8 +216,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      */
     @Override @Deprecated
     public final void onBindViewHolder(ViewHolder holder, int position) {
-        throw new IllegalAccessError("You should not call this method. " +
-            "Call RecyclerView.Adapter#onBindViewHolder(holder, position, payloads) instead.");
+        onBindViewHolder(holder, position, Collections.emptyList());
     }
 
 
