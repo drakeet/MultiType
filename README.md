@@ -8,15 +8,15 @@ An Android library to create multiple item types list views easily and flexibly.
 English Version | [《Android 复杂的列表视图新写法 · 详解篇》](https://github.com/drakeet/Effective-MultiType/blob/master/README.md)
 
 Previously, when we need to develop a complex RecyclerView / ListView, it is a difficult and 
-troublesome work. We should override the `getItemViewType` of `RecyclerView.Adapter` , add some 
-types, and create some `ViewHolder`s relating to the types. The process is cumbersome.
+troublesome work. We should override the `getItemViewType()` of `RecyclerView.Adapter` , add some 
+types, and create some `ViewHolder`s relating to those types. The process is cumbersome.
 
-**Once we need to add a new item type, we have to go to the original adapter and modify some old codes,** 
-and adapter classes will be more bulky.
+Once we need to add a new item type, we have to go to the original adapter and modify some old codes, 
+and adapter classes will be bulkier.
 
-Today, I created a new intuitive and flexible way to easily create the complex RecyclerView / ListView, 
-with the MultiType library, we could insert a new item type without changing the old adapter codes 
-and make them more readable.
+Today, I created a new intuitive and flexible way to easily create complex RecyclerViews, 
+**with the MultiType library, we could insert a new item type without changing the old adapter codes 
+and make them more readable.**
 
 ## Getting started
 
@@ -24,7 +24,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:3.3.1'
+    compile 'me.drakeet.multitype:multitype:3.3.2'
 }
 ```
 
@@ -32,7 +32,7 @@ If you are using `com.android.tools.build:gradle:3.+`, use this instead:
 
 ```groovy
 dependencies {
-    implementation 'me.drakeet.multitype:multitype:3.3.1'
+    implementation 'me.drakeet.multitype:multitype:3.3.2'
 }
 ```
 

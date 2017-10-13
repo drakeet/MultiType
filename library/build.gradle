@@ -22,13 +22,13 @@ apply from: 'checkstyle.gradle'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 25
-        versionCode 331
-        versionName "3.3.1"
+        versionCode 332
+        versionName "3.3.2"
     }
     buildTypes {
         release {
