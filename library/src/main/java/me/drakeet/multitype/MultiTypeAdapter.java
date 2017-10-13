@@ -95,7 +95,16 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      */
     public <T> void register(@NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
         checkAndRemoveAllTypesIfNeed(clazz);
-        typePool.register(clazz, binder, new DefaultLinker<T>());
+        register(clazz, binder, new DefaultLinker<T>());
+    }
+
+
+    <T> void register(
+        @NonNull Class<? extends T> clazz,
+        @NonNull ItemViewBinder<T, ?> binder,
+        @NonNull Linker<T> linker) {
+        typePool.register(clazz, binder, linker);
+        binder.adapter = this;
     }
 
 
@@ -195,7 +204,6 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     public final ViewHolder onCreateViewHolder(ViewGroup parent, int indexViewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         ItemViewBinder<?, ?> binder = typePool.getItemViewBinder(indexViewType);
-        binder.adapter = this;
         return binder.onCreateViewHolder(inflater, parent);
     }
 
@@ -339,18 +347,10 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    <T> void registerWithLinker(
-        @NonNull Class<? extends T> clazz,
-        @NonNull ItemViewBinder<T, ?> binder,
-        @NonNull Linker<T> linker) {
-        typePool.register(clazz, binder, linker);
-    }
-
-
     /** A safe register method base on the TypePool's safety for TypePool. */
     @SuppressWarnings("unchecked")
-    private void registerWithoutChecking(@NonNull Class clazz, @NonNull ItemViewBinder itemViewBinder, @NonNull Linker linker) {
+    private void registerWithoutChecking(@NonNull Class clazz, @NonNull ItemViewBinder binder, @NonNull Linker linker) {
         checkAndRemoveAllTypesIfNeed(clazz);
-        typePool.register(clazz, itemViewBinder, linker);
+        register(clazz, binder, linker);
     }
 }

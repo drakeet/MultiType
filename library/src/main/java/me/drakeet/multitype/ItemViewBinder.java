@@ -116,6 +116,10 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      */
     @NonNull
     protected final MultiTypeAdapter getAdapter() {
+        if (adapter == null) {
+            throw new IllegalStateException("ItemViewBinder " + this + " not attached to MultiTypeAdapter. " +
+                "You should not call the method before registering the binder.");
+        }
         return adapter;
     }
 
