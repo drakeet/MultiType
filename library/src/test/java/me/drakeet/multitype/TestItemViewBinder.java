@@ -9,19 +9,16 @@ import android.view.ViewGroup;
 /**
  * @author drakeet
  */
-public class TestItemViewBinder
-    extends ItemViewBinder<TestItem, TestItemViewBinder.ViewHolder> {
+public class TestItemViewBinder extends ItemViewBinder<TestItem, TestItemViewBinder.ViewHolder> {
 
     @NonNull @Override
-    protected ViewHolder onCreateViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         return null;
     }
 
 
     @Override
-    protected void onBindViewHolder(
-        @NonNull ViewHolder holder, @NonNull TestItem testItem) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull TestItem testItem) {
 
     }
 

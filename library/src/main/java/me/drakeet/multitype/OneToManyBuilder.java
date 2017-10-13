@@ -56,7 +56,7 @@ class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
 
     private void doRegister(@NonNull Linker<T> linker) {
         for (ItemViewBinder<T, ?> binder : binders) {
-            adapter.registerWithLinker(clazz, binder, linker);
+            adapter.register(clazz, binder, linker);
         }
     }
 }
