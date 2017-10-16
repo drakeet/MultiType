@@ -46,14 +46,14 @@ public class TextItem implements Savable {
     }
 
 
-    @NonNull @Override
-    public byte[] toBytes() {
+    @Override
+    public @NonNull byte[] toBytes() {
         return new Gson().toJson(this).getBytes(UTF_8);
     }
 
 
-    @NonNull @Override
-    public String describe() { return "Text"; }
+    @Override
+    public @NonNull String describe() { return "Text"; }
 
 
     private static final Charset UTF_8 = Charset.forName("UTF-8");

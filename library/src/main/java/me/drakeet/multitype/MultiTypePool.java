@@ -122,20 +122,20 @@ public class MultiTypePool implements TypePool {
     }
 
 
-    @NonNull @Override
-    public Class<?> getClass(int index) {
+    @Override
+    public @NonNull Class<?> getClass(int index) {
         return classes.get(index);
     }
 
 
-    @NonNull @Override
-    public ItemViewBinder<?, ?> getItemViewBinder(int index) {
+    @Override
+    public @NonNull ItemViewBinder<?, ?> getItemViewBinder(int index) {
         return binders.get(index);
     }
 
 
-    @NonNull @Override
-    public Linker<?> getLinker(int index) {
+    @Override
+    public @NonNull Linker<?> getLinker(int index) {
         return linkers.get(index);
     }
 }

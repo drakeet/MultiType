@@ -34,8 +34,7 @@ public class ContentHolder {
     }
 
 
-    @NonNull
-    public WeiboFrameBinder.FrameHolder getParent() {
+    public @NonNull WeiboFrameBinder.FrameHolder getParent() {
         return frameHolder;
     }
 

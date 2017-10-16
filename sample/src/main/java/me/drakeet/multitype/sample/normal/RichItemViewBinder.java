@@ -45,8 +45,8 @@ public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBin
     }
 
 
-    @NonNull @Override
-    protected RichHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    @Override
+    protected @NonNull RichHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_rich, parent, false);
         return new RichHolder(root);
     }

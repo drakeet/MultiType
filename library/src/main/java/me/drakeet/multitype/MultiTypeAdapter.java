@@ -171,8 +171,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    @NonNull
-    public List<?> getItems() {
+    public @NonNull List<?> getItems() {
         return items;
     }
 
@@ -187,8 +186,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    @NonNull
-    public TypePool getTypePool() {
+    public @NonNull TypePool getTypePool() {
         return typePool;
     }
 
@@ -322,8 +320,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    @NonNull
-    private ItemViewBinder getRawBinderByViewHolder(@NonNull ViewHolder holder) {
+    private @NonNull ItemViewBinder getRawBinderByViewHolder(@NonNull ViewHolder holder) {
         return typePool.getItemViewBinder(holder.getItemViewType());
     }
 

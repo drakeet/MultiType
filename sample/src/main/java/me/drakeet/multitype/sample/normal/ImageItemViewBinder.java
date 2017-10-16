@@ -42,8 +42,8 @@ public class ImageItemViewBinder extends ItemViewBinder<ImageItem, ImageItemView
     }
 
 
-    @NonNull @Override
-    protected ImageHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    @Override
+    protected @NonNull ImageHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_image, parent, false);
         return new ImageHolder(root);
     }

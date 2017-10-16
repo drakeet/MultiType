@@ -72,8 +72,7 @@ public interface TypePool {
      * @return the class at the specified index
      * @throws IndexOutOfBoundsException if the index is out of range
      */
-    @NonNull
-    Class<?> getClass(int index);
+    @NonNull Class<?> getClass(int index);
 
     /**
      * Gets the item view binder at the specified index.
@@ -82,8 +81,7 @@ public interface TypePool {
      * @return the item class at the specified index
      * @throws IndexOutOfBoundsException if the index is out of range
      */
-    @NonNull
-    ItemViewBinder<?, ?> getItemViewBinder(int index);
+    @NonNull ItemViewBinder<?, ?> getItemViewBinder(int index);
 
     /**
      * Gets the linker at the specified index.
@@ -92,6 +90,5 @@ public interface TypePool {
      * @return the linker at the specified index
      * @throws IndexOutOfBoundsException if the index is out of range
      */
-    @NonNull
-    Linker<?> getLinker(int index);
+    @NonNull Linker<?> getLinker(int index);
 }

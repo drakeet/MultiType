@@ -36,7 +36,8 @@ public class Weibo {
     }
 
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return "content: " + content.getClass().getSimpleName();
     }
 }
