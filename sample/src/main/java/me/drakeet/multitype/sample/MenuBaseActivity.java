@@ -51,7 +51,7 @@ public class MenuBaseActivity extends AppCompatActivity {
             case R.id.TestPayloadActivity:
                 intent.setClass(this, TestPayloadActivity.class);
                 break;
-            case R.id.SeldomUsedApisPlayground:
+            case R.id.MoreApisPlayground:
                 intent.setClass(this, MoreApisPlayground.class);
                 break;
             default:

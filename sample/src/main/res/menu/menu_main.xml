@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="HardcodedText">
 
     <item
         android:id="@+id/more"
         android:title="More ->"
         app:showAsAction="always"
-        android:orderInCategory="1"/>
+        android:orderInCategory="1"
+        tools:ignore="AlwaysShowAction"/>
 
     <item
         android:id="@+id/NormalActivity"
@@ -45,8 +48,8 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/SeldomUsedApisPlayground"
-        android:title="SeldomUsedApisPlayground"
+        android:id="@+id/MoreApisPlayground"
+        android:title="MoreApisPlayground"
         app:showAsAction="never"/>
 
 </menu>
