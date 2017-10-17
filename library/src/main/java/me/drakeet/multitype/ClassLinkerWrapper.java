@@ -36,8 +36,7 @@ final class ClassLinkerWrapper<T> implements Linker<T> {
     }
 
 
-    @NonNull
-    static <T> ClassLinkerWrapper<T> wrap(
+    static @NonNull <T> ClassLinkerWrapper<T> wrap(
         @NonNull ClassLinker<T> classLinker,
         @NonNull ItemViewBinder<T, ?>[] binders) {
         return new ClassLinkerWrapper<T>(classLinker, binders);

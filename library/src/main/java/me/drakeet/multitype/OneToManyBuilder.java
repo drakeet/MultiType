@@ -35,8 +35,8 @@ class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
     }
 
 
-    @Override @NonNull @CheckResult @SafeVarargs
-    public final OneToManyEndpoint<T> to(@NonNull ItemViewBinder<T, ?>... binders) {
+    @Override @CheckResult @SafeVarargs
+    public final @NonNull OneToManyEndpoint<T> to(@NonNull ItemViewBinder<T, ?>... binders) {
         this.binders = binders;
         return this;
     }

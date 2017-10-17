@@ -47,8 +47,8 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
     }
 
 
-    @NonNull @Override
-    protected TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    @Override
+    protected @NonNull TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_text, parent, false);
         return new TextHolder(root);
     }

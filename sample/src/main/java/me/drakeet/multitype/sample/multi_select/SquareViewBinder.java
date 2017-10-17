@@ -33,14 +33,14 @@ import static java.lang.String.valueOf;
  */
 public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.ViewHolder> {
 
-    private final Set<Integer> selectedSet;
+    private final @NonNull Set<Integer> selectedSet;
 
 
-    public SquareViewBinder(Set<Integer> selectedSet) { this.selectedSet = selectedSet; }
+    public SquareViewBinder(@NonNull Set<Integer> selectedSet) { this.selectedSet = selectedSet; }
 
 
-    @NonNull @Override
-    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    @Override
+    protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_square, parent, false);
         return new ViewHolder(root);
     }
@@ -54,7 +54,7 @@ public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.Vi
     }
 
 
-    public Set<Integer> getSelectedSet() {
+    public @NonNull Set<Integer> getSelectedSet() {
         return selectedSet;
     }
 

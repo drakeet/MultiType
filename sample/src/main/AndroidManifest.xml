@@ -45,7 +45,7 @@
 
         <activity android:name=".payload.TestPayloadActivity"/>
 
-        <activity android:name=".extra_apis.SeldomUsedApisPlayground"/>
+        <activity android:name=".more_apis.MoreApisPlayground"/>
 
     </application>
 

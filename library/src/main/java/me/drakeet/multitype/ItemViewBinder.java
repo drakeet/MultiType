@@ -32,8 +32,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
     /* internal */ MultiTypeAdapter adapter;
 
 
-    @NonNull
-    protected abstract VH onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+    protected abstract @NonNull VH onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
     /**
      * Called by MultiTypeAdapter to display the data with its view holder. This method should
@@ -114,8 +113,7 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
      * @return The MultiTypeAdapter this item is currently associated with.
      * @since v2.3.4
      */
-    @NonNull
-    protected final MultiTypeAdapter getAdapter() {
+    protected final @NonNull MultiTypeAdapter getAdapter() {
         if (adapter == null) {
             throw new IllegalStateException("ItemViewBinder " + this + " not attached to MultiTypeAdapter. " +
                 "You should not call the method before registering the binder.");

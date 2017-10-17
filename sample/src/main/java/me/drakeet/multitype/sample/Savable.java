@@ -25,9 +25,7 @@ public interface Savable {
 
     void init(@NonNull byte[] data);
 
-    @NonNull
-    byte[] toBytes();
+    @NonNull byte[] toBytes();
 
-    @NonNull
-    String describe();
+    @NonNull String describe();
 }

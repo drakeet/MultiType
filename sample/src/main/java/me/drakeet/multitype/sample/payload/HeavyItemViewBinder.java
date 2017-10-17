@@ -33,8 +33,8 @@ import me.drakeet.multitype.sample.R;
  */
 class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.ViewHolder> {
 
-    @NonNull @Override
-    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    @Override
+    protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View root = inflater.inflate(R.layout.item_heavy, parent, false);
         return new ViewHolder(root);
     }
@@ -75,13 +75,15 @@ class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.
         }
 
 
-        @Override public void onClick(View v) {
+        @Override
+        public void onClick(View v) {
             Toast.makeText(v.getContext(), "Update with a payload", Toast.LENGTH_SHORT).show();
             getAdapter().notifyItemChanged(getAdapterPosition(), "la la la (payload)");
         }
 
 
-        @Override public boolean onLongClick(View v) {
+        @Override
+        public boolean onLongClick(View v) {
             Toast.makeText(v.getContext(), "Full update", Toast.LENGTH_SHORT).show();
             item.text = "full full full";
             getAdapter().notifyItemChanged(getAdapterPosition());

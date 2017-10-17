@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype.sample.weibo;
 
+import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -48,7 +49,7 @@ public class WeiboContentDeserializer implements JsonDeserializer<WeiboContent> 
     }
 
 
-    private String stringOrEmpty(JsonElement jsonElement) {
+    private @NonNull String stringOrEmpty(JsonElement jsonElement) {
         return jsonElement.isJsonNull() ? "" : jsonElement.getAsString();
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.extra_apis;
+package me.drakeet.multitype.sample.more_apis;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -39,7 +39,7 @@ import static java.lang.String.valueOf;
  * @author drakeet
  */
 @SuppressLint("SetTextI18n")
-public class SeldomUsedApisPlayground extends MenuBaseActivity {
+public class MoreApisPlayground extends MenuBaseActivity {
 
     private static final String TERMINAL_DEFAULT_TEXT = "ObservableTextItemViewBinder: ";
 
@@ -53,7 +53,7 @@ public class SeldomUsedApisPlayground extends MenuBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seldom_used_apis_playground);
+        setContentView(R.layout.activity_more_apis_playground);
         recyclerView = (RecyclerView) findViewById(R.id.list);
         terminal = (TextView) findViewById(R.id.terminal);
         terminal.setText(TERMINAL_DEFAULT_TEXT);
