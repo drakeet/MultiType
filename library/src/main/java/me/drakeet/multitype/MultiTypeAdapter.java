@@ -94,7 +94,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param <T> the item data type
      */
     public <T> void register(@NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
-        checkAndRemoveAllTypesIfNeed(clazz);
+        checkAndRemoveAllTypesIfNeeded(clazz);
         register(clazz, binder, new DefaultLinker<T>());
     }
 
@@ -124,8 +124,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @see #register(Class, ItemViewBinder)
      */
     @CheckResult
-    public <T> OneToManyFlow<T> register(@NonNull Class<? extends T> clazz) {
-        checkAndRemoveAllTypesIfNeed(clazz);
+    public @NonNull <T> OneToManyFlow<T> register(@NonNull Class<? extends T> clazz) {
+        checkAndRemoveAllTypesIfNeeded(clazz);
         return new OneToManyBuilder<>(this, clazz);
     }
 
@@ -336,7 +336,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-    private void checkAndRemoveAllTypesIfNeed(@NonNull Class<?> clazz) {
+    private void checkAndRemoveAllTypesIfNeeded(@NonNull Class<?> clazz) {
         if (typePool.unregister(clazz)) {
             Log.w(TAG, "You have registered the " + clazz.getSimpleName() + " type. " +
                 "It will override the original binder(s).");
@@ -347,7 +347,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     /** A safe register method base on the TypePool's safety for TypePool. */
     @SuppressWarnings("unchecked")
     private void registerWithoutChecking(@NonNull Class clazz, @NonNull ItemViewBinder binder, @NonNull Linker linker) {
-        checkAndRemoveAllTypesIfNeed(clazz);
+        checkAndRemoveAllTypesIfNeeded(clazz);
         register(clazz, binder, linker);
     }
 }
