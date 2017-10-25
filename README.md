@@ -126,7 +126,7 @@ public class SampleActivity extends AppCompatActivity {
 
 ## Advanced usage 
 
-**One to Multiple**:  
+**One to many**:  
 
 <img src="art/sample-one2many.png" width=640/>
 
