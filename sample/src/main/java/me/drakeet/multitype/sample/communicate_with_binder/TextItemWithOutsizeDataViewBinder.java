@@ -49,7 +49,7 @@ public class TextItemWithOutsizeDataViewBinder
 
         ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.text);
+            textView = itemView.findViewById(R.id.text);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     Toast.makeText(v.getContext(),

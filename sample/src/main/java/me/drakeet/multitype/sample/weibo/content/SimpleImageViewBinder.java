@@ -56,7 +56,7 @@ public class SimpleImageViewBinder
 
         ViewHolder(View itemView) {
             super(itemView);
-            simpleImage = (ImageView) itemView.findViewById(R.id.simple_image);
+            simpleImage = itemView.findViewById(R.id.simple_image);
         }
     }
 }

@@ -62,7 +62,7 @@ public class HorizontalPostsViewBinder
 
         private ViewHolder(@NonNull View itemView) {
             super(itemView);
-            recyclerView = (RecyclerView) itemView.findViewById(R.id.post_list);
+            recyclerView = itemView.findViewById(R.id.post_list);
             LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext());
             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerView.setLayoutManager(layoutManager);

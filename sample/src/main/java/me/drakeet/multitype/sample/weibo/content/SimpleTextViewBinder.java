@@ -50,7 +50,7 @@ public class SimpleTextViewBinder extends WeiboFrameBinder<SimpleText, SimpleTex
 
         ViewHolder(View itemView) {
             super(itemView);
-            simpleText = (TextView) itemView.findViewById(R.id.simple_text);
+            simpleText = itemView.findViewById(R.id.simple_text);
         }
     }
 }

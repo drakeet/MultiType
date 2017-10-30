@@ -45,7 +45,7 @@ public class MultiSelectActivity extends MenuBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_select);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView recyclerView = findViewById(R.id.list);
         final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -87,7 +87,7 @@ public class MultiSelectActivity extends MenuBaseActivity {
 
 
     private void setupFAB() {
-        fab = (Button) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 StringBuilder content = new StringBuilder();

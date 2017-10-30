@@ -50,7 +50,7 @@ public class CategoryItemViewBinder extends ItemViewBinder<Category, CategoryIte
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title);
+            title = itemView.findViewById(R.id.title);
         }
     }
 }

@@ -39,8 +39,8 @@ public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBin
 
         RichHolder(@NonNull View itemView) {
             super(itemView);
-            this.text = (TextView) itemView.findViewById(R.id.text);
-            this.image = (ImageView) itemView.findViewById(R.id.image);
+            this.text = itemView.findViewById(R.id.text);
+            this.image = itemView.findViewById(R.id.image);
         }
     }
 
