@@ -24,15 +24,15 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:3.4.0-rc1'
+    implementation 'me.drakeet.multitype:multitype:3.4.0-rc1'
 }
 ```
 
-If you are using `com.android.tools.build:gradle:3.+`, use this instead:
+If you are using `com.android.tools.build:gradle:2.+`, use this instead:
 
 ```groovy
 dependencies {
-    implementation 'me.drakeet.multitype:multitype:3.4.0-rc1'
+    compile 'me.drakeet.multitype:multitype:3.4.0-rc1'
 }
 ```
 
