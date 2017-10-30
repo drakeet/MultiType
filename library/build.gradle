@@ -21,14 +21,14 @@ apply from: 'checkstyle.gradle'
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion gradle.compileSdkVersion
     buildToolsVersion gradle.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 340
-        versionName "3.4.0-rc1"
+        minSdkVersion gradle.minSdkVersion
+        targetSdkVersion gradle.targetSdkVersion
+        versionCode gradle.versionCode
+        versionName gradle.versionName
     }
     buildTypes {
         release {

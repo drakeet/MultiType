@@ -17,14 +17,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion gradle.compileSdkVersion
     buildToolsVersion gradle.buildToolsVersion
     defaultConfig {
         applicationId "me.drakeet.multitype.sample"
-        minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 340
-        versionName "3.4.0-rc1"
+        minSdkVersion gradle.minSdkVersion
+        targetSdkVersion gradle.targetSdkVersion
+        versionCode gradle.versionCode
+        versionName gradle.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

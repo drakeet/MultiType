@@ -16,7 +16,6 @@
 
 package me.drakeet.multitype.sample.one2many;
 
-import android.support.annotation.NonNull;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -89,22 +88,16 @@ public class DuplicateTypesTest {
 
     @Test
     public void shouldManyOverrideOne() throws Throwable {
-        final Linker<Data> linker = new Linker<Data>() {
-            @Override public int index(@NonNull Data data) {
-                return (data.type == Data.TYPE_1) ? 1 : 0;
-            }
-        };
-        rule.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                resetRecyclerViewState();
-                adapter.register(Data.class, new DataType1ViewBinder());
+        final Linker<Data> linker = (position, data) -> (data.type == Data.TYPE_1) ? 1 : 0;
+        rule.runOnUiThread(() -> {
+            resetRecyclerViewState();
+            adapter.register(Data.class, new DataType1ViewBinder());
 
-                adapter.register(Data.class).to(
-                    new DataType2ViewBinder(),
-                    new DataType1ViewBinder()
-                ).withLinker(linker);
-                adapter.notifyDataSetChanged();
-            }
+            adapter.register(Data.class).to(
+                new DataType2ViewBinder(),
+                new DataType1ViewBinder()
+            ).withLinker(linker);
+            adapter.notifyDataSetChanged();
         });
         assertEquals(2, adapter.getTypePool().size());
 
@@ -123,26 +116,19 @@ public class DuplicateTypesTest {
 
     @Test
     public void shouldManyOverrideMany() throws Throwable {
-        final Linker<Data> linker = new Linker<Data>() {
-            @Override
-            public int index(@NonNull Data data) {
-                return (data.type == Data.TYPE_1) ? 1 : 0;
-            }
-        };
-        rule.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                resetRecyclerViewState();
-                adapter.register(Data.class).to(
-                    new DataType2ViewBinder(),
-                    new DataType1ViewBinder()
-                ).withLinker(linker);
+        final Linker<Data> linker = (position, data) -> (data.type == Data.TYPE_1) ? 1 : 0;
+        rule.runOnUiThread(() -> {
+            resetRecyclerViewState();
+            adapter.register(Data.class).to(
+                new DataType2ViewBinder(),
+                new DataType1ViewBinder()
+            ).withLinker(linker);
 
-                adapter.register(Data.class).to(
-                    new DataType1ViewBinder(),
-                    new DataType2ViewBinder()
-                ).withLinker(linker);
-                adapter.notifyDataSetChanged();
-            }
+            adapter.register(Data.class).to(
+                new DataType1ViewBinder(),
+                new DataType2ViewBinder()
+            ).withLinker(linker);
+            adapter.notifyDataSetChanged();
         });
         assertEquals(2, adapter.getTypePool().size());
 
