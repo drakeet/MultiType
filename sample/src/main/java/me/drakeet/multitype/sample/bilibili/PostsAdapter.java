@@ -71,8 +71,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
         ViewHolder(View itemView) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.cover);
-            title = (TextView) itemView.findViewById(R.id.title);
+            cover = itemView.findViewById(R.id.cover);
+            title = itemView.findViewById(R.id.title);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     Toast.makeText(v.getContext(), String.valueOf(getAdapterPosition()),

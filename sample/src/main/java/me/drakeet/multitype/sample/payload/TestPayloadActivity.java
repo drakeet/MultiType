@@ -33,7 +33,7 @@ public class TestPayloadActivity extends MenuBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView recyclerView = findViewById(R.id.list);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, VERTICAL));
         MultiTypeAdapter adapter = new MultiTypeAdapter();
         recyclerView.setAdapter(adapter);

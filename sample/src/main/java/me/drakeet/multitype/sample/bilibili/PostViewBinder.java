@@ -52,8 +52,8 @@ public class PostViewBinder extends ItemViewBinder<Post, PostViewBinder.ViewHold
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.cover);
-            title = (TextView) itemView.findViewById(R.id.title);
+            cover = itemView.findViewById(R.id.cover);
+            title = itemView.findViewById(R.id.title);
         }
 
 

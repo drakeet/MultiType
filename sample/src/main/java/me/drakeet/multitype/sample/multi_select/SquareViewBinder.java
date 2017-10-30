@@ -67,7 +67,7 @@ public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.Vi
 
         ViewHolder(final View itemView) {
             super(itemView);
-            squareView = (TextView) itemView.findViewById(R.id.square);
+            squareView = itemView.findViewById(R.id.square);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     itemView.setSelected(square.isSelected = !square.isSelected);

@@ -44,8 +44,8 @@ final class ClassLinkerWrapper<T> implements Linker<T> {
 
 
     @Override
-    public int index(@NonNull T t) {
-        Class<?> userIndexClass = classLinker.index(t);
+    public int index(int position, @NonNull T t) {
+        Class<?> userIndexClass = classLinker.index(position, t);
         for (int i = 0; i < binders.length; i++) {
             if (binders[i].getClass().equals(userIndexClass)) {
                 return i;

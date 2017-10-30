@@ -37,7 +37,7 @@ public class ImageItemViewBinder extends ItemViewBinder<ImageItem, ImageItemView
 
         ImageHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            image = itemView.findViewById(R.id.image);
         }
     }
 

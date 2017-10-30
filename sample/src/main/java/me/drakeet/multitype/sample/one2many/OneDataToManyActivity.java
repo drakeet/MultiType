@@ -17,13 +17,10 @@
 package me.drakeet.multitype.sample.one2many;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import me.drakeet.multitype.ClassLinker;
-import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
@@ -41,32 +38,26 @@ public class OneDataToManyActivity extends MenuBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        recyclerView = (RecyclerView) findViewById(R.id.list);
+        recyclerView = findViewById(R.id.list);
         adapter = new MultiTypeAdapter();
 
         /*
         adapter.register(Data.class).to(
             new DataType1ViewBinder(),
             new DataType2ViewBinder()
-        ).withLinker(new Linker<Data>() {
-            @Override
-            public int index(@NonNull Data data) {
-                return data.type == Data.TYPE_2 ? 1 : 0;
-            }
-        });
+        ).withLinker((position, data) ->
+            data.type == Data.TYPE_2 ? 1 : 0
+        );
         */
 
         adapter.register(Data.class).to(
             new DataType1ViewBinder(),
             new DataType2ViewBinder()
-        ).withClassLinker(new ClassLinker<Data>() {
-            @NonNull @Override
-            public Class<? extends ItemViewBinder<Data, ?>> index(@NonNull Data data) {
-                if (data.type == Data.TYPE_2) {
-                    return DataType2ViewBinder.class;
-                } else {
-                    return DataType1ViewBinder.class;
-                }
+        ).withClassLinker((position, data) -> {
+            if (data.type == Data.TYPE_2) {
+                return DataType2ViewBinder.class;
+            } else {
+                return DataType1ViewBinder.class;
             }
         });
 
