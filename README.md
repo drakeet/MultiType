@@ -150,8 +150,6 @@ adapter.register(Data.class).to(
 });
 ```
 
-<img src="art/sample-one2many.png" width=640/>
-
 ## Wiki
 
 <a href="https://github.com/drakeet/MultiType/wiki/Android-MultiType-3.0"><img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg" width=640/></a>
