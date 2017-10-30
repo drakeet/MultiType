@@ -52,7 +52,7 @@ public class DataType1ViewBinder extends ItemViewBinder<Data, DataType1ViewBinde
 
         ViewHolder(View itemView) {
             super(itemView);
-            titleView = (TextView) itemView.findViewById(android.R.id.title);
+            titleView = itemView.findViewById(android.R.id.title);
         }
 
 

@@ -54,8 +54,8 @@ public class MoreApisPlayground extends MenuBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_apis_playground);
-        recyclerView = (RecyclerView) findViewById(R.id.list);
-        terminal = (TextView) findViewById(R.id.terminal);
+        recyclerView = findViewById(R.id.list);
+        terminal = findViewById(R.id.terminal);
         terminal.setText(TERMINAL_DEFAULT_TEXT);
 
         items = new Items();
@@ -104,7 +104,7 @@ public class MoreApisPlayground extends MenuBaseActivity {
 
             TextHolder(@NonNull View itemView) {
                 super(itemView);
-                this.text = (TextView) itemView.findViewById(R.id.text);
+                this.text = itemView.findViewById(R.id.text);
             }
         }
 

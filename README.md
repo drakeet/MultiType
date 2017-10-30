@@ -24,7 +24,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:3.3.3'
+    compile 'me.drakeet.multitype:multitype:3.4.0-rc1'
 }
 ```
 
@@ -32,7 +32,7 @@ If you are using `com.android.tools.build:gradle:3.+`, use this instead:
 
 ```groovy
 dependencies {
-    implementation 'me.drakeet.multitype:multitype:3.3.3'
+    implementation 'me.drakeet.multitype:multitype:3.4.0-rc1'
 }
 ```
 
@@ -127,6 +127,28 @@ public class SampleActivity extends AppCompatActivity {
 ## Advanced usage 
 
 **One to many**:  
+
+```java
+adapter.register(Data.class).to(
+    new DataType1ViewBinder(),
+    new DataType2ViewBinder()
+).withLinker((position, data) ->
+    data.type == Data.TYPE_2 ? 1 : 0
+);
+```
+
+```java
+adapter.register(Data.class).to(
+    new DataType1ViewBinder(),
+    new DataType2ViewBinder()
+).withClassLinker((position, data) -> {
+    if (data.type == Data.TYPE_2) {
+        return DataType2ViewBinder.class;
+    } else {
+        return DataType1ViewBinder.class;
+    }
+});
+```
 
 <img src="art/sample-one2many.png" width=640/>
 

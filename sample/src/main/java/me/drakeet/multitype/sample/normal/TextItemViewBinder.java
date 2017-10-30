@@ -42,7 +42,7 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
 
         TextHolder(@NonNull View itemView) {
             super(itemView);
-            this.text = (TextView) itemView.findViewById(R.id.text);
+            this.text = itemView.findViewById(R.id.text);
         }
     }
 

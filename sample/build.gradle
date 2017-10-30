@@ -17,14 +17,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 26
+    buildToolsVersion gradle.buildToolsVersion
     defaultConfig {
         applicationId "me.drakeet.multitype.sample"
         minSdkVersion 14
-        targetSdkVersion 25
-        versionCode 333
-        versionName "3.3.3"
+        targetSdkVersion 26
+        versionCode 340
+        versionName "3.4.0-rc1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -33,15 +33,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':library')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.google.code.gson:gson:2.7'
+    implementation project(':library')
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support:support-annotations:' + gradle.supportLibraryVersion
+    implementation 'com.android.support:appcompat-v7:' + gradle.supportLibraryVersion
+    implementation 'com.android.support:recyclerview-v7:' + gradle.supportLibraryVersion
+    implementation 'com.google.code.gson:gson:2.8.2'
 }

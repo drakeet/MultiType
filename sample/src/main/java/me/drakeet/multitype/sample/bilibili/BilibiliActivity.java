@@ -78,7 +78,7 @@ public class BilibiliActivity extends MenuBaseActivity {
         adapter.register(Post.class, new PostViewBinder());
         adapter.register(PostList.class, new HorizontalPostsViewBinder());
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView recyclerView = findViewById(R.id.list);
 
         final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
         SpanSizeLookup spanSizeLookup = new SpanSizeLookup() {

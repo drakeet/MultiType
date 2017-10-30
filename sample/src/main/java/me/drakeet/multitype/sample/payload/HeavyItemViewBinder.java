@@ -68,8 +68,8 @@ class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.
 
         ViewHolder(View itemView) {
             super(itemView);
-            firstText = (TextView) itemView.findViewById(R.id.first_text);
-            endText = (TextView) itemView.findViewById(R.id.end_text);
+            firstText = itemView.findViewById(R.id.first_text);
+            endText = itemView.findViewById(R.id.end_text);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
