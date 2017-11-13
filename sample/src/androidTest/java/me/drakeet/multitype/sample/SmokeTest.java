@@ -58,7 +58,7 @@ public class SmokeTest {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
         onView(
-            allOf(withId(R.id.title), withText("MultiSelectActivity"), isDisplayed())
+            allOf(withId(R.id.title), withText("MultiSelectableActivity"), isDisplayed())
         ).perform(click());
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
