@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".multi_select.MultiSelectActivity"/>
+        <activity android:name=".multi_selectable.MultiSelectableActivity"/>
 
         <activity android:name=".normal.NormalActivity"/>
 

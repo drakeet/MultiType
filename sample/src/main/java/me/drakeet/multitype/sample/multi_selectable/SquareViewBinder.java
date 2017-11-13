@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.multi_select;
+package me.drakeet.multitype.sample.multi_selectable;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -68,14 +68,12 @@ public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.Vi
         ViewHolder(final View itemView) {
             super(itemView);
             squareView = itemView.findViewById(R.id.square);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    itemView.setSelected(square.isSelected = !square.isSelected);
-                    if (square.isSelected) {
-                        selectedSet.add(square.number);
-                    } else {
-                        selectedSet.remove(square.number);
-                    }
+            itemView.setOnClickListener(v -> {
+                squareView.setSelected(square.isSelected = !square.isSelected);
+                if (square.isSelected) {
+                    selectedSet.add(square.number);
+                } else {
+                    selectedSet.remove(square.number);
                 }
             });
         }

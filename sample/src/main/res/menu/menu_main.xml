@@ -18,8 +18,8 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/MultiSelectActivity"
-        android:title="MultiSelectActivity"
+        android:id="@+id/MultiSelectableActivity"
+        android:title="MultiSelectableActivity"
         app:showAsAction="never"/>
 
     <item

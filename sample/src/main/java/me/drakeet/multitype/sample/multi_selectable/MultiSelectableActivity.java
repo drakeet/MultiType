@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.multi_select;
+package me.drakeet.multitype.sample.multi_selectable;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -32,7 +32,7 @@ import me.drakeet.multitype.sample.common.CategoryItemViewBinder;
 
 import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 
-public class MultiSelectActivity extends MenuBaseActivity {
+public class MultiSelectableActivity extends MenuBaseActivity {
 
     private static final int SPAN_COUNT = 5;
     Items items = new Items();
@@ -44,7 +44,7 @@ public class MultiSelectActivity extends MenuBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_select);
+        setContentView(R.layout.activity_multi_selectable);
         RecyclerView recyclerView = findViewById(R.id.list);
         final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
