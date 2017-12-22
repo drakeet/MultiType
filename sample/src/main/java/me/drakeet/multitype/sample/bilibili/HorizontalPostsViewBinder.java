@@ -18,6 +18,7 @@ package me.drakeet.multitype.sample.bilibili;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +67,7 @@ public class HorizontalPostsViewBinder
             LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext());
             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerView.setLayoutManager(layoutManager);
+            new LinearSnapHelper().attachToRecyclerView(recyclerView);
             adapter = new PostsAdapter();
             recyclerView.setAdapter(adapter);
         }
