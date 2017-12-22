@@ -4,7 +4,7 @@ jdk: oraclejdk8
 env:
   global:
     - ANDROID_TARGET=android-26
-    - ANDROID_BUILD_TOOLS_VERSION=27.0.0
+    - ANDROID_BUILD_TOOLS_VERSION=27.0.1
     - ANDROID_ABI=armeabi-v7a
 
 android:
