@@ -24,8 +24,8 @@ import java.util.Arrays;
  */
 final class ClassLinkerWrapper<T> implements Linker<T> {
 
-    private @NonNull final ClassLinker<T> classLinker;
-    private @NonNull ItemViewBinder<T, ?>[] binders;
+    private final @NonNull ClassLinker<T> classLinker;
+    private final @NonNull ItemViewBinder<T, ?>[] binders;
 
 
     private ClassLinkerWrapper(
