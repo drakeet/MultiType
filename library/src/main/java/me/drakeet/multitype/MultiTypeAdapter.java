@@ -27,6 +27,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static me.drakeet.multitype.Preconditions.checkNotNull;
+
 /**
  * @author drakeet
  */
@@ -74,6 +76,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param pool the type pool
      */
     public MultiTypeAdapter(@NonNull List<?> items, @NonNull TypePool pool) {
+        checkNotNull(items);
+        checkNotNull(pool);
         this.items = items;
         this.typePool = pool;
     }
@@ -94,6 +98,8 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param <T> the item data type
      */
     public <T> void register(@NonNull Class<? extends T> clazz, @NonNull ItemViewBinder<T, ?> binder) {
+        checkNotNull(clazz);
+        checkNotNull(binder);
         checkAndRemoveAllTypesIfNeeded(clazz);
         register(clazz, binder, new DefaultLinker<T>());
     }
@@ -125,6 +131,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      */
     @CheckResult
     public @NonNull <T> OneToManyFlow<T> register(@NonNull Class<? extends T> clazz) {
+        checkNotNull(clazz);
         checkAndRemoveAllTypesIfNeeded(clazz);
         return new OneToManyBuilder<>(this, clazz);
     }
@@ -145,6 +152,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @see #register(Class)
      */
     public void registerAll(@NonNull final TypePool pool) {
+        checkNotNull(pool);
         final int size = pool.size();
         for (int i = 0; i < size; i++) {
             registerWithoutChecking(
@@ -167,6 +175,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @since v2.4.1
      */
     public void setItems(@NonNull List<?> items) {
+        checkNotNull(items);
         this.items = items;
     }
 
@@ -182,6 +191,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
      * @param typePool the TypePool implementation
      */
     public void setTypePool(@NonNull TypePool typePool) {
+        checkNotNull(typePool);
         this.typePool = typePool;
     }
 

@@ -20,6 +20,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
 
+import static me.drakeet.multitype.Preconditions.checkNotNull;
+
 /**
  * @author drakeet
  */
@@ -41,7 +43,8 @@ public final class MultiTypeAsserts {
     @SuppressWarnings("unchecked")
     public static void assertAllRegistered(@NonNull MultiTypeAdapter adapter, @NonNull List<?> items)
         throws BinderNotFoundException, IllegalArgumentException, IllegalAccessError {
-
+        checkNotNull(adapter);
+        checkNotNull(items);
         if (items.isEmpty()) {
             throw new IllegalArgumentException("Your Items/List is empty.");
         }
@@ -62,6 +65,8 @@ public final class MultiTypeAsserts {
      */
     public static void assertHasTheSameAdapter(@NonNull RecyclerView recyclerView, @NonNull MultiTypeAdapter adapter)
         throws IllegalArgumentException, IllegalAccessError {
+        checkNotNull(recyclerView);
+        checkNotNull(adapter);
         if (recyclerView.getAdapter() == null) {
             throw new IllegalAccessError("The assertHasTheSameAdapter() method must " +
                 "be placed after recyclerView.setAdapter()");

@@ -21,6 +21,8 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.drakeet.multitype.Preconditions.checkNotNull;
+
 /**
  * An List implementation of TypePool.
  *
@@ -28,9 +30,9 @@ import java.util.List;
  */
 public class MultiTypePool implements TypePool {
 
-    private @NonNull final List<Class<?>> classes;
-    private @NonNull final List<ItemViewBinder<?, ?>> binders;
-    private @NonNull final List<Linker<?>> linkers;
+    private final @NonNull List<Class<?>> classes;
+    private final @NonNull List<ItemViewBinder<?, ?>> binders;
+    private final @NonNull List<Linker<?>> linkers;
 
 
     /**
@@ -66,6 +68,9 @@ public class MultiTypePool implements TypePool {
         @NonNull List<Class<?>> classes,
         @NonNull List<ItemViewBinder<?, ?>> binders,
         @NonNull List<Linker<?>> linkers) {
+        checkNotNull(classes);
+        checkNotNull(binders);
+        checkNotNull(linkers);
         this.classes = classes;
         this.binders = binders;
         this.linkers = linkers;
@@ -77,6 +82,9 @@ public class MultiTypePool implements TypePool {
         @NonNull Class<? extends T> clazz,
         @NonNull ItemViewBinder<T, ?> binder,
         @NonNull Linker<T> linker) {
+        checkNotNull(clazz);
+        checkNotNull(binder);
+        checkNotNull(linker);
         classes.add(clazz);
         binders.add(binder);
         linkers.add(linker);
@@ -85,6 +93,7 @@ public class MultiTypePool implements TypePool {
 
     @Override
     public boolean unregister(@NonNull Class<?> clazz) {
+        checkNotNull(clazz);
         boolean removed = false;
         while (true) {
             int index = classes.indexOf(clazz);
@@ -109,6 +118,7 @@ public class MultiTypePool implements TypePool {
 
     @Override
     public int firstIndexOf(@NonNull final Class<?> clazz) {
+        checkNotNull(clazz);
         int index = classes.indexOf(clazz);
         if (index != -1) {
             return index;

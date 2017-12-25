@@ -19,13 +19,15 @@ package me.drakeet.multitype;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 
+import static me.drakeet.multitype.Preconditions.checkNotNull;
+
 /**
  * @author drakeet
  */
 class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
 
-    private @NonNull final MultiTypeAdapter adapter;
-    private @NonNull final Class<? extends T> clazz;
+    private final @NonNull MultiTypeAdapter adapter;
+    private final @NonNull Class<? extends T> clazz;
     private ItemViewBinder<T, ?>[] binders;
 
 
@@ -37,6 +39,7 @@ class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
 
     @Override @CheckResult @SafeVarargs
     public final @NonNull OneToManyEndpoint<T> to(@NonNull ItemViewBinder<T, ?>... binders) {
+        checkNotNull(binders);
         this.binders = binders;
         return this;
     }
@@ -44,12 +47,14 @@ class OneToManyBuilder<T> implements OneToManyFlow<T>, OneToManyEndpoint<T> {
 
     @Override
     public void withLinker(@NonNull Linker<T> linker) {
+        checkNotNull(linker);
         doRegister(linker);
     }
 
 
     @Override
     public void withClassLinker(@NonNull ClassLinker<T> classLinker) {
+        checkNotNull(classLinker);
         doRegister(ClassLinkerWrapper.wrap(classLinker, binders));
     }
 
