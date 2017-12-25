@@ -24,7 +24,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    implementation 'me.drakeet.multitype:multitype:3.4.0'
+    implementation 'me.drakeet.multitype:multitype:3.4.1'
 }
 ```
 
@@ -32,7 +32,7 @@ If you are using `com.android.tools.build:gradle:2.+`, use this instead:
 
 ```groovy
 dependencies {
-    compile 'me.drakeet.multitype:multitype:3.4.0'
+    compile 'me.drakeet.multitype:multitype:3.4.1'
 }
 ```
 
@@ -45,7 +45,7 @@ _Note: MultiType does not support RecyclerView below version 23.0.0._
 ```java
 public class TextItem {
 
-    public @NonNull final String text;
+    public final @NonNull String text;
 
     public TextItem(@NonNull String text) {
         this.text = text;
@@ -148,6 +148,16 @@ adapter.register(Data.class).to(
         return DataType1ViewBinder.class;
     }
 });
+```
+
+**More methods that you can override by [ItemViewBinder](library/src/main/java/me/drakeet/multitype/ItemViewBinder.java)**: 
+
+```java
+protected long getItemId(@NonNull T item)
+protected void onViewRecycled(@NonNull VH holder)
+protected boolean onFailedToRecycleView(@NonNull VH holder)
+protected void onViewAttachedToWindow(@NonNull VH holder)
+protected void onViewDetachedFromWindow(@NonNull VH holder)
 ```
 
 ## Wiki
