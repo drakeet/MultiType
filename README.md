@@ -28,14 +28,6 @@ dependencies {
 }
 ```
 
-If you are using `com.android.tools.build:gradle:2.+`, use this instead:
-
-```groovy
-dependencies {
-    compile 'me.drakeet.multitype:multitype:3.4.1'
-}
-```
-
 _Note: MultiType does not support RecyclerView below version 23.0.0._
 
 ## Usage
