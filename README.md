@@ -177,10 +177,6 @@ You could check the `sample` module for more details and after running it will l
 <img src="http://ww3.sinaimg.cn/large/86e2ff85jw1f9a7tek74lj21401z414s.jpg" width=216/> <img src="http://ww1.sinaimg.cn/mw1024/86e2ff85jw1f9a7z4yqlkj21401z4n8r.jpg" width=216/>
 
 
-And it has been used in [drakeet/TimeMachine](http://github.com/drakeet/TimeMachine):
-
-[<img src="http://ww3.sinaimg.cn/large/86e2ff85gw1f55jnr2zjij20bx0bx0v3.jpg" width=256 height=256/>](http://github.com/drakeet/TimeMachine)
-
 License
 -------
 
