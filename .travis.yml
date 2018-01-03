@@ -21,7 +21,8 @@ android:
     - android-sdk-license-.+
 
 before_install:
-  - echo yes | android update sdk --all --filter build-tools-$ANDROID_BUILD_TOOLS_VERSION --no-ui --force
+  - echo y | android update sdk --all --filter build-tools-$ANDROID_BUILD_TOOLS_VERSION --no-ui --force
+  - echo y | android update sdk --no-ui --all --filter android-27
 
 before_script:
   - chmod +x gradlew
