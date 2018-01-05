@@ -180,7 +180,7 @@ You could check the `sample` module for more details and after running it will l
 License
 -------
 
-    Copyright 2017 drakeet.
+    Copyright 2016-2018 drakeet.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
