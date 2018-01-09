@@ -142,7 +142,7 @@ adapter.register(Data.class).to(
 });
 ```
 
-**More methods that you can override by [ItemViewBinder](library/src/main/java/me/drakeet/multitype/ItemViewBinder.java)**: 
+**More methods that you can override from [ItemViewBinder](library/src/main/java/me/drakeet/multitype/ItemViewBinder.java)**: 
 
 ```java
 protected long getItemId(@NonNull T item)
