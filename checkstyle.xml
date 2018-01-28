@@ -135,7 +135,9 @@
         <!--module name="TodoComment"/-->
         <module name="UpperEll"/>
         <!-- Checks correct indentation of Java code. Default basicOffset: 4 -->
-        <module name="Indentation"/>
+        <module name="Indentation">
+            <property name="basicOffset" value="2"/>
+        </module>
         <module name="CommentsIndentation"/>
 
         <module name="StringLiteralEquality"/>
