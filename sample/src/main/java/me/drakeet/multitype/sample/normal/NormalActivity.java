@@ -29,33 +29,33 @@ import me.drakeet.multitype.sample.R;
  */
 public class NormalActivity extends MenuBaseActivity {
 
-    private MultiTypeAdapter adapter;
-    private List<Object> items;
+  private MultiTypeAdapter adapter;
+  private List<Object> items;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        RecyclerView recyclerView = findViewById(R.id.list);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_list);
+    RecyclerView recyclerView = findViewById(R.id.list);
 
-        adapter = new MultiTypeAdapter();
-        adapter.register(TextItem.class, new TextItemViewBinder());
-        adapter.register(ImageItem.class, new ImageItemViewBinder());
-        adapter.register(RichItem.class, new RichItemViewBinder());
-        recyclerView.setAdapter(adapter);
+    adapter = new MultiTypeAdapter();
+    adapter.register(TextItem.class, new TextItemViewBinder());
+    adapter.register(ImageItem.class, new ImageItemViewBinder());
+    adapter.register(RichItem.class, new RichItemViewBinder());
+    recyclerView.setAdapter(adapter);
 
-        TextItem textItem = new TextItem("world");
-        ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
-        RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
+    TextItem textItem = new TextItem("world");
+    ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
+    RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
 
-        items = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            items.add(textItem);
-            items.add(imageItem);
-            items.add(richItem);
-        }
-        adapter.setItems(items);
-        adapter.notifyDataSetChanged();
+    items = new ArrayList<>();
+    for (int i = 0; i < 20; i++) {
+      items.add(textItem);
+      items.add(imageItem);
+      items.add(richItem);
     }
+    adapter.setItems(items);
+    adapter.notifyDataSetChanged();
+  }
 }

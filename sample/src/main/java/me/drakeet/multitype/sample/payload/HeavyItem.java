@@ -23,8 +23,8 @@ import android.support.annotation.NonNull;
  */
 public class HeavyItem {
 
-    public @NonNull String text;
+  public @NonNull String text;
 
 
-    public HeavyItem(@NonNull String text) { this.text = text; }
+  public HeavyItem(@NonNull String text) { this.text = text; }
 }

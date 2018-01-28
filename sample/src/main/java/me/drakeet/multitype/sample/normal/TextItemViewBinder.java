@@ -32,49 +32,49 @@ import me.drakeet.multitype.sample.R;
  */
 public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
 
-    private int lastShownAnimationPosition;
+  private int lastShownAnimationPosition;
 
 
-    static class TextHolder extends RecyclerView.ViewHolder {
+  static class TextHolder extends RecyclerView.ViewHolder {
 
-        private @NonNull final TextView text;
+    private @NonNull final TextView text;
 
 
-        TextHolder(@NonNull View itemView) {
-            super(itemView);
-            this.text = itemView.findViewById(R.id.text);
-        }
+    TextHolder(@NonNull View itemView) {
+      super(itemView);
+      this.text = itemView.findViewById(R.id.text);
     }
+  }
 
 
-    @Override
-    protected @NonNull TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_text, parent, false);
-        return new TextHolder(root);
+  @Override
+  protected @NonNull TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View root = inflater.inflate(R.layout.item_text, parent, false);
+    return new TextHolder(root);
+  }
+
+
+  @Override
+  protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
+    holder.text.setText("hello: " + textItem.text);
+
+    // should show animation, ref: https://github.com/drakeet/MultiType/issues/149
+    setAnimation(holder.itemView, holder.getAdapterPosition());
+  }
+
+
+  private void setAnimation(@NonNull View viewToAnimate, int position) {
+    if (position > lastShownAnimationPosition) {
+      Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(),
+          android.R.anim.slide_in_left);
+      viewToAnimate.startAnimation(animation);
+      lastShownAnimationPosition = position;
     }
+  }
 
 
-    @Override
-    protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
-        holder.text.setText("hello: " + textItem.text);
-
-        // should show animation, ref: https://github.com/drakeet/MultiType/issues/149
-        setAnimation(holder.itemView, holder.getAdapterPosition());
-    }
-
-
-    private void setAnimation(@NonNull View viewToAnimate, int position) {
-        if (position > lastShownAnimationPosition) {
-            Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(),
-                android.R.anim.slide_in_left);
-            viewToAnimate.startAnimation(animation);
-            lastShownAnimationPosition = position;
-        }
-    }
-
-
-    @Override
-    public void onViewDetachedFromWindow(@NonNull TextHolder holder) {
-        holder.itemView.clearAnimation();
-    }
+  @Override
+  public void onViewDetachedFromWindow(@NonNull TextHolder holder) {
+    holder.itemView.clearAnimation();
+  }
 }

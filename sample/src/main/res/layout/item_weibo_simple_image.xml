@@ -14,7 +14,8 @@
   ~ limitations under the License.
   -->
 
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/WeiboContent.SimpleImage"
     android:id="@+id/simple_image"

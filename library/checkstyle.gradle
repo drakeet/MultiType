@@ -16,20 +16,19 @@
 apply plugin: 'checkstyle'
 
 checkstyle {
-    toolVersion = 8.2
+  toolVersion = 8.2
 }
 
 task checkStyle(type: Checkstyle) {
-    description = 'Runs checkStyle inspection against MultiType sourcesets.'
-    group = 'Code Style'
-    configFile = rootProject.file('checkstyle.xml')
-    ignoreFailures = false
-    showViolations = true
-    classpath = files()
-    source = 'src/main/java'
+  description = 'Runs checkStyle inspection against MultiType sourcesets.'
+  group = 'Code Style'
+  configFile = rootProject.file('checkstyle.xml')
+  ignoreFailures = false
+  showViolations = true
+  classpath = files()
+  source = 'src/main/java'
 }
 
 // check code style after project evaluation
-afterEvaluate { project ->
-    getTasksByName('checkStyle', false)[0].execute()
+afterEvaluate { project -> getTasksByName('checkStyle', false)[0].execute()
 }

@@ -37,73 +37,73 @@ public abstract class WeiboFrameBinder
     <Content extends WeiboContent, SubViewHolder extends ContentHolder>
     extends ItemViewBinder<Weibo, WeiboFrameBinder.FrameHolder> {
 
-    protected abstract ContentHolder onCreateContentViewHolder(
-        @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+  protected abstract ContentHolder onCreateContentViewHolder(
+      @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
-    protected abstract void onBindContentViewHolder(
-        @NonNull SubViewHolder holder, @NonNull Content content);
-
-
-    @Override
-    protected @NonNull FrameHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_weibo_frame, parent, false);
-        ContentHolder subViewHolder = onCreateContentViewHolder(inflater, parent);
-        return new FrameHolder(root, subViewHolder, this);
-    }
+  protected abstract void onBindContentViewHolder(
+      @NonNull SubViewHolder holder, @NonNull Content content);
 
 
-    @Override @SuppressWarnings("unchecked")
-    protected void onBindViewHolder(@NonNull FrameHolder holder, @NonNull Weibo weibo) {
-        holder.avatar.setImageResource(weibo.user.avatar);
-        holder.username.setText(weibo.user.name);
-        holder.createTime.setText(weibo.createTime);
-        final WeiboContent weiboContent = weibo.content;
-        onBindContentViewHolder((SubViewHolder) holder.subViewHolder, (Content) weiboContent);
-    }
+  @Override
+  protected @NonNull FrameHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View root = inflater.inflate(R.layout.item_weibo_frame, parent, false);
+    ContentHolder subViewHolder = onCreateContentViewHolder(inflater, parent);
+    return new FrameHolder(root, subViewHolder, this);
+  }
 
 
-    static class FrameHolder extends RecyclerView.ViewHolder {
+  @Override @SuppressWarnings("unchecked")
+  protected void onBindViewHolder(@NonNull FrameHolder holder, @NonNull Weibo weibo) {
+    holder.avatar.setImageResource(weibo.user.avatar);
+    holder.username.setText(weibo.user.name);
+    holder.createTime.setText(weibo.createTime);
+    final WeiboContent weiboContent = weibo.content;
+    onBindContentViewHolder((SubViewHolder) holder.subViewHolder, (Content) weiboContent);
+  }
 
-        private ImageView avatar;
-        private TextView username;
-        private FrameLayout container;
-        private TextView createTime;
-        private TextView close;
-        private ContentHolder subViewHolder;
+
+  static class FrameHolder extends RecyclerView.ViewHolder {
+
+    private ImageView avatar;
+    private TextView username;
+    private FrameLayout container;
+    private TextView createTime;
+    private TextView close;
+    private ContentHolder subViewHolder;
 
 
-        FrameHolder(
-            @NonNull View itemView,
-            @NonNull final ContentHolder subViewHolder,
-            @NonNull final WeiboFrameBinder binder) {
+    FrameHolder(
+        @NonNull View itemView,
+        @NonNull final ContentHolder subViewHolder,
+        @NonNull final WeiboFrameBinder binder) {
 
-            super(itemView);
-            avatar = (ImageView) findViewById(R.id.avatar);
-            username = (TextView) findViewById(R.id.username);
-            container = (FrameLayout) findViewById(R.id.container);
-            createTime = (TextView) findViewById(R.id.create_time);
-            close = (TextView) findViewById(R.id.close);
-            container.addView(subViewHolder.itemView);
-            this.subViewHolder = subViewHolder;
-            this.subViewHolder.frameHolder = this;
+      super(itemView);
+      avatar = (ImageView) findViewById(R.id.avatar);
+      username = (TextView) findViewById(R.id.username);
+      container = (FrameLayout) findViewById(R.id.container);
+      createTime = (TextView) findViewById(R.id.create_time);
+      close = (TextView) findViewById(R.id.close);
+      container.addView(subViewHolder.itemView);
+      this.subViewHolder = subViewHolder;
+      this.subViewHolder.frameHolder = this;
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    Toast.makeText(v.getContext(),
-                        "Position: " + getAdapterPosition(), LENGTH_SHORT).show();
-                }
-            });
-            close.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    binder.getAdapter().getItems().remove(getAdapterPosition());
-                    binder.getAdapter().notifyItemRemoved(getAdapterPosition());
-                }
-            });
+      itemView.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+          Toast.makeText(v.getContext(),
+              "Position: " + getAdapterPosition(), LENGTH_SHORT).show();
         }
-
-
-        private View findViewById(int resId) {
-            return itemView.findViewById(resId);
+      });
+      close.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+          binder.getAdapter().getItems().remove(getAdapterPosition());
+          binder.getAdapter().notifyItemRemoved(getAdapterPosition());
         }
+      });
     }
+
+
+    private View findViewById(int resId) {
+      return itemView.findViewById(resId);
+    }
+  }
 }

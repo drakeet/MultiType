@@ -32,32 +32,32 @@ import me.drakeet.multitype.sample.R;
  */
 public class DataType1ViewBinder extends ItemViewBinder<Data, DataType1ViewBinder.ViewHolder> {
 
-    @Override
-    protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_data_type1, parent, false);
-        return new ViewHolder(root);
+  @Override
+  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View root = inflater.inflate(R.layout.item_data_type1, parent, false);
+    return new ViewHolder(root);
+  }
+
+
+  @Override
+  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Data data) {
+    holder.setTitle(data.title);
+  }
+
+
+  static class ViewHolder extends RecyclerView.ViewHolder {
+
+    TextView titleView;
+
+
+    ViewHolder(View itemView) {
+      super(itemView);
+      titleView = itemView.findViewById(android.R.id.title);
     }
 
 
-    @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Data data) {
-        holder.setTitle(data.title);
+    void setTitle(String title) {
+      titleView.setText(title);
     }
-
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView titleView;
-
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            titleView = itemView.findViewById(android.R.id.title);
-        }
-
-
-        void setTitle(String title) {
-            titleView.setText(title);
-        }
-    }
+  }
 }

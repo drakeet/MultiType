@@ -33,28 +33,28 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
  */
 public class SimpleActivity extends MenuBaseActivity {
 
-    private String aFieldValue = "aFieldValue of SimpleActivity";
-    private MultiTypeAdapter adapter;
+  private String aFieldValue = "aFieldValue of SimpleActivity";
+  private MultiTypeAdapter adapter;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        RecyclerView recyclerView = findViewById(R.id.list);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_list);
+    RecyclerView recyclerView = findViewById(R.id.list);
 
-        Items items = new Items();
-        adapter = new MultiTypeAdapter();
-        adapter.register(TextItem.class, new TextItemWithOutsizeDataViewBinder(aFieldValue));
-        recyclerView.setAdapter(adapter);
-        assertHasTheSameAdapter(recyclerView, adapter);
+    Items items = new Items();
+    adapter = new MultiTypeAdapter();
+    adapter.register(TextItem.class, new TextItemWithOutsizeDataViewBinder(aFieldValue));
+    recyclerView.setAdapter(adapter);
+    assertHasTheSameAdapter(recyclerView, adapter);
 
-        for (int i = 0; i < 20; i++) {
-            items.add(new TextItem(valueOf(i)));
-        }
-        adapter.setItems(items);
-        adapter.notifyDataSetChanged();
-
-        assertAllRegistered(adapter, items);
+    for (int i = 0; i < 20; i++) {
+      items.add(new TextItem(valueOf(i)));
     }
+    adapter.setItems(items);
+    adapter.notifyDataSetChanged();
+
+    assertAllRegistered(adapter, items);
+  }
 }

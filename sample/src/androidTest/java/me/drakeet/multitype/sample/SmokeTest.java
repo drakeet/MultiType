@@ -41,48 +41,48 @@ import static org.hamcrest.Matchers.allOf;
 @RunWith(AndroidJUnit4.class)
 public class SmokeTest {
 
-    @Rule
-    public ActivityTestRule<BilibiliActivity> rule = new ActivityTestRule<>(BilibiliActivity.class);
+  @Rule
+  public ActivityTestRule<BilibiliActivity> rule = new ActivityTestRule<>(BilibiliActivity.class);
 
 
-    @Test
-    public void smokeTest() {
-        Espresso.closeSoftKeyboard();
+  @Test
+  public void smokeTest() {
+    Espresso.closeSoftKeyboard();
 
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+    openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        onView(
-            allOf(withId(R.id.title), withText("NormalActivity"), isDisplayed())
-        ).perform(click());
+    onView(
+        allOf(withId(R.id.title), withText("NormalActivity"), isDisplayed())
+    ).perform(click());
 
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+    openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        onView(
-            allOf(withId(R.id.title), withText("MultiSelectableActivity"), isDisplayed())
-        ).perform(click());
+    onView(
+        allOf(withId(R.id.title), withText("MultiSelectableActivity"), isDisplayed())
+    ).perform(click());
 
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+    openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        onView(
-            allOf(withId(R.id.title), withText("communicate with binder"), isDisplayed())
-        ).perform(click());
+    onView(
+        allOf(withId(R.id.title), withText("communicate with binder"), isDisplayed())
+    ).perform(click());
 
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+    openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        onView(
-            allOf(withId(R.id.title), withText("WeiboActivity"), isDisplayed())
-        ).perform(click());
+    onView(
+        allOf(withId(R.id.title), withText("WeiboActivity"), isDisplayed())
+    ).perform(click());
 
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+    openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        onView(
-            allOf(withId(R.id.title), withText("OneDataToManyActivity"), isDisplayed())
-        ).perform(click());
+    onView(
+        allOf(withId(R.id.title), withText("OneDataToManyActivity"), isDisplayed())
+    ).perform(click());
 
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+    openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        onView(
-            allOf(withId(R.id.title), withText("TestPayloadActivity"), isDisplayed())
-        ).perform(click());
-    }
+    onView(
+        allOf(withId(R.id.title), withText("TestPayloadActivity"), isDisplayed())
+    ).perform(click());
+  }
 }

@@ -26,46 +26,46 @@ import static org.junit.Assert.assertNull;
  */
 public class ItemViewBinderTest {
 
-    @Test
-    public void shouldGetNonNullAdapter() {
-        Exception exception = null;
-        MultiTypeAdapter adapter = new MultiTypeAdapter();
-        Items empty = new Items();
-        adapter.setItems(empty);
+  @Test
+  public void shouldGetNonNullAdapter() {
+    Exception exception = null;
+    MultiTypeAdapter adapter = new MultiTypeAdapter();
+    Items empty = new Items();
+    adapter.setItems(empty);
 
-        TestItemViewBinder binder = new TestItemViewBinder();
-        adapter.register(TestItem.class, binder);
+    TestItemViewBinder binder = new TestItemViewBinder();
+    adapter.register(TestItem.class, binder);
 
-        empty.add(new TestItem("ItemViewBinderTest"));
-        try {
-            binder.notifyTestItemAdded();
-        } catch (Exception e) {
-            e.printStackTrace();
-            exception = e;
-        }
-        assertNull(exception);
+    empty.add(new TestItem("ItemViewBinderTest"));
+    try {
+      binder.notifyTestItemAdded();
+    } catch (Exception e) {
+      e.printStackTrace();
+      exception = e;
     }
+    assertNull(exception);
+  }
 
 
-    @Test(expected = IllegalStateException.class)
-    public void shouldThrowIllegalStateException() {
-        MultiTypeAdapter adapter = new MultiTypeAdapter();
-        Items empty = new Items();
-        adapter.setItems(empty);
+  @Test(expected = IllegalStateException.class)
+  public void shouldThrowIllegalStateException() {
+    MultiTypeAdapter adapter = new MultiTypeAdapter();
+    Items empty = new Items();
+    adapter.setItems(empty);
 
-        TestItemViewBinder binder = new TestItemViewBinder();
+    TestItemViewBinder binder = new TestItemViewBinder();
 
-        empty.add(new TestItem("ItemViewBinderTest"));
-        binder.notifyTestItemAdded();
+    empty.add(new TestItem("ItemViewBinderTest"));
+    binder.notifyTestItemAdded();
 
-        adapter.register(TestItem.class, binder);
+    adapter.register(TestItem.class, binder);
+  }
+
+
+  private static class TestItemViewBinder extends me.drakeet.multitype.TestItemViewBinder {
+
+    private void notifyTestItemAdded() {
+      assertNotNull(getAdapter().toString());
     }
-
-
-    private static class TestItemViewBinder extends me.drakeet.multitype.TestItemViewBinder {
-
-        private void notifyTestItemAdded() {
-            assertNotNull(getAdapter().toString());
-        }
-    }
+  }
 }

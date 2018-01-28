@@ -23,8 +23,8 @@ import android.support.annotation.NonNull;
  */
 class TestItem {
 
-    @NonNull final String text;
+  @NonNull final String text;
 
 
-    public TestItem(@NonNull String text) {this.text = text;}
+  public TestItem(@NonNull String text) {this.text = text;}
 }

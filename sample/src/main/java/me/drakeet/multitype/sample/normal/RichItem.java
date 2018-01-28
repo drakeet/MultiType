@@ -23,12 +23,12 @@ import android.support.annotation.NonNull;
  */
 public class RichItem {
 
-    public @NonNull String text;
-    public int imageResId;
+  public @NonNull String text;
+  public int imageResId;
 
 
-    public RichItem(@NonNull String text, int imageResId) {
-        this.text = text;
-        this.imageResId = imageResId;
-    }
+  public RichItem(@NonNull String text, int imageResId) {
+    this.text = text;
+    this.imageResId = imageResId;
+  }
 }

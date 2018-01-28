@@ -30,16 +30,16 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
 
 public class OneDataToManyActivity extends MenuBaseActivity {
 
-    @VisibleForTesting RecyclerView recyclerView;
-    @VisibleForTesting MultiTypeAdapter adapter;
+  @VisibleForTesting RecyclerView recyclerView;
+  @VisibleForTesting MultiTypeAdapter adapter;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        recyclerView = findViewById(R.id.list);
-        adapter = new MultiTypeAdapter();
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_list);
+    recyclerView = findViewById(R.id.list);
+    adapter = new MultiTypeAdapter();
 
         /*
         adapter.register(Data.class).to(
@@ -50,33 +50,33 @@ public class OneDataToManyActivity extends MenuBaseActivity {
         );
         */
 
-        adapter.register(Data.class).to(
-            new DataType1ViewBinder(),
-            new DataType2ViewBinder()
-        ).withClassLinker((position, data) -> {
-            if (data.type == Data.TYPE_2) {
-                return DataType2ViewBinder.class;
-            } else {
-                return DataType1ViewBinder.class;
-            }
-        });
+    adapter.register(Data.class).to(
+        new DataType1ViewBinder(),
+        new DataType2ViewBinder()
+    ).withClassLinker((position, data) -> {
+      if (data.type == Data.TYPE_2) {
+        return DataType2ViewBinder.class;
+      } else {
+        return DataType1ViewBinder.class;
+      }
+    });
 
-        List<Data> dataList = getDataFromService();
-        adapter.setItems(dataList);
-        adapter.notifyDataSetChanged();
-        assertAllRegistered(adapter, dataList);
-        recyclerView.setAdapter(adapter);
-        assertHasTheSameAdapter(recyclerView, adapter);
+    List<Data> dataList = getDataFromService();
+    adapter.setItems(dataList);
+    adapter.notifyDataSetChanged();
+    assertAllRegistered(adapter, dataList);
+    recyclerView.setAdapter(adapter);
+    assertHasTheSameAdapter(recyclerView, adapter);
+  }
+
+
+  @VisibleForTesting
+  List<Data> getDataFromService() {
+    List<Data> list = new ArrayList<>();
+    for (int i = 0; i < 30; i = i + 2) {
+      list.add(new Data("title: " + i, Data.TYPE_1));
+      list.add(new Data("title: " + i + 1, Data.TYPE_2));
     }
-
-
-    @VisibleForTesting
-    List<Data> getDataFromService() {
-        List<Data> list = new ArrayList<>();
-        for (int i = 0; i < 30; i = i + 2) {
-            list.add(new Data("title: " + i, Data.TYPE_1));
-            list.add(new Data("title: " + i + 1, Data.TYPE_2));
-        }
-        return list;
-    }
+    return list;
+  }
 }

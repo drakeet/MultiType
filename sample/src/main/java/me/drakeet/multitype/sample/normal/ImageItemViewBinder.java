@@ -30,27 +30,27 @@ import me.drakeet.multitype.sample.R;
  */
 public class ImageItemViewBinder extends ItemViewBinder<ImageItem, ImageItemViewBinder.ImageHolder> {
 
-    class ImageHolder extends RecyclerView.ViewHolder {
+  class ImageHolder extends RecyclerView.ViewHolder {
 
-        private @NonNull final ImageView image;
+    private @NonNull final ImageView image;
 
 
-        ImageHolder(View itemView) {
-            super(itemView);
-            image = itemView.findViewById(R.id.image);
-        }
+    ImageHolder(View itemView) {
+      super(itemView);
+      image = itemView.findViewById(R.id.image);
     }
+  }
 
 
-    @Override
-    protected @NonNull ImageHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_image, parent, false);
-        return new ImageHolder(root);
-    }
+  @Override
+  protected @NonNull ImageHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View root = inflater.inflate(R.layout.item_image, parent, false);
+    return new ImageHolder(root);
+  }
 
 
-    @Override
-    protected void onBindViewHolder(@NonNull ImageHolder holder, @NonNull ImageItem imageContent) {
-        holder.image.setImageResource(imageContent.resId);
-    }
+  @Override
+  protected void onBindViewHolder(@NonNull ImageHolder holder, @NonNull ImageItem imageContent) {
+    holder.image.setImageResource(imageContent.resId);
+  }
 }

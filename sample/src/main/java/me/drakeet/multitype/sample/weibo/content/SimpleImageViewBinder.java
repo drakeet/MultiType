@@ -32,31 +32,31 @@ import me.drakeet.multitype.sample.weibo.WeiboFrameBinder;
 public class SimpleImageViewBinder
     extends WeiboFrameBinder<SimpleImage, SimpleImageViewBinder.ViewHolder> {
 
-    @Override
-    protected ContentHolder onCreateContentViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View contentView = inflater.inflate(R.layout.item_weibo_simple_image, parent, false);
-        return new ViewHolder(contentView);
+  @Override
+  protected ContentHolder onCreateContentViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View contentView = inflater.inflate(R.layout.item_weibo_simple_image, parent, false);
+    return new ViewHolder(contentView);
+  }
+
+
+  @Override
+  protected void onBindContentViewHolder(@NonNull ViewHolder holder, @NonNull SimpleImage simpleImage) {
+    Log.d("weibo", "getAdapterPosition: " + holder.getAdapterPosition());
+    Log.d("weibo", "getLayoutPosition: " + holder.getLayoutPosition());
+    Log.d("weibo", "getOldPosition: " + holder.getOldPosition());
+    Log.d("weibo", "isRecyclable: " + holder.isRecyclable());
+    holder.simpleImage.setImageResource(simpleImage.resId);
+  }
+
+
+  static class ViewHolder extends ContentHolder {
+
+    private ImageView simpleImage;
+
+
+    ViewHolder(View itemView) {
+      super(itemView);
+      simpleImage = itemView.findViewById(R.id.simple_image);
     }
-
-
-    @Override
-    protected void onBindContentViewHolder(@NonNull ViewHolder holder, @NonNull SimpleImage simpleImage) {
-        Log.d("weibo", "getAdapterPosition: " + holder.getAdapterPosition());
-        Log.d("weibo", "getLayoutPosition: " + holder.getLayoutPosition());
-        Log.d("weibo", "getOldPosition: " + holder.getOldPosition());
-        Log.d("weibo", "isRecyclable: " + holder.isRecyclable());
-        holder.simpleImage.setImageResource(simpleImage.resId);
-    }
-
-
-    static class ViewHolder extends ContentHolder {
-
-        private ImageView simpleImage;
-
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            simpleImage = itemView.findViewById(R.id.simple_image);
-        }
-    }
+  }
 }

@@ -30,27 +30,27 @@ import me.drakeet.multitype.sample.R;
  */
 public class CategoryItemViewBinder extends ItemViewBinder<Category, CategoryItemViewBinder.ViewHolder> {
 
-    @Override
-    protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_category, parent, false);
-        return new ViewHolder(view);
+  @Override
+  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View view = inflater.inflate(R.layout.item_category, parent, false);
+    return new ViewHolder(view);
+  }
+
+
+  @Override
+  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
+    holder.title.setText(category.title);
+  }
+
+
+  static class ViewHolder extends RecyclerView.ViewHolder {
+
+    private @NonNull final TextView title;
+
+
+    ViewHolder(@NonNull View itemView) {
+      super(itemView);
+      title = itemView.findViewById(R.id.title);
     }
-
-
-    @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
-        holder.title.setText(category.title);
-    }
-
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        private @NonNull final TextView title;
-
-
-        ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            title = itemView.findViewById(R.id.title);
-        }
-    }
+  }
 }

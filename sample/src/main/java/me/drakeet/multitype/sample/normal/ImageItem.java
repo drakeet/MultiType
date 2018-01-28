@@ -21,8 +21,8 @@ package me.drakeet.multitype.sample.normal;
  */
 public class ImageItem {
 
-    public final int resId;
+  public final int resId;
 
 
-    public ImageItem(int resId) { this.resId = resId; }
+  public ImageItem(int resId) { this.resId = resId; }
 }

@@ -34,70 +34,70 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 
 public class MultiSelectableActivity extends MenuBaseActivity {
 
-    private static final int SPAN_COUNT = 5;
-    Items items = new Items();
-    MultiTypeAdapter adapter;
-    Button fab;
-    private TreeSet<Integer> selectedSet;
+  private static final int SPAN_COUNT = 5;
+  Items items = new Items();
+  MultiTypeAdapter adapter;
+  Button fab;
+  private TreeSet<Integer> selectedSet;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_selectable);
-        RecyclerView recyclerView = findViewById(R.id.list);
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
-        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return (items.get(position) instanceof Category) ? SPAN_COUNT : 1;
-            }
-        });
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_multi_selectable);
+    RecyclerView recyclerView = findViewById(R.id.list);
+    final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
+    layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+      @Override
+      public int getSpanSize(int position) {
+        return (items.get(position) instanceof Category) ? SPAN_COUNT : 1;
+      }
+    });
 
-        selectedSet = new TreeSet<>();
+    selectedSet = new TreeSet<>();
 
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new MultiTypeAdapter();
-        adapter.register(Category.class, new CategoryItemViewBinder());
-        adapter.register(Square.class, new SquareViewBinder(selectedSet));
+    recyclerView.setLayoutManager(layoutManager);
+    adapter = new MultiTypeAdapter();
+    adapter.register(Category.class, new CategoryItemViewBinder());
+    adapter.register(Square.class, new SquareViewBinder(selectedSet));
 
-        loadData();
+    loadData();
 
-        assertAllRegistered(adapter, items);
-        recyclerView.setAdapter(adapter);
+    assertAllRegistered(adapter, items);
+    recyclerView.setAdapter(adapter);
 
-        setupFAB();
+    setupFAB();
+  }
+
+
+  private void loadData() {
+    Category spacialCategory = new Category("特别篇");
+    items.add(spacialCategory);
+    for (int i = 0; i < 7; i++) {
+      items.add(new Square(i + 1));
     }
+    Category currentCategory = new Category("本篇");
+    items.add(currentCategory);
+    for (int i = 0; i < 1000; i++) {
+      items.add(new Square(i + 1));
+    }
+    adapter.setItems(items);
+    adapter.notifyDataSetChanged();
+  }
 
 
-    private void loadData() {
-        Category spacialCategory = new Category("特别篇");
-        items.add(spacialCategory);
-        for (int i = 0; i < 7; i++) {
-            items.add(new Square(i + 1));
+  private void setupFAB() {
+    fab = findViewById(R.id.fab);
+    fab.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        StringBuilder content = new StringBuilder();
+        for (Integer number : selectedSet) {
+          content.append(number).append(" ");
         }
-        Category currentCategory = new Category("本篇");
-        items.add(currentCategory);
-        for (int i = 0; i < 1000; i++) {
-            items.add(new Square(i + 1));
-        }
-        adapter.setItems(items);
-        adapter.notifyDataSetChanged();
-    }
-
-
-    private void setupFAB() {
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                StringBuilder content = new StringBuilder();
-                for (Integer number : selectedSet) {
-                    content.append(number).append(" ");
-                }
-                Toast.makeText(v.getContext(),
-                    "Selected items: " + content, Toast.LENGTH_SHORT)
-                    .show();
-            }
-        });
-    }
+        Toast.makeText(v.getContext(),
+            "Selected items: " + content, Toast.LENGTH_SHORT)
+            .show();
+      }
+    });
+  }
 }

@@ -38,94 +38,94 @@ import static me.drakeet.multitype.sample.RecyclerViewMatcher.withRecyclerView;
 @RunWith(AndroidJUnit4.class)
 public class BilibiliActivityDataSetADCTest {
 
-    private final String testTitle = "testTitle";
+  private final String testTitle = "testTitle";
 
-    private List<Object> items;
-    private MultiTypeAdapter adapter;
+  private List<Object> items;
+  private MultiTypeAdapter adapter;
 
-    @Rule
-    public ActivityTestRule<BilibiliActivity> rule = new ActivityTestRule<>(BilibiliActivity.class);
-
-
-    @Before
-    public void setup() {
-        items = rule.getActivity().items;
-        adapter = rule.getActivity().adapter;
-    }
+  @Rule
+  public ActivityTestRule<BilibiliActivity> rule = new ActivityTestRule<>(BilibiliActivity.class);
 
 
-    @Test
-    public void shouldNotFailWhenAddSingleTop() throws Throwable {
-        final Object originalFirst = items.get(0);
-        rule.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                items.add(originalFirst);
-                adapter.notifyItemInserted(0);
-            }
-        });
-    }
+  @Before
+  public void setup() {
+    items = rule.getActivity().items;
+    adapter = rule.getActivity().adapter;
+  }
 
 
-    @Test
-    public void shouldNotFailWhenAddMultiTop() throws Throwable {
-        final Object originalFirst = items.get(0);
-        rule.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                for (int i = 0; i < 30; i++) {
-                    items.add(originalFirst);
-                }
-                adapter.notifyItemRangeInserted(0, 29);
-            }
-        });
-    }
+  @Test
+  public void shouldNotFailWhenAddSingleTop() throws Throwable {
+    final Object originalFirst = items.get(0);
+    rule.runOnUiThread(new Runnable() {
+      @Override public void run() {
+        items.add(originalFirst);
+        adapter.notifyItemInserted(0);
+      }
+    });
+  }
 
 
-    @Test
-    public void shouldNotFailWhenDeleteFirst() throws Throwable {
-        rule.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                items.remove(0);
-                adapter.notifyItemRemoved(0);
-            }
-        });
-    }
+  @Test
+  public void shouldNotFailWhenAddMultiTop() throws Throwable {
+    final Object originalFirst = items.get(0);
+    rule.runOnUiThread(new Runnable() {
+      @Override public void run() {
+        for (int i = 0; i < 30; i++) {
+          items.add(originalFirst);
+        }
+        adapter.notifyItemRangeInserted(0, 29);
+      }
+    });
+  }
 
 
-    @Test
-    public void shouldNotFailWhenDeleteEnd() throws Throwable {
-        rule.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                final int endIndex = items.size() - 1;
-                items.remove(endIndex);
-                adapter.notifyItemRemoved(endIndex);
-            }
-        });
-    }
+  @Test
+  public void shouldNotFailWhenDeleteFirst() throws Throwable {
+    rule.runOnUiThread(new Runnable() {
+      @Override public void run() {
+        items.remove(0);
+        adapter.notifyItemRemoved(0);
+      }
+    });
+  }
 
 
-    @Test
-    public void shouldNotFailWhenDeleteAll() throws Throwable {
-        rule.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                items.clear();
-                adapter.notifyDataSetChanged();
-            }
-        });
-    }
+  @Test
+  public void shouldNotFailWhenDeleteEnd() throws Throwable {
+    rule.runOnUiThread(new Runnable() {
+      @Override public void run() {
+        final int endIndex = items.size() - 1;
+        items.remove(endIndex);
+        adapter.notifyItemRemoved(endIndex);
+      }
+    });
+  }
 
 
-    @Test
-    public void shouldNotFailWhenChangeFirst() throws Throwable {
-        rule.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                Category category = (Category) items.get(0);
-                category.title = testTitle;
-                adapter.notifyItemChanged(0);
-            }
-        });
+  @Test
+  public void shouldNotFailWhenDeleteAll() throws Throwable {
+    rule.runOnUiThread(new Runnable() {
+      @Override public void run() {
+        items.clear();
+        adapter.notifyDataSetChanged();
+      }
+    });
+  }
 
-        onView(withRecyclerView(R.id.list)
-            .atPositionOnView(0, R.id.title))
-            .check(matches(withText(testTitle)));
-    }
+
+  @Test
+  public void shouldNotFailWhenChangeFirst() throws Throwable {
+    rule.runOnUiThread(new Runnable() {
+      @Override public void run() {
+        Category category = (Category) items.get(0);
+        category.title = testTitle;
+        adapter.notifyItemChanged(0);
+      }
+    });
+
+    onView(withRecyclerView(R.id.list)
+        .atPositionOnView(0, R.id.title))
+        .check(matches(withText(testTitle)));
+  }
 }

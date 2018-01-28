@@ -24,42 +24,42 @@ import android.view.View;
  */
 public class ContentHolder {
 
-    WeiboFrameBinder.FrameHolder frameHolder;
+  WeiboFrameBinder.FrameHolder frameHolder;
 
-    public final View itemView;
-
-
-    public ContentHolder(@NonNull final View itemView) {
-        this.itemView = itemView;
-    }
+  public final View itemView;
 
 
-    public @NonNull WeiboFrameBinder.FrameHolder getParent() {
-        return frameHolder;
-    }
+  public ContentHolder(@NonNull final View itemView) {
+    this.itemView = itemView;
+  }
 
 
-    public final int getAdapterPosition() {
-        return getParent().getAdapterPosition();
-    }
+  public @NonNull WeiboFrameBinder.FrameHolder getParent() {
+    return frameHolder;
+  }
 
 
-    public final int getLayoutPosition() {
-        return getParent().getLayoutPosition();
-    }
+  public final int getAdapterPosition() {
+    return getParent().getAdapterPosition();
+  }
 
 
-    public final int getOldPosition() {
-        return getParent().getOldPosition();
-    }
+  public final int getLayoutPosition() {
+    return getParent().getLayoutPosition();
+  }
 
 
-    public final boolean isRecyclable() {
-        return getParent().isRecyclable();
-    }
+  public final int getOldPosition() {
+    return getParent().getOldPosition();
+  }
 
 
-    public final void setIsRecyclable(boolean recyclable) {
-        getParent().setIsRecyclable(recyclable);
-    }
+  public final boolean isRecyclable() {
+    return getParent().isRecyclable();
+  }
+
+
+  public final void setIsRecyclable(boolean recyclable) {
+    getParent().setIsRecyclable(recyclable);
+  }
 }

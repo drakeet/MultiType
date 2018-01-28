@@ -21,9 +21,9 @@ package me.drakeet.multitype.sample.multi_selectable;
  */
 public class Square {
 
-    public final int number;
-    public boolean isSelected;
+  public final int number;
+  public boolean isSelected;
 
 
-    public Square(int number) { this.number = number; }
+  public Square(int number) { this.number = number; }
 }

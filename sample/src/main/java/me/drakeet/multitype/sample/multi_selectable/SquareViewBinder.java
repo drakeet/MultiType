@@ -33,49 +33,49 @@ import static java.lang.String.valueOf;
  */
 public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.ViewHolder> {
 
-    private final @NonNull Set<Integer> selectedSet;
+  private final @NonNull Set<Integer> selectedSet;
 
 
-    public SquareViewBinder(@NonNull Set<Integer> selectedSet) { this.selectedSet = selectedSet; }
+  public SquareViewBinder(@NonNull Set<Integer> selectedSet) { this.selectedSet = selectedSet; }
 
 
-    @Override
-    protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_square, parent, false);
-        return new ViewHolder(root);
-    }
+  @Override
+  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View root = inflater.inflate(R.layout.item_square, parent, false);
+    return new ViewHolder(root);
+  }
 
 
-    @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Square square) {
-        holder.square = square;
-        holder.squareView.setText(valueOf(square.number));
-        holder.squareView.setSelected(square.isSelected);
-    }
+  @Override
+  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Square square) {
+    holder.square = square;
+    holder.squareView.setText(valueOf(square.number));
+    holder.squareView.setSelected(square.isSelected);
+  }
 
 
-    public @NonNull Set<Integer> getSelectedSet() {
-        return selectedSet;
-    }
+  public @NonNull Set<Integer> getSelectedSet() {
+    return selectedSet;
+  }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+  public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView squareView;
-        private Square square;
+    private TextView squareView;
+    private Square square;
 
 
-        ViewHolder(final View itemView) {
-            super(itemView);
-            squareView = itemView.findViewById(R.id.square);
-            itemView.setOnClickListener(v -> {
-                squareView.setSelected(square.isSelected = !square.isSelected);
-                if (square.isSelected) {
-                    selectedSet.add(square.number);
-                } else {
-                    selectedSet.remove(square.number);
-                }
-            });
+    ViewHolder(final View itemView) {
+      super(itemView);
+      squareView = itemView.findViewById(R.id.square);
+      itemView.setOnClickListener(v -> {
+        squareView.setSelected(square.isSelected = !square.isSelected);
+        if (square.isSelected) {
+          selectedSet.add(square.number);
+        } else {
+          selectedSet.remove(square.number);
         }
+      });
     }
+  }
 }

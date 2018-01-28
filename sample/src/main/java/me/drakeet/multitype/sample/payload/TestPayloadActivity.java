@@ -29,24 +29,24 @@ import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 public class TestPayloadActivity extends MenuBaseActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        RecyclerView recyclerView = findViewById(R.id.list);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, VERTICAL));
-        MultiTypeAdapter adapter = new MultiTypeAdapter();
-        recyclerView.setAdapter(adapter);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_list);
+    RecyclerView recyclerView = findViewById(R.id.list);
+    recyclerView.addItemDecoration(new DividerItemDecoration(this, VERTICAL));
+    MultiTypeAdapter adapter = new MultiTypeAdapter();
+    recyclerView.setAdapter(adapter);
 
-        adapter.register(HeavyItem.class, new HeavyItemViewBinder());
+    adapter.register(HeavyItem.class, new HeavyItemViewBinder());
 
-        Items items = new Items();
-        for (int i = 0; i < 30; i++) {
-            items.add(new HeavyItem("1000" + i));
-        }
-        adapter.setItems(items);
-        adapter.notifyDataSetChanged();
-
-        Toast.makeText(this, "Try to click or long click items", Toast.LENGTH_SHORT).show();
+    Items items = new Items();
+    for (int i = 0; i < 30; i++) {
+      items.add(new HeavyItem("1000" + i));
     }
+    adapter.setItems(items);
+    adapter.notifyDataSetChanged();
+
+    Toast.makeText(this, "Try to click or long click items", Toast.LENGTH_SHORT).show();
+  }
 }

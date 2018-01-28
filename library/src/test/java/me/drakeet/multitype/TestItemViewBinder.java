@@ -11,21 +11,21 @@ import android.view.ViewGroup;
  */
 public class TestItemViewBinder extends ItemViewBinder<TestItem, TestItemViewBinder.ViewHolder> {
 
-    @NonNull @Override
-    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        return null;
+  @NonNull @Override
+  protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    return null;
+  }
+
+
+  @Override
+  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull TestItem testItem) {
+
+  }
+
+
+  public class ViewHolder extends RecyclerView.ViewHolder {
+    public ViewHolder(View itemView) {
+      super(itemView);
     }
-
-
-    @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull TestItem testItem) {
-
-    }
-
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
+  }
 }

@@ -24,12 +24,12 @@ import me.drakeet.multitype.sample.weibo.WeiboContent;
  */
 public class SimpleImage extends WeiboContent {
 
-    public static final String TYPE = "simple_image";
-    public @DrawableRes int resId;
+  public static final String TYPE = "simple_image";
+  public @DrawableRes int resId;
 
 
-    public SimpleImage(@DrawableRes int resId) {
-        super(TYPE);
-        this.resId = resId;
-    }
+  public SimpleImage(@DrawableRes int resId) {
+    super(TYPE);
+    this.resId = resId;
+  }
 }

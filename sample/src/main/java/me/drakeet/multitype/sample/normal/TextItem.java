@@ -26,35 +26,35 @@ import me.drakeet.multitype.sample.Savable;
  */
 public class TextItem implements Savable {
 
-    public String text;
+  public String text;
 
 
-    public TextItem(@NonNull String text) {
-        this.text = text;
-    }
+  public TextItem(@NonNull String text) {
+    this.text = text;
+  }
 
 
-    public TextItem(@NonNull byte[] data) {
-        init(data);
-    }
+  public TextItem(@NonNull byte[] data) {
+    init(data);
+  }
 
 
-    @Override
-    public final void init(@NonNull byte[] data) {
-        String json = new String(data, UTF_8);
-        this.text = new Gson().fromJson(json, TextItem.class).text;
-    }
+  @Override
+  public final void init(@NonNull byte[] data) {
+    String json = new String(data, UTF_8);
+    this.text = new Gson().fromJson(json, TextItem.class).text;
+  }
 
 
-    @Override
-    public @NonNull byte[] toBytes() {
-        return new Gson().toJson(this).getBytes(UTF_8);
-    }
+  @Override
+  public @NonNull byte[] toBytes() {
+    return new Gson().toJson(this).getBytes(UTF_8);
+  }
 
 
-    @Override
-    public @NonNull String describe() { return "Text"; }
+  @Override
+  public @NonNull String describe() { return "Text"; }
 
 
-    private static final Charset UTF_8 = Charset.forName("UTF-8");
+  private static final Charset UTF_8 = Charset.forName("UTF-8");
 }

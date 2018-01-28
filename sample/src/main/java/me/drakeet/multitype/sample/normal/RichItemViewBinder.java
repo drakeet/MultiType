@@ -31,30 +31,30 @@ import me.drakeet.multitype.sample.R;
  */
 public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBinder.RichHolder> {
 
-    static class RichHolder extends RecyclerView.ViewHolder {
+  static class RichHolder extends RecyclerView.ViewHolder {
 
-        @NonNull final TextView text;
-        @NonNull final ImageView image;
+    @NonNull final TextView text;
+    @NonNull final ImageView image;
 
 
-        RichHolder(@NonNull View itemView) {
-            super(itemView);
-            this.text = itemView.findViewById(R.id.text);
-            this.image = itemView.findViewById(R.id.image);
-        }
+    RichHolder(@NonNull View itemView) {
+      super(itemView);
+      this.text = itemView.findViewById(R.id.text);
+      this.image = itemView.findViewById(R.id.image);
     }
+  }
 
 
-    @Override
-    protected @NonNull RichHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_rich, parent, false);
-        return new RichHolder(root);
-    }
+  @Override
+  protected @NonNull RichHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View root = inflater.inflate(R.layout.item_rich, parent, false);
+    return new RichHolder(root);
+  }
 
 
-    @Override
-    protected void onBindViewHolder(@NonNull RichHolder holder, @NonNull RichItem richContent) {
-        holder.text.setText(richContent.text);
-        holder.image.setImageResource(richContent.imageResId);
-    }
+  @Override
+  protected void onBindViewHolder(@NonNull RichHolder holder, @NonNull RichItem richContent) {
+    holder.text.setText(richContent.text);
+    holder.image.setImageResource(richContent.imageResId);
+  }
 }

@@ -27,24 +27,24 @@ import android.view.View;
  */
 public class PostItemDecoration extends RecyclerView.ItemDecoration {
 
-    private int space;
-    private @NonNull SpanSizeLookup spanSizeLookup;
+  private int space;
+  private @NonNull SpanSizeLookup spanSizeLookup;
 
 
-    public PostItemDecoration(int space, @NonNull SpanSizeLookup spanSizeLookup) {
-        this.space = space;
-        this.spanSizeLookup = spanSizeLookup;
+  public PostItemDecoration(int space, @NonNull SpanSizeLookup spanSizeLookup) {
+    this.space = space;
+    this.spanSizeLookup = spanSizeLookup;
+  }
+
+
+  @Override
+  public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    int position = parent.getChildLayoutPosition(view);
+    if (spanSizeLookup.getSpanSize(position) == 1) {
+      outRect.left = space;
+      if (position % 2 == 0) {
+        outRect.right = space;
+      }
     }
-
-
-    @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        int position = parent.getChildLayoutPosition(view);
-        if (spanSizeLookup.getSpanSize(position) == 1) {
-            outRect.left = space;
-            if (position % 2 == 0) {
-                outRect.right = space;
-            }
-        }
-    }
+  }
 }

@@ -15,25 +15,25 @@
  */
 
 buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-    }
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:3.0.1'
+  }
 }
 
 allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-    task javadoc(type: Javadoc) {
-        options.encoding = "utf-8"
-    }
+  repositories {
+    google()
+    jcenter()
+  }
+  task javadoc(type: Javadoc) {
+    options.encoding = "utf-8"
+  }
 }
 
 task clean(type: Delete) {
-    delete rootProject.buildDir
+  delete rootProject.buildDir
 }

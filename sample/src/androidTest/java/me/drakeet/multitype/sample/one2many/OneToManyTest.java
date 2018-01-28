@@ -38,55 +38,55 @@ import static me.drakeet.multitype.sample.RecyclerViewMatcher.withRecyclerView;
 @RunWith(AndroidJUnit4.class)
 public class OneToManyTest {
 
-    private final String testTitle = "testTitle";
+  private final String testTitle = "testTitle";
 
-    private List<?> items;
-    private MultiTypeAdapter adapter;
+  private List<?> items;
+  private MultiTypeAdapter adapter;
 
-    @Rule
-    public ActivityTestRule<OneDataToManyActivity> rule = new ActivityTestRule<>(
-        OneDataToManyActivity.class);
-
-
-    @Before
-    public void setup() {
-        items = rule.getActivity().adapter.getItems();
-        adapter = rule.getActivity().adapter;
-    }
+  @Rule
+  public ActivityTestRule<OneDataToManyActivity> rule = new ActivityTestRule<>(
+      OneDataToManyActivity.class);
 
 
-    @Test
-    public void shouldRefreshTypeChanged() throws Throwable {
-        final Data originalFirst = (Data) items.get(0);
-        for (int i = 0; i < 2; i++) {
-            rule.runOnUiThread(new Runnable() {
-                @Override public void run() {
-                    originalFirst.type = Data.TYPE_2;
-                    adapter.notifyItemChanged(0);
-                }
-            });
-            onView(withRecyclerView(R.id.list)
-                .atPositionOnView(0, android.R.id.title))
-                .check(matches(withHint("right")));
-            SystemClock.sleep(2000);
-            rule.runOnUiThread(new Runnable() {
-                @Override public void run() {
-                    rule.getActivity().recyclerView.smoothScrollToPosition(items.size() - 1);
-                }
-            });
-            SystemClock.sleep(2000);
-            rule.runOnUiThread(new Runnable() {
-                @Override public void run() {
-                    rule.getActivity().recyclerView.smoothScrollToPosition(0);
-                    originalFirst.type = Data.TYPE_1;
-                    adapter.notifyItemChanged(0);
-                }
-            });
-            SystemClock.sleep(2000);
-            onView(withRecyclerView(R.id.list)
-                .atPositionOnView(0, android.R.id.title))
-                .check(matches(withHint("left")));
-            SystemClock.sleep(2000);
+  @Before
+  public void setup() {
+    items = rule.getActivity().adapter.getItems();
+    adapter = rule.getActivity().adapter;
+  }
+
+
+  @Test
+  public void shouldRefreshTypeChanged() throws Throwable {
+    final Data originalFirst = (Data) items.get(0);
+    for (int i = 0; i < 2; i++) {
+      rule.runOnUiThread(new Runnable() {
+        @Override public void run() {
+          originalFirst.type = Data.TYPE_2;
+          adapter.notifyItemChanged(0);
         }
+      });
+      onView(withRecyclerView(R.id.list)
+          .atPositionOnView(0, android.R.id.title))
+          .check(matches(withHint("right")));
+      SystemClock.sleep(2000);
+      rule.runOnUiThread(new Runnable() {
+        @Override public void run() {
+          rule.getActivity().recyclerView.smoothScrollToPosition(items.size() - 1);
+        }
+      });
+      SystemClock.sleep(2000);
+      rule.runOnUiThread(new Runnable() {
+        @Override public void run() {
+          rule.getActivity().recyclerView.smoothScrollToPosition(0);
+          originalFirst.type = Data.TYPE_1;
+          adapter.notifyItemChanged(0);
+        }
+      });
+      SystemClock.sleep(2000);
+      onView(withRecyclerView(R.id.list)
+          .atPositionOnView(0, android.R.id.title))
+          .check(matches(withHint("left")));
+      SystemClock.sleep(2000);
     }
+  }
 }

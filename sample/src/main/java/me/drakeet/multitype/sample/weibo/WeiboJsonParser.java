@@ -28,17 +28,17 @@ import java.util.List;
  */
 final class WeiboJsonParser {
 
-    private WeiboJsonParser() {}
+  private WeiboJsonParser() {}
 
 
-    static final Gson GSON = new GsonBuilder()
-        .registerTypeAdapter(WeiboContent.class, new WeiboContentDeserializer())
-        .create();
+  static final Gson GSON = new GsonBuilder()
+      .registerTypeAdapter(WeiboContent.class, new WeiboContentDeserializer())
+      .create();
 
-    static final Gson SIMPLE_DEFAULT_GSON = new Gson();
+  static final Gson SIMPLE_DEFAULT_GSON = new Gson();
 
 
-    static List<Weibo> fromJson(@NonNull String json) {
-        return GSON.fromJson(json, new TypeToken<ArrayList<Weibo>>() {}.getType());
-    }
+  static List<Weibo> fromJson(@NonNull String json) {
+    return GSON.fromJson(json, new TypeToken<ArrayList<Weibo>>() {}.getType());
+  }
 }

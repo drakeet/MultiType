@@ -33,49 +33,49 @@ import me.drakeet.multitype.sample.R;
 public class HorizontalPostsViewBinder
     extends ItemViewBinder<PostList, HorizontalPostsViewBinder.ViewHolder> {
 
-    @Override
-    protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_horizontal_list, parent, false);
-        return new ViewHolder(view);
+  @Override
+  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View view = inflater.inflate(R.layout.item_horizontal_list, parent, false);
+    return new ViewHolder(view);
+  }
+
+
+  @Override
+  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PostList postList) {
+    holder.setPosts(postList.posts);
+    assertGetAdapterNonNull();
+  }
+
+
+  private void assertGetAdapterNonNull() {
+    // noinspection ConstantConditions
+    if (getAdapter() == null) {
+      throw new NullPointerException("getAdapter() == null");
+    }
+  }
+
+
+  static final class ViewHolder extends RecyclerView.ViewHolder {
+
+    private RecyclerView recyclerView;
+    private PostsAdapter adapter;
+
+
+    private ViewHolder(@NonNull View itemView) {
+      super(itemView);
+      recyclerView = itemView.findViewById(R.id.post_list);
+      LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext());
+      layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+      recyclerView.setLayoutManager(layoutManager);
+      new LinearSnapHelper().attachToRecyclerView(recyclerView);
+      adapter = new PostsAdapter();
+      recyclerView.setAdapter(adapter);
     }
 
 
-    @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PostList postList) {
-        holder.setPosts(postList.posts);
-        assertGetAdapterNonNull();
+    private void setPosts(List<Post> posts) {
+      adapter.setPosts(posts);
+      adapter.notifyDataSetChanged();
     }
-
-
-    private void assertGetAdapterNonNull() {
-        // noinspection ConstantConditions
-        if (getAdapter() == null) {
-            throw new NullPointerException("getAdapter() == null");
-        }
-    }
-
-
-    static final class ViewHolder extends RecyclerView.ViewHolder {
-
-        private RecyclerView recyclerView;
-        private PostsAdapter adapter;
-
-
-        private ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            recyclerView = itemView.findViewById(R.id.post_list);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext());
-            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            recyclerView.setLayoutManager(layoutManager);
-            new LinearSnapHelper().attachToRecyclerView(recyclerView);
-            adapter = new PostsAdapter();
-            recyclerView.setAdapter(adapter);
-        }
-
-
-        private void setPosts(List<Post> posts) {
-            adapter.setPosts(posts);
-            adapter.notifyDataSetChanged();
-        }
-    }
+  }
 }

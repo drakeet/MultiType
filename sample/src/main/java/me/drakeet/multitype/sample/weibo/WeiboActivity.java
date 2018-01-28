@@ -35,84 +35,84 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
  */
 public class WeiboActivity extends MenuBaseActivity {
 
-    private MultiTypeAdapter adapter;
-    private Items items;
+  private MultiTypeAdapter adapter;
+  private Items items;
 
-    /* @formatter:off */
-    private static final String JSON_FROM_SERVICE =
-            "[\n" +
-            "    {\n" +
-            "        \"content\":{\n" +
-            "            \"text\":\"A simple text Weibo: JSON_FROM_SERVICE.\",\n" +
-            "            \"content_type\":\"simple_text\"\n" +
-            "        },\n" +
-            "        \"createTime\":\"Just now\",\n" +
-            "        \"user\":{\n" +
-            "            \"avatar\":2130903040,\n" +
-            "            \"name\":\"drakeet\"\n" +
-            "        }\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"content\":{\n" +
-            "            \"resId\":2130837591,\n" +
-            "            \"content_type\":\"simple_image\"\n" +
-            "        },\n" +
-            "        \"createTime\":\"Just now(JSON_FROM_SERVICE)\",\n" +
-            "        \"user\":{\n" +
-            "            \"avatar\":2130903040,\n" +
-            "            \"name\":\"drakeet\"\n" +
-            "        }\n" +
-            "    }\n" +
-            "]";
-    /* @formatter:on */
+  /* @formatter:off */
+  private static final String JSON_FROM_SERVICE =
+      "[\n" +
+          "    {\n" +
+          "        \"content\":{\n" +
+          "            \"text\":\"A simple text Weibo: JSON_FROM_SERVICE.\",\n" +
+          "            \"content_type\":\"simple_text\"\n" +
+          "        },\n" +
+          "        \"createTime\":\"Just now\",\n" +
+          "        \"user\":{\n" +
+          "            \"avatar\":2130903040,\n" +
+          "            \"name\":\"drakeet\"\n" +
+          "        }\n" +
+          "    },\n" +
+          "    {\n" +
+          "        \"content\":{\n" +
+          "            \"resId\":2130837591,\n" +
+          "            \"content_type\":\"simple_image\"\n" +
+          "        },\n" +
+          "        \"createTime\":\"Just now(JSON_FROM_SERVICE)\",\n" +
+          "        \"user\":{\n" +
+          "            \"avatar\":2130903040,\n" +
+          "            \"name\":\"drakeet\"\n" +
+          "        }\n" +
+          "    }\n" +
+          "]";
+  /* @formatter:on */
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        RecyclerView recyclerView = findViewById(R.id.list);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_list);
+    RecyclerView recyclerView = findViewById(R.id.list);
 
-        adapter = new MultiTypeAdapter();
+    adapter = new MultiTypeAdapter();
 
-        adapter.register(Weibo.class).to(
-            new SimpleTextViewBinder(),
-            new SimpleImageViewBinder()
-        ).withLinker((position, weibo) -> {
-            if (weibo.content instanceof SimpleText) {
-                return 0;
-            } else if (weibo.content instanceof SimpleImage) {
-                return 1;
-            }
-            return 0;
-        });
+    adapter.register(Weibo.class).to(
+        new SimpleTextViewBinder(),
+        new SimpleImageViewBinder()
+    ).withLinker((position, weibo) -> {
+      if (weibo.content instanceof SimpleText) {
+        return 0;
+      } else if (weibo.content instanceof SimpleImage) {
+        return 1;
+      }
+      return 0;
+    });
 
-        recyclerView.setAdapter(adapter);
+    recyclerView.setAdapter(adapter);
 
-        items = new Items();
+    items = new Items();
 
-        User user = new User("drakeet", R.mipmap.avatar);
-        SimpleText simpleText = new SimpleText("A simple text Weibo: Hello World.");
-        SimpleImage simpleImage = new SimpleImage(R.drawable.img_10);
-        for (int i = 0; i < 20; i++) {
-            items.add(new Weibo(user, simpleText));
-            items.add(new Weibo(user, simpleImage));
-        }
-        adapter.setItems(items);
-        adapter.notifyDataSetChanged();
-
-        assertAllRegistered(adapter, items);
-
-        loadRemoteData();
+    User user = new User("drakeet", R.mipmap.avatar);
+    SimpleText simpleText = new SimpleText("A simple text Weibo: Hello World.");
+    SimpleImage simpleImage = new SimpleImage(R.drawable.img_10);
+    for (int i = 0; i < 20; i++) {
+      items.add(new Weibo(user, simpleText));
+      items.add(new Weibo(user, simpleImage));
     }
+    adapter.setItems(items);
+    adapter.notifyDataSetChanged();
+
+    assertAllRegistered(adapter, items);
+
+    loadRemoteData();
+  }
 
 
-    private void loadRemoteData() {
-        List<Weibo> weiboList = WeiboJsonParser.fromJson(JSON_FROM_SERVICE);
-        // atomically
-        items = new Items(items);
-        items.addAll(0, weiboList);
-        adapter.setItems(items);
-        adapter.notifyDataSetChanged();
-    }
+  private void loadRemoteData() {
+    List<Weibo> weiboList = WeiboJsonParser.fromJson(JSON_FROM_SERVICE);
+    // atomically
+    items = new Items(items);
+    items.addAll(0, weiboList);
+    adapter.setItems(items);
+    adapter.notifyDataSetChanged();
+  }
 }

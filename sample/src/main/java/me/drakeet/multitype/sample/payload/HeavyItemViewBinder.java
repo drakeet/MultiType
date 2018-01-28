@@ -33,61 +33,61 @@ import me.drakeet.multitype.sample.R;
  */
 class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.ViewHolder> {
 
+  @Override
+  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View root = inflater.inflate(R.layout.item_heavy, parent, false);
+    return new ViewHolder(root);
+  }
+
+
+  @Override @SuppressLint("SetTextI18n")
+  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem heavyItem) {
+    holder.firstText.setText(heavyItem.text);
+    holder.endText.setText("currentTimeMillis: " + System.currentTimeMillis());
+    holder.item = heavyItem;
+  }
+
+
+  @Override @SuppressLint("SetTextI18n")
+  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem item, @NonNull List<Object> payloads) {
+    if (payloads.isEmpty()) {
+      super.onBindViewHolder(holder, item, payloads);
+    } else {
+      holder.firstText.setText("Just update the first text: " + payloads.get(0));
+    }
+  }
+
+
+  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+      View.OnLongClickListener {
+
+    TextView firstText;
+    TextView endText;
+    HeavyItem item;
+
+
+    ViewHolder(View itemView) {
+      super(itemView);
+      firstText = itemView.findViewById(R.id.first_text);
+      endText = itemView.findViewById(R.id.end_text);
+      itemView.setOnClickListener(this);
+      itemView.setOnLongClickListener(this);
+    }
+
+
     @Override
-    protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View root = inflater.inflate(R.layout.item_heavy, parent, false);
-        return new ViewHolder(root);
+    public void onClick(View v) {
+      Toast.makeText(v.getContext(), "Update with a payload", Toast.LENGTH_SHORT).show();
+      getAdapter().notifyItemChanged(getAdapterPosition(), "la la la (payload)");
     }
 
 
-    @Override @SuppressLint("SetTextI18n")
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem heavyItem) {
-        holder.firstText.setText(heavyItem.text);
-        holder.endText.setText("currentTimeMillis: " + System.currentTimeMillis());
-        holder.item = heavyItem;
+    @Override
+    public boolean onLongClick(View v) {
+      Toast.makeText(v.getContext(), "Full update", Toast.LENGTH_SHORT).show();
+      item.text = "full full full";
+      getAdapter().notifyItemChanged(getAdapterPosition());
+      return true;
     }
-
-
-    @Override @SuppressLint("SetTextI18n")
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem item, @NonNull List<Object> payloads) {
-        if (payloads.isEmpty()) {
-            super.onBindViewHolder(holder, item, payloads);
-        } else {
-            holder.firstText.setText("Just update the first text: " + payloads.get(0));
-        }
-    }
-
-
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
-        View.OnLongClickListener {
-
-        TextView firstText;
-        TextView endText;
-        HeavyItem item;
-
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            firstText = itemView.findViewById(R.id.first_text);
-            endText = itemView.findViewById(R.id.end_text);
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-        }
-
-
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(v.getContext(), "Update with a payload", Toast.LENGTH_SHORT).show();
-            getAdapter().notifyItemChanged(getAdapterPosition(), "la la la (payload)");
-        }
-
-
-        @Override
-        public boolean onLongClick(View v) {
-            Toast.makeText(v.getContext(), "Full update", Toast.LENGTH_SHORT).show();
-            item.text = "full full full";
-            getAdapter().notifyItemChanged(getAdapterPosition());
-            return true;
-        }
-    }
+  }
 }

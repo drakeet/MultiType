@@ -24,15 +24,15 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Data {
 
-    public static final int TYPE_1 = 1;
-    public static final int TYPE_2 = 2;
+  public static final int TYPE_1 = 1;
+  public static final int TYPE_2 = 2;
 
-    public @SerializedName("title") String title;
-    public @SerializedName("type") int type;
+  public @SerializedName("title") String title;
+  public @SerializedName("type") int type;
 
 
-    public Data(@NonNull String title, int type) {
-        this.title = title;
-        this.type = type;
-    }
+  public Data(@NonNull String title, int type) {
+    this.title = title;
+    this.type = type;
+  }
 }

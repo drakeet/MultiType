@@ -30,27 +30,27 @@ import me.drakeet.multitype.sample.weibo.WeiboFrameBinder;
  */
 public class SimpleTextViewBinder extends WeiboFrameBinder<SimpleText, SimpleTextViewBinder.ViewHolder> {
 
-    @Override
-    protected ContentHolder onCreateContentViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View contentView = inflater.inflate(R.layout.item_weibo_simple_text, parent, false);
-        return new ViewHolder(contentView);
+  @Override
+  protected ContentHolder onCreateContentViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    View contentView = inflater.inflate(R.layout.item_weibo_simple_text, parent, false);
+    return new ViewHolder(contentView);
+  }
+
+
+  @Override
+  protected void onBindContentViewHolder(@NonNull ViewHolder holder, @NonNull SimpleText simpleText) {
+    holder.simpleText.setText(simpleText.text);
+  }
+
+
+  static class ViewHolder extends ContentHolder {
+
+    private TextView simpleText;
+
+
+    ViewHolder(View itemView) {
+      super(itemView);
+      simpleText = itemView.findViewById(R.id.simple_text);
     }
-
-
-    @Override
-    protected void onBindContentViewHolder(@NonNull ViewHolder holder, @NonNull SimpleText simpleText) {
-        holder.simpleText.setText(simpleText.text);
-    }
-
-
-    static class ViewHolder extends ContentHolder {
-
-        private TextView simpleText;
-
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            simpleText = itemView.findViewById(R.id.simple_text);
-        }
-    }
+  }
 }
