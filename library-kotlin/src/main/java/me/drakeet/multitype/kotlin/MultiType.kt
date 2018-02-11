@@ -16,9 +16,8 @@
 
 package me.drakeet.multitype.kotlin
 
-import me.drakeet.multitype.ItemViewBinder
-import me.drakeet.multitype.MultiTypeAdapter
-import me.drakeet.multitype.OneToManyFlow
+import android.support.annotation.CheckResult
+import me.drakeet.multitype.*
 import kotlin.reflect.KClass
 
 /**
@@ -29,7 +28,22 @@ fun <T : Any> MultiTypeAdapter.register(clazz: KClass<out T>, binder: ItemViewBi
 }
 
 
+@CheckResult
 fun <T : Any> MultiTypeAdapter.register(clazz: KClass<out T>): OneToManyFlow<T> {
   return register(clazz.java)
 }
 
+
+fun <T : Any> TypePool.register(clazz: KClass<out T>, binder: ItemViewBinder<T, *>, linker: Linker<T>) {
+  register(clazz.java, binder, linker)
+}
+
+
+fun <T : Any> TypePool.unregister(clazz: KClass<out T>): Boolean {
+  return unregister(clazz.java)
+}
+
+
+fun <T : Any> TypePool.firstIndexOf(clazz: KClass<out T>): Int {
+  return firstIndexOf(clazz.java)
+}
