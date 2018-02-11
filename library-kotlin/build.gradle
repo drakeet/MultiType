@@ -15,9 +15,8 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'jacoco'
+apply plugin: 'kotlin-android'
 apply from: 'gradle-mvn-push.gradle'
-apply from: 'checkstyle.gradle'
 
 android {
   compileSdkVersion gradle.compileSdkVersion
@@ -39,6 +38,10 @@ android {
 
 dependencies {
   testImplementation 'junit:junit:4.12'
-  implementation 'com.android.support:support-annotations:' + gradle.supportLibraryVersion
-  implementation 'com.android.support:recyclerview-v7:' + gradle.supportLibraryVersion
+  compileOnly 'me.drakeet.multitype:multitype:3.4.2'
+  compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+repositories {
+  mavenCentral()
 }

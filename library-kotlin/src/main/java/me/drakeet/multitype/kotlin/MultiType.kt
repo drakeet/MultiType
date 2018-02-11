@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
-include ':sample'
-include ':library'
-include ':library-kotlin'
+package me.drakeet.multitype.kotlin
 
-gradle.ext.supportLibraryVersion = '27.0.2'
-gradle.ext.buildToolsVersion = '27.0.3'
-gradle.ext.versionCode = 342
-gradle.ext.versionName = "3.4.2"
-gradle.ext.compileSdkVersion = 27
-gradle.ext.minSdkVersion = 14
-gradle.ext.targetSdkVersion = 27
+import me.drakeet.multitype.ItemViewBinder
+import me.drakeet.multitype.MultiTypeAdapter
+import me.drakeet.multitype.OneToManyFlow
+import kotlin.reflect.KClass
+
+/**
+ * @author drakeet
+ */
+fun <T : Any> MultiTypeAdapter.register(clazz: KClass<out T>, binder: ItemViewBinder<T, *>) {
+  register(clazz.java, binder)
+}
+
+
+fun <T : Any> MultiTypeAdapter.register(clazz: KClass<out T>): OneToManyFlow<T> {
+  return register(clazz.java)
+}
+

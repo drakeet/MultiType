@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-include ':sample'
-include ':library'
-include ':library-kotlin'
+package me.drakeet.multitype.kotlin;
 
-gradle.ext.supportLibraryVersion = '27.0.2'
-gradle.ext.buildToolsVersion = '27.0.3'
-gradle.ext.versionCode = 342
-gradle.ext.versionName = "3.4.2"
-gradle.ext.compileSdkVersion = 27
-gradle.ext.minSdkVersion = 14
-gradle.ext.targetSdkVersion = 27
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+public class ExampleUnitTest {
+  @Test
+  public void addition_isCorrect() {
+    assertEquals(4, 2 + 2);
+  }
+}
