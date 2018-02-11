@@ -28,6 +28,9 @@ import me.drakeet.multitype.sample.R;
 import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
 
+/**
+ * @author drakeet
+ */
 public class OneDataToManyActivity extends MenuBaseActivity {
 
   @VisibleForTesting RecyclerView recyclerView;

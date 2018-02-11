@@ -19,7 +19,6 @@ apply plugin: 'jacoco'
 apply from: 'gradle-mvn-push.gradle'
 apply from: 'checkstyle.gradle'
 
-
 android {
   compileSdkVersion gradle.compileSdkVersion
   buildToolsVersion gradle.buildToolsVersion

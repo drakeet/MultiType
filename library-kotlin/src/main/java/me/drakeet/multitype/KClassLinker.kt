@@ -14,14 +14,24 @@
  * limitations under the License.
  */
 
-include ':sample'
-include ':library'
-include ':library-kotlin'
+package me.drakeet.multitype
 
-gradle.ext.supportLibraryVersion = '27.0.2'
-gradle.ext.buildToolsVersion = '27.0.3'
-gradle.ext.versionCode = 342
-gradle.ext.versionName = "3.4.2"
-gradle.ext.compileSdkVersion = 27
-gradle.ext.minSdkVersion = 14
-gradle.ext.targetSdkVersion = 27
+import kotlin.reflect.KClass
+
+/**
+ * An interface to link the items and binders by the classes of binders.
+ *
+ * @author drakeet
+ */
+interface KClassLinker<T> {
+
+  /**
+   * Returns the class of your registered binders for your item.
+   *
+   * @param position The position in items
+   * @param t The item
+   * @return The index of your registered binders
+   * @see OneToManyEndpoint.withClassLinker
+   */
+  fun index(position: Int, t: T): KClass<out ItemViewBinder<T, *>>
+}

@@ -14,28 +14,27 @@
  * limitations under the License.
  */
 
-buildscript {
-  ext.kotlin_version = '1.2.21'
-  repositories {
-    google()
-    jcenter()
-  }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.1'
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-  }
-}
+package me.drakeet.multitype
 
-allprojects {
-  repositories {
-    google()
-    jcenter()
-  }
-  task javadoc(type: Javadoc) {
-    options.encoding = "utf-8"
-  }
-}
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
-task clean(type: Delete) {
-  delete rootProject.buildDir
+/**
+ * @author drakeet
+ */
+class StringViewBinder : ItemViewBinder<String, StringViewBinder.ViewHolder>() {
+
+  override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {
+    val root = inflater.inflate(android.R.layout.test_list_item, parent, false)
+    return ViewHolder(root)
+  }
+
+
+  override fun onBindViewHolder(holder: ViewHolder, string: String) {
+  }
+
+
+  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
