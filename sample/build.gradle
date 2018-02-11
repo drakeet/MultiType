@@ -15,6 +15,8 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
   compileSdkVersion gradle.compileSdkVersion
@@ -40,7 +42,9 @@ android {
 }
 
 dependencies {
-  implementation project(':library')
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation 'me.drakeet.multitype:multitype:3.4.2'
+  implementation project(':library-kotlin')
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
   androidTestImplementation 'com.android.support:support-annotations:' + gradle.supportLibraryVersion
   implementation 'com.android.support:appcompat-v7:' + gradle.supportLibraryVersion

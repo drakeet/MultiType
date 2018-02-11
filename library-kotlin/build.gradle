@@ -37,12 +37,12 @@ android {
 }
 
 dependencies {
-  api 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin_version
+  implementation 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin_version
   implementation 'me.drakeet.multitype:multitype:3.4.2'
 
   testImplementation 'junit:junit:4.12'
   testImplementation 'me.drakeet.multitype:multitype:3.4.2'
-  testImplementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlin_version
+  testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin_version
   testImplementation 'com.android.support:recyclerview-v7:' + gradle.supportLibraryVersion
 }
 

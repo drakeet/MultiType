@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.kotlin
+package me.drakeet.multitype
 
 import android.support.annotation.CheckResult
-import me.drakeet.multitype.*
 import kotlin.reflect.KClass
 
 /**
@@ -25,6 +24,11 @@ import kotlin.reflect.KClass
  */
 fun <T : Any> MultiTypeAdapter.register(clazz: KClass<out T>, binder: ItemViewBinder<T, *>) {
   register(clazz.java, binder)
+}
+
+
+inline fun <reified T : Any> MultiTypeAdapter.register(binder: ItemViewBinder<T, *>) {
+  register(T::class.java, binder)
 }
 
 
@@ -46,4 +50,14 @@ fun <T : Any> TypePool.unregister(clazz: KClass<out T>): Boolean {
 
 fun <T : Any> TypePool.firstIndexOf(clazz: KClass<out T>): Int {
   return firstIndexOf(clazz.java)
+}
+
+
+fun <T> OneToManyEndpoint<T>.withKClassLinker(classLinker: KClassLinker<T>) {
+  withClassLinker { position, t -> classLinker.index(position, t).java }
+}
+
+
+fun <T> OneToManyEndpoint<T>.withKClassLinker(classLinker: (position: Int, t: T) -> KClass<out ItemViewBinder<T, *>>) {
+  withClassLinker { position, t -> classLinker(position, t).java }
 }

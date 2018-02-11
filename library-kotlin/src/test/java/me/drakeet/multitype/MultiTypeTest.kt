@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.kotlin
+package me.drakeet.multitype
 
 import junit.framework.Assert
-import me.drakeet.multitype.Linker
-import me.drakeet.multitype.MultiTypeAdapter
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -32,6 +30,7 @@ class MultiTypeTest {
   private val adapter = MultiTypeAdapter()
   private val simpleLinker = Linker<String> { _, _ -> 0 }
 
+
   @Test
   fun shouldEqualToRegisteredKClass() {
     adapter.register(String::class, StringViewBinder())
@@ -40,10 +39,17 @@ class MultiTypeTest {
 
 
   @Test
+  fun shouldEqualToRegisteredKClass_Reified() {
+    adapter.register(StringViewBinder())
+    Assert.assertEquals(adapter.typePool.getClass(0), String::class.java)
+  }
+
+
+  @Test
   fun shouldEqualToRegisteredOneToManyKClass() {
     adapter.register(String::class)
         .to(StringViewBinder())
-        .withLinker { _, _ -> 0 }
+        .withLinker(simpleLinker)
     Assert.assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
 

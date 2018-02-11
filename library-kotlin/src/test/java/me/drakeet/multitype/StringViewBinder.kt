@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.kotlin
+package me.drakeet.multitype
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import me.drakeet.multitype.ItemViewBinder
 
 /**
  * @author drakeet
