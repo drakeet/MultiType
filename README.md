@@ -30,12 +30,10 @@ dependencies {
 
 _Note: MultiType does not support RecyclerView below version 23.0.0._
 
-Extension for Kotlin:
+Optional: Extension for Kotlin:
 
 ```groovy
-dependencies {
-    implementation 'me.drakeet.multitype:multitype-kotlin:3.4.2-beta1'
-}
+implementation 'me.drakeet.multitype:multitype-kotlin:3.4.2-beta1'
 ```
 
 ## Usage
