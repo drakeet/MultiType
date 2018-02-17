@@ -16,7 +16,7 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: 'gradle-mvn-push.gradle'
+apply from: '../gradle-mvn-push.gradle'
 
 android {
   compileSdkVersion gradle.compileSdkVersion
@@ -24,9 +24,6 @@ android {
 
   defaultConfig {
     minSdkVersion gradle.minSdkVersion
-    targetSdkVersion gradle.targetSdkVersion
-    versionCode gradle.versionCode
-    versionName gradle.versionName
   }
 
   // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
@@ -40,8 +37,6 @@ dependencies {
   api project(':library')
 
   testImplementation 'junit:junit:4.12'
-  testImplementation 'me.drakeet.multitype:multitype:3.4.2'
-  testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin_version
   testImplementation 'com.android.support:recyclerview-v7:' + gradle.supportLibraryVersion
 }
 

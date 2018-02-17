@@ -16,7 +16,7 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'jacoco'
-apply from: 'gradle-mvn-push.gradle'
+apply from: '../gradle-mvn-push.gradle'
 apply from: 'checkstyle.gradle'
 
 android {
@@ -25,9 +25,6 @@ android {
 
   defaultConfig {
     minSdkVersion gradle.minSdkVersion
-    targetSdkVersion gradle.targetSdkVersion
-    versionCode gradle.versionCode
-    versionName gradle.versionName
   }
 
   // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
@@ -38,6 +35,6 @@ android {
 
 dependencies {
   testImplementation 'junit:junit:4.12'
-  implementation 'com.android.support:support-annotations:' + gradle.supportLibraryVersion
-  implementation 'com.android.support:recyclerview-v7:' + gradle.supportLibraryVersion
+  api 'com.android.support:support-annotations:' + gradle.supportLibraryVersion
+  api 'com.android.support:recyclerview-v7:' + gradle.supportLibraryVersion
 }
