@@ -101,7 +101,6 @@ public class SampleActivity extends AppCompatActivity {
         adapter.register(RichItem.class, new RichItemViewBinder());
         recyclerView.setAdapter(adapter);
 
-        /* Mock the data */
         TextItem textItem = new TextItem("world");
         ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
         RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
@@ -158,13 +157,25 @@ protected void onViewAttachedToWindow(@NonNull VH holder)
 protected void onViewDetachedFromWindow(@NonNull VH holder)
 ```
 
+**Kotlin**:  
+
+MultiTypeAdapter  
+- Added `register(binder: ItemViewBinder<T, *>)`
+- Added `register(clazz: KClass<out T>, binder: ItemViewBinder<T, *>)`
+- Added `register(clazz: KClass<out T>): OneToManyFlow<T>`
+
+TypePool  
+- Added `register(clazz: KClass<out T>, binder: ItemViewBinder<T, *>, linker: Linker<T>)`
+- Added `unregister(clazz: KClass<out T>)`
+- Added `firstIndexOf(clazz: KClass<out T>)`
+
+OneToManyEndpoint  
+- Added `withKClassLinker(classLinker: KClassLinker<T>)`
+- Added `withKClassLinker(classLinker: (position: Int, t: T) -> KClass<out ItemViewBinder<T, *>>)`
+
 ## Wiki
 
 <a href="https://github.com/drakeet/MultiType/wiki/Android-MultiType-3.0"><img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg" width=640/></a>
-
-## Change Log
-
-https://github.com/drakeet/MultiType/releases
 
 ## Android Studio Plugin
 
@@ -173,6 +184,10 @@ https://github.com/drakeet/MultiType/releases
  An intellij idea plugin for Android to generate `MultiType` `Item` and `ItemViewBinder` easily.
 
 <img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f8yj0sejd6j21340ben1s.jpg" width=640/>
+
+## Change Log
+
+https://github.com/drakeet/MultiType/releases
 
 ## Sample screenshots
 
