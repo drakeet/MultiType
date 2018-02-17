@@ -9,13 +9,13 @@ English Version | [《Android 复杂的列表视图新写法 · 详解篇》](ht
 
 Previously, when we need to develop a complex RecyclerView / ListView, it is a difficult and 
 troublesome work. We should override the `getItemViewType()` of `RecyclerView.Adapter` , add some 
-types, and create some `ViewHolder`s relating to those types. The process is cumbersome.
+types, and create some `ViewHolder`s relating to those types. 
 
-Once we need to add a new item type, we have to go to the original adapter and modify some old codes, 
-and adapter classes will be bulkier.
+Once we need to add a new item type, we have to go to the original adapter file and modify some old codes, 
+and these adapter classes will get more complicated.
 
 Today, I created a new intuitive and flexible way to easily create complex RecyclerViews, 
-**with the MultiType library, we could insert a new item type without changing the old adapter codes 
+**with the MultiType library, we could insert a new item type without changing any old adapter codes 
 and make them more readable.**
 
 ## Getting started
