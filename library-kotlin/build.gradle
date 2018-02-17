@@ -36,8 +36,8 @@ android {
 }
 
 dependencies {
-  implementation 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin_version
-  implementation 'me.drakeet.multitype:multitype:3.4.2'
+  api 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin_version
+  api project(':library')
 
   testImplementation 'junit:junit:4.12'
   testImplementation 'me.drakeet.multitype:multitype:3.4.2'
