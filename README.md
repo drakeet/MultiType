@@ -4,7 +4,7 @@ An Android library to create multiple item types list views easily and flexibly.
 [![Build Status](https://travis-ci.org/drakeet/MultiType.svg?branch=3.x)](https://travis-ci.org/drakeet/MultiType)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
 ![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
-![multitype-kotlin](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype-kotlin.svg)
+![jetbrains-plugin](hhttps://img.shields.io/jetbrains/plugin/v/9202-a8translate.svg)
 
 English Version | [《Android 复杂的列表视图新写法 · 详解篇》](https://github.com/drakeet/Effective-MultiType/blob/master/README.md)
 
