@@ -24,7 +24,7 @@ In your `build.gradle`:
 
 ```groovy
 dependencies {
-    implementation 'me.drakeet.multitype:multitype:3.4.3'
+    implementation 'me.drakeet.multitype:multitype:3.4.4'
 }
 ```
 
@@ -33,7 +33,7 @@ _Note: MultiType does not support RecyclerView below version 23.0.0._
 Optional: Extension for Kotlin:
 
 ```groovy
-implementation 'me.drakeet.multitype:multitype-kotlin:3.4.3'
+implementation 'me.drakeet.multitype:multitype-kotlin:3.4.4'
 ```
 
 ## Usage
