@@ -76,6 +76,7 @@ public class BilibiliActivity extends MenuBaseActivity {
     adapter.register(Category.class, new CategoryItemViewBinder());
 
     adapter.register(Post.class, new PostViewBinder());
+//    adapter.register(Post.class, new PostViewBinder2(R.layout.item_post));
     adapter.register(PostList.class, new HorizontalPostsViewBinder());
 
     RecyclerView recyclerView = findViewById(R.id.list);
