@@ -19,7 +19,6 @@ package me.drakeet.multitype.sample.multi_selectable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import java.util.TreeSet;
@@ -88,16 +87,14 @@ public class MultiSelectableActivity extends MenuBaseActivity {
 
   private void setupFAB() {
     fab = findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        StringBuilder content = new StringBuilder();
-        for (Integer number : selectedSet) {
-          content.append(number).append(" ");
-        }
-        Toast.makeText(v.getContext(),
-            "Selected items: " + content, Toast.LENGTH_SHORT)
-            .show();
+    fab.setOnClickListener(v -> {
+      StringBuilder content = new StringBuilder();
+      for (Integer number : selectedSet) {
+        content.append(number).append(" ");
       }
+      Toast.makeText(v.getContext(),
+          "Selected items: " + content, Toast.LENGTH_SHORT)
+          .show();
     });
   }
 }

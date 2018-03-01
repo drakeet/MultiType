@@ -32,8 +32,7 @@ public class CategoryItemViewBinder extends ItemViewBinder<Category, CategoryIte
 
   @Override
   protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-    View view = inflater.inflate(R.layout.item_category, parent, false);
-    return new ViewHolder(view);
+    return new ViewHolder(inflater.inflate(R.layout.item_category, parent, false));
   }
 
 

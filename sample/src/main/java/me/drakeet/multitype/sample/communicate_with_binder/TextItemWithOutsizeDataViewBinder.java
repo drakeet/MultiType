@@ -30,8 +30,7 @@ public class TextItemWithOutsizeDataViewBinder
 
   @Override
   protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-    View root = inflater.inflate(R.layout.item_text, parent, false);
-    return new ViewHolder(root);
+    return new ViewHolder(inflater.inflate(R.layout.item_text, parent, false));
   }
 
 
@@ -50,13 +49,9 @@ public class TextItemWithOutsizeDataViewBinder
     ViewHolder(View itemView) {
       super(itemView);
       textView = itemView.findViewById(R.id.text);
-      textView.setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View v) {
-          Toast.makeText(v.getContext(),
-              "item's value: " + value + ", aValueFromOutside: " + aValueFromOutside,
-              Toast.LENGTH_SHORT).show();
-        }
-      });
+      textView.setOnClickListener(v -> Toast.makeText(v.getContext(),
+          "item's value: " + value + ", aValueFromOutside: " + aValueFromOutside, Toast.LENGTH_SHORT).show()
+      );
     }
 
 

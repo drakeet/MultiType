@@ -35,8 +35,7 @@ class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.
 
   @Override
   protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-    View root = inflater.inflate(R.layout.item_heavy, parent, false);
-    return new ViewHolder(root);
+    return new ViewHolder(inflater.inflate(R.layout.item_heavy, parent, false));
   }
 
 
@@ -58,8 +57,7 @@ class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.
   }
 
 
-  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
-      View.OnLongClickListener {
+  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     TextView firstText;
     TextView endText;

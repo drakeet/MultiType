@@ -32,8 +32,7 @@ public class SimpleTextViewBinder extends WeiboFrameBinder<SimpleText, SimpleTex
 
   @Override
   protected ContentHolder onCreateContentViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-    View contentView = inflater.inflate(R.layout.item_weibo_simple_text, parent, false);
-    return new ViewHolder(contentView);
+    return new ViewHolder(inflater.inflate(R.layout.item_weibo_simple_text, parent, false));
   }
 
 

@@ -41,16 +41,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
   }
 
 
-  @Override
-  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.item_horizontal_post, parent, false);
+  @NonNull @Override
+  public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_horizontal_post, parent, false);
     return new ViewHolder(view);
   }
 
 
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Post post = posts.get(position);
     holder.cover.setImageResource(post.coverResId);
     holder.title.setText(post.title);
@@ -73,12 +72,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
       super(itemView);
       cover = itemView.findViewById(R.id.cover);
       title = itemView.findViewById(R.id.title);
-      itemView.setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View v) {
-          Toast.makeText(v.getContext(), String.valueOf(getAdapterPosition()),
-              Toast.LENGTH_SHORT).show();
-        }
-      });
+      itemView.setOnClickListener(v -> Toast.makeText(v.getContext(), String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show());
     }
   }
 }

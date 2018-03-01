@@ -94,8 +94,7 @@ public class MoreApisPlayground extends MenuBaseActivity {
   }
 
 
-  private class ObservableTextItemViewBinder
-      extends ItemViewBinder<TextItem, ObservableTextItemViewBinder.TextHolder> {
+  private class ObservableTextItemViewBinder extends ItemViewBinder<TextItem, ObservableTextItemViewBinder.TextHolder> {
 
     class TextHolder extends RecyclerView.ViewHolder {
 

@@ -30,8 +30,7 @@ import me.drakeet.multitype.sample.R;
 /**
  * @author drakeet
  */
-public class HorizontalPostsViewBinder
-    extends ItemViewBinder<PostList, HorizontalPostsViewBinder.ViewHolder> {
+public class HorizontalPostsViewBinder extends ItemViewBinder<PostList, HorizontalPostsViewBinder.ViewHolder> {
 
   @Override
   protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {

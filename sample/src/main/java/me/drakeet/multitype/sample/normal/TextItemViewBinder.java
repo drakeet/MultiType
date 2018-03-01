@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype.sample.normal;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,7 +55,7 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
   }
 
 
-  @Override
+  @Override @SuppressLint("SetTextI18n")
   protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
     holder.text.setText("hello: " + textItem.text);
 
@@ -65,8 +66,7 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
 
   private void setAnimation(@NonNull View viewToAnimate, int position) {
     if (position > lastShownAnimationPosition) {
-      Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(),
-          android.R.anim.slide_in_left);
+      Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(), android.R.anim.slide_in_left);
       viewToAnimate.startAnimation(animation);
       lastShownAnimationPosition = position;
     }

@@ -29,13 +29,11 @@ import me.drakeet.multitype.sample.weibo.WeiboFrameBinder;
 /**
  * @author drakeet
  */
-public class SimpleImageViewBinder
-    extends WeiboFrameBinder<SimpleImage, SimpleImageViewBinder.ViewHolder> {
+public class SimpleImageViewBinder extends WeiboFrameBinder<SimpleImage, SimpleImageViewBinder.ViewHolder> {
 
   @Override
   protected ContentHolder onCreateContentViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-    View contentView = inflater.inflate(R.layout.item_weibo_simple_image, parent, false);
-    return new ViewHolder(contentView);
+    return new ViewHolder(inflater.inflate(R.layout.item_weibo_simple_image, parent, false));
   }
 
 

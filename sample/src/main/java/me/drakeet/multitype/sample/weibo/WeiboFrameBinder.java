@@ -33,15 +33,12 @@ import static android.widget.Toast.LENGTH_SHORT;
 /**
  * @author drakeet
  */
-public abstract class WeiboFrameBinder
-    <Content extends WeiboContent, SubViewHolder extends ContentHolder>
+public abstract class WeiboFrameBinder<Content extends WeiboContent, SubViewHolder extends ContentHolder>
     extends ItemViewBinder<Weibo, WeiboFrameBinder.FrameHolder> {
 
-  protected abstract ContentHolder onCreateContentViewHolder(
-      @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+  protected abstract ContentHolder onCreateContentViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
-  protected abstract void onBindContentViewHolder(
-      @NonNull SubViewHolder holder, @NonNull Content content);
+  protected abstract void onBindContentViewHolder(@NonNull SubViewHolder holder, @NonNull Content content);
 
 
   @Override
@@ -72,11 +69,7 @@ public abstract class WeiboFrameBinder
     private ContentHolder subViewHolder;
 
 
-    FrameHolder(
-        @NonNull View itemView,
-        @NonNull final ContentHolder subViewHolder,
-        @NonNull final WeiboFrameBinder binder) {
-
+    FrameHolder(@NonNull View itemView, @NonNull final ContentHolder subViewHolder, @NonNull final WeiboFrameBinder binder) {
       super(itemView);
       avatar = (ImageView) findViewById(R.id.avatar);
       username = (TextView) findViewById(R.id.username);
@@ -87,17 +80,10 @@ public abstract class WeiboFrameBinder
       this.subViewHolder = subViewHolder;
       this.subViewHolder.frameHolder = this;
 
-      itemView.setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View v) {
-          Toast.makeText(v.getContext(),
-              "Position: " + getAdapterPosition(), LENGTH_SHORT).show();
-        }
-      });
-      close.setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View v) {
-          binder.getAdapter().getItems().remove(getAdapterPosition());
-          binder.getAdapter().notifyItemRemoved(getAdapterPosition());
-        }
+      itemView.setOnClickListener(v -> Toast.makeText(v.getContext(), "Position: " + getAdapterPosition(), LENGTH_SHORT).show());
+      close.setOnClickListener(v -> {
+        binder.getAdapter().getItems().remove(getAdapterPosition());
+        binder.getAdapter().notifyItemRemoved(getAdapterPosition());
       });
     }
 

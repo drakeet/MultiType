@@ -35,8 +35,6 @@ final class WeiboJsonParser {
       .registerTypeAdapter(WeiboContent.class, new WeiboContentDeserializer())
       .create();
 
-  static final Gson SIMPLE_DEFAULT_GSON = new Gson();
-
 
   static List<Weibo> fromJson(@NonNull String json) {
     return GSON.fromJson(json, new TypeToken<ArrayList<Weibo>>() {}.getType());

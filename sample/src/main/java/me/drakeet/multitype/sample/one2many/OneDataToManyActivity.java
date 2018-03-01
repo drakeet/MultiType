@@ -67,9 +67,7 @@ public class OneDataToManyActivity extends MenuBaseActivity {
     List<Data> dataList = getDataFromService();
     adapter.setItems(dataList);
     adapter.notifyDataSetChanged();
-    assertAllRegistered(adapter, dataList);
     recyclerView.setAdapter(adapter);
-    assertHasTheSameAdapter(recyclerView, adapter);
   }
 
 
