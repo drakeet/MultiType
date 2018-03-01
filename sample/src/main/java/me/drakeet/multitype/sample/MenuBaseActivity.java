@@ -1,13 +1,14 @@
 package me.drakeet.multitype.sample;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import me.drakeet.multitype.sample.bilibili.BilibiliActivity;
-import me.drakeet.multitype.sample.communicate_with_binder.SimpleActivity;
-import me.drakeet.multitype.sample.more_apis.MoreApisPlayground;
-import me.drakeet.multitype.sample.multi_selectable.MultiSelectableActivity;
+import me.drakeet.multitype.sample.communicateWithBinder.SimpleActivity;
+import me.drakeet.multitype.sample.moreApis.MoreApisPlayground;
+import me.drakeet.multitype.sample.multiSelectable.MultiSelectableActivity;
 import me.drakeet.multitype.sample.normal.NormalActivity;
 import me.drakeet.multitype.sample.one2many.OneDataToManyActivity;
 import me.drakeet.multitype.sample.payload.TestPayloadActivity;
@@ -16,6 +17,7 @@ import me.drakeet.multitype.sample.weibo.WeiboActivity;
 /**
  * @author drakeet
  */
+@SuppressLint("Registered")
 public class MenuBaseActivity extends AppCompatActivity {
 
   @Override

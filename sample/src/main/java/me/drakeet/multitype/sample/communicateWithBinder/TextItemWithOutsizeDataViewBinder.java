@@ -1,4 +1,4 @@
-package me.drakeet.multitype.sample.communicate_with_binder;
+package me.drakeet.multitype.sample.communicateWithBinder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

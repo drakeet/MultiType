@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.multi_selectable;
+package me.drakeet.multitype.sample.multiSelectable;
 
 /**
  * @author drakeet

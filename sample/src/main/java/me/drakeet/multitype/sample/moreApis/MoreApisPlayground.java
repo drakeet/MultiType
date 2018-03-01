@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.more_apis;
+package me.drakeet.multitype.sample.moreApis;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

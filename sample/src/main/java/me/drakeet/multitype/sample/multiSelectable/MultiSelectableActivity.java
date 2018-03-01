@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.multi_selectable;
+package me.drakeet.multitype.sample.multiSelectable;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
