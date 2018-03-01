@@ -82,8 +82,11 @@ public abstract class WeiboFrameBinder<Content extends WeiboContent, SubViewHold
 
       itemView.setOnClickListener(v -> Toast.makeText(v.getContext(), "Position: " + getAdapterPosition(), LENGTH_SHORT).show());
       close.setOnClickListener(v -> {
-        binder.getAdapter().getItems().remove(getAdapterPosition());
-        binder.getAdapter().notifyItemRemoved(getAdapterPosition());
+        int position = getAdapterPosition();
+        if (position != RecyclerView.NO_POSITION) {
+          binder.getAdapter().getItems().remove(position);
+          binder.getAdapter().notifyItemRemoved(position);
+        }
       });
     }
 
