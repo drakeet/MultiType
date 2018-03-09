@@ -231,13 +231,13 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
    * instead.
    */
   @Override @Deprecated
-  public final void onBindViewHolder(ViewHolder holder, int position) {
+  public final void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     onBindViewHolder(holder, position, Collections.emptyList());
   }
 
 
   @Override @SuppressWarnings("unchecked")
-  public final void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
+  public final void onBindViewHolder(ViewHolder holder, int position, @NonNull List<Object> payloads) {
     Object item = items.get(position);
     ItemViewBinder binder = typePool.getItemViewBinder(holder.getItemViewType());
     binder.onBindViewHolder(holder, item, payloads);
