@@ -6,8 +6,6 @@ An Android library to create multiple item types list views easily and flexibly.
 ![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
 ![jetbrains-plugin](https://img.shields.io/jetbrains/plugin/v/9202-a8translate.svg)
 
-English Version | [《Android 复杂的列表视图新写法 · 详解篇》](https://github.com/drakeet/Effective-MultiType/blob/master/README.md)
-
 Previously, when we need to develop a complex RecyclerView / ListView, it is a difficult and 
 troublesome work. We should override the `getItemViewType()` of `RecyclerView.Adapter` , add some 
 types, and create some `ViewHolder`s relating to those types. 
