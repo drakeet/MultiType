@@ -37,6 +37,8 @@
 
         <activity android:name=".normal.NormalActivity"/>
 
+        <activity android:name=".loadmore.LoadMoreActivity"/>
+
         <activity android:name=".weibo.WeiboActivity"/>
 
         <activity android:name=".communicateWithBinder.SimpleActivity"/>

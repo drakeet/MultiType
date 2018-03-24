@@ -203,7 +203,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
   @Override
   public final int getItemViewType(int position) {
-    Object item = items.get(position);
+    Object item = getItem(position);
     return indexInTypesOf(position, item);
   }
 
@@ -238,14 +238,14 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
   @Override @SuppressWarnings("unchecked")
   public final void onBindViewHolder(ViewHolder holder, int position, @NonNull List<Object> payloads) {
-    Object item = items.get(position);
+    Object item = getItem(position);
     ItemViewBinder binder = typePool.getItemViewBinder(holder.getItemViewType());
     binder.onBindViewHolder(holder, item, payloads);
   }
 
 
   @Override
-  public final int getItemCount() {
+  public int getItemCount() {
     return items.size();
   }
 
@@ -261,7 +261,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
    */
   @Override @SuppressWarnings("unchecked")
   public final long getItemId(int position) {
-    Object item = items.get(position);
+    Object item = getItem(position);
     int itemViewType = getItemViewType(position);
     ItemViewBinder binder = typePool.getItemViewBinder(itemViewType);
     return binder.getItemId(item);
@@ -359,5 +359,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
   private void registerWithoutChecking(@NonNull Class clazz, @NonNull ItemViewBinder binder, @NonNull Linker linker) {
     checkAndRemoveAllTypesIfNeeded(clazz);
     register(clazz, binder, linker);
+  }
+
+  public Object getItem(int position){
+    return items.get(position);
   }
 }
