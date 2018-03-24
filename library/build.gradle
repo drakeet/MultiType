@@ -17,7 +17,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'jacoco'
 apply from: '../gradle-mvn-push.gradle'
-apply from: 'checkstyle.gradle'
+//apply from: 'checkstyle.gradle'
 
 android {
   compileSdkVersion gradle.compileSdkVersion
