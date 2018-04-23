@@ -18,7 +18,7 @@ include ':sample'
 include ':library'
 include ':library-kotlin'
 
-gradle.ext.supportLibraryVersion = '27.1.0'
+gradle.ext.supportLibraryVersion = '27.1.1'
 gradle.ext.buildToolsVersion = '27.0.3'
 gradle.ext.versionCode = 344
 gradle.ext.versionName = "3.4.4"
