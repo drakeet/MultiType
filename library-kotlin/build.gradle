@@ -33,8 +33,8 @@ android {
 }
 
 dependencies {
-  api 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin_version
-  api project(':library')
+  compileOnly 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlin_version
+  compileOnly project(':library')
 
   testImplementation 'junit:junit:4.12'
   testImplementation 'com.android.support:recyclerview-v7:' + gradle.supportLibraryVersion
