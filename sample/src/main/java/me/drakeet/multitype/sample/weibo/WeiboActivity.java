@@ -48,18 +48,18 @@ public class WeiboActivity extends MenuBaseActivity {
           "        },\n" +
           "        \"createTime\":\"Just now\",\n" +
           "        \"user\":{\n" +
-          "            \"avatar\":2130903040,\n" +
+          "            \"avatar\":$avatar,\n" +
           "            \"name\":\"drakeet\"\n" +
           "        }\n" +
           "    },\n" +
           "    {\n" +
           "        \"content\":{\n" +
-          "            \"resId\":2130837591,\n" +
+          "            \"resId\":$content,\n" +
           "            \"content_type\":\"simple_image\"\n" +
           "        },\n" +
           "        \"createTime\":\"Just now(JSON_FROM_SERVICE)\",\n" +
           "        \"user\":{\n" +
-          "            \"avatar\":2130903040,\n" +
+          "            \"avatar\":$avatar,\n" +
           "            \"name\":\"drakeet\"\n" +
           "        }\n" +
           "    }\n" +
@@ -91,7 +91,7 @@ public class WeiboActivity extends MenuBaseActivity {
 
     items = new Items();
 
-    User user = new User("drakeet", R.mipmap.avatar);
+    User user = new User("drakeet", R.drawable.avatar_drakeet);
     SimpleText simpleText = new SimpleText("A simple text Weibo: Hello World.");
     SimpleImage simpleImage = new SimpleImage(R.drawable.img_10);
     for (int i = 0; i < 20; i++) {
@@ -108,7 +108,9 @@ public class WeiboActivity extends MenuBaseActivity {
 
 
   private void loadRemoteData() {
-    List<Weibo> weiboList = WeiboJsonParser.fromJson(JSON_FROM_SERVICE);
+    List<Weibo> weiboList = WeiboJsonParser.fromJson(JSON_FROM_SERVICE
+        .replace("$avatar", "" + R.drawable.avatar_drakeet)
+        .replace("$content", "" + R.drawable.img_00));
     // atomically
     items = new Items(items);
     items.addAll(0, weiboList);

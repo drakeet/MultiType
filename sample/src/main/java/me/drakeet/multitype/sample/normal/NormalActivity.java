@@ -47,7 +47,7 @@ public class NormalActivity extends MenuBaseActivity {
 
     TextItem textItem = new TextItem("world");
     ImageItem imageItem = new ImageItem(R.mipmap.ic_launcher);
-    RichItem richItem = new RichItem("小艾大人赛高", R.mipmap.avatar);
+    RichItem richItem = new RichItem("小艾大人赛高", R.drawable.img_11);
 
     items = new ArrayList<>();
     for (int i = 0; i < 20; i++) {
