@@ -184,13 +184,9 @@ OneToManyEndpoint
 
 Pages created with MultiType:
 
-<img src="https://i.loli.net/2018/06/05/5b16aa7d5968b.png" width="216" />
-<img src="https://i.loli.net/2018/06/05/5b16aa7d83aec.png" width="216" />
-<img src="https://i.loli.net/2018/06/05/5b16aa7fbbc87.png" width="216" />
+<img src="https://i.loli.net/2018/06/05/5b16aa7d5968b.png" width="216" /><img src="https://i.loli.net/2018/06/05/5b16aa7d83aec.png" width="216" /><img src="https://i.loli.net/2018/06/05/5b16aa7fbbc87.png" width="216" />
 
-<img src="https://i.loli.net/2018/06/05/5b16aa83af0f7.png" width="216" />
-<img src="https://i.loli.net/2018/06/05/5b16aa843e488.png" width="216" />
-<img src="https://i.loli.net/2018/06/05/5b16aa86c52e7.png" width="216" />
+<img src="https://i.loli.net/2018/06/05/5b16aa83af0f7.png" width="216" /><img src="https://i.loli.net/2018/06/05/5b16aa843e488.png" width="216" /><img src="https://i.loli.net/2018/06/05/5b16aa86c52e7.png" width="216" />
 
 <img src="https://i.loli.net/2017/10/20/59e95e4c78f5b.png" width=270/> <img src="https://i.loli.net/2017/10/20/59e95e4c8243c.png" width=270/>
 
