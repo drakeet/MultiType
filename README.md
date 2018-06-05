@@ -13,8 +13,6 @@ and these adapter classes will get more complicated.
 Today, I created a new intuitive and flexible way to easily create complex RecyclerViews, 
 **with the MultiType library, we could insert a new item type without changing any old adapter codes and make them more readable.**
 
-[Screenshots: Pages created with MultiType](#screenshots)
-
 ## Getting started
 
 In your `build.gradle`:
