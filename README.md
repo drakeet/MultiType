@@ -172,10 +172,6 @@ OneToManyEndpoint
 - Added `withKClassLinker(classLinker: KClassLinker<T>)`
 - Added `withKClassLinker(classLinker: (position: Int, t: T) -> KClass<out ItemViewBinder<T, *>>)`
 
-## Wiki
-
-<a href="https://github.com/drakeet/MultiType/wiki/Android-MultiType-3.0"><img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg" width=640/></a>
-
 ## Android Studio Plugin
 
 - **[drakeet/MultiTypeTemplates](https://github.com/drakeet/MultiTypeTemplates)**
@@ -184,17 +180,27 @@ OneToManyEndpoint
 
 <img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f8yj0sejd6j21340ben1s.jpg" width=640/>
 
+## Screenshots
+
+Pages created with MultiType:
+
+<img src="https://i.loli.net/2018/06/05/5b16aa7d5968b.png" width="216" />
+<img src="https://i.loli.net/2018/06/05/5b16aa7d83aec.png" width="216" />
+<img src="https://i.loli.net/2018/06/05/5b16aa7fbbc87.png" width="216" />
+
+<img src="https://i.loli.net/2018/06/05/5b16aa83af0f7.png" width="216" />
+<img src="https://i.loli.net/2018/06/05/5b16aa843e488.png" width="216" />
+<img src="https://i.loli.net/2018/06/05/5b16aa86c52e7.png" width="216" />
+
+<img src="https://i.loli.net/2017/10/20/59e95e4c78f5b.png" width=270/> <img src="https://i.loli.net/2017/10/20/59e95e4c8243c.png" width=270/>
+
+## Wiki
+
+<a href="https://github.com/drakeet/MultiType/wiki/Android-MultiType-3.0"><img src="http://ww4.sinaimg.cn/large/86e2ff85gw1f9iswm098sj21kw064mzk.jpg" width=640/></a>
+
 ## Change Log
 
 https://github.com/drakeet/MultiType/releases
-
-## Sample screenshots
-
-You could check the `sample` module for more details and after running it will look like:
-
-<img src="art/screenshot-normal.png" width=216/> <img src="art/screenshot-bilibili.png" width=216/> <img src="art/screenshot-multigrid.png" width=216/>
-
-<img src="http://ww3.sinaimg.cn/large/86e2ff85jw1f9a7tek74lj21401z414s.jpg" width=216/> <img src="http://ww1.sinaimg.cn/mw1024/86e2ff85jw1f9a7z4yqlkj21401z4n8r.jpg" width=216/>
 
 
 License
