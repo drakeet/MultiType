@@ -19,7 +19,6 @@ public class TestItemViewBinder extends ItemViewBinder<TestItem, TestItemViewBin
 
   @Override
   protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull TestItem testItem) {
-
   }
 
 
