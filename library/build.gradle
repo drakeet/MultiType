@@ -21,7 +21,6 @@ apply from: 'checkstyle.gradle'
 
 android {
   compileSdkVersion gradle.compileSdkVersion
-  buildToolsVersion gradle.buildToolsVersion
 
   defaultConfig {
     minSdkVersion gradle.minSdkVersion

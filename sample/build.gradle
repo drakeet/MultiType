@@ -20,7 +20,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
   compileSdkVersion gradle.compileSdkVersion
-  buildToolsVersion gradle.buildToolsVersion
   defaultConfig {
     applicationId "me.drakeet.multitype.sample"
     minSdkVersion gradle.minSdkVersion
