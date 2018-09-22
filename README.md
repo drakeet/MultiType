@@ -4,6 +4,7 @@ An Android library to create multiple item types list views easily and flexibly.
 [![Build Status](https://travis-ci.org/drakeet/MultiType.svg?branch=3.x)](https://travis-ci.org/drakeet/MultiType)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
 ![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
+![maven-central-ktx](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype-ktx.svg)
 ![jetbrains-plugin](https://img.shields.io/jetbrains/plugin/v/9202-a8translate.svg)
 
 Previously, when we need to develop a complex RecyclerView / ListView, it is a difficult and 
