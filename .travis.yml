@@ -3,15 +3,13 @@ jdk: oraclejdk8
 
 env:
   global:
-    - ANDROID_BUILD_TOOLS_VERSION=27.0.3
     - ANDROID_ABI=armeabi-v7a
 
 android:
   components:
     - tools
-    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
     - android-22
-    - android-27
+    - android-28
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
     - extra-android-support
