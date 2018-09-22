@@ -45,6 +45,7 @@ dependencies {
   implementation project(':library')
   implementation project(':library-ktx')
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+  androidTestImplementation 'androidx.test:rules:1.1.0-alpha4'
   androidTestImplementation "androidx.annotation:annotation:${gradle.androidXVersion}"
   implementation "androidx.appcompat:appcompat:${gradle.androidXVersion}"
   implementation "androidx.recyclerview:recyclerview:${gradle.androidXVersion}"

@@ -16,7 +16,8 @@
 
 package me.drakeet.multitype
 
-import junit.framework.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -34,14 +35,14 @@ class MultiTypeTest {
   @Test
   fun shouldEqualToRegisteredKClass() {
     adapter.register(String::class, StringViewBinder())
-    Assert.assertEquals(adapter.typePool.getClass(0), String::class.java)
+    assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
 
 
   @Test
   fun shouldEqualToRegisteredKClass_Reified() {
     adapter.register(StringViewBinder())
-    Assert.assertEquals(adapter.typePool.getClass(0), String::class.java)
+    assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
 
 
@@ -50,27 +51,27 @@ class MultiTypeTest {
     adapter.register(String::class)
         .to(StringViewBinder())
         .withLinker(simpleLinker)
-    Assert.assertEquals(adapter.typePool.getClass(0), String::class.java)
+    assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
 
 
   @Test
   fun shouldEqualToRegisteredKClass_TypePool() {
     adapter.typePool.register(String::class, StringViewBinder(), simpleLinker)
-    Assert.assertEquals(adapter.typePool.getClass(0), String::class.java)
+    assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
 
 
   @Test
   fun shouldUnregisterKClass_TypePool() {
     adapter.typePool.register(String::class, StringViewBinder(), simpleLinker)
-    Assert.assertTrue(adapter.typePool.unregister(String::class))
+    assertTrue(adapter.typePool.unregister(String::class))
   }
 
 
   @Test
   fun shouldEqualToRegisteredFirstKClass_TypePool() {
     adapter.typePool.register(String::class, StringViewBinder(), simpleLinker)
-    Assert.assertEquals(adapter.typePool.firstIndexOf(String::class), 0)
+    assertEquals(adapter.typePool.firstIndexOf(String::class), 0)
   }
 }

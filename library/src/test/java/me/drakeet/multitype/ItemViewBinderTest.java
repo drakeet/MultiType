@@ -63,7 +63,6 @@ public class ItemViewBinderTest {
 
 
   private static class TestItemViewBinder extends me.drakeet.multitype.TestItemViewBinder {
-
     private void notifyTestItemAdded() {
       assertNotNull(getAdapter().toString());
     }
