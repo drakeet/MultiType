@@ -16,7 +16,7 @@
 
 include ':sample'
 include ':library'
-include ':library-kotlin'
+include ':library-ktx'
 
 gradle.ext.androidXVersion = '1.0.0'
 gradle.ext.versionCode = 350
