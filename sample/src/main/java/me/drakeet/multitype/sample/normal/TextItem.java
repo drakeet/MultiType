@@ -16,7 +16,7 @@
 
 package me.drakeet.multitype.sample.normal;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.google.gson.Gson;
 import java.nio.charset.Charset;
 import me.drakeet.multitype.sample.Savable;

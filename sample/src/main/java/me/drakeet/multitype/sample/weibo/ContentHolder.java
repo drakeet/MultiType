@@ -16,7 +16,7 @@
 
 package me.drakeet.multitype.sample.weibo;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 
 /**

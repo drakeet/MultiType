@@ -16,7 +16,7 @@
 
 package me.drakeet.multitype
 
-import android.support.annotation.CheckResult
+import androidx.annotation.CheckResult
 import kotlin.reflect.KClass
 
 /**

@@ -18,9 +18,9 @@ include ':sample'
 include ':library'
 include ':library-kotlin'
 
-gradle.ext.supportLibraryVersion = '27.1.1'
-gradle.ext.versionCode = 344
-gradle.ext.versionName = "3.4.4"
-gradle.ext.compileSdkVersion = 27
+gradle.ext.androidXVersion = '1.0.0'
+gradle.ext.versionCode = 350
+gradle.ext.versionName = "3.5.0"
+gradle.ext.compileSdkVersion = 28
 gradle.ext.minSdkVersion = 14
-gradle.ext.targetSdkVersion = 27
+gradle.ext.targetSdkVersion = 28

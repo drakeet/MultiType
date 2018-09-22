@@ -13,7 +13,7 @@
         android:layout_height="@dimen/category_icon_size"
         android:src="@mipmap/ic_launcher"/>
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="@dimen/normal_space"
         android:layout_height="0dp"/>
 

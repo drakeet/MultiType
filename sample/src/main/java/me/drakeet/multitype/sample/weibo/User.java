@@ -16,8 +16,8 @@
 
 package me.drakeet.multitype.sample.weibo;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 
 /**
  * @author drakeet

@@ -16,7 +16,7 @@
 
 package me.drakeet.multitype.sample.weibo.content;
 
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import me.drakeet.multitype.sample.weibo.WeiboContent;
 
 /**

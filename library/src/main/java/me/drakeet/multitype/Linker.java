@@ -16,8 +16,8 @@
 
 package me.drakeet.multitype;
 
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 
 /**
  * An interface to link the items and binders by array integer index.

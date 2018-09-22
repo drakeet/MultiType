@@ -17,7 +17,7 @@
 package me.drakeet.multitype.sample.normal;
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;

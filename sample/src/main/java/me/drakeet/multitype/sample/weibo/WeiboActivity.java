@@ -17,7 +17,7 @@
 package me.drakeet.multitype.sample.weibo;
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;

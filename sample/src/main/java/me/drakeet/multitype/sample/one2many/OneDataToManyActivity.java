@@ -17,16 +17,13 @@
 package me.drakeet.multitype.sample.one2many;
 
 import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.VisibleForTesting;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
-
-import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
-import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
 
 /**
  * @author drakeet

@@ -17,10 +17,10 @@
 package me.drakeet.multitype.sample.bilibili;
 
 import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.GridLayoutManager.SpanSizeLookup;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.VisibleForTesting;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import java.util.ArrayList;
