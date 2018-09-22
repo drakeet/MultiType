@@ -43,6 +43,6 @@ dependencies {
   testImplementation 'junit:junit:4.12'
   testImplementation "org.robolectric:robolectric:3.8"
   testImplementation "org.mockito:mockito-inline:2.18.0"
-  api 'com.android.support:support-annotations:' + gradle.supportLibraryVersion
-  api 'com.android.support:recyclerview-v7:' + gradle.supportLibraryVersion
+  api "com.android.support:support-annotations:$gradle.supportLibraryVersion"
+  api "com.android.support:recyclerview-v7:$gradle.supportLibraryVersion"
 }
