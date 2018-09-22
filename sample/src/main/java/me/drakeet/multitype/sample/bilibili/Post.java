@@ -16,7 +16,7 @@
 
 package me.drakeet.multitype.sample.bilibili;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * @author drakeet

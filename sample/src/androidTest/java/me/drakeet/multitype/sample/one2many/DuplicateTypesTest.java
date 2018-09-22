@@ -16,9 +16,9 @@
 
 package me.drakeet.multitype.sample.one2many;
 
-import android.support.test.filters.LargeTest;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 import me.drakeet.multitype.Linker;
 import me.drakeet.multitype.MultiTypeAdapter;
 import org.junit.Before;

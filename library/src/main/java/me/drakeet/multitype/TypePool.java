@@ -16,7 +16,7 @@
 
 package me.drakeet.multitype;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * An ordered collection to hold the types, binders and linkers.

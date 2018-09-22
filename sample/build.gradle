@@ -26,7 +26,7 @@ android {
     targetSdkVersion gradle.targetSdkVersion
     versionCode gradle.versionCode
     versionName gradle.versionName
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
     release {
@@ -44,9 +44,9 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
   implementation project(':library')
   implementation project(':library-kotlin')
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-  androidTestImplementation "com.android.support:support-annotations:$gradle.supportLibraryVersion"
-  implementation "com.android.support:appcompat-v7:$gradle.supportLibraryVersion"
-  implementation "com.android.support:recyclerview-v7:$gradle.supportLibraryVersion"
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+  androidTestImplementation "androidx.annotation:annotation:${gradle.androidXVersion}"
+  implementation "androidx.appcompat:appcompat:${gradle.androidXVersion}"
+  implementation "androidx.recyclerview:recyclerview:${gradle.androidXVersion}"
   implementation 'com.google.code.gson:gson:2.8.2'
 }
