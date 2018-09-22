@@ -17,18 +17,18 @@ Today, I created a new intuitive and flexible way to easily create complex Recyc
 
 In your `build.gradle`:
 
+_MultiType has been rebuilt based on androidx. If you are still using the android support library, please use `multitype:3.4.4` and `multitype-kotlin:3.4.4`._
+
 ```groovy
 dependencies {
-    implementation 'me.drakeet.multitype:multitype:3.4.4'
+    implementation 'me.drakeet.multitype:multitype:3.5.0'
 }
 ```
-
-_Note: MultiType does not support RecyclerView below version 23.0.0._
 
 Optional: Extension for Kotlin:
 
 ```groovy
-implementation 'me.drakeet.multitype:multitype-kotlin:3.4.4'
+implementation 'me.drakeet.multitype:multitype-ktx:3.5.0'
 ```
 
 ## Usage
