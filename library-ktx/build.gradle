@@ -36,7 +36,7 @@ dependencies {
   compileOnly project(':library')
 
   testImplementation 'junit:junit:4.12'
-  testImplementation "androidx.recyclerview:recyclerview:${gradle.androidXVersion}"
+  testImplementation "androidx.recyclerview:recyclerview:${gradle.recyclerviewVersion}"
 }
 
 repositories {

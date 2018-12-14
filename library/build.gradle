@@ -42,6 +42,6 @@ dependencies {
   testImplementation 'junit:junit:4.12'
   testImplementation "org.robolectric:robolectric:4.0"
   testImplementation "org.mockito:mockito-inline:2.18.0"
-  api "androidx.annotation:annotation:${gradle.androidXVersion}"
-  api "androidx.recyclerview:recyclerview:${gradle.androidXVersion}"
+  api "androidx.annotation:annotation:${gradle.annotationVersion}"
+  api "androidx.recyclerview:recyclerview:${gradle.recyclerviewVersion}"
 }
