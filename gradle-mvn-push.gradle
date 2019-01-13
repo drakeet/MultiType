@@ -19,7 +19,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 def isReleaseBuild() {
-  return gradle.versionName.contains("SNAPSHOT") == false
+  return buildConfig.versionName.contains("SNAPSHOT") == false
 }
 
 def getReleaseRepositoryUrl() {
@@ -46,7 +46,7 @@ afterEvaluate { project ->
 
         pom.groupId = GROUP
         pom.artifactId = POM_ARTIFACT_ID
-        pom.version = gradle.versionName
+        pom.version = buildConfig.versionName
 
         repository(url: getReleaseRepositoryUrl()) {
           authentication(userName: getRepositoryUsername(),

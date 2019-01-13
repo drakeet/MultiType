@@ -17,12 +17,3 @@
 include ':sample'
 include ':library'
 include ':library-ktx'
-
-gradle.ext.recyclerviewVersion = '1.0.0'
-gradle.ext.annotationVersion = '1.0.1'
-gradle.ext.appcompatVersion = '1.0.2'
-gradle.ext.versionCode = 350
-gradle.ext.versionName = "3.5.0"
-gradle.ext.compileSdkVersion = 28
-gradle.ext.minSdkVersion = 14
-gradle.ext.targetSdkVersion = 28

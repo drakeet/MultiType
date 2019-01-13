@@ -19,10 +19,10 @@ apply plugin: 'kotlin-android'
 apply from: '../gradle-mvn-push.gradle'
 
 android {
-  compileSdkVersion gradle.compileSdkVersion
+  compileSdkVersion buildConfig.compileSdkVersion
 
   defaultConfig {
-    minSdkVersion gradle.minSdkVersion
+    minSdkVersion buildConfig.minSdkVersion
   }
 
   // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
@@ -36,7 +36,7 @@ dependencies {
   compileOnly project(':library')
 
   testImplementation 'junit:junit:4.12'
-  testImplementation "androidx.recyclerview:recyclerview:${gradle.recyclerviewVersion}"
+  testImplementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
 }
 
 repositories {

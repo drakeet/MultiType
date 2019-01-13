@@ -19,13 +19,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion gradle.compileSdkVersion
+  compileSdkVersion buildConfig.compileSdkVersion
   defaultConfig {
     applicationId "me.drakeet.multitype.sample"
-    minSdkVersion gradle.minSdkVersion
-    targetSdkVersion gradle.targetSdkVersion
-    versionCode gradle.versionCode
-    versionName gradle.versionName
+    minSdkVersion buildConfig.minSdkVersion
+    targetSdkVersion buildConfig.targetSdkVersion
+    versionCode buildConfig.versionCode
+    versionName buildConfig.versionName
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
@@ -46,8 +46,8 @@ dependencies {
   implementation project(':library-ktx')
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
   androidTestImplementation 'androidx.test:rules:1.1.1'
-  androidTestImplementation "androidx.annotation:annotation:${gradle.annotationVersion}"
-  implementation "androidx.appcompat:appcompat:${gradle.appcompatVersion}"
-  implementation "androidx.recyclerview:recyclerview:${gradle.recyclerviewVersion}"
+  androidTestImplementation "androidx.annotation:annotation:$annotationVersion"
+  implementation "androidx.appcompat:appcompat:$appcompatVersion"
+  implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
   implementation 'com.google.code.gson:gson:2.8.5'
 }
