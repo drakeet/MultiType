@@ -35,16 +35,13 @@ public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.Vi
 
   private final @NonNull Set<Integer> selectedSet;
 
-
   public SquareViewBinder(@NonNull Set<Integer> selectedSet) { this.selectedSet = selectedSet; }
-
 
   @Override
   protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_square, parent, false);
     return new ViewHolder(root);
   }
-
 
   @Override
   protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Square square) {
@@ -53,17 +50,14 @@ public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.Vi
     holder.squareView.setSelected(square.isSelected);
   }
 
-
   public @NonNull Set<Integer> getSelectedSet() {
     return selectedSet;
   }
-
 
   public class ViewHolder extends RecyclerView.ViewHolder {
 
     private TextView squareView;
     private Square square;
-
 
     ViewHolder(final View itemView) {
       super(itemView);

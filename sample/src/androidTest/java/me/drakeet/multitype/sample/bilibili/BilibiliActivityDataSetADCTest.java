@@ -46,13 +46,11 @@ public class BilibiliActivityDataSetADCTest {
   @Rule
   public ActivityTestRule<BilibiliActivity> rule = new ActivityTestRule<>(BilibiliActivity.class);
 
-
   @Before
   public void setup() {
     items = rule.getActivity().items;
     adapter = rule.getActivity().adapter;
   }
-
 
   @Test
   public void shouldNotFailWhenAddSingleTop() throws Throwable {
@@ -64,7 +62,6 @@ public class BilibiliActivityDataSetADCTest {
       }
     });
   }
-
 
   @Test
   public void shouldNotFailWhenAddMultiTop() throws Throwable {
@@ -79,7 +76,6 @@ public class BilibiliActivityDataSetADCTest {
     });
   }
 
-
   @Test
   public void shouldNotFailWhenDeleteFirst() throws Throwable {
     rule.runOnUiThread(new Runnable() {
@@ -89,7 +85,6 @@ public class BilibiliActivityDataSetADCTest {
       }
     });
   }
-
 
   @Test
   public void shouldNotFailWhenDeleteEnd() throws Throwable {
@@ -102,7 +97,6 @@ public class BilibiliActivityDataSetADCTest {
     });
   }
 
-
   @Test
   public void shouldNotFailWhenDeleteAll() throws Throwable {
     rule.runOnUiThread(new Runnable() {
@@ -112,7 +106,6 @@ public class BilibiliActivityDataSetADCTest {
       }
     });
   }
-
 
   @Test
   public void shouldNotFailWhenChangeFirst() throws Throwable {

@@ -26,7 +26,6 @@ public class Post {
   public int coverResId;
   public @NonNull String title;
 
-
   public Post(int coverResId, @NonNull final String title) {
     this.coverResId = coverResId;
     this.title = title;

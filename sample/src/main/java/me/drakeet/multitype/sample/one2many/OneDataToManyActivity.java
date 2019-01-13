@@ -33,7 +33,6 @@ public class OneDataToManyActivity extends MenuBaseActivity {
   @VisibleForTesting RecyclerView recyclerView;
   @VisibleForTesting MultiTypeAdapter adapter;
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -66,7 +65,6 @@ public class OneDataToManyActivity extends MenuBaseActivity {
     adapter.notifyDataSetChanged();
     recyclerView.setAdapter(adapter);
   }
-
 
   @VisibleForTesting
   List<Data> getDataFromService() {

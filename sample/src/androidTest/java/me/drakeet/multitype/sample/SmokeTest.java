@@ -44,7 +44,6 @@ public class SmokeTest {
   @Rule
   public ActivityTestRule<BilibiliActivity> rule = new ActivityTestRule<>(BilibiliActivity.class);
 
-
   @Test
   public void smokeTest() {
     Espresso.closeSoftKeyboard();

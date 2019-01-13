@@ -36,7 +36,6 @@ public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBin
     @NonNull final TextView text;
     @NonNull final ImageView image;
 
-
     RichHolder(@NonNull View itemView) {
       super(itemView);
       this.text = itemView.findViewById(R.id.text);
@@ -44,13 +43,11 @@ public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBin
     }
   }
 
-
   @Override
   protected @NonNull RichHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_rich, parent, false);
     return new RichHolder(root);
   }
-
 
   @Override
   protected void onBindViewHolder(@NonNull RichHolder holder, @NonNull RichItem richContent) {

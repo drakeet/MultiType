@@ -30,12 +30,10 @@ public class PostItemDecoration extends RecyclerView.ItemDecoration {
   private int space;
   private @NonNull SpanSizeLookup spanSizeLookup;
 
-
   public PostItemDecoration(int space, @NonNull SpanSizeLookup spanSizeLookup) {
     this.space = space;
     this.spanSizeLookup = spanSizeLookup;
   }
-
 
   @Override
   public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {

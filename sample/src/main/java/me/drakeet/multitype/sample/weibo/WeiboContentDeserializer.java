@@ -48,7 +48,6 @@ public class WeiboContentDeserializer implements JsonDeserializer<WeiboContent> 
     return content;
   }
 
-
   private @NonNull String stringOrEmpty(JsonElement jsonElement) {
     return jsonElement.isJsonNull() ? "" : jsonElement.getAsString();
   }

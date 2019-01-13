@@ -31,20 +31,17 @@ class MultiTypeTest {
   private val adapter = MultiTypeAdapter()
   private val simpleLinker = Linker<String> { _, _ -> 0 }
 
-
   @Test
   fun shouldEqualToRegisteredKClass() {
     adapter.register(String::class, StringViewBinder())
     assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
 
-
   @Test
   fun shouldEqualToRegisteredKClass_Reified() {
     adapter.register(StringViewBinder())
     assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
-
 
   @Test
   fun shouldEqualToRegisteredOneToManyKClass() {
@@ -54,20 +51,17 @@ class MultiTypeTest {
     assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
 
-
   @Test
   fun shouldEqualToRegisteredKClass_TypePool() {
     adapter.typePool.register(String::class, StringViewBinder(), simpleLinker)
     assertEquals(adapter.typePool.getClass(0), String::class.java)
   }
 
-
   @Test
   fun shouldUnregisterKClass_TypePool() {
     adapter.typePool.register(String::class, StringViewBinder(), simpleLinker)
     assertTrue(adapter.typePool.unregister(String::class))
   }
-
 
   @Test
   fun shouldEqualToRegisteredFirstKClass_TypePool() {

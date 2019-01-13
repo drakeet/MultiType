@@ -25,7 +25,6 @@ public class Category {
 
   public @NonNull String title;
 
-
   public Category(@NonNull final String title) {
     this.title = title;
   }

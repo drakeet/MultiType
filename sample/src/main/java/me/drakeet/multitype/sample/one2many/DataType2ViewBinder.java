@@ -38,23 +38,19 @@ public class DataType2ViewBinder extends ItemViewBinder<Data, DataType2ViewBinde
     return new ViewHolder(root);
   }
 
-
   @Override
   protected void onBindViewHolder(@NonNull DataType2ViewBinder.ViewHolder holder, @NonNull Data data) {
     holder.setTitle(data.title);
   }
 
-
   static class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView titleView;
-
 
     ViewHolder(View itemView) {
       super(itemView);
       titleView = itemView.findViewById(android.R.id.title);
     }
-
 
     void setTitle(String title) {
       titleView.setText(title);

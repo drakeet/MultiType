@@ -18,8 +18,8 @@ package me.drakeet.multitype.sample.weibo;
 
 import android.os.Bundle;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import java.util.List;
-import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
@@ -28,15 +28,13 @@ import me.drakeet.multitype.sample.weibo.content.SimpleImageViewBinder;
 import me.drakeet.multitype.sample.weibo.content.SimpleText;
 import me.drakeet.multitype.sample.weibo.content.SimpleTextViewBinder;
 
-import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
-
 /**
  * @author drakeet
  */
 public class WeiboActivity extends MenuBaseActivity {
 
   private MultiTypeAdapter adapter;
-  private Items items;
+  private List<Object> items;
 
   /* @formatter:off */
   private static final String JSON_FROM_SERVICE =
@@ -66,7 +64,6 @@ public class WeiboActivity extends MenuBaseActivity {
           "]";
   /* @formatter:on */
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -89,7 +86,7 @@ public class WeiboActivity extends MenuBaseActivity {
 
     recyclerView.setAdapter(adapter);
 
-    items = new Items();
+    items = new ArrayList<>();
 
     User user = new User("drakeet", R.drawable.avatar_drakeet);
     SimpleText simpleText = new SimpleText("A simple text Weibo: Hello World.");
@@ -101,18 +98,15 @@ public class WeiboActivity extends MenuBaseActivity {
     adapter.setItems(items);
     adapter.notifyDataSetChanged();
 
-    assertAllRegistered(adapter, items);
-
     loadRemoteData();
   }
-
 
   private void loadRemoteData() {
     List<Weibo> weiboList = WeiboJsonParser.fromJson(JSON_FROM_SERVICE
         .replace("$avatar", "" + R.drawable.avatar_drakeet)
         .replace("$content", "" + R.drawable.img_00));
     // atomically
-    items = new Items(items);
+    items = new ArrayList<>(items);
     items.addAll(0, weiboList);
     adapter.setItems(items);
     adapter.notifyDataSetChanged();

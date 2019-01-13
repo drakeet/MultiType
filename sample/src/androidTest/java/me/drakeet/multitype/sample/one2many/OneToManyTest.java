@@ -47,13 +47,11 @@ public class OneToManyTest {
   public ActivityTestRule<OneDataToManyActivity> rule = new ActivityTestRule<>(
       OneDataToManyActivity.class);
 
-
   @Before
   public void setup() {
     items = rule.getActivity().adapter.getItems();
     adapter = rule.getActivity().adapter;
   }
-
 
   @Test
   public void shouldRefreshTypeChanged() throws Throwable {

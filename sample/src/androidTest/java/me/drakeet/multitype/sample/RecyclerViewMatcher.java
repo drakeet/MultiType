@@ -34,26 +34,21 @@ public class RecyclerViewMatcher {
     return new RecyclerViewMatcher(recyclerViewId);
   }
 
-
   private final int recyclerViewId;
-
 
   private RecyclerViewMatcher(int recyclerViewId) {
     this.recyclerViewId = recyclerViewId;
   }
 
-
   public Matcher<View> atPosition(final int position) {
     return atPositionOnView(position, -1);
   }
-
 
   public Matcher<View> atPositionOnView(final int position, final int targetViewId) {
 
     return new TypeSafeMatcher<View>() {
       Resources resources = null;
       View childView;
-
 
       public void describeTo(Description description) {
         String idDescription = Integer.toString(recyclerViewId);
@@ -68,7 +63,6 @@ public class RecyclerViewMatcher {
 
         description.appendText("with id: " + idDescription);
       }
-
 
       public boolean matchesSafely(View view) {
 

@@ -17,10 +17,11 @@
 package me.drakeet.multitype.sample.payload;
 
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
-import android.widget.Toast;
-import me.drakeet.multitype.Items;
+import java.util.ArrayList;
+import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
@@ -40,7 +41,7 @@ public class TestPayloadActivity extends MenuBaseActivity {
 
     adapter.register(HeavyItem.class, new HeavyItemViewBinder());
 
-    Items items = new Items();
+    List<Object> items = new ArrayList<>();
     for (int i = 0; i < 30; i++) {
       items.add(new HeavyItem("1000" + i));
     }

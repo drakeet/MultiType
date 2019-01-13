@@ -25,6 +25,5 @@ public class HeavyItem {
 
   public @NonNull String text;
 
-
   public HeavyItem(@NonNull String text) { this.text = text; }
 }

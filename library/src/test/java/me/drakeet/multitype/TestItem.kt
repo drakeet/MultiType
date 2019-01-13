@@ -14,24 +14,9 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
-
-import androidx.annotation.NonNull;
+package me.drakeet.multitype
 
 /**
  * @author drakeet
  */
-@SuppressWarnings("WeakerAccess")
-public final class Preconditions {
-
-  @SuppressWarnings("ConstantConditions")
-  public static @NonNull <T> T checkNotNull(@NonNull final T object) {
-    if (object == null) {
-      throw new NullPointerException();
-    }
-    return object;
-  }
-
-
-  private Preconditions() {}
-}
+open class TestItem(val text: String)

@@ -14,17 +14,22 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
-
-import androidx.annotation.NonNull;
+package me.drakeet.multitype
 
 /**
+ * An interface to link the items and binders by the classes of binders.
+ *
  * @author drakeet
  */
-class TestItem {
+interface ClassLinker<T> {
 
-  @NonNull final String text;
-
-
-  public TestItem(@NonNull String text) {this.text = text;}
+  /**
+   * Returns the class of your registered binders for your item.
+   *
+   * @param position The position in items
+   * @param t The item
+   * @return The index of your registered binders
+   * @see OneToManyEndpoint.withClassLinker
+   */
+  fun index(position: Int, t: T): Class<out ItemViewBinder<T, *>>
 }

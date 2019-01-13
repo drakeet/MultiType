@@ -17,10 +17,12 @@
 package me.drakeet.multitype.sample.multiSelectable;
 
 import android.os.Bundle;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.Toast;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeSet;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -34,11 +36,10 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 public class MultiSelectableActivity extends MenuBaseActivity {
 
   private static final int SPAN_COUNT = 5;
-  Items items = new Items();
+  List<Object> items = new ArrayList<>();
   MultiTypeAdapter adapter;
   Button fab;
   private TreeSet<Integer> selectedSet;
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +63,11 @@ public class MultiSelectableActivity extends MenuBaseActivity {
 
     loadData();
 
-    assertAllRegistered(adapter, items);
+    Companion.assertAllRegistered(adapter, items);
     recyclerView.setAdapter(adapter);
 
     setupFAB();
   }
-
 
   private void loadData() {
     Category spacialCategory = new Category("特别篇");
@@ -83,7 +83,6 @@ public class MultiSelectableActivity extends MenuBaseActivity {
     adapter.setItems(items);
     adapter.notifyDataSetChanged();
   }
-
 
   private void setupFAB() {
     fab = findViewById(R.id.fab);

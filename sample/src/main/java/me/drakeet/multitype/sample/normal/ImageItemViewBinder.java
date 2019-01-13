@@ -34,20 +34,17 @@ public class ImageItemViewBinder extends ItemViewBinder<ImageItem, ImageItemView
 
     private @NonNull final ImageView image;
 
-
     ImageHolder(View itemView) {
       super(itemView);
       image = itemView.findViewById(R.id.image);
     }
   }
 
-
   @Override
   protected @NonNull ImageHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_image, parent, false);
     return new ImageHolder(root);
   }
-
 
   @Override
   protected void onBindViewHolder(@NonNull ImageHolder holder, @NonNull ImageItem imageContent) {

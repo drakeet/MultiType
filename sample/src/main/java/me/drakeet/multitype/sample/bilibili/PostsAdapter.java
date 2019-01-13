@@ -35,18 +35,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
   private List<Post> posts = Collections.emptyList();
 
-
   public void setPosts(@NonNull List<Post> posts) {
     this.posts = posts;
   }
-
 
   @NonNull @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_horizontal_post, parent, false);
     return new ViewHolder(view);
   }
-
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -55,18 +52,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     holder.title.setText(post.title);
   }
 
-
   @Override
   public int getItemCount() {
     return posts.size();
   }
 
-
   public static class ViewHolder extends RecyclerView.ViewHolder {
 
     @NonNull ImageView cover;
     @NonNull TextView title;
-
 
     ViewHolder(View itemView) {
       super(itemView);

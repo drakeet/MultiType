@@ -27,7 +27,6 @@ public class User {
   public @NonNull String name;
   public @DrawableRes int avatar;
 
-
   public User(@NonNull String name, int avatar) {
     this.name = name;
     this.avatar = avatar;

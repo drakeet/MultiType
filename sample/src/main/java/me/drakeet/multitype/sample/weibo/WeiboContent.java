@@ -27,7 +27,6 @@ public abstract class WeiboContent {
   @SerializedName("content_type")
   public final @NonNull String contentType;
 
-
   protected WeiboContent(@NonNull String contentType) {
     this.contentType = contentType;
   }

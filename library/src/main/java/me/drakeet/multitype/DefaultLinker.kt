@@ -14,30 +14,11 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
-
-import androidx.annotation.NonNull;
+package me.drakeet.multitype
 
 /**
- * End-operators for one-to-many.
- *
  * @author drakeet
  */
-public interface OneToManyEndpoint<T> {
-
-  /**
-   * Sets a linker to link the items and binders by array index.
-   *
-   * @param linker the row linker
-   * @see Linker
-   */
-  void withLinker(@NonNull Linker<T> linker);
-
-  /**
-   * Sets a class linker to link the items and binders by the class instance of binders.
-   *
-   * @param classLinker the class linker
-   * @see ClassLinker
-   */
-  void withClassLinker(@NonNull ClassLinker<T> classLinker);
+internal class DefaultLinker<T> : Linker<T> {
+  override fun index(position: Int, t: T): Int = 0
 }

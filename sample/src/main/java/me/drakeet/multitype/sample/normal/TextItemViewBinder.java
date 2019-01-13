@@ -35,11 +35,9 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
 
   private int lastShownAnimationPosition;
 
-
   static class TextHolder extends RecyclerView.ViewHolder {
 
     private @NonNull final TextView text;
-
 
     TextHolder(@NonNull View itemView) {
       super(itemView);
@@ -47,13 +45,11 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
     }
   }
 
-
   @Override
   protected @NonNull TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_text, parent, false);
     return new TextHolder(root);
   }
-
 
   @Override @SuppressLint("SetTextI18n")
   protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
@@ -63,7 +59,6 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
     setAnimation(holder.itemView, holder.getAdapterPosition());
   }
 
-
   private void setAnimation(@NonNull View viewToAnimate, int position) {
     if (position > lastShownAnimationPosition) {
       Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(), android.R.anim.slide_in_left);
@@ -71,7 +66,6 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
       lastShownAnimationPosition = position;
     }
   }
-
 
   @Override
   public void onViewDetachedFromWindow(@NonNull TextHolder holder) {

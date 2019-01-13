@@ -14,17 +14,23 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
+package me.drakeet.multitype
 
-import androidx.annotation.NonNull;
+import androidx.annotation.CheckResult
 
 /**
+ * Process and flow operators for one-to-many.
+ *
  * @author drakeet
  */
-class BinderNotFoundException extends RuntimeException {
+interface OneToManyFlow<T> {
 
-  BinderNotFoundException(@NonNull Class<?> clazz) {
-    super("Have you registered {className}.class to the binder in the adapter/pool?"
-        .replace("{className}", clazz.getSimpleName()));
-  }
+  /**
+   * Sets some item view binders to the item type.
+   *
+   * @param binders the item view binders
+   * @return end flow operator
+   */
+  @CheckResult
+  fun to(vararg binders: ItemViewBinder<T, *>): OneToManyEndpoint<T>
 }

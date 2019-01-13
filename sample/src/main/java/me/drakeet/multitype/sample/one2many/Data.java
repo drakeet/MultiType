@@ -30,7 +30,6 @@ public class Data {
   public @SerializedName("title") String title;
   public @SerializedName("type") int type;
 
-
   public Data(@NonNull String title, int type) {
     this.title = title;
     this.type = type;

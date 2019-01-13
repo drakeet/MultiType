@@ -31,10 +31,8 @@ class StringViewBinder : ItemViewBinder<String, StringViewBinder.ViewHolder>() {
     return ViewHolder(root)
   }
 
-
   override fun onBindViewHolder(holder: ViewHolder, string: String) {
   }
-
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }

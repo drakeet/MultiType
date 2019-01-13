@@ -14,17 +14,11 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype;
-
-import androidx.annotation.NonNull;
+package me.drakeet.multitype
 
 /**
  * @author drakeet
  */
-final class DefaultLinker<T> implements Linker<T> {
-
-  @Override
-  public int index(int position, @NonNull T t) {
-    return 0;
-  }
-}
+internal class BinderNotFoundException(clazz: Class<*>) : RuntimeException(
+  "Have you registered a ${clazz.simpleName}.class type binder in the adapter/pool?"
+)

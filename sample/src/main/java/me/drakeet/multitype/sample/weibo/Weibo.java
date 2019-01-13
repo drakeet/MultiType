@@ -28,13 +28,11 @@ public class Weibo {
   public @NonNull String createTime;
   /* ... id, counts, etc. */
 
-
   public Weibo(@NonNull User user, @NonNull WeiboContent content) {
     this.user = user;
     this.content = content;
     this.createTime = "Just now";
   }
-
 
   @Override
   public String toString() {

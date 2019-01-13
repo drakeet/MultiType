@@ -38,14 +38,12 @@ class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.
     return new ViewHolder(inflater.inflate(R.layout.item_heavy, parent, false));
   }
 
-
   @Override @SuppressLint("SetTextI18n")
   protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem heavyItem) {
     holder.firstText.setText(heavyItem.text);
     holder.endText.setText("currentTimeMillis: " + System.currentTimeMillis());
     holder.item = heavyItem;
   }
-
 
   @Override @SuppressLint("SetTextI18n")
   protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem item, @NonNull List<Object> payloads) {
@@ -56,13 +54,11 @@ class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.
     }
   }
 
-
   class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     TextView firstText;
     TextView endText;
     HeavyItem item;
-
 
     ViewHolder(View itemView) {
       super(itemView);
@@ -72,13 +68,11 @@ class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.
       itemView.setOnLongClickListener(this);
     }
 
-
     @Override
     public void onClick(View v) {
       Toast.makeText(v.getContext(), "Update with a payload", Toast.LENGTH_SHORT).show();
       getAdapter().notifyItemChanged(getAdapterPosition(), "la la la (payload)");
     }
-
 
     @Override
     public boolean onLongClick(View v) {

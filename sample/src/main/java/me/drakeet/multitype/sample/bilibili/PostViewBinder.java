@@ -36,25 +36,21 @@ public class PostViewBinder extends ItemViewBinder<Post, PostViewBinder.ViewHold
     return new ViewHolder(inflater.inflate(R.layout.item_post, parent, false));
   }
 
-
   @Override
   protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Post post) {
     holder.setData(post);
   }
-
 
   static class ViewHolder extends RecyclerView.ViewHolder {
 
     private @NonNull ImageView cover;
     private @NonNull TextView title;
 
-
     ViewHolder(@NonNull View itemView) {
       super(itemView);
       cover = itemView.findViewById(R.id.cover);
       title = itemView.findViewById(R.id.title);
     }
-
 
     void setData(@NonNull final Post post) {
       cover.setImageResource(post.coverResId);

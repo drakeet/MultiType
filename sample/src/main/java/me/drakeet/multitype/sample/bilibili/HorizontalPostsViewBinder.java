@@ -38,13 +38,11 @@ public class HorizontalPostsViewBinder extends ItemViewBinder<PostList, Horizont
     return new ViewHolder(view);
   }
 
-
   @Override
   protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PostList postList) {
     holder.setPosts(postList.posts);
     assertGetAdapterNonNull();
   }
-
 
   private void assertGetAdapterNonNull() {
     // noinspection ConstantConditions
@@ -53,12 +51,10 @@ public class HorizontalPostsViewBinder extends ItemViewBinder<PostList, Horizont
     }
   }
 
-
   static final class ViewHolder extends RecyclerView.ViewHolder {
 
     private RecyclerView recyclerView;
     private PostsAdapter adapter;
-
 
     private ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -70,7 +66,6 @@ public class HorizontalPostsViewBinder extends ItemViewBinder<PostList, Horizont
       adapter = new PostsAdapter();
       recyclerView.setAdapter(adapter);
     }
-
 
     private void setPosts(List<Post> posts) {
       adapter.setPosts(posts);

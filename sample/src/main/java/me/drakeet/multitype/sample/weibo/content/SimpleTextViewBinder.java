@@ -35,17 +35,14 @@ public class SimpleTextViewBinder extends WeiboFrameBinder<SimpleText, SimpleTex
     return new ViewHolder(inflater.inflate(R.layout.item_weibo_simple_text, parent, false));
   }
 
-
   @Override
   protected void onBindContentViewHolder(@NonNull ViewHolder holder, @NonNull SimpleText simpleText) {
     holder.simpleText.setText(simpleText.text);
   }
 
-
   static class ViewHolder extends ContentHolder {
 
     private TextView simpleText;
-
 
     ViewHolder(View itemView) {
       super(itemView);

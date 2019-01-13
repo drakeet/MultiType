@@ -40,7 +40,6 @@ public class BilibiliActivity extends MenuBaseActivity {
   @VisibleForTesting List<Object> items;
   @VisibleForTesting MultiTypeAdapter adapter;
 
-
   private static class JsonData {
 
     private static final String PREFIX = "这是一条长长的达到两行的标题文字";
@@ -55,7 +54,6 @@ public class BilibiliActivity extends MenuBaseActivity {
 
     List<Post> postList = new ArrayList<>();
 
-
     {
       postList.add(post00);
       postList.add(post00);
@@ -65,7 +63,6 @@ public class BilibiliActivity extends MenuBaseActivity {
       postList.add(post00);
     }
   }
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +108,6 @@ public class BilibiliActivity extends MenuBaseActivity {
     adapter.setItems(items);
     adapter.notifyDataSetChanged();
   }
-
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

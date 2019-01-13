@@ -27,7 +27,6 @@ public class MenuBaseActivity extends AppCompatActivity {
     return true;
   }
 
-
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     Intent intent = new Intent();

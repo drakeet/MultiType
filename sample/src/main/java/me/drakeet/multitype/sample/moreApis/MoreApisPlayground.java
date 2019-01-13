@@ -18,13 +18,15 @@ package me.drakeet.multitype.sample.moreApis;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.VisibleForTesting;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -47,8 +49,7 @@ public class MoreApisPlayground extends MenuBaseActivity {
   private RecyclerView recyclerView;
 
   @VisibleForTesting MultiTypeAdapter adapter;
-  @VisibleForTesting Items items;
-
+  @VisibleForTesting List<Object> items;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class MoreApisPlayground extends MenuBaseActivity {
     terminal = findViewById(R.id.terminal);
     terminal.setText(TERMINAL_DEFAULT_TEXT);
 
-    items = new Items();
+    items = new ArrayList<>();
     adapter = new MultiTypeAdapter();
 
     adapter.register(TextItem.class, new ObservableTextItemViewBinder());
@@ -71,14 +72,12 @@ public class MoreApisPlayground extends MenuBaseActivity {
     adapter.notifyDataSetChanged();
   }
 
-
   public void onAdd(View view) {
     int bottom = items.size() - 1;
     items.add(new TextItem(valueOf(currentThreadTimeMillis())));
     adapter.notifyItemInserted(bottom + 1);
     recyclerView.scrollToPosition(bottom + 1);
   }
-
 
   public void onRemove(View view) {
     int bottom = items.size() - 1;
@@ -87,12 +86,10 @@ public class MoreApisPlayground extends MenuBaseActivity {
     adapter.notifyItemRemoved(bottom);
   }
 
-
   public void onClear(View view) {
     items.clear();
     adapter.notifyDataSetChanged();
   }
-
 
   private class ObservableTextItemViewBinder extends ItemViewBinder<TextItem, ObservableTextItemViewBinder.TextHolder> {
 
@@ -100,13 +97,11 @@ public class MoreApisPlayground extends MenuBaseActivity {
 
       private @NonNull final TextView text;
 
-
       TextHolder(@NonNull View itemView) {
         super(itemView);
         this.text = itemView.findViewById(R.id.text);
       }
     }
-
 
     @NonNull @Override
     protected TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -114,40 +109,33 @@ public class MoreApisPlayground extends MenuBaseActivity {
       return new TextHolder(root);
     }
 
-
     @Override
     protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
       holder.text.setText("observable item(" + textItem.text + ")");
     }
-
 
     @Override
     protected void onViewRecycled(@NonNull TextHolder holder) {
       appendTerminalLine("onViewRecycled: " + holder.text.getText());
     }
 
-
     @Override
-    protected boolean onFailedToRecycleView(@NonNull TextHolder holder) {
+    public boolean onFailedToRecycleView(@NonNull TextHolder holder) {
       appendTerminalLine("onFailedToRecycleView: " + holder.text.getText());
       return true;
     }
-
 
     @Override
     protected void onViewAttachedToWindow(@NonNull TextHolder holder) {
       appendTerminalLine("onViewAttachedToWindow: " + holder.text.getText());
     }
 
-
     @Override
     protected void onViewDetachedFromWindow(@NonNull TextHolder holder) {
       appendTerminalLine("onViewDetachedFromWindow: " + holder.text.getText());
     }
 
-
     private int buffer = 0;
-
 
     private void appendTerminalLine(String line) {
       if (buffer == 5) {

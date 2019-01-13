@@ -35,17 +35,14 @@ public class CategoryItemViewBinder extends ItemViewBinder<Category, CategoryIte
     return new ViewHolder(inflater.inflate(R.layout.item_category, parent, false));
   }
 
-
   @Override
   protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
     holder.title.setText(category.title);
   }
 
-
   static class ViewHolder extends RecyclerView.ViewHolder {
 
     private @NonNull final TextView title;
-
 
     ViewHolder(@NonNull View itemView) {
       super(itemView);

@@ -40,14 +40,12 @@ public abstract class WeiboFrameBinder<Content extends WeiboContent, SubViewHold
 
   protected abstract void onBindContentViewHolder(@NonNull SubViewHolder holder, @NonNull Content content);
 
-
   @Override
   protected @NonNull FrameHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_weibo_frame, parent, false);
     ContentHolder subViewHolder = onCreateContentViewHolder(inflater, parent);
     return new FrameHolder(root, subViewHolder, this);
   }
-
 
   @Override @SuppressWarnings("unchecked")
   protected void onBindViewHolder(@NonNull FrameHolder holder, @NonNull Weibo weibo) {
@@ -58,7 +56,6 @@ public abstract class WeiboFrameBinder<Content extends WeiboContent, SubViewHold
     onBindContentViewHolder((SubViewHolder) holder.subViewHolder, (Content) weiboContent);
   }
 
-
   static class FrameHolder extends RecyclerView.ViewHolder {
 
     private ImageView avatar;
@@ -67,7 +64,6 @@ public abstract class WeiboFrameBinder<Content extends WeiboContent, SubViewHold
     private TextView createTime;
     private TextView close;
     private ContentHolder subViewHolder;
-
 
     FrameHolder(@NonNull View itemView, @NonNull final ContentHolder subViewHolder, @NonNull final WeiboFrameBinder binder) {
       super(itemView);
@@ -89,7 +85,6 @@ public abstract class WeiboFrameBinder<Content extends WeiboContent, SubViewHold
         }
       });
     }
-
 
     private View findViewById(int resId) {
       return itemView.findViewById(resId);

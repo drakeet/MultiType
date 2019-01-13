@@ -19,32 +19,26 @@ public class TextItemWithOutsizeDataViewBinder
 
   public String aValueFromOutside;
 
-
   public TextItemWithOutsizeDataViewBinder() {}
-
 
   public TextItemWithOutsizeDataViewBinder(String aValueFromOutside) {
     this.aValueFromOutside = aValueFromOutside;
   }
-
 
   @Override
   protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     return new ViewHolder(inflater.inflate(R.layout.item_text, parent, false));
   }
 
-
   @Override
   protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull TextItem textItem) {
     holder.setData(textItem);
   }
 
-
   class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView textView;
     String value;
-
 
     ViewHolder(View itemView) {
       super(itemView);
@@ -53,7 +47,6 @@ public class TextItemWithOutsizeDataViewBinder
           "item's value: " + value + ", aValueFromOutside: " + aValueFromOutside, Toast.LENGTH_SHORT).show()
       );
     }
-
 
     void setData(@NonNull final TextItem textItem) {
       textView.setText(textItem.text);

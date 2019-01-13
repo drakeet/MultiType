@@ -32,7 +32,6 @@ public class NormalActivity extends MenuBaseActivity {
   private MultiTypeAdapter adapter;
   private List<Object> items;
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

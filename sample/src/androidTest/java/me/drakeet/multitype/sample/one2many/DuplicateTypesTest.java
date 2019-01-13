@@ -39,18 +39,15 @@ public class DuplicateTypesTest {
   public ActivityTestRule<OneDataToManyActivity> rule =
       new ActivityTestRule<>(OneDataToManyActivity.class);
 
-
   @Before
   public void setup() throws Throwable {
     adapter = rule.getActivity().adapter;
   }
 
-
   private void resetRecyclerViewState() {
     // reset and clear the recycler view pool to recreate view holder
     rule.getActivity().recyclerView.setAdapter(adapter);
   }
-
 
   @Test
   public void shouldOneOverrideMany() throws Throwable {
@@ -66,7 +63,6 @@ public class DuplicateTypesTest {
     assertEquals(DataType1ViewBinder.class,
         adapter.getTypePool().getItemViewBinder(0).getClass());
   }
-
 
   @Test
   public void shouldOneOverrideOne() throws Throwable {
@@ -84,7 +80,6 @@ public class DuplicateTypesTest {
     assertEquals(DataType2ViewBinder.class,
         adapter.getTypePool().getItemViewBinder(0).getClass());
   }
-
 
   @Test
   public void shouldManyOverrideOne() throws Throwable {
@@ -112,7 +107,6 @@ public class DuplicateTypesTest {
     assertSame(linker, adapter.getTypePool().getLinker(0));
     assertSame(linker, adapter.getTypePool().getLinker(1));
   }
-
 
   @Test
   public void shouldManyOverrideMany() throws Throwable {

@@ -28,36 +28,29 @@ public class ContentHolder {
 
   public final View itemView;
 
-
   public ContentHolder(@NonNull final View itemView) {
     this.itemView = itemView;
   }
-
 
   public @NonNull WeiboFrameBinder.FrameHolder getParent() {
     return frameHolder;
   }
 
-
   public final int getAdapterPosition() {
     return getParent().getAdapterPosition();
   }
-
 
   public final int getLayoutPosition() {
     return getParent().getLayoutPosition();
   }
 
-
   public final int getOldPosition() {
     return getParent().getOldPosition();
   }
 
-
   public final boolean isRecyclable() {
     return getParent().isRecyclable();
   }
-
 
   public final void setIsRecyclable(boolean recyclable) {
     getParent().setIsRecyclable(recyclable);
