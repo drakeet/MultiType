@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.communicateWithBinder;
+package me.drakeet.multitype.sample.communication;
 
 import android.os.Bundle;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +30,7 @@ import static java.lang.String.valueOf;
 /**
  * @author drakeet
  */
-public class SimpleActivity extends MenuBaseActivity {
+public class CommunicateWithBinderActivity extends MenuBaseActivity {
 
   private String aFieldValue = "aFieldValue of SimpleActivity";
   private MultiTypeAdapter adapter;

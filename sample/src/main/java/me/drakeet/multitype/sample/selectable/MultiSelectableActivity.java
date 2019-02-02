@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.multiSelectable;
+package me.drakeet.multitype.sample.selectable;
 
 import android.os.Bundle;
 import android.widget.Button;

@@ -23,7 +23,7 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/communicate_with_binder"
+        android:id="@+id/CommunicateWithBinderActivity"
         android:title="communicate with binder"
         app:showAsAction="never"/>
 

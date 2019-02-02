@@ -35,19 +35,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".multiSelectable.MultiSelectableActivity"/>
+        <activity android:name=".selectable.MultiSelectableActivity"/>
 
         <activity android:name=".normal.NormalActivity"/>
 
         <activity android:name=".weibo.WeiboActivity"/>
 
-        <activity android:name=".communicateWithBinder.SimpleActivity"/>
+        <activity android:name=".communication.CommunicateWithBinderActivity"/>
 
         <activity android:name=".one2many.OneDataToManyActivity"/>
 
         <activity android:name=".payload.TestPayloadActivity"/>
 
-        <activity android:name=".moreApis.MoreApisPlayground"/>
+        <activity android:name=".more.MoreApisPlayground"/>
 
     </application>
 

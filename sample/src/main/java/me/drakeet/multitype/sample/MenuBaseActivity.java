@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import me.drakeet.multitype.sample.bilibili.BilibiliActivity;
-import me.drakeet.multitype.sample.communicateWithBinder.SimpleActivity;
-import me.drakeet.multitype.sample.moreApis.MoreApisPlayground;
-import me.drakeet.multitype.sample.multiSelectable.MultiSelectableActivity;
+import me.drakeet.multitype.sample.communication.CommunicateWithBinderActivity;
+import me.drakeet.multitype.sample.more.MoreApisPlayground;
+import me.drakeet.multitype.sample.selectable.MultiSelectableActivity;
 import me.drakeet.multitype.sample.normal.NormalActivity;
 import me.drakeet.multitype.sample.one2many.OneDataToManyActivity;
 import me.drakeet.multitype.sample.payload.TestPayloadActivity;
@@ -37,8 +37,8 @@ public class MenuBaseActivity extends AppCompatActivity {
       case R.id.MultiSelectableActivity:
         intent.setClass(this, MultiSelectableActivity.class);
         break;
-      case R.id.communicate_with_binder:
-        intent.setClass(this, SimpleActivity.class);
+      case R.id.CommunicateWithBinderActivity:
+        intent.setClass(this, CommunicateWithBinderActivity.class);
         break;
       case R.id.BilibiliActivity:
         intent.setClass(this, BilibiliActivity.class);
