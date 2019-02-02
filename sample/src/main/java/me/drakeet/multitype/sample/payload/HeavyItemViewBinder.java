@@ -17,13 +17,13 @@
 package me.drakeet.multitype.sample.payload;
 
 import android.annotation.SuppressLint;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.sample.R;
@@ -34,19 +34,19 @@ import me.drakeet.multitype.sample.R;
 class HeavyItemViewBinder extends ItemViewBinder<HeavyItem, HeavyItemViewBinder.ViewHolder> {
 
   @Override
-  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+  public @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     return new ViewHolder(inflater.inflate(R.layout.item_heavy, parent, false));
   }
 
   @Override @SuppressLint("SetTextI18n")
-  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem heavyItem) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem heavyItem) {
     holder.firstText.setText(heavyItem.text);
     holder.endText.setText("currentTimeMillis: " + System.currentTimeMillis());
     holder.item = heavyItem;
   }
 
   @Override @SuppressLint("SetTextI18n")
-  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem item, @NonNull List<Object> payloads) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HeavyItem item, @NonNull List<?> payloads) {
     if (payloads.isEmpty()) {
       super.onBindViewHolder(holder, item, payloads);
     } else {
