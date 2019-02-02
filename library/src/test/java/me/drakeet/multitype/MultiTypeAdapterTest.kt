@@ -49,25 +49,25 @@ class MultiTypeAdapterTest {
   fun shouldReturnOriginalItems() {
     val list = ArrayList<Any>()
     val adapter = MultiTypeAdapter(list)
-    assertEquals(list, adapter.getItems())
+    assertEquals(list, adapter.items)
   }
 
   @Test
   fun shouldReturnEmptyItemsWithDefaultConstructor() {
     val adapter = MultiTypeAdapter()
-    assertTrue(adapter.getItems().isEmpty())
+    assertTrue(adapter.items.isEmpty())
   }
 
   @Test
   fun shouldOverrideRegisteredBinder() {
     val adapter = MultiTypeAdapter()
     adapter.register(TestItem::class.java, itemViewBinder)
-    assertEquals(1, adapter.getTypePool().size().toLong())
-    assertEquals(itemViewBinder, adapter.getTypePool().getType<Any>(0).binder)
+    assertEquals(1, adapter.typePool.size().toLong())
+    assertEquals(itemViewBinder, adapter.typePool.getType<Any>(0).binder)
 
     val newBinder = TestItemViewBinder()
     adapter.register(TestItem::class.java, newBinder)
-    assertEquals(newBinder, adapter.getTypePool().getType<Any>(0).binder)
+    assertEquals(newBinder, adapter.typePool.getType<Any>(0).binder)
   }
 
   @Test
@@ -82,10 +82,10 @@ class MultiTypeAdapterTest {
           return -1
         }
       })
-    assertEquals(TestItem::class.java, adapter.getTypePool().getType<Any>(0).clazz)
-    assertEquals(TestItem::class.java, adapter.getTypePool().getType<Any>(1).clazz)
-    assertEquals(itemViewBinder, adapter.getTypePool().getType<Any>(0).binder)
-    assertEquals(binder2, adapter.getTypePool().getType<Any>(1).binder)
+    assertEquals(TestItem::class.java, adapter.typePool.getType<Any>(0).clazz)
+    assertEquals(TestItem::class.java, adapter.typePool.getType<Any>(1).clazz)
+    assertEquals(itemViewBinder, adapter.typePool.getType<Any>(0).binder)
+    assertEquals(binder2, adapter.typePool.getType<Any>(1).binder)
   }
 
   @Test
@@ -93,7 +93,7 @@ class MultiTypeAdapterTest {
     val adapter = MultiTypeAdapter()
     adapter.register(TestItem::class.java, mockedItemViewBinder!!)
     val item = TestItem("testOnCreateViewHolder")
-    adapter.setItems(listOf(item))
+    adapter.items = listOf(item)
     val type = adapter.getItemViewType(0)
 
     adapter.onCreateViewHolder(parent!!, type)
@@ -106,7 +106,7 @@ class MultiTypeAdapterTest {
     val adapter = MultiTypeAdapter()
     adapter.register(TestItem::class.java, mockedItemViewBinder!!)
     val item = TestItem("testOnCreateViewHolder")
-    adapter.setItems(listOf(item))
+    adapter.items = listOf(item)
 
     val holder = mock(TestItemViewBinder.ViewHolder::class.java)
     `when`(holder.itemViewType).thenReturn(adapter.getItemViewType(0))

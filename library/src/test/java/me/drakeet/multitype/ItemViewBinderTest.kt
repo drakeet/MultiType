@@ -31,7 +31,7 @@ class ItemViewBinderTest {
     var exception: Exception? = null
     val adapter = MultiTypeAdapter()
     val empty = ArrayList<Any>()
-    adapter.setItems(empty)
+    adapter.items = empty
 
     val binder = TestItemViewBinder()
     adapter.register(TestItem::class.java, binder)
@@ -51,19 +51,19 @@ class ItemViewBinderTest {
   fun shouldThrowIllegalStateException() {
     val adapter = MultiTypeAdapter()
     val empty = ArrayList<Any>()
-    adapter.setItems(empty)
+    adapter.items = empty
 
     val binder = TestItemViewBinder()
 
     empty.add(TestItem("ItemViewBinderTest"))
     binder.notifyTestItemAdded()
 
-    adapter.register(TestItem::class.java, binder)
+    adapter.register(binder)
   }
 
   class TestItemViewBinder : me.drakeet.multitype.TestItemViewBinder() {
     fun notifyTestItemAdded() {
-      assertNotNull(getAdapter().toString())
+      assertNotNull(adapter.toString())
     }
   }
 }

@@ -33,6 +33,14 @@ interface OneToManyEndpoint<T> {
    */
   fun withLinker(linker: Linker<T>)
 
+  fun withLinker(linker: (position: Int, t: T) -> Int) {
+    withLinker(object : Linker<T> {
+      override fun index(position: Int, t: T): Int {
+        return linker.invoke(position, t)
+      }
+    })
+  }
+
   /**
    * Sets a class linker to link the items and binders by the class instance of binders.
    *

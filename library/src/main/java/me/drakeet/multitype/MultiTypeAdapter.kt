@@ -29,7 +29,17 @@ import kotlin.reflect.KClass
  * @author drakeet
  */
 class MultiTypeAdapter @JvmOverloads constructor(
-  private var items: List<*> = emptyList<Any>(),
+  /**
+   * Sets and updates the items atomically and safely. It is recommended to use this method
+   * to update the items with a new wrapper list or consider using [CopyOnWriteArrayList].
+   *
+   *
+   * Note: If you want to refresh the list views after setting items, you should
+   * call [RecyclerView.Adapter.notifyDataSetChanged] by yourself.
+   *
+   * @since v2.4.1
+   */
+  var items: List<Any> = emptyList(),
   private val initialCapacity: Int = 0,
   var typePool: TypePool = ArrayTypePool(initialCapacity)
 ) : RecyclerView.Adapter<ViewHolder>() {
@@ -111,27 +121,8 @@ class MultiTypeAdapter @JvmOverloads constructor(
     }
   }
 
-  /**
-   * Sets and updates the items atomically and safely. It is recommended to use this method
-   * to update the items with a new wrapper list or consider using [CopyOnWriteArrayList].
-   *
-   *
-   * Note: If you want to refresh the list views after setting items, you should
-   * call [RecyclerView.Adapter.notifyDataSetChanged] by yourself.
-   *
-   * @param items the new items list
-   * @since v2.4.1
-   */
-  fun setItems(items: List<*>) {
-    this.items = items
-  }
-
-  fun getItems(): List<*> {
-    return items
-  }
-
   override fun getItemViewType(position: Int): Int {
-    return indexInTypesOf(position, items[position]!!)
+    return indexInTypesOf(position, items[position])
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, indexViewType: Int): ViewHolder {
@@ -161,7 +152,7 @@ class MultiTypeAdapter @JvmOverloads constructor(
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: List<Any>) {
-    val item = items[position]!!
+    val item = items[position]
     getOutBinderByViewHolder(holder).onBindViewHolder(holder, item, payloads)
   }
 
@@ -177,7 +168,7 @@ class MultiTypeAdapter @JvmOverloads constructor(
    * @since v3.2.0
    */
   override fun getItemId(position: Int): Long {
-    val item = items[position]!!
+    val item = items[position]
     val itemViewType = getItemViewType(position)
     return typePool.getType<Any>(itemViewType).binder.getItemId(item)
   }
