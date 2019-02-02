@@ -16,10 +16,10 @@
 
 package me.drakeet.multitype
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * @author drakeet
@@ -31,7 +31,7 @@ class StringViewBinder : ItemViewBinder<String, StringViewBinder.ViewHolder>() {
     return ViewHolder(root)
   }
 
-  override fun onBindViewHolder(holder: ViewHolder, string: String) {
+  override fun onBindViewHolder(holder: ViewHolder, item: String) {
   }
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

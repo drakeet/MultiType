@@ -16,4 +16,3 @@
 
 include ':sample'
 include ':library'
-include ':library-ktx'

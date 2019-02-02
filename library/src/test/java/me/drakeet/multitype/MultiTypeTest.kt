@@ -29,43 +29,45 @@ import org.junit.runners.JUnit4
 class MultiTypeTest {
 
   private val adapter = MultiTypeAdapter()
-  private val simpleLinker = Linker<String> { _, _ -> 0 }
+  private val simpleLinker = object : Linker<String> {
+    override fun index(position: Int, t: String): Int = 0
+  }
 
   @Test
   fun shouldEqualToRegisteredKClass() {
     adapter.register(String::class, StringViewBinder())
-    assertEquals(adapter.typePool.getClass(0), String::class.java)
+    assertEquals(adapter.typePool.getType<String>(0).clazz, String::class.java)
   }
 
   @Test
   fun shouldEqualToRegisteredKClass_Reified() {
     adapter.register(StringViewBinder())
-    assertEquals(adapter.typePool.getClass(0), String::class.java)
+    assertEquals(adapter.typePool.getType<String>(0).clazz, String::class.java)
   }
 
   @Test
   fun shouldEqualToRegisteredOneToManyKClass() {
     adapter.register(String::class)
-        .to(StringViewBinder())
-        .withLinker(simpleLinker)
-    assertEquals(adapter.typePool.getClass(0), String::class.java)
+      .to(StringViewBinder())
+      .withLinker(simpleLinker)
+    assertEquals(adapter.typePool.getType<String>(0).clazz, String::class.java)
   }
 
   @Test
   fun shouldEqualToRegisteredKClass_TypePool() {
-    adapter.typePool.register(String::class, StringViewBinder(), simpleLinker)
-    assertEquals(adapter.typePool.getClass(0), String::class.java)
+    adapter.typePool.register(Type<String>(String::class.java, StringViewBinder(), simpleLinker))
+    assertEquals(adapter.typePool.getType<String>(0).clazz, String::class.java)
   }
 
   @Test
   fun shouldUnregisterKClass_TypePool() {
-    adapter.typePool.register(String::class, StringViewBinder(), simpleLinker)
-    assertTrue(adapter.typePool.unregister(String::class))
+    adapter.typePool.register(Type<String>(String::class.java, StringViewBinder(), simpleLinker))
+    assertTrue(adapter.typePool.unregister(String::class.java))
   }
 
   @Test
   fun shouldEqualToRegisteredFirstKClass_TypePool() {
-    adapter.typePool.register(String::class, StringViewBinder(), simpleLinker)
-    assertEquals(adapter.typePool.firstIndexOf(String::class), 0)
+    adapter.typePool.register(Type<String>(String::class.java, StringViewBinder(), simpleLinker))
+    assertEquals(adapter.typePool.firstIndexOf(String::class.java), 0)
   }
 }

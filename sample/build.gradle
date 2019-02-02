@@ -43,7 +43,6 @@ android {
 dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
   implementation project(':library')
-  implementation project(':library-ktx')
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
   androidTestImplementation 'androidx.test:rules:1.1.1'
   androidTestImplementation "androidx.annotation:annotation:$annotationVersion"

@@ -31,7 +31,7 @@ import kotlin.reflect.KClass
 class MultiTypeAdapter @JvmOverloads constructor(
   private var items: List<*> = emptyList<Any>(),
   private val initialCapacity: Int = 0,
-  private var typePool: TypePool = ArrayTypePool(initialCapacity)
+  var typePool: TypePool = ArrayTypePool(initialCapacity)
 ) : RecyclerView.Adapter<ViewHolder>() {
 
   /**
@@ -62,7 +62,7 @@ class MultiTypeAdapter @JvmOverloads constructor(
 
   internal fun <T> register(type: Type<T>) {
     typePool.register(type)
-    type.binder.adapter = this
+    type.binder._adapter = this
   }
 
   /**
@@ -128,19 +128,6 @@ class MultiTypeAdapter @JvmOverloads constructor(
 
   fun getItems(): List<*> {
     return items
-  }
-
-  /**
-   * Set the TypePool to hold the types and view binders.
-   *
-   * @param typePool the TypePool implementation
-   */
-  fun setTypePool(typePool: TypePool) {
-    this.typePool = typePool
-  }
-
-  fun getTypePool(): TypePool {
-    return typePool
   }
 
   override fun getItemViewType(position: Int): Int {
