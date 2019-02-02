@@ -23,6 +23,7 @@ import androidx.annotation.CheckResult
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import java.util.concurrent.CopyOnWriteArrayList
+import kotlin.reflect.KClass
 
 /**
  * @author drakeet
@@ -51,6 +52,14 @@ class MultiTypeAdapter @JvmOverloads constructor(
     register(Type(clazz, binder, DefaultLinker()))
   }
 
+  inline fun <reified T : Any> register(binder: ItemViewBinder<T, out ViewHolder>) {
+    register(T::class.java, binder)
+  }
+
+  fun <T : Any> register(clazz: KClass<T>, binder: ItemViewBinder<T, out ViewHolder>) {
+    register(clazz.java, binder)
+  }
+
   internal fun <T> register(type: Type<T>) {
     typePool.register(type)
     type.binder.adapter = this
@@ -73,6 +82,11 @@ class MultiTypeAdapter @JvmOverloads constructor(
   fun <T> register(clazz: Class<T>): OneToManyFlow<T> {
     unregisterAllTypesIfNeeded(clazz)
     return OneToManyBuilder(this, clazz)
+  }
+
+  @CheckResult
+  fun <T : Any> register(clazz: KClass<T>): OneToManyFlow<T> {
+    return register(clazz.java)
   }
 
   /**

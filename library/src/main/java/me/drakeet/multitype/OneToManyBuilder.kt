@@ -22,8 +22,8 @@ import androidx.annotation.CheckResult
  * @author drakeet
  */
 internal class OneToManyBuilder<T>(
-  private val adapter: MultiTypeAdapter,
-  private val clazz: Class<T>
+    private val adapter: MultiTypeAdapter,
+    private val clazz: Class<T>
 ) : OneToManyFlow<T>, OneToManyEndpoint<T> {
 
   private var binders: Array<ItemViewBinder<T, *>>? = null

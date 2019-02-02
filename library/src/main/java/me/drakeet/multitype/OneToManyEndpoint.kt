@@ -16,6 +16,8 @@
 
 package me.drakeet.multitype
 
+import kotlin.reflect.KClass
+
 /**
  * End-operators for one-to-many.
  *
@@ -38,4 +40,20 @@ interface OneToManyEndpoint<T> {
    * @see ClassLinker
    */
   fun withClassLinker(classLinker: ClassLinker<T>)
+
+  fun withClassLinker(classLinker: (position: Int, t: T) -> Class<out ItemViewBinder<T, *>>) {
+    withClassLinker(object : ClassLinker<T> {
+      override fun index(position: Int, t: T): Class<out ItemViewBinder<T, *>> {
+        return classLinker.invoke(position, t)
+      }
+    })
+  }
+
+  fun withKClassLinker(classLinker: KClassLinker<T>) {
+    withClassLinker { position, t -> classLinker.index(position, t).java }
+  }
+
+  fun withKClassLinker(classLinker: (position: Int, t: T) -> KClass<out ItemViewBinder<T, *>>) {
+    withClassLinker { position, t -> classLinker(position, t).java }
+  }
 }
