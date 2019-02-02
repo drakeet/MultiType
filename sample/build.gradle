@@ -20,6 +20,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
   compileSdkVersion buildConfig.compileSdkVersion
+
   defaultConfig {
     applicationId "me.drakeet.multitype.sample"
     minSdkVersion buildConfig.minSdkVersion
@@ -28,15 +29,22 @@ android {
     versionName buildConfig.versionName
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
+
   buildTypes {
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
   }
 }
 
