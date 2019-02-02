@@ -41,14 +41,14 @@ public abstract class WeiboFrameBinder<Content extends WeiboContent, SubViewHold
   protected abstract void onBindContentViewHolder(@NonNull SubViewHolder holder, @NonNull Content content);
 
   @Override
-  protected @NonNull FrameHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+  public @NonNull FrameHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_weibo_frame, parent, false);
     ContentHolder subViewHolder = onCreateContentViewHolder(inflater, parent);
     return new FrameHolder(root, subViewHolder, this);
   }
 
   @Override @SuppressWarnings("unchecked")
-  protected void onBindViewHolder(@NonNull FrameHolder holder, @NonNull Weibo weibo) {
+  public void onBindViewHolder(@NonNull FrameHolder holder, @NonNull Weibo weibo) {
     holder.avatar.setImageResource(weibo.user.avatar);
     holder.username.setText(weibo.user.name);
     holder.createTime.setText(weibo.createTime);

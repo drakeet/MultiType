@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import me.drakeet.multitype.ItemViewBinder;
-import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
@@ -104,18 +103,18 @@ public class MoreApisPlayground extends MenuBaseActivity {
     }
 
     @NonNull @Override
-    protected TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    public TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
       View root = inflater.inflate(R.layout.item_text, parent, false);
       return new TextHolder(root);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
+    public void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
       holder.text.setText("observable item(" + textItem.text + ")");
     }
 
     @Override
-    protected void onViewRecycled(@NonNull TextHolder holder) {
+    public void onViewRecycled(@NonNull TextHolder holder) {
       appendTerminalLine("onViewRecycled: " + holder.text.getText());
     }
 
@@ -126,12 +125,12 @@ public class MoreApisPlayground extends MenuBaseActivity {
     }
 
     @Override
-    protected void onViewAttachedToWindow(@NonNull TextHolder holder) {
+    public void onViewAttachedToWindow(@NonNull TextHolder holder) {
       appendTerminalLine("onViewAttachedToWindow: " + holder.text.getText());
     }
 
     @Override
-    protected void onViewDetachedFromWindow(@NonNull TextHolder holder) {
+    public void onViewDetachedFromWindow(@NonNull TextHolder holder) {
       appendTerminalLine("onViewDetachedFromWindow: " + holder.text.getText());
     }
 

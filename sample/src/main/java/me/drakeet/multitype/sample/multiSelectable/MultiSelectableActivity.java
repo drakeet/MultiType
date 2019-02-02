@@ -24,14 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
-import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
 import me.drakeet.multitype.sample.common.CategoryItemViewBinder;
-
-import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 
 public class MultiSelectableActivity extends MenuBaseActivity {
 
@@ -63,7 +60,6 @@ public class MultiSelectableActivity extends MenuBaseActivity {
 
     loadData();
 
-    Companion.assertAllRegistered(adapter, items);
     recyclerView.setAdapter(adapter);
 
     setupFAB();

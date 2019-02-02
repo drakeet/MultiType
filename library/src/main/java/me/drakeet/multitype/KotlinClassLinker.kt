@@ -23,7 +23,7 @@ import kotlin.reflect.KClass
  *
  * @author drakeet
  */
-interface KClassLinker<T> {
+interface KotlinClassLinker<T> {
 
   /**
    * Returns the class of your registered binders for your item.
@@ -31,7 +31,7 @@ interface KClassLinker<T> {
    * @param position The position in items
    * @param t The item
    * @return The index of your registered binders
-   * @see OneToManyEndpoint.withClassLinker
+   * @see OneToManyEndpoint.withJavaClassLinker
    */
   fun index(position: Int, t: T): KClass<out ItemViewBinder<T, *>>
 }

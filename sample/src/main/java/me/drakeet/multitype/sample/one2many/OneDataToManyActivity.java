@@ -40,19 +40,19 @@ public class OneDataToManyActivity extends MenuBaseActivity {
     recyclerView = findViewById(R.id.list);
     adapter = new MultiTypeAdapter();
 
-        /*
-        adapter.register(Data.class).to(
-            new DataType1ViewBinder(),
-            new DataType2ViewBinder()
-        ).withLinker((position, data) ->
-            data.type == Data.TYPE_2 ? 1 : 0
-        );
-        */
+    /*
+    adapter.register(Data.class).to(
+        new DataType1ViewBinder(),
+        new DataType2ViewBinder()
+    ).withLinker((position, data) ->
+        data.type == Data.TYPE_2 ? 1 : 0
+    );
+    */
 
     adapter.register(Data.class).to(
         new DataType1ViewBinder(),
         new DataType2ViewBinder()
-    ).withClassLinker((position, data) -> {
+    ).withJavaClassLinker((position, data) -> {
       if (data.type == Data.TYPE_2) {
         return DataType2ViewBinder.class;
       } else {

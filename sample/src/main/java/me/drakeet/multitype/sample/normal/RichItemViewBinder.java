@@ -44,13 +44,13 @@ public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBin
   }
 
   @Override
-  protected @NonNull RichHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+  public @NonNull RichHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_rich, parent, false);
     return new RichHolder(root);
   }
 
   @Override
-  protected void onBindViewHolder(@NonNull RichHolder holder, @NonNull RichItem richContent) {
+  public void onBindViewHolder(@NonNull RichHolder holder, @NonNull RichItem richContent) {
     holder.text.setText(richContent.text);
     holder.image.setImageResource(richContent.imageResId);
   }

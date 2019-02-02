@@ -46,13 +46,13 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
   }
 
   @Override
-  protected @NonNull TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+  public @NonNull TextHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_text, parent, false);
     return new TextHolder(root);
   }
 
   @Override @SuppressLint("SetTextI18n")
-  protected void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
+  public void onBindViewHolder(@NonNull TextHolder holder, @NonNull TextItem textItem) {
     holder.text.setText("hello: " + textItem.text);
 
     // should show animation, ref: https://github.com/drakeet/MultiType/issues/149

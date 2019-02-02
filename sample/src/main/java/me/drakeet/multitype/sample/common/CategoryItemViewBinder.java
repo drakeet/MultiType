@@ -31,12 +31,12 @@ import me.drakeet.multitype.sample.R;
 public class CategoryItemViewBinder extends ItemViewBinder<Category, CategoryItemViewBinder.ViewHolder> {
 
   @Override
-  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+  public @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     return new ViewHolder(inflater.inflate(R.layout.item_category, parent, false));
   }
 
   @Override
-  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Category category) {
     holder.title.setText(category.title);
   }
 

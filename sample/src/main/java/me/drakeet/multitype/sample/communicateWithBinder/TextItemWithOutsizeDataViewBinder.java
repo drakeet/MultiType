@@ -26,12 +26,12 @@ public class TextItemWithOutsizeDataViewBinder
   }
 
   @Override
-  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+  public @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     return new ViewHolder(inflater.inflate(R.layout.item_text, parent, false));
   }
 
   @Override
-  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull TextItem textItem) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull TextItem textItem) {
     holder.setData(textItem);
   }
 

@@ -32,12 +32,12 @@ import me.drakeet.multitype.sample.R;
 public class PostViewBinder extends ItemViewBinder<Post, PostViewBinder.ViewHolder> {
 
   @Override
-  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+  public @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     return new ViewHolder(inflater.inflate(R.layout.item_post, parent, false));
   }
 
   @Override
-  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Post post) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Post post) {
     holder.setData(post);
   }
 

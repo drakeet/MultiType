@@ -19,10 +19,8 @@ package me.drakeet.multitype.sample.one2many
 import android.annotation.SuppressLint
 import android.os.Bundle
 import me.drakeet.multitype.MultiTypeAdapter
-import me.drakeet.multitype.register
 import me.drakeet.multitype.sample.MenuBaseActivity
 import me.drakeet.multitype.sample.R
-import me.drakeet.multitype.withKClassLinker
 
 /**
  * This file is just a Kotlin demo.
@@ -44,8 +42,8 @@ class OneDataToManyActivityKt : MenuBaseActivity() {
     adapter.register(Data::class).to(
         DataType1ViewBinder(),
         DataType2ViewBinder()
-    ).withKClassLinker { _, data ->
-      return@withKClassLinker when (data.type) {
+    ).withKotlinClassLinker { _, data ->
+      return@withKotlinClassLinker when (data.type) {
         Data.TYPE_2 -> DataType2ViewBinder::class
         else -> DataType1ViewBinder::class
       }

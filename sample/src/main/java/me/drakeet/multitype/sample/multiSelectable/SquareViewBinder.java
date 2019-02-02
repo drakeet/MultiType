@@ -38,13 +38,13 @@ public class SquareViewBinder extends ItemViewBinder<Square, SquareViewBinder.Vi
   public SquareViewBinder(@NonNull Set<Integer> selectedSet) { this.selectedSet = selectedSet; }
 
   @Override
-  protected @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+  public @NonNull ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
     View root = inflater.inflate(R.layout.item_square, parent, false);
     return new ViewHolder(root);
   }
 
   @Override
-  protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Square square) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Square square) {
     holder.square = square;
     holder.squareView.setText(valueOf(square.number));
     holder.squareView.setSelected(square.isSelected);
