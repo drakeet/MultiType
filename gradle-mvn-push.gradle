@@ -96,8 +96,8 @@ afterEvaluate { project ->
   android.libraryVariants.all { variant ->
     task("${variant.name}Javadoc", type: Javadoc) {
       description "Generates Javadoc for $variant.name."
-      source = variant.javaCompile.source
-      classpath = files(variant.javaCompile.classpath.files,
+      source = variant.getJavaCompileProvider().get().source
+      classpath = files(variant.getJavaCompileProvider().get().classpath.files,
           project.android.getBootClasspath())
       exclude '**/BuildConfig.java'
       exclude '**/R.java'

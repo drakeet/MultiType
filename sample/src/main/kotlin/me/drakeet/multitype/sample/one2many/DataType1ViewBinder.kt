@@ -35,8 +35,8 @@ class DataType1ViewBinder : ItemViewBinder<Data, DataType1ViewBinder.ViewHolder>
     return ViewHolder(inflater.inflate(R.layout.item_data_type1, parent, false))
   }
 
-  override fun onBindViewHolder(holder: ViewHolder, data: Data) {
-    holder.setTitle(data.title)
+  override fun onBindViewHolder(holder: ViewHolder, item: Data) {
+    holder.setTitle(item.title)
   }
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

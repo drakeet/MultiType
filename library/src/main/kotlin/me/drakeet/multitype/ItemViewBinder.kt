@@ -131,6 +131,7 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
    * @see RecyclerView.Adapter.setHasStableIds
    * @since v3.2.0
    */
+  @Suppress("UNUSED_PARAMETER")
   fun getItemId(item: T): Long = RecyclerView.NO_ID
 
   /**

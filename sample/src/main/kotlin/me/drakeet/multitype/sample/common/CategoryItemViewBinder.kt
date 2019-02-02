@@ -33,8 +33,8 @@ class CategoryItemViewBinder : ItemViewBinder<Category, CategoryItemViewBinder.V
     return ViewHolder(inflater.inflate(R.layout.item_category, parent, false))
   }
 
-  override fun onBindViewHolder(holder: ViewHolder, category: Category) {
-    holder.title.text = category.title
+  override fun onBindViewHolder(holder: ViewHolder, item: Category) {
+    holder.title.text = item.title
   }
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
