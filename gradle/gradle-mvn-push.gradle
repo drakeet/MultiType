@@ -55,7 +55,7 @@ def kotlinAndroidArtifactTasks() {
 
     outputFormat = 'html'
     outputDirectory = "$buildDir/docs/kdoc"
-    includes = ['Module.md']
+    includes = ['module.md']
     classpath = new ArrayList<File>(project.tasks['assemble'].outputs.files.files)
     sourceDirs = android.sourceSets.main.java.srcDirs
   }
@@ -83,7 +83,7 @@ def kotlinArtifactTasks() {
 
     outputFormat = 'html'
     outputDirectory = "$buildDir/docs/kdoc"
-    includes = ['Module.md']
+    includes = ['module.md']
     sourceDirs = sourceSets.main.allSource
   }
 
