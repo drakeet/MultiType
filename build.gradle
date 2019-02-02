@@ -15,7 +15,7 @@
  */
 
 buildscript {
-  ext.kotlinVersion = '1.3.11'
+  ext.kotlinVersion = '1.3.20'
   ext.recyclerviewVersion = '1.0.0'
   ext.annotationVersion = '1.0.1'
   ext.appcompatVersion = '1.0.2'
