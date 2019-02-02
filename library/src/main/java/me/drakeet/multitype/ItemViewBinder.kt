@@ -27,7 +27,30 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
  */
 abstract class ItemViewBinder<T, VH : ViewHolder> {
 
-  internal var adapter: MultiTypeAdapter? = null
+  @Suppress("PropertyName")
+  internal var _adapter: MultiTypeAdapter? = null
+
+  /**
+   * Gets the [MultiTypeAdapter] for sending notifications or getting item count, etc.
+   *
+   *
+   * Note that if you need to change the item's parent items, you could call this method
+   * to get the [MultiTypeAdapter], and call [MultiTypeAdapter.getItems] to get
+   * a list that can not be added any new item, so that you should copy the items and just use
+   * [MultiTypeAdapter.setItems] to replace the original items list and update the
+   * views.
+   *
+   *
+   * @return The MultiTypeAdapter this item is currently associated with.
+   * @since v2.3.4
+   */
+  val adapter: MultiTypeAdapter
+    get() {
+      if (_adapter == null) {
+        throw IllegalStateException("ItemViewBinder $this not attached to MultiTypeAdapter. You should not call the method before registering the binder.")
+      }
+      return _adapter!!
+    }
 
   abstract fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): VH
 
@@ -46,7 +69,7 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
    * given item in the items data set.
    * @param item The item within the MultiTypeAdapter's items data set.
    */
-  protected abstract fun onBindViewHolder(holder: VH, item: T)
+  abstract fun onBindViewHolder(holder: VH, item: T)
 
   /**
    * Called by MultiTypeAdapter to display the data with its view holder. This method should
@@ -94,29 +117,8 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
    * @return The adapter position.
    * @since v2.3.5. If below v2.3.5, use [ViewHolder.getAdapterPosition] instead.
    */
-  protected fun getPosition(holder: ViewHolder): Int {
+  fun getPosition(holder: ViewHolder): Int {
     return holder.adapterPosition
-  }
-
-  /**
-   * Get the [MultiTypeAdapter] for sending notifications or getting item count, etc.
-   *
-   *
-   * Note that if you need to change the item's parent items, you could call this method
-   * to get the [MultiTypeAdapter], and call [MultiTypeAdapter.getItems] to get
-   * a list that can not be added any new item, so that you should copy the items and just use
-   * [MultiTypeAdapter.setItems] to replace the original items list and update the
-   * views.
-   *
-   *
-   * @return The MultiTypeAdapter this item is currently associated with.
-   * @since v2.3.4
-   */
-  protected fun getAdapter(): MultiTypeAdapter {
-    if (adapter == null) {
-      throw IllegalStateException("ItemViewBinder $this not attached to MultiTypeAdapter. You should not call the method before registering the binder.")
-    }
-    return adapter!!
   }
 
   /**
