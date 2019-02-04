@@ -45,7 +45,10 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
   val adapter: MultiTypeAdapter
     get() {
       if (_adapter == null) {
-        throw IllegalStateException("ItemViewBinder $this not attached to MultiTypeAdapter. You should not call the method before registering the binder.")
+        throw IllegalStateException(
+          "ItemViewBinder $this not attached to MultiTypeAdapter. " +
+              "You should not call the method before registering the binder."
+        )
       }
       return _adapter!!
     }
