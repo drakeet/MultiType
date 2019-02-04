@@ -40,7 +40,7 @@ internal class OneToManyBuilder<T>(
   }
 
   override fun withJavaClassLinker(classLinker: ClassLinker<T>) {
-    doRegister(ClassLinkerWrapper.wrap(classLinker, binders!!))
+    withLinker(ClassLinkerWrapper.wrap(classLinker, binders!!))
   }
 
   private fun doRegister(linker: Linker<T>) {
