@@ -19,6 +19,7 @@ package me.drakeet.multitype
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -28,7 +29,6 @@ import org.mockito.ArgumentMatchers.anyList
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
@@ -57,8 +57,8 @@ class MultiTypeAdapterTest {
   @Throws(Exception::class)
   fun setUp() {
     initMocks(this)
-    `when`(parent!!.context).thenReturn(context)
-    `when`(context!!.getSystemService(anyString())).thenReturn(inflater)
+    whenever(parent!!.context).thenReturn(context)
+    whenever(context!!.getSystemService(anyString())).thenReturn(inflater)
   }
 
   @Test
@@ -125,7 +125,7 @@ class MultiTypeAdapterTest {
     adapter.items = listOf(item)
 
     val holder = mock(TestItemViewBinder.ViewHolder::class.java)
-    `when`(holder.itemViewType).thenReturn(adapter.getItemViewType(0))
+    whenever(holder.itemViewType).thenReturn(adapter.getItemViewType(0))
     adapter.onBindViewHolder(holder, 0)
     verify(mockedItemViewBinder).onBindViewHolder(eq(holder), eq(item), anyList())
 

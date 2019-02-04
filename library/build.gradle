@@ -53,6 +53,7 @@ dependencies {
   testImplementation "org.mockito:mockito-inline:2.18.0"
   testImplementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
   testImplementation "com.google.truth:truth:0.42"
+  testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
   api "androidx.annotation:annotation:$annotationVersion"
