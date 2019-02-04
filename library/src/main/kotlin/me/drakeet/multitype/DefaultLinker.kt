@@ -20,5 +20,5 @@ package me.drakeet.multitype
  * @author drakeet
  */
 internal class DefaultLinker<T> : Linker<T> {
-  override fun index(position: Int, t: T): Int = 0
+  override fun index(position: Int, item: T): Int = 0
 }

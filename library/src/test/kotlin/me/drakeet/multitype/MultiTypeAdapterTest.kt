@@ -92,12 +92,7 @@ class MultiTypeAdapterTest {
     val binder2 = TestItemViewBinder()
     adapter.register(TestItem::class.java)
       .to(itemViewBinder, binder2)
-      .withLinker(object : Linker<TestItem> {
-        override fun index(position: Int, t: TestItem): Int {
-          // ignored
-          return -1
-        }
-      })
+      .withLinker { _, _ -> -1 }
     assertEquals(TestItem::class.java, adapter.typePool.getType<Any>(0).clazz)
     assertEquals(TestItem::class.java, adapter.typePool.getType<Any>(1).clazz)
     assertEquals(itemViewBinder, adapter.typePool.getType<Any>(0).binder)

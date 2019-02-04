@@ -24,7 +24,7 @@ internal class ClassLinkerWrapper<T> private constructor(
   private val binders: Array<ItemViewBinder<T, *>>
 ) : Linker<T> {
 
-  override fun index(position: Int, t: T): Int {
+  override fun index(position: Int, item: T): Int {
     val userIndexClass = classLinker.index(position, t)
     for (i in binders.indices) {
       if (binders[i].javaClass == userIndexClass) {

@@ -27,9 +27,9 @@ interface ClassLinker<T> {
    * Returns the class of your registered binders for your item.
    *
    * @param position The position in items
-   * @param t The item
+   * @param item The item
    * @return The index of your registered binders
    * @see OneToManyEndpoint.withJavaClassLinker
    */
-  fun index(position: Int, t: T): Class<out ItemViewBinder<T, *>>
+  fun index(position: Int, item: T): Class<out ItemViewBinder<T, *>>
 }

@@ -30,7 +30,7 @@ class MultiTypeTest {
 
   private val adapter = MultiTypeAdapter()
   private val simpleLinker = object : Linker<String> {
-    override fun index(position: Int, t: String): Int = 0
+    override fun index(position: Int, item: String): Int = 0
   }
 
   @Test

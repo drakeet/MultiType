@@ -166,7 +166,7 @@ TypePool
 
 OneToManyEndpoint  
 - Added `withKClassLinker(classLinker: KClassLinker<T>)`
-- Added `withKClassLinker(classLinker: (position: Int, t: T) -> KClass<out ItemViewBinder<T, *>>)`
+- Added `withKClassLinker(classLinker: (position: Int, item: T) -> KClass<out ItemViewBinder<T, *>>)`
 
 ## Android Studio Plugin
 
