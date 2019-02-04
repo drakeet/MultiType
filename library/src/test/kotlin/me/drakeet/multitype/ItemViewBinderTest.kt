@@ -16,8 +16,7 @@
 
 package me.drakeet.multitype
 
-import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertNull
+import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
 /**
@@ -43,7 +42,7 @@ class ItemViewBinderTest {
       exception = e
     }
 
-    assertNull(exception)
+    assertThat(exception).isNull()
   }
 
   @Test(expected = IllegalStateException::class)
@@ -62,7 +61,8 @@ class ItemViewBinderTest {
 
   class TestItemViewBinder : me.drakeet.multitype.TestItemViewBinder() {
     fun notifyTestItemAdded() {
-      assertNotNull(adapter.toString())
+      assertThat(adapter).isNotNull()
+      assertThat(adapter.toString()).isNotNull()
     }
   }
 }

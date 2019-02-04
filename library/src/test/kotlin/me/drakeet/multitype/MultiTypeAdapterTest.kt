@@ -19,9 +19,9 @@ package me.drakeet.multitype
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.*
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -60,19 +60,19 @@ class MultiTypeAdapterTest {
   @Test
   fun shouldReturnEmptyItemsWithDefaultConstructor() {
     val adapter = MultiTypeAdapter()
-    assertTrue(adapter.items.isEmpty())
+    assertThat(adapter.items).isEmpty()
   }
 
   @Test
   fun shouldOverrideRegisteredBinder() {
     val adapter = MultiTypeAdapter()
     adapter.register(TestItem::class, itemViewBinder)
-    assertEquals(1, adapter.typePool.size().toLong())
-    assertEquals(itemViewBinder, adapter.typePool.getType<Any>(0).binder)
+    assertThat(adapter.typePool.size()).isEqualTo(1)
+    assertThat(itemViewBinder).isEqualTo(adapter.typePool.getType<Any>(0).binder)
 
     val newBinder = TestItemViewBinder()
     adapter.register(TestItem::class, newBinder)
-    assertEquals(newBinder, adapter.typePool.getType<Any>(0).binder)
+    assertThat(newBinder).isEqualTo(adapter.typePool.getType<Any>(0).binder)
   }
 
   @Test
@@ -82,10 +82,11 @@ class MultiTypeAdapterTest {
     adapter.register(TestItem::class)
       .to(itemViewBinder, binder2)
       .withLinker { _, _ -> -1 }
-    assertEquals(TestItem::class.java, adapter.typePool.getType<Any>(0).clazz)
-    assertEquals(TestItem::class.java, adapter.typePool.getType<Any>(1).clazz)
-    assertEquals(itemViewBinder, adapter.typePool.getType<Any>(0).binder)
-    assertEquals(binder2, adapter.typePool.getType<Any>(1).binder)
+    assertThat(adapter.typePool.getType<Any>(0).clazz).isEqualTo(TestItem::class.java)
+    assertThat(adapter.typePool.getType<Any>(1).clazz).isEqualTo(TestItem::class.java)
+
+    assertThat(itemViewBinder).isEqualTo(adapter.typePool.getType<Any>(0).binder)
+    assertThat(binder2).isEqualTo(adapter.typePool.getType<Any>(1).binder)
   }
 
   @Test
@@ -97,7 +98,6 @@ class MultiTypeAdapterTest {
     val type = adapter.getItemViewType(0)
 
     adapter.onCreateViewHolder(parent, type)
-
     verify(mockedItemViewBinder).onCreateViewHolder(inflater, parent)
   }
 

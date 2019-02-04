@@ -16,6 +16,7 @@
 
 package me.drakeet.multitype
 
+import android.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,12 +28,10 @@ import androidx.recyclerview.widget.RecyclerView
 class StringViewBinder : ItemViewBinder<String, StringViewBinder.ViewHolder>() {
 
   override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {
-    val root = inflater.inflate(android.R.layout.test_list_item, parent, false)
-    return ViewHolder(root)
+    return ViewHolder(inflater.inflate(R.layout.test_list_item, parent, false))
   }
 
-  override fun onBindViewHolder(holder: ViewHolder, item: String) {
-  }
+  override fun onBindViewHolder(holder: ViewHolder, item: String) {}
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
