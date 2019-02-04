@@ -19,7 +19,6 @@ package me.drakeet.multitype
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Test
-import java.util.*
 
 /**
  * @author drakeet
@@ -30,7 +29,7 @@ class ItemViewBinderTest {
   fun shouldGetNonNullAdapter() {
     var exception: Exception? = null
     val adapter = MultiTypeAdapter()
-    val empty = ArrayList<Any>()
+    val empty = arrayListOf<Any>()
     adapter.items = empty
 
     val binder = TestItemViewBinder()
