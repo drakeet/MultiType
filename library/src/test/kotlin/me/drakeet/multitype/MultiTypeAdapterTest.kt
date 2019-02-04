@@ -19,7 +19,7 @@ package me.drakeet.multitype
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -27,12 +27,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyList
 import org.mockito.ArgumentMatchers.anyString
-import org.mockito.ArgumentMatchers.eq
-import org.mockito.Mock
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
-import org.mockito.MockitoAnnotations.initMocks
 import org.robolectric.RobolectricTestRunner
 import java.util.*
 
@@ -42,23 +36,18 @@ import java.util.*
 @RunWith(RobolectricTestRunner::class)
 class MultiTypeAdapterTest {
 
-  @Mock
-  private val parent: ViewGroup? = null
-  @Mock
-  private val context: Context? = null
-  @Mock
-  private val mockedItemViewBinder: TestItemViewBinder? = null
-  @Mock
-  private val inflater: LayoutInflater? = null
+  private val parent: ViewGroup = mock()
+  private val context: Context = mock()
+  private val mockedItemViewBinder: TestItemViewBinder = mock()
+  private val inflater: LayoutInflater = mock()
 
   private val itemViewBinder = TestItemViewBinder()
 
   @Before
   @Throws(Exception::class)
   fun setUp() {
-    initMocks(this)
-    whenever(parent!!.context).thenReturn(context)
-    whenever(context!!.getSystemService(anyString())).thenReturn(inflater)
+    whenever(parent.context).thenReturn(context)
+    whenever(context.getSystemService(anyString())).thenReturn(inflater)
   }
 
   @Test
@@ -77,12 +66,12 @@ class MultiTypeAdapterTest {
   @Test
   fun shouldOverrideRegisteredBinder() {
     val adapter = MultiTypeAdapter()
-    adapter.register(TestItem::class.java, itemViewBinder)
+    adapter.register(TestItem::class, itemViewBinder)
     assertEquals(1, adapter.typePool.size().toLong())
     assertEquals(itemViewBinder, adapter.typePool.getType<Any>(0).binder)
 
     val newBinder = TestItemViewBinder()
-    adapter.register(TestItem::class.java, newBinder)
+    adapter.register(TestItem::class, newBinder)
     assertEquals(newBinder, adapter.typePool.getType<Any>(0).binder)
   }
 
@@ -90,7 +79,7 @@ class MultiTypeAdapterTest {
   fun shouldNotOverrideRegisteredBinderWhenToMany() {
     val adapter = MultiTypeAdapter()
     val binder2 = TestItemViewBinder()
-    adapter.register(TestItem::class.java)
+    adapter.register(TestItem::class)
       .to(itemViewBinder, binder2)
       .withLinker { _, _ -> -1 }
     assertEquals(TestItem::class.java, adapter.typePool.getType<Any>(0).clazz)
@@ -102,24 +91,24 @@ class MultiTypeAdapterTest {
   @Test
   fun testOnCreateViewHolder() {
     val adapter = MultiTypeAdapter()
-    adapter.register(TestItem::class.java, mockedItemViewBinder!!)
+    adapter.register(TestItem::class, mockedItemViewBinder)
     val item = TestItem("testOnCreateViewHolder")
     adapter.items = listOf(item)
     val type = adapter.getItemViewType(0)
 
-    adapter.onCreateViewHolder(parent!!, type)
+    adapter.onCreateViewHolder(parent, type)
 
-    verify(mockedItemViewBinder).onCreateViewHolder(inflater!!, parent)
+    verify(mockedItemViewBinder).onCreateViewHolder(inflater, parent)
   }
 
   @Test
   fun testOnBindViewHolder() {
     val adapter = MultiTypeAdapter()
-    adapter.register(TestItem::class.java, mockedItemViewBinder!!)
+    adapter.register(TestItem::class, mockedItemViewBinder)
     val item = TestItem("testOnCreateViewHolder")
     adapter.items = listOf(item)
 
-    val holder = mock(TestItemViewBinder.ViewHolder::class.java)
+    val holder: TestItemViewBinder.ViewHolder = mock()
     whenever(holder.itemViewType).thenReturn(adapter.getItemViewType(0))
     adapter.onBindViewHolder(holder, 0)
     verify(mockedItemViewBinder).onBindViewHolder(eq(holder), eq(item), anyList())

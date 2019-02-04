@@ -130,20 +130,6 @@ class MultiTypeAdapter @JvmOverloads constructor(
     return binder.onCreateViewHolder(inflater, parent)
   }
 
-  /**
-   * This method is deprecated and unused. You should not call this method.
-   *
-   * If you need to call the binding, use [RecyclerView.Adapter.onBindViewHolder] instead.
-   *
-   * @param holder The ViewHolder which should be updated to represent the contents of the
-   * item at the given position in the data set.
-   * @param position The position of the item within the adapter's data set.
-   * @throws IllegalAccessError By default.
-   */
-  @Deprecated(
-    "Use {@link RecyclerView.Adapter#onBindViewHolder(ViewHolder, int, List)} instead.",
-    ReplaceWith("onBindViewHolder(holder, position, list)")
-  )
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     onBindViewHolder(holder, position, emptyList())
   }
