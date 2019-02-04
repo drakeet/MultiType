@@ -41,7 +41,7 @@ class BilibiliActivityDataSetADCTest {
   private lateinit var items: MutableList<Any>
   private lateinit var adapter: MultiTypeAdapter
 
-  @Rule
+  @get:Rule
   var rule = ActivityTestRule(BilibiliActivity::class.java)
 
   @Before

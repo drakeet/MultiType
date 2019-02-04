@@ -39,35 +39,25 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class SmokeTest {
 
-  @Rule
+  @get:Rule
   var rule = ActivityTestRule(BilibiliActivity::class.java)
+
+  private val menus = arrayOf(
+    "NormalActivity",
+    "MultiSelectableActivity",
+    "communicate with binder",
+    "WeiboActivity",
+    "OneDataToManyActivity",
+    "TestPayloadActivity",
+    "MoreApisPlayground"
+  )
 
   @Test
   fun smokeTest() {
     Espresso.closeSoftKeyboard()
-
-    openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
-
-    onView(allOf<View>(withId(R.id.title), withText("NormalActivity"), isDisplayed())).perform(click())
-
-    openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
-
-    onView(allOf<View>(withId(R.id.title), withText("MultiSelectableActivity"), isDisplayed())).perform(click())
-
-    openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
-
-    onView(allOf<View>(withId(R.id.title), withText("communicate with binder"), isDisplayed())).perform(click())
-
-    openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
-
-    onView(allOf<View>(withId(R.id.title), withText("WeiboActivity"), isDisplayed())).perform(click())
-
-    openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
-
-    onView(allOf<View>(withId(R.id.title), withText("OneDataToManyActivity"), isDisplayed())).perform(click())
-
-    openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
-
-    onView(allOf<View>(withId(R.id.title), withText("TestPayloadActivity"), isDisplayed())).perform(click())
+    menus.forEach {
+      openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
+      onView(allOf<View>(withId(R.id.title), withText(it), isDisplayed())).perform(click())
+    }
   }
 }

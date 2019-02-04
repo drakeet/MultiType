@@ -33,11 +33,11 @@ interface Linker<T> {
    * one-to-multiple-binders.
    *
    * @param position The position in items
-   * @param t Your item data
+   * @param item The data item
    * @return The index of your registered binders
    * @see OneToManyFlow.to
    * @see OneToManyEndpoint.withLinker
    */
   @IntRange(from = 0)
-  fun index(position: Int, t: T): Int
+  fun index(position: Int, item: T): Int
 }

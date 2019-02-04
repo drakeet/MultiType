@@ -19,6 +19,7 @@ package me.drakeet.multitype.sample.one2many
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
+import me.drakeet.multitype.Linker
 import me.drakeet.multitype.MultiTypeAdapter
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame
@@ -33,7 +34,7 @@ class DuplicateTypesTest {
 
   private lateinit var adapter: MultiTypeAdapter
 
-  @Rule
+  @get:Rule
   var rule = ActivityTestRule(OneDataToManyActivity::class.java)
 
   @Before
@@ -83,7 +84,11 @@ class DuplicateTypesTest {
   @Test
   @Throws(Throwable::class)
   fun shouldManyOverrideOne() {
-    val linker = { _: Int, data: Data -> if (data.type == Data.TYPE_1) 1 else 0 }
+    val linker = object : Linker<Data> {
+      override fun index(position: Int, item: Data): Int {
+        return if (item.type == Data.TYPE_1) 1 else 0
+      }
+    }
     rule.runOnUiThread {
       resetRecyclerViewState()
       adapter.register(DataType1ViewBinder())
@@ -115,7 +120,11 @@ class DuplicateTypesTest {
   @Test
   @Throws(Throwable::class)
   fun shouldManyOverrideMany() {
-    val linker = { _: Int, data: Data -> if (data.type == Data.TYPE_1) 1 else 0 }
+    val linker = object : Linker<Data> {
+      override fun index(position: Int, item: Data): Int {
+        return if (item.type == Data.TYPE_1) 1 else 0
+      }
+    }
     rule.runOnUiThread {
       resetRecyclerViewState()
       adapter.register(Data::class).to(

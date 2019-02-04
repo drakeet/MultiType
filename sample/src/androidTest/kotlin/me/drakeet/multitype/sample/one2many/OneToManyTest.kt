@@ -41,7 +41,7 @@ class OneToManyTest {
   private lateinit var items: List<Any>
   private lateinit var adapter: MultiTypeAdapter
 
-  @Rule
+  @get:Rule
   var rule = ActivityTestRule(
     OneDataToManyActivity::class.java
   )
