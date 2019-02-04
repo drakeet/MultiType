@@ -44,13 +44,13 @@ interface OneToManyEndpoint<T> {
   /**
    * Sets a class linker to link the items and binders by the class instance of binders.
    *
-   * @param classLinker the class linker
-   * @see ClassLinker
+   * @param javaClassLinker the class linker
+   * @see JavaClassLinker
    */
-  fun withJavaClassLinker(classLinker: ClassLinker<T>)
+  fun withJavaClassLinker(javaClassLinker: JavaClassLinker<T>)
 
   private fun withJavaClassLinker(classLinker: (position: Int, item: T) -> Class<out ItemViewBinder<T, *>>) {
-    withJavaClassLinker(object : ClassLinker<T> {
+    withJavaClassLinker(object : JavaClassLinker<T> {
       override fun index(position: Int, item: T): Class<out ItemViewBinder<T, *>> {
         return classLinker(position, item)
       }

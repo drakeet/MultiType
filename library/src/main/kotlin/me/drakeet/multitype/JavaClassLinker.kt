@@ -21,7 +21,7 @@ package me.drakeet.multitype
  *
  * @author drakeet
  */
-interface ClassLinker<T> {
+interface JavaClassLinker<T> {
 
   /**
    * Returns the class of your registered binders for your item.

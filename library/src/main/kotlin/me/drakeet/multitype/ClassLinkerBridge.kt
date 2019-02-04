@@ -19,29 +19,29 @@ package me.drakeet.multitype
 /**
  * @author drakeet
  */
-internal class ClassLinkerWrapper<T> private constructor(
-  private val classLinker: ClassLinker<T>,
+internal class ClassLinkerBridge<T> private constructor(
+  private val javaClassLinker: JavaClassLinker<T>,
   private val binders: Array<ItemViewBinder<T, *>>
 ) : Linker<T> {
 
   override fun index(position: Int, item: T): Int {
-    val userIndexClass = classLinker.index(position, item)
+    val indexedClass = javaClassLinker.index(position, item)
     for (i in binders.indices) {
-      if (binders[i].javaClass == userIndexClass) {
+      if (binders[i].javaClass == indexedClass) {
         return i
       }
     }
     throw IndexOutOfBoundsException(
-      "${userIndexClass.name} is out of your registered binders'(${binders.contentToString()}) bounds."
+      "The binders'(${binders.contentToString()}) you registered do not contain this ${indexedClass.name}."
     )
   }
 
   companion object {
-    fun <T> wrap(
-      classLinker: ClassLinker<T>,
+    fun <T> toLinker(
+      javaClassLinker: JavaClassLinker<T>,
       binders: Array<ItemViewBinder<T, *>>
-    ): ClassLinkerWrapper<T> {
-      return ClassLinkerWrapper(classLinker, binders)
+    ): Linker<T> {
+      return ClassLinkerBridge(javaClassLinker, binders)
     }
   }
 }

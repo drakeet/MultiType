@@ -63,7 +63,7 @@ class OneToManyBuilderTest {
     val itemViewBinder1 = mock<ItemViewBinder<Data, RecyclerView.ViewHolder>>()
     val itemViewBinder2 = mock<DataItemViewBinder>()
     oneToManyBuilder.to(itemViewBinder1, itemViewBinder2)
-    oneToManyBuilder.withJavaClassLinker(object : ClassLinker<Data> {
+    oneToManyBuilder.withJavaClassLinker(object : JavaClassLinker<Data> {
       override fun index(position: Int, item: Data): Class<out ItemViewBinder<Data, *>> {
         return if (position == 3) itemViewBinder1.javaClass else itemViewBinder2.javaClass
       }
