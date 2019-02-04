@@ -112,7 +112,7 @@ class MultiTypeAdapter @JvmOverloads constructor(
    * @see [register]
    */
   fun registerAll(pool: TypePool) {
-    val size = pool.size()
+    val size = pool.size
     for (i in 0 until size) {
       val type = pool.getType<Any>(i)
       unregisterAllTypesIfNeeded(type.clazz)

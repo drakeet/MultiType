@@ -67,7 +67,7 @@ class MultiTypeAdapterTest {
   fun shouldOverrideRegisteredBinder() {
     val adapter = MultiTypeAdapter()
     adapter.register(TestItem::class, itemViewBinder)
-    assertThat(adapter.typePool.size()).isEqualTo(1)
+    assertThat(adapter.typePool.size).isEqualTo(1)
     assertThat(itemViewBinder).isEqualTo(adapter.typePool.getType<Any>(0).binder)
 
     val newBinder = TestItemViewBinder()

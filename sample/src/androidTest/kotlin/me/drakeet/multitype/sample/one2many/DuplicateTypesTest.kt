@@ -19,6 +19,7 @@ package me.drakeet.multitype.sample.one2many
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
+import com.google.common.truth.Truth.assertThat
 import me.drakeet.multitype.Linker
 import me.drakeet.multitype.MultiTypeAdapter
 import org.junit.Assert.assertEquals
@@ -56,12 +57,9 @@ class DuplicateTypesTest {
       adapter.register(DataType1ViewBinder())
       adapter.notifyDataSetChanged()
     }
-    assertEquals(1, adapter.typePool.size().toLong())
-    assertEquals(Data::class.java, adapter.typePool.getType<Data>(0).clazz)
-    assertEquals(
-      DataType1ViewBinder::class.java,
-      adapter.typePool.getType<Data>(0).binder::class.java
-    )
+    assertThat(adapter.typePool.size).isEqualTo(1)
+    assertThat(adapter.typePool.getType<Data>(0).clazz).isEqualTo(Data::class.java)
+    assertThat(adapter.typePool.getType<Data>(0).binder.javaClass).isEqualTo(DataType1ViewBinder::class.java)
   }
 
   @Test
@@ -73,12 +71,9 @@ class DuplicateTypesTest {
       adapter.register(DataType2ViewBinder())
       adapter.notifyDataSetChanged()
     }
-    assertEquals(1, adapter.typePool.size().toLong())
-    assertEquals(Data::class.java, adapter.typePool.getType<Data>(0).clazz)
-    assertEquals(
-      DataType2ViewBinder::class.java,
-      adapter.typePool.getType<Data>(0).binder::class.java
-    )
+    assertThat(adapter.typePool.size).isEqualTo(1)
+    assertThat(adapter.typePool.getType<Data>(0).clazz).isEqualTo(Data::class.java)
+    assertThat(adapter.typePool.getType<Data>(0).binder.javaClass).isEqualTo(DataType2ViewBinder::class.java)
   }
 
   @Test
@@ -99,7 +94,7 @@ class DuplicateTypesTest {
       ).withLinker(linker)
       adapter.notifyDataSetChanged()
     }
-    assertEquals(2, adapter.typePool.size().toLong())
+    assertThat(adapter.typePool.size).isEqualTo(2)
 
     assertEquals(Data::class.java, adapter.typePool.getType<Data>(0).clazz)
     assertEquals(Data::class.java, adapter.typePool.getType<Data>(1).clazz)
@@ -138,7 +133,7 @@ class DuplicateTypesTest {
       ).withLinker(linker)
       adapter.notifyDataSetChanged()
     }
-    assertEquals(2, adapter.typePool.size().toLong())
+    assertThat(adapter.typePool.size).isEqualTo(2)
 
     assertEquals(Data::class.java, adapter.typePool.getType<Data>(0).clazz)
     assertEquals(Data::class.java, adapter.typePool.getType<Data>(1).clazz)

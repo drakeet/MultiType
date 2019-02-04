@@ -23,6 +23,11 @@ package me.drakeet.multitype
  */
 interface TypePool {
 
+  /**
+   * Returns the size of the pool.
+   */
+  val size: Int
+
   fun <T> register(type: Type<T>)
 
   /**
@@ -53,11 +58,4 @@ interface TypePool {
    * or -1 if this pool does not contain the class.
    */
   fun firstIndexOf(clazz: Class<*>): Int
-
-  /**
-   * Returns the number of types in this pool.
-   *
-   * @return the number of types in this pool
-   */
-  fun size(): Int
 }

@@ -26,6 +26,8 @@ class ArrayTypePool constructor(
   private val types: MutableList<Type<*>> = ArrayList(initialCapacity)
 ) : TypePool {
 
+  override val size: Int = types.size
+
   override fun <T> register(type: Type<T>) {
     types.add(type)
   }
@@ -44,6 +46,4 @@ class ArrayTypePool constructor(
     }
     return types.indexOfFirst { it.clazz.isAssignableFrom(clazz) }
   }
-
-  override fun size(): Int = types.size
 }
