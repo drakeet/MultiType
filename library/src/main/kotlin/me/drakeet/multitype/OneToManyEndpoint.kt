@@ -36,7 +36,7 @@ interface OneToManyEndpoint<T> {
   fun withLinker(linker: (position: Int, item: T) -> Int) {
     withLinker(object : Linker<T> {
       override fun index(position: Int, item: T): Int {
-        return linker.invoke(position, item)
+        return linker(position, item)
       }
     })
   }
@@ -49,19 +49,19 @@ interface OneToManyEndpoint<T> {
    */
   fun withJavaClassLinker(classLinker: ClassLinker<T>)
 
+  private fun withJavaClassLinker(classLinker: (position: Int, item: T) -> Class<out ItemViewBinder<T, *>>) {
+    withJavaClassLinker(object : ClassLinker<T> {
+      override fun index(position: Int, item: T): Class<out ItemViewBinder<T, *>> {
+        return classLinker(position, item)
+      }
+    })
+  }
+
   fun withKotlinClassLinker(classLinker: KotlinClassLinker<T>) {
     withJavaClassLinker { position, item -> classLinker.index(position, item).java }
   }
 
   fun withKotlinClassLinker(classLinker: (position: Int, item: T) -> KClass<out ItemViewBinder<T, *>>) {
     withJavaClassLinker { position, item -> classLinker(position, item).java }
-  }
-
-  private fun withJavaClassLinker(classLinker: (position: Int, item: T) -> Class<out ItemViewBinder<T, *>>) {
-    withJavaClassLinker(object : ClassLinker<T> {
-      override fun index(position: Int, item: T): Class<out ItemViewBinder<T, *>> {
-        return classLinker.invoke(position, item)
-      }
-    })
   }
 }
