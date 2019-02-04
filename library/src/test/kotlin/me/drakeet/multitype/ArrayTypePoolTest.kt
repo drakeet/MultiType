@@ -16,13 +16,11 @@
 
 package me.drakeet.multitype
 
-import org.junit.Assert.assertEquals
+import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
 
 /**
- * More tests: /sample/src/androidTest
- *
  * @author drakeet
  */
 class ArrayTypePoolTest {
@@ -37,20 +35,13 @@ class ArrayTypePoolTest {
   fun register() {
     pool = ArrayTypePool()
     pool.register(Type(TestItem::class.java, TestItemViewBinder(), DefaultLinker()))
+    pool.register(Type(RegisteredSubClass::class.java, TestItemViewBinder(), DefaultLinker()))
   }
 
   @Test
-  fun shouldIndexOfReturn0() {
-    assertEquals(0, pool.firstIndexOf(TestItem::class.java).toLong())
-  }
-
-  @Test
-  fun shouldIndexOfReturn0WithNonRegisterSubclass() {
-    assertEquals(0, pool.firstIndexOf(SubClass::class.java).toLong())
-  }
-
-  @Test
-  fun shouldIndexOfReturn1WithRegisterSubclass() {
-    assertEquals(1, pool.firstIndexOf(RegisteredSubClass::class.java).toLong())
+  fun testFirstIndexOf() {
+    assertThat(pool.firstIndexOf(TestItem::class.java)).isEqualTo(0)
+    assertThat(pool.firstIndexOf(SubClass::class.java)).isEqualTo(0)
+    assertThat(pool.firstIndexOf(RegisteredSubClass::class.java)).isEqualTo(1)
   }
 }
