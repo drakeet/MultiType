@@ -31,6 +31,10 @@ import me.drakeet.multitype.ItemViewBinder
  */
 abstract class InflatedItemViewBinder<T, VH : ViewHolder> : ItemViewBinder<T, VH>() {
 
+  private val contentView: ContentView? by lazy {
+    javaClass.getAnnotation(ContentView::class.java)
+  }
+
   final override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): VH {
     val layout = contentView
     if (layout != null) {
@@ -43,10 +47,4 @@ abstract class InflatedItemViewBinder<T, VH : ViewHolder> : ItemViewBinder<T, VH
   }
 
   abstract fun onCreateViewHolder(itemView: View): VH
-
-  companion object {
-    private val contentView: ContentView? by lazy {
-      InflatedItemViewBinder::class.java.getAnnotation(ContentView::class.java)
-    }
-  }
 }

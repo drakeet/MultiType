@@ -53,6 +53,7 @@ open class MenuBaseActivity : AppCompatActivity() {
       R.id.OneDataToManyActivity -> intent.setClass(this, OneDataToManyActivity::class.java)
       R.id.TestPayloadActivity -> intent.setClass(this, TestPayloadActivity::class.java)
       R.id.MoreApisPlayground -> intent.setClass(this, MoreApisPlayground::class.java)
+      R.id.ContentViewActivity -> intent.setClass(this, ContentViewActivity::class.java)
       else -> return false
     }
     startActivity(intent)

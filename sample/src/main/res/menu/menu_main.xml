@@ -68,4 +68,9 @@
         android:title="MoreApisPlayground"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/ContentViewActivity"
+        android:title="ContentViewActivity"
+        app:showAsAction="never"/>
+
 </menu>

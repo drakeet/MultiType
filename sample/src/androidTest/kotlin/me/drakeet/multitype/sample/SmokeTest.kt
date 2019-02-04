@@ -49,7 +49,8 @@ class SmokeTest {
     "WeiboActivity",
     "OneDataToManyActivity",
     "TestPayloadActivity",
-    "MoreApisPlayground"
+    "MoreApisPlayground",
+    "ContentViewActivity"
   )
 
   @Test

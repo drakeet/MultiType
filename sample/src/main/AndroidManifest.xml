@@ -49,6 +49,8 @@
 
         <activity android:name=".more.MoreApisPlayground"/>
 
+        <activity android:name=".ContentViewActivity"/>
+
     </application>
 
 </manifest>
