@@ -33,13 +33,11 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
   /**
    * Gets the [MultiTypeAdapter] for sending notifications or getting item count, etc.
    *
-   *
    * Note that if you need to change the item's parent items, you could call this method
-   * to get the [MultiTypeAdapter], and call [MultiTypeAdapter.getItems] to get
+   * to get the [MultiTypeAdapter], and call [MultiTypeAdapter.items] to get
    * a list that can not be added any new item, so that you should copy the items and just use
-   * [MultiTypeAdapter.setItems] to replace the original items list and update the
+   * [MultiTypeAdapter.items] to replace the original items list and update the
    * views.
-   *
    *
    * @return The MultiTypeAdapter this item is currently associated with.
    * @since v2.3.4
@@ -58,7 +56,6 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
    * Called by MultiTypeAdapter to display the data with its view holder. This method should
    * update the contents of the [ViewHolder.itemView] to reflect the given item.
    *
-   *
    * If you need the position of an item later on (e.g. in a click listener), use
    * `ViewHolder#getAdapterPosition()` which will have the updated adapter position.
    *
@@ -75,13 +72,10 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
    * Called by MultiTypeAdapter to display the data with its view holder. This method should
    * update the contents of the [ViewHolder.itemView] to reflect the given item.
    *
-   *
    * If you need the position of an item later on (e.g. in a click listener), use
    * [ViewHolder.getAdapterPosition] which will have the updated adapter position.
    *
-   *
    * Partial bind vs full bind:
-   *
    *
    * The payloads parameter is a merge list from [MultiTypeAdapter.notifyItemChanged] [MultiTypeAdapter.notifyItemRangeChanged].
    * If the payloads list is not empty, the ViewHolder is currently bound to old data and
@@ -137,14 +131,12 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
   /**
    * Called when a view created by this [ItemViewBinder] has been recycled.
    *
-   *
    * A view is recycled when a [LayoutManager] decides that it no longer
    * needs to be attached to its parent [RecyclerView]. This can be because it has
    * fallen out of visibility or a set of cached views represented by views still
    * attached to the parent RecyclerView. If an item view has large or expensive data
    * bound to it such as large bitmaps, this may be a good place to release those
    * resources.
-   *
    *
    * RecyclerView calls this method right before clearing ViewHolder's internal data and
    * sending it to RecycledViewPool.
@@ -161,19 +153,16 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
    * the View can be recycled. Keep in mind that the View in question is already removed from
    * the RecyclerView.
    *
-   *
    * In some cases, it is acceptable to recycle a View although it has transient state. Most
    * of the time, this is a case where the transient state will be cleared in
    * [.onBindViewHolder] call when View is rebound to a new item.
    * For this reason, RecyclerView leaves the decision to the Adapter and uses the return
    * value of this method to decide whether the View should be recycled or not.
    *
-   *
    * Note that when all animations are created by [RecyclerView.ItemAnimator], you
    * should never receive this callback because RecyclerView keeps those Views as children
    * until their animations are complete. This callback is useful when children of the item
    * views create animations which may not be easy to implement using an [ ].
-   *
    *
    * You should *never* fix this issue by calling
    * `holder.itemView.setHasTransientState(false);` unless you've previously called
@@ -199,7 +188,6 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
   /**
    * Called when a view created by this [ItemViewBinder] has been attached to a window.
    *
-   *
    * This can be used as a reasonable signal that the view is about to be seen
    * by the user. If the [ItemViewBinder] previously freed any resources in
    * [onViewDetachedFromWindow][.onViewDetachedFromWindow]
@@ -213,7 +201,6 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
   /**
    * Called when a view created by this [ItemViewBinder] has been detached from its
    * window.
-   *
    *
    * Becoming detached from the window is not necessarily a permanent condition;
    * the consumer of an Adapter's views may choose to cache views offscreen while they

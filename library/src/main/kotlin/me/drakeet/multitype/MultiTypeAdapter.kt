@@ -33,7 +33,6 @@ class MultiTypeAdapter @JvmOverloads constructor(
    * Sets and updates the items atomically and safely. It is recommended to use this method
    * to update the items with a new wrapper list or consider using [CopyOnWriteArrayList].
    *
-   *
    * Note: If you want to refresh the list views after setting items, you should
    * call [RecyclerView.Adapter.notifyDataSetChanged] by yourself.
    *
@@ -134,9 +133,7 @@ class MultiTypeAdapter @JvmOverloads constructor(
   /**
    * This method is deprecated and unused. You should not call this method.
    *
-   *
    * If you need to call the binding, use [RecyclerView.Adapter.onBindViewHolder] instead.
-   *
    *
    * @param holder The ViewHolder which should be updated to represent the contents of the
    * item at the given position in the data set.

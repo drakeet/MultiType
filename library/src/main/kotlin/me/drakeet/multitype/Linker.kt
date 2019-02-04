@@ -29,7 +29,6 @@ interface Linker<T> {
    * Returns the index of your registered binders for your item. The result should be in range of
    * `[0, one-to-multiple-binders.length)`.
    *
-   *
    * Note: The argument of [OneToManyFlow.to] is the
    * one-to-multiple-binders.
    *
