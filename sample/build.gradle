@@ -54,6 +54,7 @@ dependencies {
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
   androidTestImplementation 'androidx.test:rules:1.1.1'
   androidTestImplementation "androidx.annotation:annotation:$annotationVersion"
+  androidTestImplementation "com.google.truth:truth:0.42"
   implementation "androidx.appcompat:appcompat:$appcompatVersion"
   implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
   implementation 'com.google.code.gson:gson:2.8.5'
