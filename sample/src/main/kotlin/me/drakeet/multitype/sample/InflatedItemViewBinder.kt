@@ -32,9 +32,9 @@ import me.drakeet.multitype.ItemViewBinder
 abstract class InflatedItemViewBinder<T, VH : ViewHolder> : ItemViewBinder<T, VH>() {
 
   final override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): VH {
-    val annotation = javaClass.getAnnotation(ContentView::class.java)
-    if (annotation != null) {
-      val layoutId = annotation.value
+    val layout = contentView
+    if (layout != null) {
+      val layoutId = layout.value
       if (layoutId != 0) {
         return this.onCreateViewHolder(inflater.inflate(layoutId, parent, false))
       }
@@ -43,4 +43,10 @@ abstract class InflatedItemViewBinder<T, VH : ViewHolder> : ItemViewBinder<T, VH
   }
 
   abstract fun onCreateViewHolder(itemView: View): VH
+
+  companion object {
+    private val contentView: ContentView? by lazy {
+      InflatedItemViewBinder::class.java.getAnnotation(ContentView::class.java)
+    }
+  }
 }
