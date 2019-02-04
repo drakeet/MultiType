@@ -39,7 +39,7 @@ class ContentViewActivity : MenuBaseActivity() {
 
   class InflatedText
 
-  @ContentView(R.layout.item_inflated_something)
+  @ContentView(R.layout.item_inflated_text)
   class InflatedTextViewBinder : InflatedItemViewBinder<InflatedText, InflatedTextViewHolder>() {
 
     override fun onCreateViewHolder(itemView: View) = InflatedTextViewHolder(itemView)
