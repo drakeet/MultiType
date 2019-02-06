@@ -132,7 +132,7 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
    * @since v3.2.0
    */
   @Suppress("UNUSED_PARAMETER")
-  fun getItemId(item: T): Long = RecyclerView.NO_ID
+  open fun getItemId(item: T): Long = RecyclerView.NO_ID
 
   /**
    * Called when a view created by this [ItemViewBinder] has been recycled.
