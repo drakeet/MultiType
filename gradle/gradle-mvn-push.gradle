@@ -57,7 +57,7 @@ def kotlinAndroidArtifactTasks() {
     outputDirectory = "$buildDir/docs/kdoc"
     includes = ['module.md']
     classpath = new ArrayList<File>(project.tasks['assemble'].outputs.files.files)
-    sourceDirs = android.sourceSets.main.java.srcDirs
+    sourceDirs = android.sourceSets.main.kotlin.srcDirs
   }
 
   task docJar(type: Jar, dependsOn: dokka) {
@@ -117,7 +117,7 @@ def androidArtifactTasks() {
 
   task sourceJar(type: Jar) {
     classifier = 'sources'
-    from android.sourceSets.main.java.sourceFiles
+    from android.sourceSets.main.kotlin.sourceFiles
   }
 }
 
