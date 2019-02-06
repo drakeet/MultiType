@@ -56,16 +56,16 @@ class MultiTypeAdapter @JvmOverloads constructor(
    * @param binder the item view binder
    * @param T the item data type
    * */
-  fun <T> register(clazz: Class<T>, binder: ItemViewBinder<T, out ViewHolder>) {
+  fun <T> register(clazz: Class<T>, binder: ItemViewBinder<T, *>) {
     unregisterAllTypesIfNeeded(clazz)
     register(Type(clazz, binder, DefaultLinker()))
   }
 
-  inline fun <reified T : Any> register(binder: ItemViewBinder<T, out ViewHolder>) {
+  inline fun <reified T : Any> register(binder: ItemViewBinder<T, *>) {
     register(T::class.java, binder)
   }
 
-  fun <T : Any> register(clazz: KClass<T>, binder: ItemViewBinder<T, out ViewHolder>) {
+  fun <T : Any> register(clazz: KClass<T>, binder: ItemViewBinder<T, *>) {
     register(clazz.java, binder)
   }
 
