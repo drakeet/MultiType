@@ -19,7 +19,7 @@ package me.drakeet.multitype
 import androidx.annotation.IntRange
 
 /**
- * An interface to link the items and binders by array integer index.
+ * An interface to link the items and binders by the array index.
  *
  * @author drakeet
  */

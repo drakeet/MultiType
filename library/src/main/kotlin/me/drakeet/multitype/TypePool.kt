@@ -34,7 +34,7 @@ interface TypePool {
    * Unregister all types indexed by the specified class.
    *
    * @param clazz the main class of a [Type]
-   * @return true if any types are unregistered from the pool
+   * @return true if any types are unregistered from this pool
    */
   fun unregister(clazz: Class<*>): Boolean
 
