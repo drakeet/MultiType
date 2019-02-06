@@ -1,0 +1,288 @@
+/*
+ * Copyright (c) 2017. Uber Technologies
+ * Copyright (c) 2018 Drakeet Xu
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+version = buildConfig.versionName
+group = GROUP
+
+def isReleaseBuild() {
+  return version.contains("SNAPSHOT") == false
+}
+
+def getReleaseRepositoryUrl() {
+  return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+}
+
+def getSnapshotRepositoryUrl() {
+  return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL : "https://oss.sonatype.org/content/repositories/snapshots/"
+}
+
+def getRepositoryUsername() {
+  return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+}
+
+def getRepositoryPassword() {
+  return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+}
+
+def kotlinAndroidArtifactTasks() {
+  if (!project.plugins.hasPlugin('org.jetbrains.dokka-android')) {
+    throw new GradleException("Apply the dokka-android plugin in ${project.name}")
+  }
+
+  dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/docs/kdoc"
+    includes = ['module.md']
+    classpath = new ArrayList<File>(project.tasks['assemble'].outputs.files.files)
+    sourceDirs = android.sourceSets.main.kotlin.srcDirs
+  }
+
+  task docJar(type: Jar, dependsOn: dokka) {
+    classifier = 'javadoc'
+    from dokka.outputDirectory
+  }
+
+  task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+  }
+}
+
+def kotlinArtifactTasks() {
+  if (!project.plugins.hasPlugin('org.jetbrains.dokka')) {
+    throw new GradleException("Apply the dokka plugin in ${project.name}")
+  }
+
+  dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/docs/kdoc"
+    includes = ['module.md']
+    sourceDirs = sourceSets.main.allSource
+  }
+
+  task docJar(type: Jar, dependsOn: dokka) {
+    classifier = 'javadoc'
+    from dokka.outputDirectory
+  }
+
+  task sourceJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+  }
+}
+
+def androidArtifactTasks() {
+  task androidJavadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    exclude '**/internal/*'
+
+    if (JavaVersion.current().isJava8Compatible()) {
+      options.addStringOption('Xdoclint:none', '-quiet')
+    }
+  }
+
+  task docJar(type: Jar, dependsOn: androidJavadoc) {
+    classifier = 'javadoc'
+    from androidJavadoc.destinationDir
+  }
+
+  task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.kotlin.sourceFiles
+  }
+}
+
+def javaArtifactTasks() {
+  task javaJavadoc(type: Javadoc) {
+    source = sourceSets.main.allSource
+
+    if (JavaVersion.current().isJava8Compatible()) {
+      options.addStringOption('Xdoclint:none', '-quiet')
+    }
+  }
+
+  task docJar(type: Jar, dependsOn: javaJavadoc) {
+    classifier = 'javadoc'
+    from javaJavadoc.destinationDir
+  }
+
+  task sourceJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource.srcDirs
+  }
+}
+
+afterEvaluate { project ->
+  uploadArchives {
+    repositories {
+      mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = version
+
+        repository(url: getReleaseRepositoryUrl()) {
+          authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+        snapshotRepository(url: getSnapshotRepositoryUrl()) {
+          authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+
+        pom.project {
+          name POM_NAME
+          packaging POM_PACKAGING
+          description POM_DESCRIPTION
+          url POM_URL
+
+          scm {
+            url POM_SCM_URL
+            connection POM_SCM_CONNECTION
+            developerConnection POM_SCM_DEV_CONNECTION
+          }
+
+          licenses {
+            license {
+              name POM_LICENCE_NAME
+              url POM_LICENCE_URL
+              distribution POM_LICENCE_DIST
+            }
+          }
+
+          developers {
+            developer {
+              id POM_DEVELOPER_ID
+              name POM_DEVELOPER_NAME
+            }
+          }
+        }
+      }
+    }
+  }
+
+  signing {
+    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+  }
+
+  if (hasProperty("AUTOMATIC_MODULE_NAME")) {
+    jar {
+      manifest {
+        attributes('Automatic-Module-Name': properties.get("AUTOMATIC_MODULE_NAME"))
+      }
+    }
+  }
+
+  if (project.getPlugins().hasPlugin('com.android.application') || project.getPlugins().
+      hasPlugin('com.android.library')) {
+    task install(type: Upload, dependsOn: assemble) {
+      repositories.mavenInstaller {
+        configuration = configurations.archives
+
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = version
+
+        pom.project {
+          name POM_NAME
+          packaging POM_PACKAGING
+          description POM_DESCRIPTION
+          url POM_URL
+
+          scm {
+            url POM_SCM_URL
+            connection POM_SCM_CONNECTION
+            developerConnection POM_SCM_DEV_CONNECTION
+          }
+
+          licenses {
+            license {
+              name POM_LICENCE_NAME
+              url POM_LICENCE_URL
+              distribution POM_LICENCE_DIST
+            }
+          }
+
+          developers {
+            developer {
+              id POM_DEVELOPER_ID
+              name POM_DEVELOPER_NAME
+            }
+          }
+        }
+      }
+    }
+
+    if (project.plugins.hasPlugin('kotlin-android')) {
+      kotlinAndroidArtifactTasks()
+    } else {
+      androidArtifactTasks()
+    }
+  } else {
+    install {
+      repositories.mavenInstaller {
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = version
+
+        pom.project {
+          name POM_NAME
+          packaging POM_PACKAGING
+          description POM_DESCRIPTION
+          url POM_URL
+
+          scm {
+            url POM_SCM_URL
+            connection POM_SCM_CONNECTION
+            developerConnection POM_SCM_DEV_CONNECTION
+          }
+
+          licenses {
+            license {
+              name POM_LICENCE_NAME
+              url POM_LICENCE_URL
+              distribution POM_LICENCE_DIST
+            }
+          }
+
+          developers {
+            developer {
+              id POM_DEVELOPER_ID
+              name POM_DEVELOPER_NAME
+            }
+          }
+        }
+      }
+    }
+
+    if (project.plugins.hasPlugin('kotlin')) {
+      kotlinArtifactTasks()
+    } else {
+      javaArtifactTasks()
+    }
+  }
+
+  artifacts {
+    archives sourceJar
+    archives docJar
+  }
+}

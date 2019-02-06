@@ -3,30 +3,32 @@ jdk: oraclejdk8
 
 env:
   global:
-    - ANDROID_ABI=armeabi-v7a
+  - ANDROID_ABI=armeabi-v7a
 
 android:
   components:
-    - tools
-    - android-22
-    - android-28
-    - sys-img-armeabi-v7a-android-22
-    - extra-android-m2repository
-    - extra-android-support
-    - extra
+  - tools
+  - android-22
+  - android-28
+  - sys-img-armeabi-v7a-android-22
+  - extra-android-m2repository
+  - extra-android-support
+  - extra
   licenses:
-    - android-sdk-license-.+
+  - android-sdk-license-.+
 
 before_install:
-  - mkdir "$ANDROID_HOME/licenses" || true
-  - echo "d56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
+# Install SDK license so Android Gradle plugin can install deps.
+- mkdir "$ANDROID_HOME/licenses" || true
+- echo "d56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
+- echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
 
 before_script:
-  - chmod +x gradlew
-  - echo no | android create avd --force -n test -t android-22 --abi $ANDROID_ABI
-  - emulator -avd test -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+- chmod +x gradlew
+- echo no | android create avd --force -n test -t android-22 --abi $ANDROID_ABI
+- emulator -avd test -no-window &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
 
 script:
-  - ./gradlew clean connectedAndroidTest
+- ./gradlew clean connectedAndroidTest

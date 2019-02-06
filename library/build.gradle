@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 drakeet. https://github.com/drakeet
+ * Copyright (c) 2016-present. Drakeet Xu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,24 @@
  */
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.dokka-android'
 apply plugin: 'jacoco'
-apply from: '../gradle-mvn-push.gradle'
-apply from: 'checkstyle.gradle'
+apply from: rootProject.file('gradle/publish-docs.gradle')
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
 
 android {
-  compileSdkVersion gradle.compileSdkVersion
+  compileSdkVersion buildConfig.compileSdkVersion
 
   defaultConfig {
-    minSdkVersion gradle.minSdkVersion
+    minSdkVersion buildConfig.minSdkVersion
   }
 
   // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
-  libraryVariants.all {
-    it.generateBuildConfig.enabled = false
+  libraryVariants.all { variant ->
+    variant.generateBuildConfigProvider.configure {
+      it.enabled = false
+    }
   }
 
   testOptions {
@@ -36,12 +40,22 @@ android {
       includeAndroidResources = true
     }
   }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+  }
 }
 
 dependencies {
   testImplementation 'junit:junit:4.12'
-  testImplementation "org.robolectric:robolectric:4.0"
+  testImplementation "org.robolectric:robolectric:4.1"
   testImplementation "org.mockito:mockito-inline:2.18.0"
-  api "androidx.annotation:annotation:${gradle.annotationVersion}"
-  api "androidx.recyclerview:recyclerview:${gradle.recyclerviewVersion}"
+  testImplementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
+  testImplementation "com.google.truth:truth:0.42"
+  testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+  api "androidx.annotation:annotation:$annotationVersion"
+  api "androidx.recyclerview:recyclerview:$recyclerviewVersion"
 }

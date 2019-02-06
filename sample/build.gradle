@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 drakeet. https://github.com/drakeet
+ * Copyright (c) 2016-present. Drakeet Xu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,35 +19,43 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion gradle.compileSdkVersion
+  compileSdkVersion buildConfig.compileSdkVersion
+
   defaultConfig {
     applicationId "me.drakeet.multitype.sample"
-    minSdkVersion gradle.minSdkVersion
-    targetSdkVersion gradle.targetSdkVersion
-    versionCode gradle.versionCode
-    versionName gradle.versionName
+    minSdkVersion buildConfig.minSdkVersion
+    targetSdkVersion buildConfig.targetSdkVersion
+    versionCode buildConfig.versionCode
+    versionName buildConfig.versionName
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
+
   buildTypes {
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
   }
 }
 
 dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
   implementation project(':library')
-  implementation project(':library-ktx')
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
   androidTestImplementation 'androidx.test:rules:1.1.1'
-  androidTestImplementation "androidx.annotation:annotation:${gradle.annotationVersion}"
-  implementation "androidx.appcompat:appcompat:${gradle.appcompatVersion}"
-  implementation "androidx.recyclerview:recyclerview:${gradle.recyclerviewVersion}"
+  androidTestImplementation "androidx.annotation:annotation:$annotationVersion"
+  androidTestImplementation "com.google.truth:truth:0.42"
+  implementation "androidx.appcompat:appcompat:$appcompatVersion"
+  implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
   implementation 'com.google.code.gson:gson:2.8.5'
 }

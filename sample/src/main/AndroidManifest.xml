@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright 2016 drakeet. https://github.com/drakeet
+  ~ Copyright (c) 2016-present. Drakeet Xu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
--->
+  -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="me.drakeet.multitype.sample">
@@ -35,19 +35,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".multiSelectable.MultiSelectableActivity"/>
+        <activity android:name=".selectable.MultiSelectableActivity"/>
 
         <activity android:name=".normal.NormalActivity"/>
 
         <activity android:name=".weibo.WeiboActivity"/>
 
-        <activity android:name=".communicateWithBinder.SimpleActivity"/>
+        <activity android:name=".communication.CommunicateWithBinderActivity"/>
 
         <activity android:name=".one2many.OneDataToManyActivity"/>
 
         <activity android:name=".payload.TestPayloadActivity"/>
 
-        <activity android:name=".moreApis.MoreApisPlayground"/>
+        <activity android:name=".more.MoreApisPlayground"/>
+
+        <activity android:name=".ContentViewActivity"/>
 
     </application>
 
