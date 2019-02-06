@@ -23,7 +23,7 @@ _In addition, since 4.0.0 we have migrated to fully build with Kotlin. If you do
 
 ```groovy
 dependencies {
-    implementation 'me.drakeet.multitype:multitype:4.0.0-alpha1'
+  implementation 'me.drakeet.multitype:multitype:4.0.0-alpha1'
 }
 ```
 
