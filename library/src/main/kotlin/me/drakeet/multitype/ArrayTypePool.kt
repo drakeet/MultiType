@@ -17,7 +17,7 @@
 package me.drakeet.multitype
 
 /**
- * An List implementation of TypePool.
+ * A TypePool implemented by an ArrayList.
  *
  * @author drakeet
  */
