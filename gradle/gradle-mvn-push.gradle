@@ -49,10 +49,6 @@ def kotlinAndroidArtifactTasks() {
   }
 
   dokka {
-    externalDocumentationLink {
-      url = new URL("https://github.com/drakeet/MultiType")
-    }
-
     outputFormat = 'html'
     outputDirectory = "$buildDir/docs/kdoc"
     includes = ['module.md']
@@ -77,10 +73,6 @@ def kotlinArtifactTasks() {
   }
 
   dokka {
-    externalDocumentationLink {
-      url = new URL("https://github.com/drakeet/MultiType")
-    }
-
     outputFormat = 'html'
     outputDirectory = "$buildDir/docs/kdoc"
     includes = ['module.md']
