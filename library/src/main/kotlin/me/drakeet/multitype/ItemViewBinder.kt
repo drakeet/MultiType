@@ -46,7 +46,7 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
     get() {
       if (_adapter == null) {
         throw IllegalStateException(
-          "ItemViewBinder $this not attached to MultiTypeAdapter. " +
+          "The $this has not been attached to MultiTypeAdapter yet. " +
               "You should not call the method before registering the binder."
         )
       }
