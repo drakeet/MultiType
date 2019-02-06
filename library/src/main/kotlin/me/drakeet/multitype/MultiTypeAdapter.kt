@@ -227,7 +227,7 @@ class MultiTypeAdapter @JvmOverloads constructor(
 
   private fun unregisterAllTypesIfNeeded(clazz: Class<*>) {
     if (typePool.unregister(clazz)) {
-      Log.w(TAG, "You have registered the ${clazz.simpleName} type. It will override the original binder(s).")
+      Log.w(TAG, "The type ${clazz.simpleName} you originally registered is now overwritten.")
     }
   }
 
