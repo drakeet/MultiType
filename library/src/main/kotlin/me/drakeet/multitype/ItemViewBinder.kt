@@ -31,26 +31,29 @@ abstract class ItemViewBinder<T, VH : ViewHolder> {
   internal var _adapter: MultiTypeAdapter? = null
 
   /**
-   * Gets the [MultiTypeAdapter] for sending notifications or getting item count, etc.
-   *
-   * Note that if you need to change the item's parent items, you could call this method
-   * to get the [MultiTypeAdapter], and call [MultiTypeAdapter.items] to get
-   * a list that can not be added any new item, so that you should copy the items and just use
-   * [MultiTypeAdapter.items] to replace the original items list and update the
-   * views.
-   *
-   * @return The MultiTypeAdapter this item is currently associated with.
+   * Gets the associated [MultiTypeAdapter].
    * @since v2.3.4
    */
   val adapter: MultiTypeAdapter
     get() {
       if (_adapter == null) {
         throw IllegalStateException(
-          "The $this has not been attached to MultiTypeAdapter yet. " +
+          "This $this has not been attached to MultiTypeAdapter yet. " +
               "You should not call the method before registering the binder."
         )
       }
       return _adapter!!
+    }
+
+  /**
+   * Gets or sets the items of the associated [MultiTypeAdapter].
+   * @see MultiTypeAdapter.items
+   * @since v4.0.0
+   */
+  var adapterItems: List<Any>
+    get() = adapter.items
+    set(value) {
+      adapter.items = value
     }
 
   abstract fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): VH
