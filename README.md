@@ -23,7 +23,7 @@ _In addition, since 4.0.0 we have migrated to fully build with Kotlin. If you do
 
 ```groovy
 dependencies {
-  implementation 'me.drakeet.multitype:multitype:4.0.0-alpha1'
+  implementation 'me.drakeet.multitype:multitype:4.0.0-alpha2'
 }
 ```
 
@@ -113,7 +113,7 @@ adapter.register(Data::class).to(
 }
 ```
 
-See OneDataToManyActivity, OneToManyFlow and OneToManyEndpoint for more details.
+See `OneDataToManyActivity`, `OneToManyFlow` and `OneToManyEndpoint` for more details.
 
 **More methods that you can override from [ItemViewBinder](library/src/main/kotlin/me/drakeet/multitype/ItemViewBinder.kt)**:
 
