@@ -2,6 +2,8 @@
 
 ### Version 4.0.0-alpha1 - Feb 06, 2019
 
+This migrates MultiType to Kotlin (#253)
+
 #### Features
 
 - Add a new reified `MultiTypeAdapter#register(ItemViewBinder)`
