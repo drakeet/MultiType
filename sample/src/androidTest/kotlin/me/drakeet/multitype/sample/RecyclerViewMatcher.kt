@@ -25,7 +25,7 @@ import org.hamcrest.TypeSafeMatcher
 
 /**
  * @author dannyroa
- * @author drakeet
+ * @author Drakeet Xu
  */
 class RecyclerViewMatcher private constructor(private val recyclerViewId: Int) {
 

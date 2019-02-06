@@ -24,7 +24,7 @@ import me.drakeet.multitype.sample.R
 import java.util.*
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class NormalActivity : MenuBaseActivity() {
 

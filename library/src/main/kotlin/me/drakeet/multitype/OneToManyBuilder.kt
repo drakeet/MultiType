@@ -19,7 +19,7 @@ package me.drakeet.multitype
 import androidx.annotation.CheckResult
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 internal class OneToManyBuilder<T>(
   private val adapter: MultiTypeAdapter,

@@ -26,7 +26,7 @@ import org.junit.Test
 import kotlin.reflect.KClass
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class OneToManyBuilderTest {
 

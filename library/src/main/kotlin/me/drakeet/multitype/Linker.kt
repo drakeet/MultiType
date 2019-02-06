@@ -21,7 +21,7 @@ import androidx.annotation.IntRange
 /**
  * An interface to link the items and binders by the array index.
  *
- * @author drakeet
+ * @author Drakeet Xu
  */
 interface Linker<T> {
 

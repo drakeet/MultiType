@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.reflect.KClass
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class MultiTypeAdapter @JvmOverloads constructor(
   /**

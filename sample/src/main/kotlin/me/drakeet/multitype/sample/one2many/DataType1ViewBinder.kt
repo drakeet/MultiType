@@ -27,7 +27,7 @@ import me.drakeet.multitype.sample.R
 /**
  * Note: Data - DataType1ViewBinder
  *
- * @author drakeet
+ * @author Drakeet Xu
  */
 class DataType1ViewBinder : ItemViewBinder<Data, DataType1ViewBinder.ViewHolder>() {
 

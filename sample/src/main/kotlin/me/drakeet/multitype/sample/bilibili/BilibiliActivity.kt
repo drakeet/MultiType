@@ -30,7 +30,7 @@ import me.drakeet.multitype.sample.common.CategoryItemViewBinder
 import java.util.*
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class BilibiliActivity : MenuBaseActivity() {
 

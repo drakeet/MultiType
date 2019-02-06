@@ -19,7 +19,7 @@ package me.drakeet.multitype.sample.weibo.content
 import me.drakeet.multitype.sample.weibo.WeiboContent
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class SimpleText(var text: String) : WeiboContent(TYPE) {
   companion object {

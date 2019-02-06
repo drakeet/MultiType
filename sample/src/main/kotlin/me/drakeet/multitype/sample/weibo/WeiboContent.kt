@@ -19,7 +19,7 @@ package me.drakeet.multitype.sample.weibo
 import com.google.gson.annotations.SerializedName
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 abstract class WeiboContent protected constructor(
   @field:SerializedName("content_type")

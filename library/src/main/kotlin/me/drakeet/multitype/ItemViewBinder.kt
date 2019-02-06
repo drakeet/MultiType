@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
 /***
- * @author drakeet
+ * @author Drakeet Xu
  */
 abstract class ItemViewBinder<T, VH : ViewHolder> {
 

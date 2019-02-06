@@ -26,7 +26,7 @@ import me.drakeet.multitype.ItemViewBinder
 import me.drakeet.multitype.sample.R
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class HorizontalPostsViewBinder : ItemViewBinder<PostList, HorizontalPostsViewBinder.ViewHolder>() {
 

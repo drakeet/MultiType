@@ -19,7 +19,7 @@ package me.drakeet.multitype
 /**
  * A TypePool implemented by an ArrayList.
  *
- * @author drakeet
+ * @author Drakeet Xu
  */
 class ArrayTypePool constructor(
   private val initialCapacity: Int = 0,

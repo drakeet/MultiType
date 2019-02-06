@@ -17,6 +17,6 @@
 package me.drakeet.multitype.sample.bilibili
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class Post(var coverResId: Int, var title: String)

@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class PostItemDecoration(private val space: Int, private val spanSizeLookup: SpanSizeLookup) : RecyclerView.ItemDecoration() {
 

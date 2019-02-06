@@ -29,7 +29,7 @@ import me.drakeet.multitype.ItemViewBinder
 import me.drakeet.multitype.sample.R
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 abstract class WeiboFrameBinder<Content : WeiboContent, SubViewHolder : ContentHolder> : ItemViewBinder<Weibo, WeiboFrameBinder.FrameHolder>() {
 

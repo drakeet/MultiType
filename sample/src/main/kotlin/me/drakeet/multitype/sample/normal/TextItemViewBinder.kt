@@ -27,7 +27,7 @@ import me.drakeet.multitype.ItemViewBinder
 import me.drakeet.multitype.sample.R
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class TextItemViewBinder : ItemViewBinder<TextItem, TextItemViewBinder.TextHolder>() {
 

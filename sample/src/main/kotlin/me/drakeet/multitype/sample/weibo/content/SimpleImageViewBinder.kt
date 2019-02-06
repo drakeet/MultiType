@@ -26,7 +26,7 @@ import me.drakeet.multitype.sample.weibo.ContentHolder
 import me.drakeet.multitype.sample.weibo.WeiboFrameBinder
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class SimpleImageViewBinder : WeiboFrameBinder<SimpleImage, SimpleImageViewBinder.ViewHolder>() {
 

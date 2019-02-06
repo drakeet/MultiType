@@ -17,6 +17,6 @@
 package me.drakeet.multitype.sample.payload
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class HeavyItem(var text: String)

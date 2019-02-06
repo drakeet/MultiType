@@ -19,7 +19,7 @@ package me.drakeet.multitype.sample.weibo
 import android.view.View
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 open class ContentHolder(val itemView: View) {
 

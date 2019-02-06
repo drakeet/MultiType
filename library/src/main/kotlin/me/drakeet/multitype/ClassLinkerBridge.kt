@@ -17,7 +17,7 @@
 package me.drakeet.multitype
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 internal class ClassLinkerBridge<T> private constructor(
   private val javaClassLinker: JavaClassLinker<T>,

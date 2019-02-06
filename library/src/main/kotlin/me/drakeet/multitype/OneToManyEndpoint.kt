@@ -21,7 +21,7 @@ import kotlin.reflect.KClass
 /**
  * End-operators for one-to-many.
  *
- * @author drakeet
+ * @author Drakeet Xu
  */
 interface OneToManyEndpoint<T> {
 

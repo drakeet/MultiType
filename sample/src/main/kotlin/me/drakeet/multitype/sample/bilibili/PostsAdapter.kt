@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.drakeet.multitype.sample.R
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class PostsAdapter : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
 

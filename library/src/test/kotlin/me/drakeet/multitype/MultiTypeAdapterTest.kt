@@ -31,7 +31,7 @@ import org.robolectric.RobolectricTestRunner
 import java.util.*
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 @RunWith(RobolectricTestRunner::class)
 class MultiTypeAdapterTest {

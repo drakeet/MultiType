@@ -22,7 +22,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 open class TestItemViewBinder : ItemViewBinder<TestItem, TestItemViewBinder.ViewHolder>() {
 

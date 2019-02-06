@@ -17,7 +17,7 @@
 package me.drakeet.multitype
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 data class Type<T>(
   val clazz: Class<out T>,

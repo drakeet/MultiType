@@ -31,7 +31,7 @@ import me.drakeet.multitype.sample.selectable.MultiSelectableActivity
 import me.drakeet.multitype.sample.weibo.WeiboActivity
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 @SuppressLint("Registered")
 open class MenuBaseActivity : AppCompatActivity() {

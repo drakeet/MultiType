@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 @RunWith(JUnit4::class)
 class MultiTypeTest {

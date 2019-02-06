@@ -19,7 +19,7 @@ package me.drakeet.multitype
 /**
  * An ordered collection to hold the types, binders and linkers.
  *
- * @author drakeet
+ * @author Drakeet Xu
  */
 interface TypePool {
 

@@ -17,7 +17,7 @@
 package me.drakeet.multitype.sample
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 interface Savable {
 

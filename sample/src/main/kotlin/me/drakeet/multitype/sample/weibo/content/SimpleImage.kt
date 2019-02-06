@@ -20,7 +20,7 @@ import androidx.annotation.DrawableRes
 import me.drakeet.multitype.sample.weibo.WeiboContent
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class SimpleImage(
   @param:DrawableRes @field:DrawableRes var resId: Int

@@ -20,7 +20,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class ItemViewBinderTest {
 

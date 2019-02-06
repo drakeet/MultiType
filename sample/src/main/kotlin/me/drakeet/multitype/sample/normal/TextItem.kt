@@ -21,7 +21,7 @@ import me.drakeet.multitype.sample.Savable
 import java.nio.charset.Charset
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class TextItem : Savable {
 

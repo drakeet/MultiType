@@ -17,6 +17,6 @@
 package me.drakeet.multitype.sample.normal
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class ImageItem(val resId: Int)

@@ -25,7 +25,7 @@ import me.drakeet.multitype.sample.normal.TextItem
 import java.util.*
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class CommunicateWithBinderActivity : MenuBaseActivity() {
 

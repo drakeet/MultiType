@@ -33,7 +33,7 @@ import me.drakeet.multitype.sample.normal.TextItem
 import java.util.*
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 @SuppressLint("SetTextI18n")
 class MoreApisPlayground : MenuBaseActivity() {

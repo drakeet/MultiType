@@ -22,7 +22,7 @@ import me.drakeet.multitype.sample.weibo.content.SimpleText
 import java.lang.reflect.Type
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class WeiboContentDeserializer : JsonDeserializer<WeiboContent> {
 

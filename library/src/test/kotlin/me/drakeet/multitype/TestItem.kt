@@ -17,6 +17,6 @@
 package me.drakeet.multitype
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 open class TestItem(val text: String)

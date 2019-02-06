@@ -17,7 +17,7 @@
 package me.drakeet.multitype.sample.selectable
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class Square(val number: Int) {
   var isSelected: Boolean = false

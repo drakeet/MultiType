@@ -17,7 +17,7 @@
 package me.drakeet.multitype.sample.weibo
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class Weibo(var user: User, var content: WeiboContent) {
   

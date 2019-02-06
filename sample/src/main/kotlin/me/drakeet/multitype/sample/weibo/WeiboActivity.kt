@@ -28,7 +28,7 @@ import me.drakeet.multitype.sample.weibo.content.SimpleTextViewBinder
 import java.util.*
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class WeiboActivity : MenuBaseActivity() {
 

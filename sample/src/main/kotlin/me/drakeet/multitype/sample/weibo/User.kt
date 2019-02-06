@@ -19,6 +19,6 @@ package me.drakeet.multitype.sample.weibo
 import androidx.annotation.DrawableRes
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class User(var name: String, @field:DrawableRes var avatar: Int)

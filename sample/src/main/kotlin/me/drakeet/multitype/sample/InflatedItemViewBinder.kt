@@ -27,7 +27,7 @@ import me.drakeet.multitype.ItemViewBinder
 /**
  * A sample for @[ContentView] support
  *
- * @author drakeet
+ * @author Drakeet Xu
  */
 abstract class InflatedItemViewBinder<T, VH : ViewHolder> : ItemViewBinder<T, VH>() {
 

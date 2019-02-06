@@ -33,7 +33,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 @LargeTest
 @RunWith(AndroidJUnit4::class)

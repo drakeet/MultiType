@@ -17,6 +17,6 @@
 package me.drakeet.multitype.sample.bilibili
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class PostList(internal val posts: List<Post>)

@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.drakeet.multitype.MultiTypeAdapter
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class ContentViewActivity : MenuBaseActivity() {
 

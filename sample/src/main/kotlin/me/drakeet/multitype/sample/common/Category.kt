@@ -17,6 +17,6 @@
 package me.drakeet.multitype.sample.common
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class Category(var title: String)

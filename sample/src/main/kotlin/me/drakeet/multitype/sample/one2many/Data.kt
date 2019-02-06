@@ -19,7 +19,7 @@ package me.drakeet.multitype.sample.one2many
 import com.google.gson.annotations.SerializedName
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class Data(
   @field:SerializedName("title") var title: String,

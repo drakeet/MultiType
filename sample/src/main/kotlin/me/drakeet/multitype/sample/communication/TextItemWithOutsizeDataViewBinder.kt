@@ -27,7 +27,7 @@ import me.drakeet.multitype.sample.R
 import me.drakeet.multitype.sample.normal.TextItem
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 class TextItemWithOutsizeDataViewBinder(var aValueFromOutside: String) : ItemViewBinder<TextItem, TextItemWithOutsizeDataViewBinder.ViewHolder>() {
 

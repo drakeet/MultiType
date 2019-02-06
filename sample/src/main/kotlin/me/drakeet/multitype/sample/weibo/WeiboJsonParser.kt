@@ -21,7 +21,7 @@ import com.google.gson.reflect.TypeToken
 import java.util.*
 
 /**
- * @author drakeet
+ * @author Drakeet Xu
  */
 internal object WeiboJsonParser {
 

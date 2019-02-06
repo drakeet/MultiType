@@ -21,7 +21,7 @@ import androidx.annotation.CheckResult
 /**
  * Process and flow operators for one-to-many.
  *
- * @author drakeet
+ * @author Drakeet Xu
  */
 interface OneToManyFlow<T> {
 

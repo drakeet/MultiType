@@ -21,7 +21,7 @@ import kotlin.reflect.KClass
 /**
  * An interface to link the items and binders by the classes of binders.
  *
- * @author drakeet
+ * @author Drakeet Xu
  */
 interface KotlinClassLinker<T> {
 
