@@ -2,7 +2,7 @@
 
 ### Version 4.0.0-alpha2 - Feb 06, 2019
 
-This migrates MultiType to Kotlin (#253)
+This migrates MultiType to Kotlin ([#253](https://github.com/drakeet/MultiType/pull/253))
 
 #### Features
 
@@ -14,7 +14,7 @@ This migrates MultiType to Kotlin (#253)
 
 #### Breaking Changes
 
-- Change all protected methods of `ItemViewBinder` to public (#245)
+- Change all protected methods of `ItemViewBinder` to public ([#245](https://github.com/drakeet/MultiType/issues/245))
 - Change the `payloads` parameter of `ItemViewBinder#onBindViewHolder(holder, item, payloads)` to be of `List<Any>` type
 - Change the `clazz` parameter of `MultiTypeAdapter#register(...)` from `Class<? extends T>` to `Class<T>`
 - Remove `Items` class
