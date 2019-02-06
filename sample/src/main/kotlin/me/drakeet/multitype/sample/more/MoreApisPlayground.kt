@@ -39,7 +39,7 @@ import java.util.*
 class MoreApisPlayground : MenuBaseActivity() {
 
   private lateinit var terminal: TextView
-  private lateinit  var recyclerView: RecyclerView
+  private lateinit var recyclerView: RecyclerView
 
   @VisibleForTesting
   lateinit var adapter: MultiTypeAdapter
