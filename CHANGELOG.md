@@ -17,6 +17,7 @@ This migrates MultiType to Kotlin ([#253](https://github.com/drakeet/MultiType/p
 - Change all protected methods of `ItemViewBinder` to public ([#245](https://github.com/drakeet/MultiType/issues/245))
 - Change the `payloads` parameter of `ItemViewBinder#onBindViewHolder(holder, item, payloads)` to be of `List<Any>` type
 - Change the `clazz` parameter of `MultiTypeAdapter#register(...)` from `Class<? extends T>` to `Class<T>`
+- Change `MultiTypeAdapter` to `final`
 - Remove `Items` class
 - Remove `Preconditions` class
 - Rename `MultiTypePool` to `ArrayTypePool`
