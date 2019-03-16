@@ -28,7 +28,7 @@ import kotlin.reflect.KClass
 /**
  * @author Drakeet Xu
  */
-class MultiTypeAdapter @JvmOverloads constructor(
+open class MultiTypeAdapter @JvmOverloads constructor(
   /**
    * Sets and updates the items atomically and safely. It is recommended to use this method
    * to update the items with a new wrapper list or consider using [CopyOnWriteArrayList].

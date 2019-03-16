@@ -21,7 +21,7 @@ package me.drakeet.multitype
  *
  * @author Drakeet Xu
  */
-class ArrayTypePool constructor(
+open class ArrayTypePool constructor(
   private val initialCapacity: Int = 0,
   private val types: MutableList<Type<*>> = ArrayList(initialCapacity)
 ) : TypePool {
