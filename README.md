@@ -1,5 +1,5 @@
 # MultiType
-An Android library to create multiple item types list views easily and flexibly.
+An Android library makes it easier and more flexible to create multiple types of RecyclerViews.
 
 [![Build Status](https://travis-ci.org/drakeet/MultiType.svg?branch=3.x)](https://travis-ci.org/drakeet/MultiType)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
@@ -23,7 +23,7 @@ _In addition, since 4.0.0 we have migrated to fully build with Kotlin. If you do
 
 ```groovy
 dependencies {
-  implementation 'me.drakeet.multitype:multitype:4.0.0-alpha2'
+  implementation 'me.drakeet.multitype:multitype:4.0.0-alpha3'
 }
 ```
 
