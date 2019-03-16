@@ -39,7 +39,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    * @since v2.4.1
    */
   open var items: List<Any> = emptyList(),
-  private val initialCapacity: Int = 0,
+  open val initialCapacity: Int = 0,
   open var typePool: TypePool = ArrayTypePool(initialCapacity)
 ) : RecyclerView.Adapter<ViewHolder>() {
 
