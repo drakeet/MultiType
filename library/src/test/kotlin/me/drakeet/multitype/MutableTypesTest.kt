@@ -23,9 +23,9 @@ import org.junit.Test
 /**
  * @author Drakeet Xu
  */
-class ArrayTypePoolTest {
+class MutableTypesTest {
 
-  private lateinit var pool: ArrayTypePool
+  private lateinit var types: MutableTypes
 
   private inner class SubClass(text: String) : TestItem(text)
 
@@ -33,15 +33,15 @@ class ArrayTypePoolTest {
 
   @Before
   fun register() {
-    pool = ArrayTypePool()
-    pool.register(Type(TestItem::class.java, TestItemViewBinder(), DefaultLinker()))
-    pool.register(Type(RegisteredSubClass::class.java, TestItemViewBinder(), DefaultLinker()))
+    types = MutableTypes()
+    types.register(Type(TestItem::class.java, TestItemViewBinder(), DefaultLinker()))
+    types.register(Type(RegisteredSubClass::class.java, TestItemViewBinder(), DefaultLinker()))
   }
 
   @Test
   fun testFirstIndexOf() {
-    assertThat(pool.firstIndexOf(TestItem::class.java)).isEqualTo(0)
-    assertThat(pool.firstIndexOf(SubClass::class.java)).isEqualTo(0)
-    assertThat(pool.firstIndexOf(RegisteredSubClass::class.java)).isEqualTo(1)
+    assertThat(types.firstIndexOf(TestItem::class.java)).isEqualTo(0)
+    assertThat(types.firstIndexOf(SubClass::class.java)).isEqualTo(0)
+    assertThat(types.firstIndexOf(RegisteredSubClass::class.java)).isEqualTo(1)
   }
 }

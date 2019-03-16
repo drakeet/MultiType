@@ -40,7 +40,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    */
   open var items: List<Any> = emptyList(),
   open val initialCapacity: Int = 0,
-  open var typePool: TypePool = ArrayTypePool(initialCapacity)
+  open var types: Types = MutableTypes(initialCapacity)
 ) : RecyclerView.Adapter<ViewHolder>() {
 
   /**
@@ -70,7 +70,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
   }
 
   internal fun <T> register(type: Type<T>) {
-    typePool.register(type)
+    types.register(type)
     type.binder._adapter = this
   }
 
@@ -99,7 +99,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
   }
 
   /**
-   * Registers all of the contents in the specified type pool. If you have registered a
+   * Registers all of the contents in the specified [Types]. If you have registered a
    * class, it will override the original binder(s). Note that the method is non-thread-safe
    * so that you should not use it in concurrent operation.
    *
@@ -107,14 +107,14 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    * [RecyclerView.setAdapter], or you have to call the setAdapter
    * again.
    *
-   * @param pool type pool containing contents to be added to this adapter inner pool
+   * @param types a [Types] containing contents to be added to this adapter inner [Types]
    * @see [register]
    * @see [register]
    */
-  fun registerAll(pool: TypePool) {
-    val size = pool.size
+  fun registerAll(types: Types) {
+    val size = types.size
     for (i in 0 until size) {
-      val type = pool.getType<Any>(i)
+      val type = types.getType<Any>(i)
       unregisterAllTypesIfNeeded(type.clazz)
       register(type)
     }
@@ -126,7 +126,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
 
   override fun onCreateViewHolder(parent: ViewGroup, indexViewType: Int): ViewHolder {
     val inflater = LayoutInflater.from(parent.context)
-    val binder = typePool.getType<Any>(indexViewType).binder
+    val binder = types.getType<Any>(indexViewType).binder
     return binder.onCreateViewHolder(inflater, parent)
   }
 
@@ -153,7 +153,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
   override fun getItemId(position: Int): Long {
     val item = items[position]
     val itemViewType = getItemViewType(position)
-    return typePool.getType<Any>(itemViewType).binder.getItemId(item)
+    return types.getType<Any>(itemViewType).binder.getItemId(item)
   }
 
   /**
@@ -212,21 +212,21 @@ open class MultiTypeAdapter @JvmOverloads constructor(
 
   private fun getOutBinderByViewHolder(holder: ViewHolder): ItemViewBinder<Any, ViewHolder> {
     @Suppress("UNCHECKED_CAST")
-    return typePool.getType<Any>(holder.itemViewType).binder as ItemViewBinder<Any, ViewHolder>
+    return types.getType<Any>(holder.itemViewType).binder as ItemViewBinder<Any, ViewHolder>
   }
 
   @Throws(BinderNotFoundException::class)
   internal fun indexInTypesOf(position: Int, item: Any): Int {
-    val index = typePool.firstIndexOf(item.javaClass)
+    val index = types.firstIndexOf(item.javaClass)
     if (index != -1) {
-      val linker = typePool.getType<Any>(index).linker
+      val linker = types.getType<Any>(index).linker
       return index + linker.index(position, item)
     }
     throw BinderNotFoundException(item.javaClass)
   }
 
   private fun unregisterAllTypesIfNeeded(clazz: Class<*>) {
-    if (typePool.unregister(clazz)) {
+    if (types.unregister(clazz)) {
       Log.w(TAG, "The type ${clazz.simpleName} you originally registered is now overwritten.")
     }
   }
