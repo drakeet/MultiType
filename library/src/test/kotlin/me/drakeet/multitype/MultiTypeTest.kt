@@ -35,13 +35,13 @@ class MultiTypeTest {
   @Test
   fun shouldEqualToRegisteredKClass() {
     adapter.register(String::class, StringViewBinder())
-    assertThat(adapter.typePool.getType<String>(0).clazz).isEqualTo(String::class.java)
+    assertThat(adapter.types.getType<String>(0).clazz).isEqualTo(String::class.java)
   }
 
   @Test
   fun shouldEqualToRegisteredKClass_Reified() {
     adapter.register(StringViewBinder())
-    assertThat(adapter.typePool.getType<String>(0).clazz).isEqualTo(String::class.java)
+    assertThat(adapter.types.getType<String>(0).clazz).isEqualTo(String::class.java)
   }
 
   @Test
@@ -49,24 +49,24 @@ class MultiTypeTest {
     adapter.register(String::class)
       .to(StringViewBinder())
       .withLinker(simpleLinker)
-    assertThat(adapter.typePool.getType<String>(0).clazz).isEqualTo(String::class.java)
+    assertThat(adapter.types.getType<String>(0).clazz).isEqualTo(String::class.java)
   }
 
   @Test
   fun shouldEqualToRegisteredKClass_TypePool() {
-    adapter.typePool.register(Type(String::class.java, StringViewBinder(), simpleLinker))
-    assertThat(adapter.typePool.getType<String>(0).clazz).isEqualTo(String::class.java)
+    adapter.types.register(Type(String::class.java, StringViewBinder(), simpleLinker))
+    assertThat(adapter.types.getType<String>(0).clazz).isEqualTo(String::class.java)
   }
 
   @Test
   fun shouldUnregisterKClass_TypePool() {
-    adapter.typePool.register(Type(String::class.java, StringViewBinder(), simpleLinker))
-    assertThat(adapter.typePool.unregister(String::class.java)).isTrue()
+    adapter.types.register(Type(String::class.java, StringViewBinder(), simpleLinker))
+    assertThat(adapter.types.unregister(String::class.java)).isTrue()
   }
 
   @Test
   fun shouldEqualToRegisteredFirstKClass_TypePool() {
-    adapter.typePool.register(Type(String::class.java, StringViewBinder(), simpleLinker))
-    assertThat(adapter.typePool.firstIndexOf(String::class.java)).isEqualTo(0)
+    adapter.types.register(Type(String::class.java, StringViewBinder(), simpleLinker))
+    assertThat(adapter.types.firstIndexOf(String::class.java)).isEqualTo(0)
   }
 }

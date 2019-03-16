@@ -45,7 +45,7 @@ class DuplicateTypesTest {
   }
 
   private fun resetRecyclerViewState() {
-    // reset and clear the recycler view pool to recreate view holder
+    // reset and clear the recycler view types to recreate view holder
     rule.activity.recyclerView.adapter = adapter
   }
 
@@ -57,9 +57,9 @@ class DuplicateTypesTest {
       adapter.register(DataType1ViewBinder())
       adapter.notifyDataSetChanged()
     }
-    assertThat(adapter.typePool.size).isEqualTo(1)
-    assertThat(adapter.typePool.getType<Data>(0).clazz).isEqualTo(Data::class.java)
-    assertThat(adapter.typePool.getType<Data>(0).binder.javaClass).isEqualTo(DataType1ViewBinder::class.java)
+    assertThat(adapter.types.size).isEqualTo(1)
+    assertThat(adapter.types.getType<Data>(0).clazz).isEqualTo(Data::class.java)
+    assertThat(adapter.types.getType<Data>(0).binder.javaClass).isEqualTo(DataType1ViewBinder::class.java)
   }
 
   @Test
@@ -71,9 +71,9 @@ class DuplicateTypesTest {
       adapter.register(DataType2ViewBinder())
       adapter.notifyDataSetChanged()
     }
-    assertThat(adapter.typePool.size).isEqualTo(1)
-    assertThat(adapter.typePool.getType<Data>(0).clazz).isEqualTo(Data::class.java)
-    assertThat(adapter.typePool.getType<Data>(0).binder.javaClass).isEqualTo(DataType2ViewBinder::class.java)
+    assertThat(adapter.types.size).isEqualTo(1)
+    assertThat(adapter.types.getType<Data>(0).clazz).isEqualTo(Data::class.java)
+    assertThat(adapter.types.getType<Data>(0).binder.javaClass).isEqualTo(DataType2ViewBinder::class.java)
   }
 
   @Test
@@ -94,22 +94,22 @@ class DuplicateTypesTest {
       ).withLinker(linker)
       adapter.notifyDataSetChanged()
     }
-    assertThat(adapter.typePool.size).isEqualTo(2)
+    assertThat(adapter.types.size).isEqualTo(2)
 
-    assertEquals(Data::class.java, adapter.typePool.getType<Data>(0).clazz)
-    assertEquals(Data::class.java, adapter.typePool.getType<Data>(1).clazz)
+    assertEquals(Data::class.java, adapter.types.getType<Data>(0).clazz)
+    assertEquals(Data::class.java, adapter.types.getType<Data>(1).clazz)
 
     assertEquals(
       DataType2ViewBinder::class.java,
-      adapter.typePool.getType<Data>(0).binder::class.java
+      adapter.types.getType<Data>(0).binder::class.java
     )
     assertEquals(
       DataType1ViewBinder::class.java,
-      adapter.typePool.getType<Data>(1).binder::class.java
+      adapter.types.getType<Data>(1).binder::class.java
     )
 
-    assertSame(linker, adapter.typePool.getType<Data>(0).linker)
-    assertSame(linker, adapter.typePool.getType<Data>(1).linker)
+    assertSame(linker, adapter.types.getType<Data>(0).linker)
+    assertSame(linker, adapter.types.getType<Data>(1).linker)
   }
 
   @Test
@@ -133,21 +133,21 @@ class DuplicateTypesTest {
       ).withLinker(linker)
       adapter.notifyDataSetChanged()
     }
-    assertThat(adapter.typePool.size).isEqualTo(2)
+    assertThat(adapter.types.size).isEqualTo(2)
 
-    assertEquals(Data::class.java, adapter.typePool.getType<Data>(0).clazz)
-    assertEquals(Data::class.java, adapter.typePool.getType<Data>(1).clazz)
+    assertEquals(Data::class.java, adapter.types.getType<Data>(0).clazz)
+    assertEquals(Data::class.java, adapter.types.getType<Data>(1).clazz)
 
     assertEquals(
       DataType1ViewBinder::class.java,
-      adapter.typePool.getType<Data>(0).binder::class.java
+      adapter.types.getType<Data>(0).binder::class.java
     )
     assertEquals(
       DataType2ViewBinder::class.java,
-      adapter.typePool.getType<Data>(1).binder::class.java
+      adapter.types.getType<Data>(1).binder::class.java
     )
 
-    assertSame(linker, adapter.typePool.getType<Data>(0).linker)
-    assertSame(linker, adapter.typePool.getType<Data>(1).linker)
+    assertSame(linker, adapter.types.getType<Data>(0).linker)
+    assertSame(linker, adapter.types.getType<Data>(1).linker)
   }
 }

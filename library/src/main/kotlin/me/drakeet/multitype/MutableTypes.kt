@@ -21,10 +21,10 @@ package me.drakeet.multitype
  *
  * @author Drakeet Xu
  */
-class ArrayTypePool constructor(
-  private val initialCapacity: Int = 0,
-  private val types: MutableList<Type<*>> = ArrayList(initialCapacity)
-) : TypePool {
+open class MutableTypes constructor(
+  open val initialCapacity: Int = 0,
+  open val types: MutableList<Type<*>> = ArrayList(initialCapacity)
+) : Types {
 
   override val size: Int get() = types.size
 

@@ -67,12 +67,12 @@ class MultiTypeAdapterTest {
   fun shouldOverrideRegisteredBinder() {
     val adapter = MultiTypeAdapter()
     adapter.register(TestItem::class, itemViewBinder)
-    assertThat(adapter.typePool.size).isEqualTo(1)
-    assertThat(itemViewBinder).isEqualTo(adapter.typePool.getType<Any>(0).binder)
+    assertThat(adapter.types.size).isEqualTo(1)
+    assertThat(itemViewBinder).isEqualTo(adapter.types.getType<Any>(0).binder)
 
     val newBinder = TestItemViewBinder()
     adapter.register(TestItem::class, newBinder)
-    assertThat(newBinder).isEqualTo(adapter.typePool.getType<Any>(0).binder)
+    assertThat(newBinder).isEqualTo(adapter.types.getType<Any>(0).binder)
   }
 
   @Test
@@ -82,11 +82,11 @@ class MultiTypeAdapterTest {
     adapter.register(TestItem::class)
       .to(itemViewBinder, binder2)
       .withLinker { _, _ -> -1 }
-    assertThat(adapter.typePool.getType<Any>(0).clazz).isEqualTo(TestItem::class.java)
-    assertThat(adapter.typePool.getType<Any>(1).clazz).isEqualTo(TestItem::class.java)
+    assertThat(adapter.types.getType<Any>(0).clazz).isEqualTo(TestItem::class.java)
+    assertThat(adapter.types.getType<Any>(1).clazz).isEqualTo(TestItem::class.java)
 
-    assertThat(itemViewBinder).isEqualTo(adapter.typePool.getType<Any>(0).binder)
-    assertThat(binder2).isEqualTo(adapter.typePool.getType<Any>(1).binder)
+    assertThat(itemViewBinder).isEqualTo(adapter.types.getType<Any>(0).binder)
+    assertThat(binder2).isEqualTo(adapter.types.getType<Any>(1).binder)
   }
 
   @Test

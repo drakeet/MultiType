@@ -1,5 +1,11 @@
 # MultiType Releases
 
+### Version 4.0.0-alpha3 - Mar 16, 2019
+
+- Change `TypePool` to `Types`
+- Rename `ArrayTypePool` to `MutableTypes`
+- Open `MultiTypeAdapter` & `MutableTypes`
+
 ### Version 4.0.0-alpha2 - Feb 06, 2019
 
 This migrates MultiType to Kotlin ([#253](https://github.com/drakeet/MultiType/pull/253))
@@ -17,7 +23,7 @@ This migrates MultiType to Kotlin ([#253](https://github.com/drakeet/MultiType/p
 - Change all protected methods of `ItemViewBinder` to public ([#245](https://github.com/drakeet/MultiType/issues/245))
 - Change the `payloads` parameter of `ItemViewBinder#onBindViewHolder(holder, item, payloads)` to be of `List<Any>` type
 - Change the `clazz` parameter of `MultiTypeAdapter#register(...)` from `Class<? extends T>` to `Class<T>`
-- Change `MultiTypeAdapter` to `final`
+- ~~Change `MultiTypeAdapter` to `final`~~
 - Remove `Items` class
 - Remove `Preconditions` class
 - Rename `MultiTypePool` to `ArrayTypePool`

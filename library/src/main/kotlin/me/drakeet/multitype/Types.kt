@@ -21,10 +21,10 @@ package me.drakeet.multitype
  *
  * @author Drakeet Xu
  */
-interface TypePool {
+interface Types {
 
   /**
-   * Returns the size of the pool.
+   * Returns the size of the [Types].
    */
   val size: Int
 
@@ -34,7 +34,7 @@ interface TypePool {
    * Unregister all types indexed by the specified class.
    *
    * @param clazz the main class of a [Type]
-   * @return true if any types are unregistered from this pool
+   * @return true if any types are unregistered from this [Types]
    */
   fun unregister(clazz: Class<*>): Boolean
 
@@ -54,8 +54,8 @@ interface TypePool {
    * the subclass is regarded as the parent class.
    *
    * @param clazz the type class.
-   * @return The index of the first occurrence of the specified class in this pool,
-   * or -1 if this pool does not contain the class.
+   * @return The index of the first occurrence of the specified class in this [Types],
+   * or -1 if this [Types] does not contain the class.
    */
   fun firstIndexOf(clazz: Class<*>): Int
 }
