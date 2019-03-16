@@ -2,7 +2,9 @@
 
 ### Version 4.0.0-alpha3 - Mar 16, 2019
 
-- Open `MultiTypeAdapter` & `ArrayTypePool` to non-final
+- Change `TypePool` to `Types`
+- Rename `ArrayTypePool` to `MutableTypes`
+- Open `MultiTypeAdapter` & `MutableTypes`
 
 ### Version 4.0.0-alpha2 - Feb 06, 2019
 
