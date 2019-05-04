@@ -21,7 +21,7 @@
     android:id="@+id/activity_multi_grid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.drakeet.multitype.sample.selectable.MultiSelectableActivity">
+    tools:context="com.drakeet.multitype.sample.selectable.MultiSelectableActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"

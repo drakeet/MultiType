@@ -14,16 +14,17 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="me.drakeet.multitype.sample">
+    package="com.drakeet.multitype.sample">
 
     <application
-        android:allowBackup="true"
+        android:theme="@style/AppTheme"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/normal_app_name"
+        android:allowBackup="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
         tools:ignore="AllowBackup, GoogleAppIndexingWarning">
 
         <activity
@@ -48,8 +49,6 @@
         <activity android:name=".payload.TestPayloadActivity"/>
 
         <activity android:name=".more.MoreApisPlayground"/>
-
-        <activity android:name=".ContentViewActivity"/>
 
     </application>
 
