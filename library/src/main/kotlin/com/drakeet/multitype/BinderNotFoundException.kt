@@ -20,5 +20,5 @@ package com.drakeet.multitype
  * @author Drakeet Xu
  */
 internal class BinderNotFoundException(clazz: Class<*>) : RuntimeException(
-  "Have you registered the ${clazz.name} type and its binder to the adapter or type list?"
+  "Have you registered the ${clazz.name} type and its binder to the adapter or types?"
 )
