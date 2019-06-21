@@ -41,7 +41,7 @@ class OneDataToManyActivity : MenuBaseActivity() {
       var i = 0
       while (i < 30) {
         list.add(Data("title: $i", Data.TYPE_1))
-        list.add(Data("title: " + i + 1, Data.TYPE_2))
+        list.add(Data("title: ${ i + 1 }", Data.TYPE_2))
         i += 2
       }
       return list
