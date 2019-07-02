@@ -46,11 +46,11 @@ class SmokeTest {
     "NormalActivity",
     "MultiSelectableActivity",
     "communicate with binder",
+    "BilibiliActivity",
     "WeiboActivity",
     "OneDataToManyActivity",
     "TestPayloadActivity",
-    "MoreApisPlayground",
-    "ContentViewActivity"
+    "MoreApisPlayground"
   )
 
   @Test
