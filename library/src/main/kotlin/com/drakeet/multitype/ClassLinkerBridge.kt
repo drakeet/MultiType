@@ -26,11 +26,8 @@ internal class ClassLinkerBridge<T> private constructor(
 
   override fun index(position: Int, item: T): Int {
     val indexedClass = javaClassLinker.index(position, item)
-    for (i in binders.indices) {
-      if (binders[i].javaClass == indexedClass) {
-        return i
-      }
-    }
+    val index = binders.indexOfFirst { it.javaClass == indexedClass }
+    if (index != -1) return index
     throw IndexOutOfBoundsException(
       "The binders'(${binders.contentToString()}) you registered do not contain this ${indexedClass.name}."
     )
