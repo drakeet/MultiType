@@ -17,13 +17,13 @@ Nowadays, I created a new intuitive and flexible way to easily create complex Re
 
 In your `build.gradle`:
 
-_MultiType has been rebuilt based on [AndroidX](https://developer.android.com/jetpack/androidx/). If you are still using the android support library, please use `multitype:3.4.4` and `multitype-kotlin:3.4.4`._
+_MultiType has been rebuilt based on [AndroidX](https://developer.android.com/jetpack/androidx/). If you are still using the android support library, please use `me.drakeet.multitype:multitype:3.4.4` and `me.drakeet.multitype:multitype-kotlin:3.4.4`._
 
-_In addition, since 4.0.0 we have migrated to fully build with Kotlin. If you don't want to use Kotlin, you can use the last stable version `multitype:3.5.0` and see [3.x](https://github.com/drakeet/MultiType/tree/3.x)._
+_In addition, since 4.0.0 we have migrated to fully build with Kotlin. If you don't want to use Kotlin, you can use the last stable version `me.drakeet.multitype:multitype:3.5.0` and see [3.x](https://github.com/drakeet/MultiType/tree/3.x)._
 
 ```groovy
 dependencies {
-  implementation 'me.drakeet.multitype:multitype:4.0.0'
+  implementation 'com.drakeet.multitype:multitype:4.0.0'
 }
 ```
 
