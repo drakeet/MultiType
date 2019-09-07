@@ -1,5 +1,12 @@
 # MultiType Releases
 
+### Version 4.0.0 - Sep 7, 2019
+
+- Migrate to com.drakeet group (#267)
+- Kotlin 1.3.50
+- AndroidX Annotation 1.1.0
+- Fix duplicate library_release.kotlin_module (#284)
+
 ### Version 4.0.0-alpha3 - Mar 16, 2019
 
 - Change `TypePool` to `Types`

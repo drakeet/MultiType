@@ -21,8 +21,8 @@ buildscript {
   ext.annotationVersion = '1.1.0'
   ext.appcompatVersion = '1.0.2'
   ext.buildConfig = [
-      'versionCode': 404,
-      'versionName': "4.0.0-beta1",
+      'versionCode': 405,
+      'versionName': "4.0.0",
       'compileSdkVersion': 28,
       'minSdkVersion': 14,
       'targetSdkVersion': 28

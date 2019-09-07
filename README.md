@@ -23,7 +23,7 @@ _In addition, since 4.0.0 we have migrated to fully build with Kotlin. If you do
 
 ```groovy
 dependencies {
-  implementation 'me.drakeet.multitype:multitype:4.0.0-alpha3'
+  implementation 'me.drakeet.multitype:multitype:4.0.0'
 }
 ```
 
@@ -65,15 +65,14 @@ class FooViewBinder: ItemViewBinder<Foo, FooViewBinder.ViewHolder>() {
 ```kotlin
 class SampleActivity : AppCompatActivity() {
 
-  private lateinit var adapter: MultiTypeAdapter
-  private lateinit var items: MutableList<Any>
+  private val adapter = MultiTypeAdapter()
+  private val items = ArrayList<Any>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_list)
     val recyclerView = findViewById<RecyclerView>(R.id.list)
 
-    adapter = MultiTypeAdapter()
     adapter.register(TextItemViewBinder())
     adapter.register(ImageItemViewBinder())
     adapter.register(RichItemViewBinder())
@@ -83,7 +82,6 @@ class SampleActivity : AppCompatActivity() {
     val imageItem = ImageItem(R.mipmap.ic_launcher)
     val richItem = RichItem("小艾大人赛高", R.drawable.img_11)
 
-    items = ArrayList()
     for (i in 0..19) {
       items.add(textItem)
       items.add(imageItem)
