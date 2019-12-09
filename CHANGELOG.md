@@ -1,5 +1,10 @@
 # MultiType Releases
 
+### Version 4.1.0 - Dec 9, 2019
+
+- Add `ItemViewDelegate` & `onCreateViewHolder(context, _)` (#292)
+- Kotlin 1.3.61
+
 ### Version 4.0.0 - Sep 7, 2019
 
 - Migrate to com.drakeet group (#267)
