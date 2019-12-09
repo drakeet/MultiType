@@ -39,7 +39,6 @@ class MultiTypeAdapterTest {
   private val parent: ViewGroup = mock()
   private val context: Context = mock()
   private val mockedItemViewDelegate: TestItemViewDelegate = mock()
-  private val inflater: LayoutInflater = mock()
 
   private val itemViewDelegate = TestItemViewDelegate()
 
@@ -47,7 +46,6 @@ class MultiTypeAdapterTest {
   @Throws(Exception::class)
   fun setUp() {
     whenever(parent.context).thenReturn(context)
-    whenever(context.getSystemService(anyString())).thenReturn(inflater)
   }
 
   @Test
@@ -98,7 +96,7 @@ class MultiTypeAdapterTest {
     val type = adapter.getItemViewType(0)
 
     adapter.onCreateViewHolder(parent, type)
-    verify(mockedItemViewDelegate).onCreateViewHolder(inflater, parent)
+    verify(mockedItemViewDelegate).onCreateViewHolder(context, parent)
   }
 
   @Test
