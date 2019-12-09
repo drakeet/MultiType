@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  * This is a compatible version of [ItemViewDelegate].
+ * @see ItemViewDelegate
  * @author Drakeet Xu
  */
 abstract class ItemViewBinder<T, VH : RecyclerView.ViewHolder> : ItemViewDelegate<T, VH>() {
