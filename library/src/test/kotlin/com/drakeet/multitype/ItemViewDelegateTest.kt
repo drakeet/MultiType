@@ -22,7 +22,7 @@ import org.junit.Test
 /**
  * @author Drakeet Xu
  */
-class ItemViewBinderTest {
+class ItemViewDelegateTest {
 
   @Test
   fun shouldGetNonNullAdapter() {
@@ -31,12 +31,12 @@ class ItemViewBinderTest {
     val empty = arrayListOf<Any>()
     adapter.items = empty
 
-    val binder = TestItemViewBinder()
-    adapter.register(TestItem::class.java, binder)
+    val delegate = TestItemViewDelegate()
+    adapter.register(TestItem::class.java, delegate)
 
-    empty.add(TestItem("ItemViewBinderTest"))
+    empty.add(TestItem("ItemViewDelegateTest"))
     try {
-      binder.notifyTestItemAdded()
+      delegate.notifyTestItemAdded()
     } catch (e: Exception) {
       e.printStackTrace()
       exception = e
@@ -51,15 +51,15 @@ class ItemViewBinderTest {
     val empty = ArrayList<Any>()
     adapter.items = empty
 
-    val binder = TestItemViewBinder()
+    val delegate = TestItemViewDelegate()
 
-    empty.add(TestItem("ItemViewBinderTest"))
-    binder.notifyTestItemAdded()
+    empty.add(TestItem("ItemViewDelegateTest"))
+    delegate.notifyTestItemAdded()
 
-    adapter.register(binder)
+    adapter.register(delegate)
   }
 
-  class TestItemViewBinder : com.drakeet.multitype.TestItemViewBinder() {
+  class TestItemViewDelegate : com.drakeet.multitype.TestItemViewDelegate() {
     fun notifyTestItemAdded() {
       assertThat(adapter).isNotNull()
       assertThat(adapter.toString()).isNotNull()

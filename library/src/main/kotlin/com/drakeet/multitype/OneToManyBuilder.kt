@@ -26,13 +26,13 @@ internal class OneToManyBuilder<T>(
   private val clazz: Class<T>
 ) : OneToManyFlow<T>, OneToManyEndpoint<T> {
 
-  private var binders: Array<ItemViewBinder<T, *>>? = null
+  private var delegates: Array<ItemViewDelegate<T, *>>? = null
 
   @SafeVarargs
   @CheckResult(suggest = "#withLinker(Linker)")
-  override fun to(vararg binders: ItemViewBinder<T, *>) = apply {
+  override fun to(vararg delegates: ItemViewDelegate<T, *>) = apply {
     @Suppress("UNCHECKED_CAST")
-    this.binders = binders as Array<ItemViewBinder<T, *>>
+    this.delegates = delegates as Array<ItemViewDelegate<T, *>>
   }
 
   override fun withLinker(linker: Linker<T>) {
@@ -40,12 +40,12 @@ internal class OneToManyBuilder<T>(
   }
 
   override fun withJavaClassLinker(javaClassLinker: JavaClassLinker<T>) {
-    withLinker(ClassLinkerBridge.toLinker(javaClassLinker, binders!!))
+    withLinker(ClassLinkerBridge.toLinker(javaClassLinker, delegates!!))
   }
 
   private fun doRegister(linker: Linker<T>) {
-    for (binder in binders!!) {
-      adapter.register(Type(clazz, binder, linker))
+    for (delegate in delegates!!) {
+      adapter.register(Type(clazz, delegate, linker))
     }
   }
 }
