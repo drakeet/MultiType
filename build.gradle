@@ -23,7 +23,7 @@ buildscript {
   ext.buildConfig = [
       'versionCode': 405,
       'versionName': "4.0.0",
-      'compileSdkVersion': 28,
+      'compileSdkVersion': 29,
       'minSdkVersion': 14,
       'targetSdkVersion': 28
   ]
