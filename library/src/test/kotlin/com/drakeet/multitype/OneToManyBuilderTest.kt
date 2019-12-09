@@ -56,16 +56,16 @@ class OneToManyBuilderTest {
     })
   }
 
-  private abstract class DataItemViewBinder : ItemViewBinder<Data, RecyclerView.ViewHolder>()
+  private abstract class DataItemViewDelegate : ItemViewDelegate<Data, RecyclerView.ViewHolder>()
 
   @Test
   fun testWithJavaClassLinker() {
-    val itemViewBinder1 = mock<ItemViewBinder<Data, RecyclerView.ViewHolder>>()
-    val itemViewBinder2 = mock<DataItemViewBinder>()
-    oneToManyBuilder.to(itemViewBinder1, itemViewBinder2)
+    val itemViewDelegate1 = mock<ItemViewDelegate<Data, RecyclerView.ViewHolder>>()
+    val itemViewDelegate2 = mock<DataItemViewDelegate>()
+    oneToManyBuilder.to(itemViewDelegate1, itemViewDelegate2)
     oneToManyBuilder.withJavaClassLinker(object : JavaClassLinker<Data> {
-      override fun index(position: Int, item: Data): Class<out ItemViewBinder<Data, *>> {
-        return if (position == 3) itemViewBinder1.javaClass else itemViewBinder2.javaClass
+      override fun index(position: Int, item: Data): Class<out ItemViewDelegate<Data, *>> {
+        return if (position == 3) itemViewDelegate1.javaClass else itemViewDelegate2.javaClass
       }
     })
     verify(adapter, times(2)).register(check<Type<Data>> {
@@ -75,7 +75,7 @@ class OneToManyBuilderTest {
     })
 
     oneToManyBuilder.withKotlinClassLinker { position, item ->
-      if (position == 3) itemViewBinder1::class else itemViewBinder2::class
+      if (position == 3) itemViewDelegate1::class else itemViewDelegate2::class
     }
     verify(adapter, times(4)).register(check<Type<Data>> {
       assertThat(it.clazz).isEqualTo(Data::class.java)
@@ -83,8 +83,8 @@ class OneToManyBuilderTest {
       assertThat(it.linker.index(5, Data())).isEqualTo(1)
     })
     oneToManyBuilder.withKotlinClassLinker(object : KotlinClassLinker<Data> {
-      override fun index(position: Int, item: Data): KClass<out ItemViewBinder<Data, *>> {
-        return if (position == 3) itemViewBinder1::class else itemViewBinder2::class
+      override fun index(position: Int, item: Data): KClass<out ItemViewDelegate<Data, *>> {
+        return if (position == 3) itemViewDelegate1::class else itemViewDelegate2::class
       }
     })
     verify(adapter, times(6)).register(check<Type<Data>> {

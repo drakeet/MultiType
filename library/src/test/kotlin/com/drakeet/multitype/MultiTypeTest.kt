@@ -34,39 +34,39 @@ class MultiTypeTest {
 
   @Test
   fun shouldEqualToRegisteredKClass() {
-    adapter.register(String::class, StringViewBinder())
+    adapter.register(String::class, StringViewDelegate())
     assertThat(adapter.types.getType<String>(0).clazz).isEqualTo(String::class.java)
   }
 
   @Test
   fun shouldEqualToRegisteredKClass_Reified() {
-    adapter.register(StringViewBinder())
+    adapter.register(StringViewDelegate())
     assertThat(adapter.types.getType<String>(0).clazz).isEqualTo(String::class.java)
   }
 
   @Test
   fun shouldEqualToRegisteredOneToManyKClass() {
     adapter.register(String::class)
-      .to(StringViewBinder())
+      .to(StringViewDelegate())
       .withLinker(simpleLinker)
     assertThat(adapter.types.getType<String>(0).clazz).isEqualTo(String::class.java)
   }
 
   @Test
   fun shouldEqualToRegisteredKClass_TypePool() {
-    adapter.types.register(Type(String::class.java, StringViewBinder(), simpleLinker))
+    adapter.types.register(Type(String::class.java, StringViewDelegate(), simpleLinker))
     assertThat(adapter.types.getType<String>(0).clazz).isEqualTo(String::class.java)
   }
 
   @Test
   fun shouldUnregisterKClass_TypePool() {
-    adapter.types.register(Type(String::class.java, StringViewBinder(), simpleLinker))
+    adapter.types.register(Type(String::class.java, StringViewDelegate(), simpleLinker))
     assertThat(adapter.types.unregister(String::class.java)).isTrue()
   }
 
   @Test
   fun shouldEqualToRegisteredFirstKClass_TypePool() {
-    adapter.types.register(Type(String::class.java, StringViewBinder(), simpleLinker))
+    adapter.types.register(Type(String::class.java, StringViewDelegate(), simpleLinker))
     assertThat(adapter.types.firstIndexOf(String::class.java)).isEqualTo(0)
   }
 }

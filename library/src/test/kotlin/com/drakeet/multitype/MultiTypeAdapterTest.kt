@@ -38,16 +38,14 @@ class MultiTypeAdapterTest {
 
   private val parent: ViewGroup = mock()
   private val context: Context = mock()
-  private val mockedItemViewBinder: TestItemViewBinder = mock()
-  private val inflater: LayoutInflater = mock()
+  private val mockedItemViewDelegate: TestItemViewDelegate = mock()
 
-  private val itemViewBinder = TestItemViewBinder()
+  private val itemViewDelegate = TestItemViewDelegate()
 
   @Before
   @Throws(Exception::class)
   fun setUp() {
     whenever(parent.context).thenReturn(context)
-    whenever(context.getSystemService(anyString())).thenReturn(inflater)
   }
 
   @Test
@@ -64,57 +62,57 @@ class MultiTypeAdapterTest {
   }
 
   @Test
-  fun shouldOverrideRegisteredBinder() {
+  fun shouldOverrideRegisteredDelegate() {
     val adapter = MultiTypeAdapter()
-    adapter.register(TestItem::class, itemViewBinder)
+    adapter.register(TestItem::class, itemViewDelegate)
     assertThat(adapter.types.size).isEqualTo(1)
-    assertThat(itemViewBinder).isEqualTo(adapter.types.getType<Any>(0).binder)
+    assertThat(itemViewDelegate).isEqualTo(adapter.types.getType<Any>(0).delegate)
 
-    val newBinder = TestItemViewBinder()
-    adapter.register(TestItem::class, newBinder)
-    assertThat(newBinder).isEqualTo(adapter.types.getType<Any>(0).binder)
+    val newDelegate = TestItemViewDelegate()
+    adapter.register(TestItem::class, newDelegate)
+    assertThat(newDelegate).isEqualTo(adapter.types.getType<Any>(0).delegate)
   }
 
   @Test
-  fun shouldNotOverrideRegisteredBinderWhenToMany() {
+  fun shouldNotOverrideRegisteredDelegateWhenToMany() {
     val adapter = MultiTypeAdapter()
-    val binder2 = TestItemViewBinder()
+    val delegate2 = TestItemViewDelegate()
     adapter.register(TestItem::class)
-      .to(itemViewBinder, binder2)
+      .to(itemViewDelegate, delegate2)
       .withLinker { _, _ -> -1 }
     assertThat(adapter.types.getType<Any>(0).clazz).isEqualTo(TestItem::class.java)
     assertThat(adapter.types.getType<Any>(1).clazz).isEqualTo(TestItem::class.java)
 
-    assertThat(itemViewBinder).isEqualTo(adapter.types.getType<Any>(0).binder)
-    assertThat(binder2).isEqualTo(adapter.types.getType<Any>(1).binder)
+    assertThat(itemViewDelegate).isEqualTo(adapter.types.getType<Any>(0).delegate)
+    assertThat(delegate2).isEqualTo(adapter.types.getType<Any>(1).delegate)
   }
 
   @Test
   fun testOnCreateViewHolder() {
     val adapter = MultiTypeAdapter()
-    adapter.register(TestItem::class, mockedItemViewBinder)
+    adapter.register(TestItem::class, mockedItemViewDelegate)
     val item = TestItem("testOnCreateViewHolder")
     adapter.items = listOf(item)
     val type = adapter.getItemViewType(0)
 
     adapter.onCreateViewHolder(parent, type)
-    verify(mockedItemViewBinder).onCreateViewHolder(inflater, parent)
+    verify(mockedItemViewDelegate).onCreateViewHolder(context, parent)
   }
 
   @Test
   fun testOnBindViewHolder() {
     val adapter = MultiTypeAdapter()
-    adapter.register(TestItem::class, mockedItemViewBinder)
+    adapter.register(TestItem::class, mockedItemViewDelegate)
     val item = TestItem("testOnCreateViewHolder")
     adapter.items = listOf(item)
 
-    val holder: TestItemViewBinder.ViewHolder = mock()
+    val holder: TestItemViewDelegate.ViewHolder = mock()
     whenever(holder.itemViewType).thenReturn(adapter.getItemViewType(0))
     adapter.onBindViewHolder(holder, 0)
-    verify(mockedItemViewBinder).onBindViewHolder(eq(holder), eq(item), anyList())
+    verify(mockedItemViewDelegate).onBindViewHolder(eq(holder), eq(item), anyList())
 
     val payloads = emptyList<Any>()
     adapter.onBindViewHolder(holder, 0, payloads)
-    verify(mockedItemViewBinder, times(2)).onBindViewHolder(holder, item, payloads)
+    verify(mockedItemViewDelegate, times(2)).onBindViewHolder(holder, item, payloads)
   }
 }

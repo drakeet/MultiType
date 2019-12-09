@@ -16,9 +16,21 @@
 
 package com.drakeet.multitype
 
+import android.content.Context
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+
 /**
  * @author Drakeet Xu
  */
-internal class BinderNotFoundException(clazz: Class<*>) : RuntimeException(
-  "Have you registered the ${clazz.name} type and its binder to the adapter or types?"
-)
+open class TestItemViewDelegate : ItemViewDelegate<TestItem, TestItemViewDelegate.ViewHolder>() {
+
+  override fun onCreateViewHolder(context: Context, parent: ViewGroup): ViewHolder {
+    throw NotImplementedError()
+  }
+
+  override fun onBindViewHolder(holder: ViewHolder, item: TestItem) {}
+
+  inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+}

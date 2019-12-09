@@ -26,11 +26,11 @@ import androidx.annotation.CheckResult
 interface OneToManyFlow<T> {
 
   /**
-   * Sets some item view binders to the item type.
+   * Sets some item view delegates to the item type.
    *
-   * @param binders the item view binders
+   * @param delegates the item view delegates
    * @return end flow operator
    */
   @CheckResult
-  fun to(vararg binders: ItemViewBinder<T, *>): OneToManyEndpoint<T>
+  fun to(vararg delegates: ItemViewDelegate<T, *>): OneToManyEndpoint<T>
 }

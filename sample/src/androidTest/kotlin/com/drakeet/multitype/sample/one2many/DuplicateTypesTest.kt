@@ -59,7 +59,7 @@ class DuplicateTypesTest {
     }
     assertThat(adapter.types.size).isEqualTo(1)
     assertThat(adapter.types.getType<Data>(0).clazz).isEqualTo(Data::class.java)
-    assertThat(adapter.types.getType<Data>(0).binder.javaClass).isEqualTo(DataType1ViewBinder::class.java)
+    assertThat(adapter.types.getType<Data>(0).delegate.javaClass).isEqualTo(DataType1ViewBinder::class.java)
   }
 
   @Test
@@ -73,7 +73,7 @@ class DuplicateTypesTest {
     }
     assertThat(adapter.types.size).isEqualTo(1)
     assertThat(adapter.types.getType<Data>(0).clazz).isEqualTo(Data::class.java)
-    assertThat(adapter.types.getType<Data>(0).binder.javaClass).isEqualTo(DataType2ViewBinder::class.java)
+    assertThat(adapter.types.getType<Data>(0).delegate.javaClass).isEqualTo(DataType2ViewBinder::class.java)
   }
 
   @Test
@@ -101,11 +101,11 @@ class DuplicateTypesTest {
 
     assertEquals(
       DataType2ViewBinder::class.java,
-      adapter.types.getType<Data>(0).binder::class.java
+      adapter.types.getType<Data>(0).delegate::class.java
     )
     assertEquals(
       DataType1ViewBinder::class.java,
-      adapter.types.getType<Data>(1).binder::class.java
+      adapter.types.getType<Data>(1).delegate::class.java
     )
 
     assertSame(linker, adapter.types.getType<Data>(0).linker)
@@ -140,11 +140,11 @@ class DuplicateTypesTest {
 
     assertEquals(
       DataType1ViewBinder::class.java,
-      adapter.types.getType<Data>(0).binder::class.java
+      adapter.types.getType<Data>(0).delegate::class.java
     )
     assertEquals(
       DataType2ViewBinder::class.java,
-      adapter.types.getType<Data>(1).binder::class.java
+      adapter.types.getType<Data>(1).delegate::class.java
     )
 
     assertSame(linker, adapter.types.getType<Data>(0).linker)

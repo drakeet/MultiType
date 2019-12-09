@@ -17,7 +17,7 @@
 package com.drakeet.multitype
 
 /**
- * An ordered collection to hold the types, binders and linkers.
+ * An ordered collection to hold the types, delegates and linkers.
  *
  * @author Drakeet Xu
  */

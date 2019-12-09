@@ -17,7 +17,6 @@
 package com.drakeet.multitype
 
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.CheckResult
 import androidx.recyclerview.widget.RecyclerView
@@ -44,8 +43,8 @@ open class MultiTypeAdapter @JvmOverloads constructor(
 ) : RecyclerView.Adapter<ViewHolder>() {
 
   /**
-   * Registers a type class and its item view binder. If you have registered the class,
-   * it will override the original binder(s). Note that the method is non-thread-safe
+   * Registers a type class and its item view delegate. If you have registered the class,
+   * it will override the original delegate(s). Note that the method is non-thread-safe
    * so that you should not use it in concurrent operation.
    *
    * Note that the method should not be called after
@@ -53,30 +52,30 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    * again.
    *
    * @param clazz the class of a item
-   * @param binder the item view binder
+   * @param delegate the item view delegate
    * @param T the item data type
    * */
-  fun <T> register(clazz: Class<T>, binder: ItemViewBinder<T, *>) {
+  fun <T> register(clazz: Class<T>, delegate: ItemViewDelegate<T, *>) {
     unregisterAllTypesIfNeeded(clazz)
-    register(Type(clazz, binder, DefaultLinker()))
+    register(Type(clazz, delegate, DefaultLinker()))
   }
 
-  inline fun <reified T : Any> register(binder: ItemViewBinder<T, *>) {
-    register(T::class.java, binder)
+  inline fun <reified T : Any> register(delegate: ItemViewDelegate<T, *>) {
+    register(T::class.java, delegate)
   }
 
-  fun <T : Any> register(clazz: KClass<T>, binder: ItemViewBinder<T, *>) {
-    register(clazz.java, binder)
+  fun <T : Any> register(clazz: KClass<T>, delegate: ItemViewDelegate<T, *>) {
+    register(clazz.java, delegate)
   }
 
   internal fun <T> register(type: Type<T>) {
     types.register(type)
-    type.binder._adapter = this
+    type.delegate._adapter = this
   }
 
   /**
-   * Registers a type class to multiple item view binders. If you have registered the
-   * class, it will override the original binder(s). Note that the method is non-thread-safe
+   * Registers a type class to multiple item view delegates. If you have registered the
+   * class, it will override the original delegate(s). Note that the method is non-thread-safe
    * so that you should not use it in concurrent operation.
    *
    * Note that the method should not be called after
@@ -84,7 +83,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    *
    * @param clazz the class of a item
    * @param <T> the item data type
-   * @return [OneToManyFlow] for setting the binders
+   * @return [OneToManyFlow] for setting the delegates
    * @see [register]
    */
   @CheckResult
@@ -100,7 +99,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
 
   /**
    * Registers all of the contents in the specified [Types]. If you have registered a
-   * class, it will override the original binder(s). Note that the method is non-thread-safe
+   * class, it will override the original delegate(s). Note that the method is non-thread-safe
    * so that you should not use it in concurrent operation.
    *
    * Note that the method should not be called after
@@ -125,9 +124,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, indexViewType: Int): ViewHolder {
-    val inflater = LayoutInflater.from(parent.context)
-    val binder = types.getType<Any>(indexViewType).binder
-    return binder.onCreateViewHolder(inflater, parent)
+    return types.getType<Any>(indexViewType).delegate.onCreateViewHolder(parent.context, parent)
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -136,41 +133,41 @@ open class MultiTypeAdapter @JvmOverloads constructor(
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: List<Any>) {
     val item = items[position]
-    getOutBinderByViewHolder(holder).onBindViewHolder(holder, item, payloads)
+    getOutDelegateByViewHolder(holder).onBindViewHolder(holder, item, payloads)
   }
 
   override fun getItemCount(): Int = items.size
 
   /**
-   * Called to return the stable ID for the item, and passes the event to its associated binder.
+   * Called to return the stable ID for the item, and passes the event to its associated delegate.
    *
    * @param position Adapter position to query
    * @return the stable ID of the item at position
-   * @see ItemViewBinder.getItemId
+   * @see ItemViewDelegate.getItemId
    * @see RecyclerView.Adapter.setHasStableIds
    * @since v3.2.0
    */
   override fun getItemId(position: Int): Long {
     val item = items[position]
     val itemViewType = getItemViewType(position)
-    return types.getType<Any>(itemViewType).binder.getItemId(item)
+    return types.getType<Any>(itemViewType).delegate.getItemId(item)
   }
 
   /**
    * Called when a view created by this adapter has been recycled, and passes the event to its
-   * associated binder.
+   * associated delegate.
    *
    * @param holder The ViewHolder for the view being recycled
    * @see RecyclerView.Adapter.onViewRecycled
-   * @see ItemViewBinder.onViewRecycled
+   * @see ItemViewDelegate.onViewRecycled
    */
   override fun onViewRecycled(holder: ViewHolder) {
-    getOutBinderByViewHolder(holder).onViewRecycled(holder)
+    getOutDelegateByViewHolder(holder).onViewRecycled(holder)
   }
 
   /**
    * Called by the RecyclerView if a ViewHolder created by this Adapter cannot be recycled
-   * due to its transient state, and passes the event to its associated item view binder.
+   * due to its transient state, and passes the event to its associated item view delegate.
    *
    * @param holder The ViewHolder containing the View that could not be recycled due to its
    * transient state.
@@ -180,49 +177,49 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    * RecyclerView will check the View's transient state again before giving a final decision.
    * Default implementation returns false.
    * @see RecyclerView.Adapter.onFailedToRecycleView
-   * @see ItemViewBinder.onFailedToRecycleView
+   * @see ItemViewDelegate.onFailedToRecycleView
    */
   override fun onFailedToRecycleView(holder: ViewHolder): Boolean {
-    return getOutBinderByViewHolder(holder).onFailedToRecycleView(holder)
+    return getOutDelegateByViewHolder(holder).onFailedToRecycleView(holder)
   }
 
   /**
    * Called when a view created by this adapter has been attached to a window, and passes the
-   * event to its associated item view binder.
+   * event to its associated item view delegate.
    *
    * @param holder Holder of the view being attached
    * @see RecyclerView.Adapter.onViewAttachedToWindow
-   * @see ItemViewBinder.onViewAttachedToWindow
+   * @see ItemViewDelegate.onViewAttachedToWindow
    */
   override fun onViewAttachedToWindow(holder: ViewHolder) {
-    getOutBinderByViewHolder(holder).onViewAttachedToWindow(holder)
+    getOutDelegateByViewHolder(holder).onViewAttachedToWindow(holder)
   }
 
   /**
    * Called when a view created by this adapter has been detached from its window, and passes
-   * the event to its associated item view binder.
+   * the event to its associated item view delegate.
    *
    * @param holder Holder of the view being detached
    * @see RecyclerView.Adapter.onViewDetachedFromWindow
-   * @see ItemViewBinder.onViewDetachedFromWindow
+   * @see ItemViewDelegate.onViewDetachedFromWindow
    */
   override fun onViewDetachedFromWindow(holder: ViewHolder) {
-    getOutBinderByViewHolder(holder).onViewDetachedFromWindow(holder)
+    getOutDelegateByViewHolder(holder).onViewDetachedFromWindow(holder)
   }
 
-  private fun getOutBinderByViewHolder(holder: ViewHolder): ItemViewBinder<Any, ViewHolder> {
+  private fun getOutDelegateByViewHolder(holder: ViewHolder): ItemViewDelegate<Any, ViewHolder> {
     @Suppress("UNCHECKED_CAST")
-    return types.getType<Any>(holder.itemViewType).binder as ItemViewBinder<Any, ViewHolder>
+    return types.getType<Any>(holder.itemViewType).delegate as ItemViewDelegate<Any, ViewHolder>
   }
 
-  @Throws(BinderNotFoundException::class)
+  @Throws(DelegateNotFoundException::class)
   internal fun indexInTypesOf(position: Int, item: Any): Int {
     val index = types.firstIndexOf(item.javaClass)
     if (index != -1) {
       val linker = types.getType<Any>(index).linker
       return index + linker.index(position, item)
     }
-    throw BinderNotFoundException(item.javaClass)
+    throw DelegateNotFoundException(item.javaClass)
   }
 
   private fun unregisterAllTypesIfNeeded(clazz: Class<*>) {

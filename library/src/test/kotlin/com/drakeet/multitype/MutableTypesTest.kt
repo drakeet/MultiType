@@ -34,8 +34,8 @@ class MutableTypesTest {
   @Before
   fun register() {
     types = MutableTypes()
-    types.register(Type(TestItem::class.java, TestItemViewBinder(), DefaultLinker()))
-    types.register(Type(RegisteredSubClass::class.java, TestItemViewBinder(), DefaultLinker()))
+    types.register(Type(TestItem::class.java, TestItemViewDelegate(), DefaultLinker()))
+    types.register(Type(RegisteredSubClass::class.java, TestItemViewDelegate(), DefaultLinker()))
   }
 
   @Test

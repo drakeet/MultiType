@@ -21,6 +21,6 @@ package com.drakeet.multitype
  */
 data class Type<T>(
   val clazz: Class<out T>,
-  val binder: ItemViewBinder<T, *>,
+  val delegate: ItemViewDelegate<T, *>,
   val linker: Linker<T>
 )
