@@ -33,4 +33,7 @@ interface OneToManyFlow<T> {
    */
   @CheckResult
   fun to(vararg delegates: ItemViewDelegate<T, *>): OneToManyEndpoint<T>
+
+  @CheckResult
+  fun to(vararg delegates: ItemViewBinder<T, *>): OneToManyEndpoint<T>
 }
