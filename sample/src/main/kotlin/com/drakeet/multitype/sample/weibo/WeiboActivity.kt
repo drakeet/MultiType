@@ -46,9 +46,9 @@ class WeiboActivity : MenuBaseActivity() {
       SimpleTextViewBinder(),
       SimpleImageViewBinder()
     ).withLinker { _, weibo ->
-      when {
-        weibo.content is SimpleText -> 0
-        weibo.content is SimpleImage -> 1
+      when (weibo.content) {
+        is SimpleText -> 0
+        is SimpleImage -> 1
         else -> 0
       }
     }
