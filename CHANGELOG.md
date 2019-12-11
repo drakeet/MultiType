@@ -1,5 +1,9 @@
 # MultiType Releases
 
+### Version 4.1.1 - Dec 11, 2019
+
+- Fix binary incompatibility about `ItemViewBinder` (#294)
+
 ### Version 4.1.0 - Dec 9, 2019
 
 - Add `ItemViewDelegate` & `onCreateViewHolder(context, _)` (#292)
