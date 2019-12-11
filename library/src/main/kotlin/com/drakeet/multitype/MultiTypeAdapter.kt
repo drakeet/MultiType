@@ -68,6 +68,18 @@ open class MultiTypeAdapter @JvmOverloads constructor(
     register(clazz.java, delegate)
   }
 
+  fun <T> register(clazz: Class<T>, binder: ItemViewBinder<T, *>) {
+    register(clazz, binder as ItemViewDelegate<T, *>)
+  }
+
+  inline fun <reified T : Any> register(binder: ItemViewBinder<T, *>) {
+    register(binder as ItemViewDelegate<T, *>)
+  }
+
+  fun <T : Any> register(clazz: KClass<T>, binder: ItemViewBinder<T, *>) {
+    register(clazz, binder as ItemViewDelegate<T, *>)
+  }
+
   internal fun <T> register(type: Type<T>) {
     types.register(type)
     type.delegate._adapter = this
