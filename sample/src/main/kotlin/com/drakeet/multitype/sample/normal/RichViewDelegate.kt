@@ -35,5 +35,6 @@ class RichViewDelegate : ViewDelegate<RichItem, RichView>() {
   override fun onBindView(view: RichView, item: RichItem) {
     view.imageView.setImageResource(item.imageResId)
     view.textView.text = item.text
+    // Or bind the data in the RichView by calling view.setRichItem(item)
   }
 }
