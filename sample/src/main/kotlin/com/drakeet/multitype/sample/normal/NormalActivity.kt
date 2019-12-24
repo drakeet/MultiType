@@ -38,7 +38,8 @@ class NormalActivity : MenuBaseActivity() {
 
     adapter.register(TextItemViewBinder())
     adapter.register(ImageItemViewBinder())
-    adapter.register(RichItemViewBinder())
+    // ✨✨✨
+    adapter.register(RichViewDelegate())
     recyclerView.adapter = adapter
 
     val textItem = TextItem("world")
