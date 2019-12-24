@@ -69,7 +69,7 @@ class FooViewDelegate: ItemViewDelegate<Foo, FooViewDelegate.ViewHolder>() {
 ```kotlin
 class FooViewDelegate : ViewDelegate<Foo, FooView>() {
 
-  override fun onCreateView(context: Context): RichView {
+  override fun onCreateView(context: Context): FooView {
     return FooView(context).apply { layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT) }
   }
 
