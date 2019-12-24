@@ -23,7 +23,7 @@ _In addition, since 4.0.0 we have migrated to fully build with Kotlin. If you do
 
 ```groovy
 dependencies {
-  implementation 'com.drakeet.multitype:multitype:4.1.1'
+  implementation 'com.drakeet.multitype:multitype:4.2.0'
 }
 ```
 
@@ -61,6 +61,27 @@ class FooViewDelegate: ItemViewDelegate<Foo, FooViewDelegate.ViewHolder>() {
   }
 }
 ```
+
+##### Or if you are using a custom View instead of XML layout, you can use `ViewDelegate`:
+
+> The `ViewDelegate` is a simple `ItemViewDelegate` that does not require to declare and provide a `RecyclerView.ViewHolder`.
+
+```kotlin
+class FooViewDelegate : ViewDelegate<Foo, FooView>() {
+
+  override fun onCreateView(context: Context): RichView {
+    return FooView(context).apply { layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT) }
+  }
+
+  override fun onBindView(view: FooView, item: Foo) {
+    view.imageView.setImageResource(item.imageResId)
+    view.textView.text = item.text
+    // Or bind the data in the FooView by calling view.setFoo(item)
+  }
+}
+```
+
+(See [`RichViewDelegate`](sample/src/main/kotlin/com/drakeet/multitype/sample/normal/RichViewDelegate.kt) & [`RichView`](sample/src/main/kotlin/com/drakeet/multitype/sample/normal/RichView.kt) examples for more details)
 
 #### Step 3. `register` your types and setup your `RecyclerView`, for example:
 

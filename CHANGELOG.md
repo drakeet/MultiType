@@ -1,5 +1,9 @@
 # MultiType Releases
 
+### Version 4.2.0 - Dec 24, 2019
+
+- Add `ViewDelegate` that does not require `ViewHolder` (#296)
+
 ### Version 4.1.1 - Dec 11, 2019
 
 - Fix binary incompatibility about `ItemViewBinder` (#294)
