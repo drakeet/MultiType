@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.drakeet.multitype.sample.R
+import com.drakeet.multitype.sample.dp
 
 /**
  * @author Drakeet Xu
@@ -27,8 +28,5 @@ class RichView(context: Context) : LinearLayout(context) {
     orientation = VERTICAL
     gravity = Gravity.CENTER
     setPadding(16.dp, 16.dp, 16.dp, 16.dp)
-    setBackgroundResource(R.drawable.square_border)
   }
-
-  private val Number.dp: Int get() = (toInt() * resources.displayMetrics.density).toInt()
 }

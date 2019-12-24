@@ -17,19 +17,22 @@
 package com.drakeet.multitype.sample.normal
 
 import android.content.Context
+import android.view.Gravity
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutParams
 import com.drakeet.multitype.ViewDelegate
+import com.drakeet.multitype.sample.dp
 
 /**
  * @author Drakeet Xu
  */
 class RichViewDelegate : ViewDelegate<RichItem, RichView>() {
 
-  override fun onCreateView(context: Context): RichView = RichView(context).apply {
-    layoutParams = RecyclerView.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+  override fun onCreateView(context: Context): RichView {
+    return RichView(context).apply { layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT) }
   }
 
   override fun onBindView(view: RichView, item: RichItem) {
