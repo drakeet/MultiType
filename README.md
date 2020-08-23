@@ -1,5 +1,5 @@
 # MultiType
-An Android library makes it easier and more flexible to create multiple types of RecyclerViews.
+Easier and more flexible to create multiple types for Android RecyclerView.
 
 [![Build Status](https://travis-ci.org/drakeet/MultiType.svg?branch=3.x)](https://travis-ci.org/drakeet/MultiType)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
