@@ -15,17 +15,17 @@
  */
 
 buildscript {
-  ext.kotlinVersion = '1.3.61'
+  ext.kotlinVersion = '1.4.10'
   ext.dokkaVersion = '0.9.17'
-  ext.recyclerviewVersion = '1.0.0'
+  ext.recyclerviewVersion = '1.1.0'
   ext.annotationVersion = '1.1.0'
   ext.appcompatVersion = '1.0.2'
   ext.buildConfig = [
       'versionCode': 420,
       'versionName': "4.2.0",
-      'compileSdkVersion': 29,
+      'compileSdkVersion': 30,
       'minSdkVersion': 14,
-      'targetSdkVersion': 28
+      'targetSdkVersion': 29
   ]
 
   repositories {
@@ -33,7 +33,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.5.3'
+    classpath 'com.android.tools.build:gradle:4.1.1'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${dokkaVersion}"
   }
