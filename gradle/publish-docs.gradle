@@ -28,5 +28,5 @@ task publishDocs(type: JavaExec) {
   main = 'com.squareup.osstrich.JavadocPublisher'
   args = ['build/javadoc',
           'https://github.com/drakeet/MultiType',
-          'me.drakeet.multitype']
+          'com.drakeet.multitype']
 }
