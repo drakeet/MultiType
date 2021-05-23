@@ -29,7 +29,7 @@
         android:layout_height="@dimen/category_icon_size"
         android:src="@mipmap/ic_launcher"/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="@dimen/normal_space"
         android:layout_height="0dp"/>
 
