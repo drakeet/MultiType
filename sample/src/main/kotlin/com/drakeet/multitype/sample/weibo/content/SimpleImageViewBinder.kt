@@ -35,7 +35,7 @@ class SimpleImageViewBinder : WeiboFrameBinder<SimpleImage, SimpleImageViewBinde
   }
 
   override fun onBindContentViewHolder(holder: ViewHolder, content: SimpleImage) {
-    Log.d("weibo", "getAdapterPosition: " + holder.adapterPosition)
+    Log.d("weibo", "absoluteAdapterPosition: " + holder.absoluteAdapterPosition)
     Log.d("weibo", "getLayoutPosition: " + holder.layoutPosition)
     Log.d("weibo", "getOldPosition: " + holder.oldPosition)
     Log.d("weibo", "isRecyclable: " + holder.isRecyclable)

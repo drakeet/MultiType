@@ -25,8 +25,8 @@ open class ContentHolder(val itemView: View) {
 
   lateinit var parent: WeiboFrameBinder.FrameHolder
 
-  val adapterPosition: Int
-    get() = parent.adapterPosition
+  val absoluteAdapterPosition: Int
+    get() = parent.absoluteAdapterPosition
 
   val layoutPosition: Int
     get() = parent.layoutPosition

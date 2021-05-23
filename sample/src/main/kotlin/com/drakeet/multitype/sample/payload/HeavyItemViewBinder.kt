@@ -64,13 +64,13 @@ internal class HeavyItemViewBinder : ItemViewBinder<HeavyItem, HeavyItemViewBind
 
     override fun onClick(v: View) {
       Toast.makeText(v.context, "Update with a payload", Toast.LENGTH_SHORT).show()
-      adapter.notifyItemChanged(adapterPosition, "la la la (payload)")
+      adapter.notifyItemChanged(bindingAdapterPosition, "la la la (payload)")
     }
 
     override fun onLongClick(v: View): Boolean {
       Toast.makeText(v.context, "Full update", Toast.LENGTH_SHORT).show()
       item!!.text = "full full full"
-      adapter.notifyItemChanged(adapterPosition)
+      adapter.notifyItemChanged(bindingAdapterPosition)
       return true
     }
   }

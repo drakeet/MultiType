@@ -45,7 +45,7 @@ class TextItemViewBinder : ItemViewBinder<TextItem, TextItemViewBinder.TextHolde
   override fun onBindViewHolder(holder: TextHolder, item: TextItem) {
     holder.text.text = "hello: " + item.text
     // should show animation, ref: https://github.com/drakeet/MultiType/issues/149
-    setAnimation(holder.itemView, holder.adapterPosition)
+    setAnimation(holder.itemView, holder.absoluteAdapterPosition)
   }
 
   private fun setAnimation(viewToAnimate: View, position: Int) {

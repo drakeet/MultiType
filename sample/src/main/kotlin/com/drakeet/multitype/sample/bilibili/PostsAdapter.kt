@@ -56,7 +56,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
     var title: TextView = itemView.findViewById(R.id.title)
 
     init {
-      itemView.setOnClickListener { v -> Toast.makeText(v.context, adapterPosition.toString(), Toast.LENGTH_SHORT).show() }
+      itemView.setOnClickListener { v -> Toast.makeText(v.context, absoluteAdapterPosition.toString(), Toast.LENGTH_SHORT).show() }
     }
   }
 }

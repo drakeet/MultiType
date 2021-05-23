@@ -64,9 +64,9 @@ abstract class WeiboFrameBinder<Content : WeiboContent, SubViewHolder : ContentH
       container.addView(subViewHolder.itemView)
       this.subViewHolder.parent = this
 
-      itemView.setOnClickListener { v -> Toast.makeText(v.context, "Position: $adapterPosition", LENGTH_SHORT).show() }
+      itemView.setOnClickListener { v -> Toast.makeText(v.context, "Position: $bindingAdapterPosition", LENGTH_SHORT).show() }
       close.setOnClickListener {
-        val position = adapterPosition
+        val position = bindingAdapterPosition
         if (position != RecyclerView.NO_POSITION) {
           binder.adapter.items.toMutableList()
             .apply {
