@@ -39,7 +39,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    */
   open var items: List<Any> = emptyList(),
   open val initialCapacity: Int = 0,
-  open var types: Types = MutableTypes(initialCapacity)
+  open var types: Types = MutableTypes(initialCapacity),
 ) : RecyclerView.Adapter<ViewHolder>() {
 
   /**
@@ -64,8 +64,14 @@ open class MultiTypeAdapter @JvmOverloads constructor(
     register(T::class.java, delegate)
   }
 
-  fun <T : Any> register(clazz: KClass<T>, delegate: ItemViewDelegate<T, *>) {
-    register(clazz.java, delegate)
+  inline fun <reified T : Any> register(
+    // Keep this parameter to provide the explicit relationship
+    @Suppress("UNUSED_PARAMETER") clazz: KClass<T>,
+    delegate: ItemViewDelegate<T, *>,
+  ) {
+    // Always use the reified type to avoid javaPrimitiveType problem
+    // See https://github.com/drakeet/MultiType/issues/302
+    register(T::class.java, delegate)
   }
 
   fun <T> register(clazz: Class<T>, binder: ItemViewBinder<T, *>) {
@@ -76,7 +82,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
     register(binder as ItemViewDelegate<T, *>)
   }
 
-  fun <T : Any> register(clazz: KClass<T>, binder: ItemViewBinder<T, *>) {
+  inline fun <reified T : Any> register(clazz: KClass<T>, binder: ItemViewBinder<T, *>) {
     register(clazz, binder as ItemViewDelegate<T, *>)
   }
 

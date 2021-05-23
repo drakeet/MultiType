@@ -16,9 +16,13 @@
 
 package com.drakeet.multitype.sample.normal
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.drakeet.multitype.MultiTypeAdapter
+import com.drakeet.multitype.ViewDelegate
 import com.drakeet.multitype.sample.MenuBaseActivity
 import com.drakeet.multitype.sample.R
 import java.util.*
@@ -40,6 +44,11 @@ class NormalActivity : MenuBaseActivity() {
     adapter.register(ImageItemViewBinder())
     // ✨✨✨
     adapter.register(RichViewDelegate())
+
+    // Test https://github.com/drakeet/MultiType/issues/302
+    // Kotlin will reify and inline this to Integer.class
+    adapter.register(Int::class, IntViewDelegate())
+
     recyclerView.adapter = adapter
 
     val textItem = TextItem("world")
@@ -51,7 +60,22 @@ class NormalActivity : MenuBaseActivity() {
       items.add(imageItem)
       items.add(richItem)
     }
+    items.add(Integer.valueOf(999))
+    items.add(666)
+    items.add(333)
     adapter.items = items
     adapter.notifyDataSetChanged()
+  }
+
+  private class IntViewDelegate : ViewDelegate<Int, TextView>() {
+
+    override fun onCreateView(context: Context): TextView {
+      return TextView(context)
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onBindView(view: TextView, item: Int) {
+      view.text = "IntViewItem: $item"
+    }
   }
 }
