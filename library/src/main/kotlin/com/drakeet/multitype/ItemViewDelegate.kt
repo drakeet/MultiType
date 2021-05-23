@@ -106,23 +106,6 @@ abstract class ItemViewDelegate<T, VH : ViewHolder> {
   }
 
   /**
-   * Get the adapter position of current item,
-   * the internal position equals to [ViewHolder.getAdapterPosition].
-   *
-   * **NOTE**: Below v2.3.5 we may provide getPosition() method to get the position,
-   * It exists BUG, and sometimes can not get the correct position,
-   * it is recommended to immediately stop using it and use the new
-   * `getPosition(ViewHolder)` instead.
-   *
-   * @param holder The ViewHolder to call holder.getAdapterPosition().
-   * @return The adapter position.
-   * @since v2.3.5. If below v2.3.5, use [ViewHolder.getAdapterPosition] instead.
-   */
-  fun getPosition(holder: ViewHolder): Int {
-    return holder.adapterPosition
-  }
-
-  /**
    * Return the stable ID for the `item`. If [RecyclerView.Adapter.hasStableIds]
    * would return false this method should return [RecyclerView.NO_ID]. The default
    * implementation of this method returns [RecyclerView.NO_ID].
