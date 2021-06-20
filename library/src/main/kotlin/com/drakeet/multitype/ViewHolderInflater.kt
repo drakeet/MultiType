@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Alias of the [ItemViewBinder]
  * @since 4.3.0
  */
-abstract class ViewHolderInflater<T, VH : RecyclerView.ViewHolder> : ItemViewBinder<T, VH>()
+typealias ViewHolderInflater<T, VH> = ItemViewBinder<T, VH>
 
 /**
  * This is a compatible version of [ItemViewDelegate].

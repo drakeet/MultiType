@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
  * Alias of the [ItemViewDelegate]
  * @since v4.3.0
  */
-abstract class ViewHolderDelegate<T, VH : RecyclerView.ViewHolder>: ItemViewDelegate<T, VH>()
+typealias ViewHolderDelegate<T, VH> = ItemViewDelegate<T, VH>
 
 /***
  * @author Drakeet Xu
