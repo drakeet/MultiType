@@ -22,13 +22,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.drakeet.multitype.ItemViewBinder
+import com.drakeet.multitype.ViewHolderInflater
 import com.drakeet.multitype.sample.R
 
 /**
  * @author Drakeet Xu
  */
-class HorizontalPostsViewBinder : ItemViewBinder<PostList, HorizontalPostsViewBinder.ViewHolder>() {
+class HorizontalPostsHolderInflater : ViewHolderInflater<PostList, HorizontalPostsHolderInflater.ViewHolder>() {
 
   override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {
     return ViewHolder(inflater.inflate(R.layout.item_horizontal_list, parent, false))

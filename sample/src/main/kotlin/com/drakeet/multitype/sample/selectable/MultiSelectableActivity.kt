@@ -25,7 +25,7 @@ import com.drakeet.multitype.MultiTypeAdapter
 import com.drakeet.multitype.sample.MenuBaseActivity
 import com.drakeet.multitype.sample.R
 import com.drakeet.multitype.sample.common.Category
-import com.drakeet.multitype.sample.common.CategoryItemViewBinder
+import com.drakeet.multitype.sample.common.CategoryHolderInflater
 import java.util.*
 
 class MultiSelectableActivity : MenuBaseActivity() {
@@ -49,7 +49,7 @@ class MultiSelectableActivity : MenuBaseActivity() {
     selectedSet = TreeSet()
 
     recyclerView.layoutManager = layoutManager
-    adapter.register(CategoryItemViewBinder())
+    adapter.register(CategoryHolderInflater())
     adapter.register(SquareViewBinder(selectedSet))
 
     loadData()

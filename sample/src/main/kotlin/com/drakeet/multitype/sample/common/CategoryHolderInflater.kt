@@ -21,13 +21,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.drakeet.multitype.ItemViewBinder
+import com.drakeet.multitype.ViewHolderInflater
 import com.drakeet.multitype.sample.R
 
 /**
  * @author Drakeet Xu
  */
-class CategoryItemViewBinder : ItemViewBinder<Category, CategoryItemViewBinder.ViewHolder>() {
+class CategoryHolderInflater : ViewHolderInflater<Category, CategoryHolderInflater.ViewHolder>() {
 
   override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {
     return ViewHolder(inflater.inflate(R.layout.item_category, parent, false))

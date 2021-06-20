@@ -26,7 +26,7 @@ import com.drakeet.multitype.MultiTypeAdapter
 import com.drakeet.multitype.sample.MenuBaseActivity
 import com.drakeet.multitype.sample.R
 import com.drakeet.multitype.sample.common.Category
-import com.drakeet.multitype.sample.common.CategoryItemViewBinder
+import com.drakeet.multitype.sample.common.CategoryHolderInflater
 import java.util.*
 
 /**
@@ -70,10 +70,10 @@ class BilibiliActivity : MenuBaseActivity() {
     setContentView(R.layout.activity_list)
 
     adapter = MultiTypeAdapter()
-    adapter.register(CategoryItemViewBinder())
+    adapter.register(CategoryHolderInflater())
 
     adapter.register(PostViewBinder())
-    adapter.register(HorizontalPostsViewBinder())
+    adapter.register(HorizontalPostsHolderInflater())
 
     val recyclerView = findViewById<RecyclerView>(R.id.list)
 
