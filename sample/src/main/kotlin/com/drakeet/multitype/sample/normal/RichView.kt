@@ -20,6 +20,7 @@ class RichView(context: Context) : LinearLayout(context) {
   }
 
   val textView = AppCompatTextView(context).apply {
+    gravity = Gravity.CENTER
     setTextColor(Color.BLACK)
     addView(this, LayoutParams(WRAP_CONTENT, WRAP_CONTENT))
   }

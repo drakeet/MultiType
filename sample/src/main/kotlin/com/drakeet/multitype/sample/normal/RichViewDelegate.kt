@@ -16,6 +16,7 @@
 
 package com.drakeet.multitype.sample.normal
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.Gravity
 import android.view.ViewGroup
@@ -35,9 +36,14 @@ class RichViewDelegate : ViewDelegate<RichItem, RichView>() {
     return RichView(context).apply { layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT) }
   }
 
+  @SuppressLint("SetTextI18n")
   override fun onBindView(view: RichView, item: RichItem) {
     view.imageView.setImageResource(item.imageResId)
-    view.textView.text = item.text
-    // Or bind the data in the RichView by calling view.setRichItem(item)
+    view.textView.text = """
+      |${item.text}
+      |layoutPosition: ${view.layoutPosition} 
+      |absoluteAdapterPosition: ${view.absoluteAdapterPosition} 
+      |bindingAdapterPosition: ${view.bindingAdapterPosition} 
+    """.trimMargin()
   }
 }
