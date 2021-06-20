@@ -31,7 +31,6 @@ buildscript {
   repositories {
     google()
     mavenCentral()
-    jcenter()
   }
   dependencies {
     classpath 'com.android.tools.build:gradle:4.2.1'
@@ -44,7 +43,6 @@ allprojects {
   repositories {
     google()
     mavenCentral()
-    jcenter()
   }
   task javadoc(type: Javadoc) {
     options.encoding = "utf-8"
