@@ -23,7 +23,7 @@ _In addition, since 4.0.0 we have migrated to fully build with Kotlin. If you do
 
 ```groovy
 dependencies {
-  implementation 'com.drakeet.multitype:multitype:4.2.0'
+  implementation 'com.drakeet.multitype:multitype:4.3.0'
 }
 ```
 
@@ -50,7 +50,8 @@ class FooViewDelegate: ItemViewDelegate<Foo, FooViewDelegate.ViewHolder>() {
 
   override fun onBindViewHolder(holder: ViewHolder, item: Foo) {
     holder.fooView.text = item.value
-    Log.d("ItemViewDelegate API", "position: ${getPosition(holder)}")
+
+    Log.d("ItemViewDelegate API", "position: ${holder.bindingAdapterPosition}")
     Log.d("ItemViewDelegate API", "items: $adapterItems")
     Log.d("ItemViewDelegate API", "adapter: $adapter")
     Log.d("More", "Context: ${holder.itemView.context}")
@@ -76,7 +77,14 @@ class FooViewDelegate : ViewDelegate<Foo, FooView>() {
   override fun onBindView(view: FooView, item: Foo) {
     view.imageView.setImageResource(item.imageResId)
     view.textView.text = item.text
-    // Or bind the data in the FooView by calling view.setFoo(item)
+
+    view.textView.text = """
+      |${item.text}
+      |viewHolder: ${view.holder}
+      |layoutPosition: ${view.layoutPosition}
+      |absoluteAdapterPosition: ${view.absoluteAdapterPosition}
+      |bindingAdapterPosition: ${view.bindingAdapterPosition}
+    """.trimMargin()
   }
 }
 ```
