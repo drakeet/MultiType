@@ -16,7 +16,6 @@
 
 package com.drakeet.multitype
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.CheckResult
 import androidx.recyclerview.widget.RecyclerView
@@ -39,25 +38,12 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    */
   open var items: List<Any> = emptyList(),
   open val initialCapacity: Int = 0,
-  open var types: Types = MutableTypes(initialCapacity),
-) : RecyclerView.Adapter<ViewHolder>() {
+  override var types: Types = MutableTypes(initialCapacity),
+) : RecyclerView.Adapter<ViewHolder>(), MultiTypeDelegate {
 
-  /**
-   * Registers a type class and its item view delegate. If you have registered the class,
-   * it will override the original delegate(s). Note that the method is non-thread-safe
-   * so that you should not use it in concurrent operation.
-   *
-   * Note that the method should not be called after
-   * [RecyclerView.setAdapter], or you have to call the setAdapter
-   * again.
-   *
-   * @param clazz the class of a item
-   * @param delegate the item view delegate
-   * @param T the item data type
-   * */
-  fun <T> register(clazz: Class<T>, delegate: ItemViewDelegate<T, *>) {
-    unregisterAllTypesIfNeeded(clazz)
-    register(Type(clazz, delegate, DefaultLinker()))
+  override fun <T> register(type: Type<T>) {
+    super.register(type)
+    type.delegate._adapter = this
   }
 
   inline fun <reified T : Any> register(delegate: ItemViewDelegate<T, *>) {
@@ -86,55 +72,9 @@ open class MultiTypeAdapter @JvmOverloads constructor(
     register(clazz, binder as ItemViewDelegate<T, *>)
   }
 
-  internal fun <T> register(type: Type<T>) {
-    types.register(type)
-    type.delegate._adapter = this
-  }
-
-  /**
-   * Registers a type class to multiple item view delegates. If you have registered the
-   * class, it will override the original delegate(s). Note that the method is non-thread-safe
-   * so that you should not use it in concurrent operation.
-   *
-   * Note that the method should not be called after
-   * [RecyclerView.setAdapter], or you have to call the setAdapter again.
-   *
-   * @param clazz the class of a item
-   * @param <T> the item data type
-   * @return [OneToManyFlow] for setting the delegates
-   * @see [register]
-   */
-  @CheckResult
-  fun <T> register(clazz: Class<T>): OneToManyFlow<T> {
-    unregisterAllTypesIfNeeded(clazz)
-    return OneToManyBuilder(this, clazz)
-  }
-
   @CheckResult
   fun <T : Any> register(clazz: KClass<T>): OneToManyFlow<T> {
     return register(clazz.java)
-  }
-
-  /**
-   * Registers all of the contents in the specified [Types]. If you have registered a
-   * class, it will override the original delegate(s). Note that the method is non-thread-safe
-   * so that you should not use it in concurrent operation.
-   *
-   * Note that the method should not be called after
-   * [RecyclerView.setAdapter], or you have to call the setAdapter
-   * again.
-   *
-   * @param types a [Types] containing contents to be added to this adapter inner [Types]
-   * @see [register]
-   * @see [register]
-   */
-  fun registerAll(types: Types) {
-    val size = types.size
-    for (i in 0 until size) {
-      val type = types.getType<Any>(i)
-      unregisterAllTypesIfNeeded(type.clazz)
-      register(type)
-    }
   }
 
   override fun getItemViewType(position: Int): Int {
@@ -142,7 +82,7 @@ open class MultiTypeAdapter @JvmOverloads constructor(
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, indexViewType: Int): ViewHolder {
-    return types.getType<Any>(indexViewType).delegate.onCreateViewHolder(parent.context, parent)
+    return getOutDelegate(indexViewType).onCreateViewHolder(parent.context, parent)
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -166,9 +106,8 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    * @since v3.2.0
    */
   override fun getItemId(position: Int): Long {
-    val item = items[position]
     val itemViewType = getItemViewType(position)
-    return types.getType<Any>(itemViewType).delegate.getItemId(item)
+    return getOutDelegate(itemViewType).getItemId(position)
   }
 
   /**
@@ -223,30 +162,5 @@ open class MultiTypeAdapter @JvmOverloads constructor(
    */
   override fun onViewDetachedFromWindow(holder: ViewHolder) {
     getOutDelegateByViewHolder(holder).onViewDetachedFromWindow(holder)
-  }
-
-  private fun getOutDelegateByViewHolder(holder: ViewHolder): ItemViewDelegate<Any, ViewHolder> {
-    @Suppress("UNCHECKED_CAST")
-    return types.getType<Any>(holder.itemViewType).delegate as ItemViewDelegate<Any, ViewHolder>
-  }
-
-  @Throws(DelegateNotFoundException::class)
-  internal fun indexInTypesOf(position: Int, item: Any): Int {
-    val index = types.firstIndexOf(item.javaClass)
-    if (index != -1) {
-      val linker = types.getType<Any>(index).linker
-      return index + linker.index(position, item)
-    }
-    throw DelegateNotFoundException(item.javaClass)
-  }
-
-  private fun unregisterAllTypesIfNeeded(clazz: Class<*>) {
-    if (types.unregister(clazz)) {
-      Log.w(TAG, "The type ${clazz.simpleName} you originally registered is now overwritten.")
-    }
-  }
-
-  companion object {
-    private const val TAG = "MultiTypeAdapter"
   }
 }
