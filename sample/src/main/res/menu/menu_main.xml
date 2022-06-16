@@ -68,4 +68,9 @@
         android:title="MoreApisPlayground"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/ConcatActivity"
+        android:title="ConcatActivity"
+        app:showAsAction="never"
+        />
 </menu>

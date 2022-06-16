@@ -227,7 +227,12 @@ open class MultiTypeAdapter @JvmOverloads constructor(
 
   private fun getOutDelegateByViewHolder(holder: ViewHolder): ItemViewDelegate<Any, ViewHolder> {
     @Suppress("UNCHECKED_CAST")
-    return types.getType<Any>(holder.itemViewType).delegate as ItemViewDelegate<Any, ViewHolder>
+    return getOutDelegateByViewHolder(holder.bindingAdapterPosition)
+  }
+
+  private fun getOutDelegateByViewHolder(position: Int): ItemViewDelegate<Any, ViewHolder> {
+    @Suppress("UNCHECKED_CAST")
+    return types.getType<Any>(getItemViewType(position)).delegate as ItemViewDelegate<Any, ViewHolder>
   }
 
   @Throws(DelegateNotFoundException::class)

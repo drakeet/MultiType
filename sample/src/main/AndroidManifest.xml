@@ -50,6 +50,7 @@
 
         <activity android:name=".more.MoreApisPlayground"/>
 
+        <activity android:name=".concat.ConcatActivity"/>
     </application>
 
 </manifest>
