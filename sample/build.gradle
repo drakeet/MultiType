@@ -23,7 +23,7 @@ android {
 
   defaultConfig {
     applicationId "me.drakeet.multitype.sample"
-    minSdkVersion buildConfig.minSdkVersion
+    minSdkVersion 15
     targetSdkVersion buildConfig.targetSdkVersion
     versionCode buildConfig.versionCode
     versionName buildConfig.versionName
